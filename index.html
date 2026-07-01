@@ -123,50 +123,6 @@
   </div>
 </section>
 
-<!-- ── FEATURES STRIP ────────────────────────────────────────────────────── -->
-<div class="features-strip">
-  <div class="container">
-    <div class="features-strip-grid">
-      <div class="strip-item">
-        <div class="strip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <span class="strip-label">Pricing Monitor</span>
-      </div>
-      <div class="strip-item">
-        <div class="strip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <span class="strip-label">Risk Monitor</span>
-      </div>
-      <div class="strip-item">
-        <div class="strip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <span class="strip-label">Client Lookup</span>
-      </div>
-      <div class="strip-item">
-        <div class="strip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
-        </div>
-        <span class="strip-label">Swaps Manager</span>
-      </div>
-      <div class="strip-item">
-        <div class="strip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-        </div>
-        <span class="strip-label">Alerts</span>
-      </div>
-      <div class="strip-item">
-        <div class="strip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <span class="strip-label">Symbol Hours</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ── FEATURES ──────────────────────────────────────────────────────────── -->
 <section class="section" id="features">
   <div class="container">
@@ -178,52 +134,132 @@
 
     <div class="features-grid">
 
+      <!-- Pricing Monitor -->
       <div class="feat-card">
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Monitor frame -->
+            <rect x="4" y="8" width="56" height="36" rx="3"/>
+            <!-- Stand neck -->
+            <line x1="24" y1="44" x2="40" y2="44"/>
+            <!-- Stand base -->
+            <line x1="18" y1="50" x2="46" y2="50"/>
+            <!-- Chart line -->
+            <polyline points="12,34 22,24 30,28 39,16 50,21 56,18"/>
+            <!-- Peak dots -->
+            <circle cx="22" cy="24" r="2.2" fill="#1c3250"/>
+            <circle cx="39" cy="16" r="2.2" fill="#1c3250"/>
+          </svg>
         </div>
         <h3>Pricing Monitor</h3>
-        <p>Live bid/ask prices and spreads for all your symbols in one place. Instantly spot anomalies, widen spreads, or symbols going off-market.</p>
+        <p>Live bid/ask prices and spreads for all your symbols. Spot anomalies and off-market prices the moment they happen.</p>
       </div>
 
+      <!-- Risk Monitor -->
       <div class="feat-card">
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Gauge arc -->
+            <path d="M8 46 A24 24 0 0 1 56 46"/>
+            <!-- Danger zone arc (red) -->
+            <path d="M44 22.5 A24 24 0 0 1 56 46" stroke="#e53e3e" stroke-width="3.5" opacity=".4"/>
+            <!-- Tick marks -->
+            <line x1="8"  y1="46" x2="13" y2="39"/>
+            <line x1="32" y1="22" x2="32" y2="28"/>
+            <line x1="56" y1="46" x2="51" y2="39"/>
+            <line x1="46" y1="26" x2="43" y2="31"/>
+            <!-- Needle -->
+            <line x1="32" y1="46" x2="46" y2="27"/>
+            <!-- Pivot -->
+            <circle cx="32" cy="46" r="4" fill="#1c3250"/>
+            <circle cx="32" cy="46" r="2" fill="#fff"/>
+          </svg>
         </div>
         <h3>Risk Monitor</h3>
-        <p>Real-time account equity, margin level, and floating P&amp;L across all connected accounts. Color-coded alerts when margin gets critical.</p>
+        <p>Real-time equity, margin level, and floating P&amp;L. Color-coded alerts automatically flag accounts approaching margin call.</p>
       </div>
 
+      <!-- Client Lookup -->
       <div class="feat-card">
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Person head -->
+            <circle cx="22" cy="20" r="9"/>
+            <!-- Person shoulder curve -->
+            <path d="M4 52c0-9.9 8.1-18 18-18"/>
+            <!-- Magnifying glass body -->
+            <circle cx="42" cy="40" r="12"/>
+            <!-- Handle -->
+            <line x1="51" y1="49" x2="59" y2="57"/>
+          </svg>
         </div>
         <h3>Client Lookup</h3>
-        <p>Instantly search clients by login, name, or email. View their open positions, account history, and group settings without logging into MT5.</p>
+        <p>Search any client instantly by login, email, or name. See their open positions and account settings without touching MT5.</p>
       </div>
 
+      <!-- Swaps Manager -->
       <div class="feat-card">
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Document base -->
+            <path d="M10 6h28l14 14v38H10z"/>
+            <!-- Folded corner -->
+            <polyline points="38,6 38,20 52,20"/>
+            <!-- Swap arrows on document -->
+            <line x1="20" y1="32" x2="44" y2="32"/>
+            <polyline points="37,26 44,32 37,38"/>
+            <line x1="44" y1="44" x2="20" y2="44"/>
+            <polyline points="27,38 20,44 27,50"/>
+          </svg>
         </div>
         <h3>Swaps &amp; Group Simulator</h3>
-        <p>View current swap rates across all groups and symbols. Simulate changes before applying them — see the impact before your clients do.</p>
+        <p>View current swap rates for every group and symbol. Simulate changes and preview the impact before your clients see it.</p>
       </div>
 
+      <!-- Alerts -->
       <div class="feat-card">
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Bell body -->
+            <path d="M32 8C19 8 16 18 16 26v12l-6 7h44l-6-7V26C48 18 45 8 32 8z"/>
+            <!-- Clapper -->
+            <path d="M26 45a6 6 0 0012 0"/>
+            <!-- Telegram/email badge -->
+            <circle cx="46" cy="17" r="9" fill="#0891b2" stroke="none"/>
+            <polyline points="41,17 45,21 51,13" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         <h3>Email &amp; Telegram Alerts</h3>
-        <p>Get notified the moment something needs attention — margin calls, spread spikes, server disconnects. Delivered to email and Telegram instantly.</p>
+        <p>Instant notifications for margin calls, spread spikes, and server events — delivered to your inbox and Telegram the second they trigger.</p>
       </div>
 
+      <!-- Symbol Hours -->
       <div class="feat-card">
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Clock face -->
+            <circle cx="26" cy="28" r="20"/>
+            <!-- Hour + minute hands -->
+            <polyline points="26,14 26,28 34,33"/>
+            <!-- Calendar (bottom-right, overlapping) -->
+            <rect x="36" y="38" width="22" height="20" rx="3" fill="white" stroke="#1c3250"/>
+            <!-- Calendar header bar -->
+            <line x1="36" y1="45" x2="58" y2="45"/>
+            <!-- Calendar pin left -->
+            <line x1="42" y1="35" x2="42" y2="41"/>
+            <!-- Calendar pin right -->
+            <line x1="52" y1="35" x2="52" y2="41"/>
+            <!-- Calendar dots row 1 -->
+            <circle cx="42" cy="50" r="1.5" fill="#1c3250"/>
+            <circle cx="47" cy="50" r="1.5" fill="#1c3250"/>
+            <circle cx="52" cy="50" r="1.5" fill="#1c3250"/>
+            <!-- Calendar dots row 2 -->
+            <circle cx="42" cy="55" r="1.5" fill="#1c3250"/>
+            <circle cx="47" cy="55" r="1.5" fill="#1c3250"/>
+          </svg>
         </div>
         <h3>Symbol Hours &amp; Holidays</h3>
-        <p>Manage trading hours and market holiday schedules for all symbols. Never accidentally leave markets open during exchange closures.</p>
+        <p>Manage trading hours and market holiday schedules for every symbol. Never leave a market open during an exchange closure again.</p>
       </div>
 
     </div>
