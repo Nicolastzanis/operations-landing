@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operations Tool — MT5 Broker Operations Platform</title>
+  <meta name="description" content="Real-time pricing, risk monitoring, and client management for MT5 brokers. Built for operations teams who can't afford downtime." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-mark">OT</div>
+      Operations Tool
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://app.operationstool.io" class="nav-login">Log in</a>
+      <a href="https://app.operationstool.io/#register" class="nav-get-started">Get Started →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container hero-inner">
+
+    <div class="hero-content">
+      <span class="eyebrow">MT5 Broker Operations Platform</span>
+      <h1>Run your brokerage with total confidence</h1>
+      <p class="lead" style="margin-top:18px">
+        Real-time pricing, risk monitoring, and client management — built for MT5 broker operations teams who can't afford to miss a thing.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://app.operationstool.io/#register" class="btn btn-primary btn-lg">Get Started →</a>
+        <a href="#features" class="btn btn-outline btn-lg">See features</a>
+      </div>
+      <div class="hero-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        No long-term contract · Cancel anytime · Crypto payment
+      </div>
+    </div>
+
+    <!-- Dashboard mockup -->
+    <div class="hero-mockup">
+      <div class="mockup-window">
+        <div class="mockup-titlebar">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <span style="margin-left:10px;font-size:11px;color:rgba(255,255,255,.25);font-family:monospace">app.operationstool.io · Pricing Monitor</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-row">
+            <div class="mockup-stat">
+              <div class="mockup-stat-label">Symbols live</div>
+              <div class="mockup-stat-val">184</div>
+              <div class="mockup-stat-sub">↑ 3 added today</div>
+            </div>
+            <div class="mockup-stat">
+              <div class="mockup-stat-label">Avg spread</div>
+              <div class="mockup-stat-val" style="color:#4ade80">0.9 pts</div>
+              <div class="mockup-stat-sub">normal range</div>
+            </div>
+            <div class="mockup-stat">
+              <div class="mockup-stat-label">Alerts today</div>
+              <div class="mockup-stat-val" style="color:#fbbf24">2</div>
+              <div class="mockup-stat-sub">1 unread</div>
+            </div>
+          </div>
+          <div>
+            <div class="mockup-header">
+              <span>Symbol</span><span>Bid</span><span>Ask</span><span>Spread</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div class="mockup-table-row">
+                <span class="mockup-sym">EURUSD</span>
+                <span class="mockup-bid">1.08412</span>
+                <span class="mockup-ask">1.08420</span>
+                <span class="mockup-spread">0.8</span>
+              </div>
+              <div class="mockup-table-row">
+                <span class="mockup-sym">GBPUSD</span>
+                <span class="mockup-bid">1.26834</span>
+                <span class="mockup-ask">1.26846</span>
+                <span class="mockup-spread">1.2</span>
+              </div>
+              <div class="mockup-table-row">
+                <span class="mockup-sym">XAUUSD</span>
+                <span class="mockup-bid">2 341.20</span>
+                <span class="mockup-ask">2 341.50</span>
+                <span class="mockup-spread">3.0</span>
+              </div>
+              <div class="mockup-table-row">
+                <span class="mockup-sym">US30</span>
+                <span class="mockup-bid">39 148.0</span>
+                <span class="mockup-ask">39 152.0</span>
+                <span class="mockup-spread">4.0</span>
+              </div>
+              <div class="mockup-table-row">
+                <span class="mockup-sym">BTCUSD</span>
+                <span class="mockup-bid">67 240</span>
+                <span class="mockup-ask">67 265</span>
+                <span class="mockup-spread">25</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FEATURES STRIP ────────────────────────────────────────────────────── -->
+<div class="features-strip">
+  <div class="container">
+    <div class="features-strip-grid">
+      <div class="strip-item">
+        <div class="strip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <span class="strip-label">Pricing Monitor</span>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="strip-label">Risk Monitor</span>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <span class="strip-label">Client Lookup</span>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </div>
+        <span class="strip-label">Swaps Manager</span>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        </div>
+        <span class="strip-label">Alerts</span>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <span class="strip-label">Symbol Hours</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ──────────────────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Everything you need</span>
+      <h2>One platform for your entire ops team</h2>
+      <p class="section-sub">Every tool your MT5 operations team needs, connected in a single secure dashboard.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Pricing Monitor</h3>
+        <p>Live bid/ask prices and spreads for all your symbols in one place. Instantly spot anomalies, widen spreads, or symbols going off-market.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Risk Monitor</h3>
+        <p>Real-time account equity, margin level, and floating P&amp;L across all connected accounts. Color-coded alerts when margin gets critical.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <h3>Client Lookup</h3>
+        <p>Instantly search clients by login, name, or email. View their open positions, account history, and group settings without logging into MT5.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </div>
+        <h3>Swaps &amp; Group Simulator</h3>
+        <p>View current swap rates across all groups and symbols. Simulate changes before applying them — see the impact before your clients do.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        </div>
+        <h3>Email &amp; Telegram Alerts</h3>
+        <p>Get notified the moment something needs attention — margin calls, spread spikes, server disconnects. Delivered to email and Telegram instantly.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Symbol Hours &amp; Holidays</h3>
+        <p>Manage trading hours and market holiday schedules for all symbols. Never accidentally leave markets open during exchange closures.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ──────────────────────────────────────────────────────── -->
+<section class="section" id="how-it-works" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">How it works</span>
+      <h2>Up and running in minutes</h2>
+      <p class="section-sub">No complex setup. Connect your MT5 server and your team is live.</p>
+    </div>
+
+    <div class="how-inner">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Register your brokerage</h3>
+            <p>Create your company account in under 2 minutes. One admin account, unlimited team members.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Connect your MT5 server</h3>
+            <p>We connect to your MT5 Manager API. Provide your server host, port, and manager credentials — that's it.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Your team goes live</h3>
+            <p>Invite your operations team, assign permissions, and start monitoring. Data flows in real-time from minute one.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Customise &amp; brand</h3>
+            <p>Upload your company logo, configure alerts, and make the platform feel like your own internal tool.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Risk monitor preview -->
+      <div class="how-visual">
+        <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Risk Monitor — Live</div>
+        <div class="risk-card-demo">
+          <div class="risk-demo-head">
+            <span class="risk-demo-login">Login #1045820</span>
+            <span class="risk-demo-badge badge-crit">Margin critical</span>
+          </div>
+          <div class="risk-demo-stats">
+            <div>
+              <div class="risk-demo-stat-label">Equity</div>
+              <div class="risk-demo-stat-val" style="color:#f87171">$1,240</div>
+            </div>
+            <div>
+              <div class="risk-demo-stat-label">Margin %</div>
+              <div class="risk-demo-stat-val" style="color:#f87171">18%</div>
+            </div>
+            <div>
+              <div class="risk-demo-stat-label">Floating</div>
+              <div class="risk-demo-stat-val" style="color:#f87171">−$860</div>
+            </div>
+          </div>
+        </div>
+        <div class="risk-card-demo">
+          <div class="risk-demo-head">
+            <span class="risk-demo-login">Login #1045234</span>
+            <span class="risk-demo-badge badge-warn">Watch</span>
+          </div>
+          <div class="risk-demo-stats">
+            <div>
+              <div class="risk-demo-stat-label">Equity</div>
+              <div class="risk-demo-stat-val">$8,450</div>
+            </div>
+            <div>
+              <div class="risk-demo-stat-label">Margin %</div>
+              <div class="risk-demo-stat-val" style="color:#fbbf24">52%</div>
+            </div>
+            <div>
+              <div class="risk-demo-stat-label">Floating</div>
+              <div class="risk-demo-stat-val" style="color:#fbbf24">−$320</div>
+            </div>
+          </div>
+        </div>
+        <div class="risk-card-demo">
+          <div class="risk-demo-head">
+            <span class="risk-demo-login">Login #1044991</span>
+            <span class="risk-demo-badge badge-ok">Healthy</span>
+          </div>
+          <div class="risk-demo-stats">
+            <div>
+              <div class="risk-demo-stat-label">Equity</div>
+              <div class="risk-demo-stat-val">$42,100</div>
+            </div>
+            <div>
+              <div class="risk-demo-stat-label">Margin %</div>
+              <div class="risk-demo-stat-val" style="color:#4ade80">310%</div>
+            </div>
+            <div>
+              <div class="risk-demo-stat-label">Floating</div>
+              <div class="risk-demo-stat-val" style="color:#4ade80">+$2,800</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ───────────────────────────────────────────────────────────── -->
+<section class="section pricing-section" id="pricing">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple, transparent pricing</h2>
+      <p class="section-sub">One plan. Full platform access. No seat limits, no hidden fees.</p>
+    </div>
+
+    <div class="pricing-card-wrap">
+      <div class="pricing-card">
+        <div class="pricing-badge">Full Access</div>
+        <div class="pricing-name">Operations Suite</div>
+        <div style="display:flex;align-items:baseline;gap:0;margin-top:10px">
+          <span class="pricing-amount">€3,999</span>
+          <span class="pricing-per">/ month</span>
+        </div>
+        <div class="pricing-billing">Monthly · Cancel anytime</div>
+        <hr class="pricing-divider" />
+        <div class="pricing-feats">
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Real-time pricing monitor — all symbols, live</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Account risk monitoring with margin alerts</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Client lookup &amp; open position viewer</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Swaps &amp; group simulator</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Email &amp; Telegram instant alerts</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Symbol hours &amp; market holiday manager</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Custom branding &amp; company logo</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Unlimited team accounts</div>
+        </div>
+        <a href="https://app.operationstool.io/#register" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Get Started →</a>
+        <p class="pricing-note">Payment via USDT (TRC20 / ERC20) · Activation within 24h</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Ready to run your operations in one place?</h2>
+    <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
+    <div class="cta-btns">
+      <a href="https://app.operationstool.io/#register" class="btn btn-white btn-lg">Get Started →</a>
+      <a href="mailto:hello@operationstool.io" class="btn btn-lg" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <div class="nav-mark" style="width:28px;height:28px;font-size:11px">OT</div>
+      Operations Tool
+    </div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="https://app.operationstool.io">Log in</a>
+    </div>
+    <span class="footer-copy">© 2026 Operations Tool. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
