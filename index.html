@@ -79,80 +79,90 @@
       </div>
     </div>
 
-    <!-- RIGHT: animated hub -->
+    <!-- RIGHT: animated hub — OT node left, cards right column -->
     <div class="hero-hub-wrap">
+
+      <!-- OT node: centered at x=90, y=210 within 520×420 wrap -->
       <div class="hub-glow"></div>
-
-      <!-- pulse rings behind hub -->
-      <div class="pulse-ring"  style="width:140px;height:140px"></div>
-      <div class="pulse-ring-2" style="width:140px;height:140px"></div>
-
-      <!-- central OT hub -->
+      <div class="pulse-ring"  style="width:136px;height:136px;left:90px;top:210px;transform:translate(-50%,-50%) scale(.8)"></div>
+      <div class="pulse-ring-2" style="width:136px;height:136px;left:90px;top:210px;transform:translate(-50%,-50%) scale(.8)"></div>
       <div class="hub-center">OT</div>
 
-      <!-- SVG animated connection lines -->
-      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10" xmlns="http://www.w3.org/2000/svg">
+      <!-- Precise SVG lines + animated dots (viewBox matches 520×420 layout) -->
+      <svg class="hub-svg" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <filter id="glow-f">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
+          <filter id="dot-glow">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
-        <!-- track lines -->
-        <line x1="12%" y1="12%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="88%" y1="12%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="92%" y1="50%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="12%" y1="82%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="50%" y1="92%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
 
-        <!-- animated dots: Pricing Monitor → hub -->
-        <circle cx="12%" cy="12%" r="4.5" fill="#38bdf8" filter="url(#glow-f)" opacity="0">
-          <animate attributeName="cx" values="12%;50%" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-          <animate attributeName="cy" values="12%;50%" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+        <!-- 5 dashed track lines: hub(90,210) → card left edges (230, card_cy) -->
+        <line x1="90" y1="210" x2="230" y2="101" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="90" y1="210" x2="230" y2="155" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="90" y1="210" x2="230" y2="210" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="90" y1="210" x2="230" y2="265" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="90" y1="210" x2="230" y2="319" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+        <!-- small anchor dots at card side -->
+        <circle cx="230" cy="101" r="3"  fill="rgba(8,145,178,.55)"/>
+        <circle cx="230" cy="155" r="3"  fill="rgba(8,145,178,.55)"/>
+        <circle cx="230" cy="210" r="3"  fill="rgba(8,145,178,.55)"/>
+        <circle cx="230" cy="265" r="3"  fill="rgba(8,145,178,.55)"/>
+        <circle cx="230" cy="319" r="3"  fill="rgba(8,145,178,.55)"/>
+
+        <!-- animated data dots: card → hub -->
+        <circle r="4" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
+          <animate attributeName="cx" values="230;90" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+          <animate attributeName="cy" values="101;210" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+        </circle>
+        <circle r="4" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
+          <animate attributeName="cx" values="230;90" dur="2s"   repeatCount="indefinite" begin="0.5s"/>
+          <animate attributeName="cy" values="155;210" dur="2s"   repeatCount="indefinite" begin="0.5s"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+        </circle>
+        <circle r="4" fill="#7dd3fc" filter="url(#dot-glow)" opacity="0">
+          <animate attributeName="cx" values="230;90" dur="1.6s"  repeatCount="indefinite" begin="1s"/>
+          <animate attributeName="cy" values="210;210" dur="1.6s"  repeatCount="indefinite" begin="1s"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="1.6s" repeatCount="indefinite" begin="1s"/>
+        </circle>
+        <circle r="4" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
+          <animate attributeName="cx" values="230;90" dur="2.2s"  repeatCount="indefinite" begin="0.3s"/>
+          <animate attributeName="cy" values="265;210" dur="2.2s"  repeatCount="indefinite" begin="0.3s"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+        <circle r="4" fill="#7dd3fc" filter="url(#dot-glow)" opacity="0">
+          <animate attributeName="cx" values="230;90" dur="1.9s"  repeatCount="indefinite" begin="1.5s"/>
+          <animate attributeName="cy" values="319;210" dur="1.9s"  repeatCount="indefinite" begin="1.5s"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="1.9s" repeatCount="indefinite" begin="1.5s"/>
         </circle>
 
-        <!-- Risk Monitor → hub -->
-        <circle cx="88%" cy="12%" r="4.5" fill="#38bdf8" filter="url(#glow-f)" opacity="0">
-          <animate attributeName="cx" values="88%;50%" dur="2s" repeatCount="indefinite" begin="0.3s"/>
-          <animate attributeName="cy" values="12%;50%" dur="2s" repeatCount="indefinite" begin="0.3s"/>
-          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="2s" repeatCount="indefinite" begin="0.3s"/>
-        </circle>
-
-        <!-- Client Lookup → hub -->
-        <circle cx="92%" cy="50%" r="4" fill="#7dd3fc" filter="url(#glow-f)" opacity="0">
-          <animate attributeName="cx" values="92%;50%" dur="1.6s" repeatCount="indefinite" begin="0.6s"/>
-          <animate attributeName="cy" values="50%;50%" dur="1.6s" repeatCount="indefinite" begin="0.6s"/>
-          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.6s" repeatCount="indefinite" begin="0.6s"/>
-        </circle>
-
-        <!-- Alerts → hub -->
-        <circle cx="12%" cy="82%" r="4.5" fill="#38bdf8" filter="url(#glow-f)" opacity="0">
-          <animate attributeName="cx" values="12%;50%" dur="2.2s" repeatCount="indefinite" begin="0.1s"/>
-          <animate attributeName="cy" values="82%;50%" dur="2.2s" repeatCount="indefinite" begin="0.1s"/>
-          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="2.2s" repeatCount="indefinite" begin="0.1s"/>
-        </circle>
-
-        <!-- Swaps → hub -->
-        <circle cx="50%" cy="92%" r="4" fill="#7dd3fc" filter="url(#glow-f)" opacity="0">
-          <animate attributeName="cx" values="50%;50%" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
-          <animate attributeName="cy" values="92%;50%" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
-          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
-        </circle>
-
-        <!-- hub receive pulse ring -->
-        <circle cx="50%" cy="50%" fill="none" stroke="#0891b2" stroke-width="1.5" opacity="0">
-          <animate attributeName="r" values="8;30;8" dur="1.8s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.8;0;0.8" dur="1.8s" repeatCount="indefinite"/>
+        <!-- hub receive pulse -->
+        <circle cx="90" cy="210" fill="none" stroke="#0891b2" stroke-width="1.8" opacity="0">
+          <animate attributeName="r" values="10;38" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;0"   dur="2s" repeatCount="indefinite"/>
         </circle>
       </svg>
 
-      <!-- floating module cards -->
-      <div class="hub-card card-float-1" style="top:8%;left:2%">Pricing Monitor</div>
-      <div class="hub-card card-float-2" style="top:6%;right:2%">Risk Monitor</div>
-      <div class="hub-card card-float-3" style="top:46%;right:0%">Client Lookup</div>
-      <div class="hub-card card-float-1" style="bottom:14%;left:2%">Email &amp; Telegram Alerts</div>
-      <div class="hub-card card-float-2" style="bottom:6%;left:30%">Swaps Simulator</div>
+      <!-- Module cards: absolutely positioned to match SVG card endpoints -->
+      <!-- top of card = center_y − 21, so:  101-21=80, 155-21=134, 210-21=189, 265-21=244, 319-21=298 -->
+      <div class="hub-card card-float-1" style="top:80px;left:242px">
+        <span class="hub-card-dot"></span>Pricing Monitor
+      </div>
+      <div class="hub-card card-float-2" style="top:134px;left:242px">
+        <span class="hub-card-dot"></span>Risk Monitor
+      </div>
+      <div class="hub-card card-float-3" style="top:189px;left:242px">
+        <span class="hub-card-dot"></span>Client Lookup
+      </div>
+      <div class="hub-card card-float-1" style="top:244px;left:242px">
+        <span class="hub-card-dot"></span>Swaps Simulator
+      </div>
+      <div class="hub-card card-float-2" style="top:298px;left:242px">
+        <span class="hub-card-dot"></span>Email &amp; Telegram Alerts
+      </div>
+
     </div>
 
   </div><!-- /hero-inner -->
