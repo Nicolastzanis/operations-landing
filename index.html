@@ -27,225 +27,268 @@
     </div>
     <div class="nav-actions">
       <a href="https://web-production-c8c34.up.railway.app" class="nav-login">Log in</a>
-      <a href="https://web-production-c8c34.up.railway.app/#register" class="nav-get-started">Get Started →</a>
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="nav-cta">Get Started →</a>
     </div>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="container hero-inner">
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<div class="hero">
 
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        MT5 Broker Operations Platform
-      </div>
-      <h1>Run Your Brokerage<br><span class="gradient-text">All in One Place</span></h1>
-      <p class="lead" style="margin-top:18px">
-        Real-time pricing, risk monitoring, and client management — built for MT5 operations teams who cannot afford to miss a thing.
+  <!-- floating particles -->
+  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden">
+    <span class="particle" style="width:5px;height:5px;left:8%;bottom:10%;animation-duration:6s;animation-delay:0s"></span>
+    <span class="particle" style="width:3px;height:3px;left:18%;bottom:10%;animation-duration:8s;animation-delay:1s"></span>
+    <span class="particle" style="width:6px;height:6px;left:30%;bottom:10%;animation-duration:7s;animation-delay:2.5s"></span>
+    <span class="particle" style="width:4px;height:4px;left:45%;bottom:10%;animation-duration:9s;animation-delay:0.5s"></span>
+    <span class="particle" style="width:3px;height:3px;left:58%;bottom:10%;animation-duration:6.5s;animation-delay:3s"></span>
+    <span class="particle" style="width:7px;height:7px;left:70%;bottom:10%;animation-duration:8.5s;animation-delay:1.5s"></span>
+    <span class="particle" style="width:4px;height:4px;left:80%;bottom:10%;animation-duration:7s;animation-delay:2s"></span>
+    <span class="particle" style="width:5px;height:5px;left:90%;bottom:10%;animation-duration:6s;animation-delay:4s"></span>
+  </div>
+
+  <!-- animated glow blobs -->
+  <div style="position:absolute;inset:0;z-index:0;pointer-events:none">
+    <div class="blob" style="top:-5%;left:-10%;width:700px;height:700px;background:rgba(7,89,133,.55);filter:blur(180px);opacity:.35"></div>
+    <div class="blob" style="top:20%;right:-5%;width:500px;height:500px;background:rgba(8,145,178,.4);filter:blur(150px);opacity:.25;animation-delay:3s"></div>
+    <div class="blob" style="bottom:15%;left:35%;width:600px;height:600px;background:rgba(14,116,144,.35);filter:blur(160px);opacity:.2;animation-delay:6s"></div>
+  </div>
+
+  <!-- hero content -->
+  <div class="hero-inner">
+
+    <!-- LEFT -->
+    <div style="animation: fadeUp .6s ease both">
+      <p class="hero-eyebrow">SEAMLESS · REAL-TIME · SECURE</p>
+      <h1>The Complete MT5<br>Operations<br>Platform</h1>
+      <p class="hero-lead">
+        Real-time pricing, risk monitoring, and client management — built for MT5 broker operations teams who cannot afford to miss a thing.
       </p>
-      <div class="hero-ctas">
-        <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-primary btn-lg">Get Started →</a>
-        <a href="features.html" class="btn btn-outline btn-lg">See features</a>
-      </div>
-      <div class="hero-trust">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-primary btn-lg">
+        Get Started →
+      </a>
+      <div class="hero-trust" style="margin-top:20px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         No long-term contract
         <span class="hero-trust-sep">·</span>
         Cancel anytime
         <span class="hero-trust-sep">·</span>
-        USDT payment accepted
+        USDT payment
       </div>
     </div>
 
-    <!-- Connection diagram -->
-    <div class="hero-diagram-wrap">
-      <div class="hero-diagram">
-        <div class="diagram-hub">
-          <div class="diagram-hub-icon">OT</div>
-          <div>
-            <div class="diagram-hub-label">Operations Tool</div>
-            <div class="diagram-hub-sub">Connected to your MT5 server · Live</div>
-          </div>
-        </div>
-        <div class="diagram-connections">
-          <div class="diagram-line">
-            <div class="diagram-dot"></div>
-            <div class="diagram-dash"></div>
-            <div class="diagram-tag active">Pricing Monitor</div>
-          </div>
-          <div class="diagram-line">
-            <div class="diagram-dot"></div>
-            <div class="diagram-dash"></div>
-            <div class="diagram-tag active">Risk Monitor</div>
-          </div>
-          <div class="diagram-line">
-            <div class="diagram-dot"></div>
-            <div class="diagram-dash"></div>
-            <div class="diagram-tag">Client Lookup</div>
-          </div>
-          <div class="diagram-line">
-            <div class="diagram-dot"></div>
-            <div class="diagram-dash"></div>
-            <div class="diagram-tag">Swaps &amp; Simulator</div>
-          </div>
-          <div class="diagram-line">
-            <div class="diagram-dot"></div>
-            <div class="diagram-dash"></div>
-            <div class="diagram-tag">Email &amp; Telegram Alerts</div>
-          </div>
-          <div class="diagram-line">
-            <div class="diagram-dot"></div>
-            <div class="diagram-dash"></div>
-            <div class="diagram-tag">Symbol Hours</div>
-          </div>
-        </div>
-        <!-- Live indicator -->
-        <div style="display:flex;align-items:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
-          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulseDot 2s ease-in-out infinite"></span>
-          <span style="font-size:12px;color:var(--text-muted);font-weight:500">184 symbols live · 2 alerts today · 0 downtime</span>
-        </div>
-      </div>
+    <!-- RIGHT: animated hub -->
+    <div class="hero-hub-wrap">
+      <div class="hub-glow"></div>
+
+      <!-- pulse rings behind hub -->
+      <div class="pulse-ring"  style="width:140px;height:140px"></div>
+      <div class="pulse-ring-2" style="width:140px;height:140px"></div>
+
+      <!-- central OT hub -->
+      <div class="hub-center">OT</div>
+
+      <!-- SVG animated connection lines -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow-f">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- track lines -->
+        <line x1="12%" y1="12%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="88%" y1="12%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="92%" y1="50%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="12%" y1="82%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="50%" y1="92%" x2="50%" y2="50%" stroke="rgba(8,145,178,.3)" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+        <!-- animated dots: Pricing Monitor → hub -->
+        <circle cx="12%" cy="12%" r="4.5" fill="#38bdf8" filter="url(#glow-f)" opacity="0">
+          <animate attributeName="cx" values="12%;50%" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+          <animate attributeName="cy" values="12%;50%" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+        </circle>
+
+        <!-- Risk Monitor → hub -->
+        <circle cx="88%" cy="12%" r="4.5" fill="#38bdf8" filter="url(#glow-f)" opacity="0">
+          <animate attributeName="cx" values="88%;50%" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+          <animate attributeName="cy" values="12%;50%" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+
+        <!-- Client Lookup → hub -->
+        <circle cx="92%" cy="50%" r="4" fill="#7dd3fc" filter="url(#glow-f)" opacity="0">
+          <animate attributeName="cx" values="92%;50%" dur="1.6s" repeatCount="indefinite" begin="0.6s"/>
+          <animate attributeName="cy" values="50%;50%" dur="1.6s" repeatCount="indefinite" begin="0.6s"/>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.6s" repeatCount="indefinite" begin="0.6s"/>
+        </circle>
+
+        <!-- Alerts → hub -->
+        <circle cx="12%" cy="82%" r="4.5" fill="#38bdf8" filter="url(#glow-f)" opacity="0">
+          <animate attributeName="cx" values="12%;50%" dur="2.2s" repeatCount="indefinite" begin="0.1s"/>
+          <animate attributeName="cy" values="82%;50%" dur="2.2s" repeatCount="indefinite" begin="0.1s"/>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="2.2s" repeatCount="indefinite" begin="0.1s"/>
+        </circle>
+
+        <!-- Swaps → hub -->
+        <circle cx="50%" cy="92%" r="4" fill="#7dd3fc" filter="url(#glow-f)" opacity="0">
+          <animate attributeName="cx" values="50%;50%" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
+          <animate attributeName="cy" values="92%;50%" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
+        </circle>
+
+        <!-- hub receive pulse ring -->
+        <circle cx="50%" cy="50%" fill="none" stroke="#0891b2" stroke-width="1.5" opacity="0">
+          <animate attributeName="r" values="8;30;8" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0;0.8" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+
+      <!-- floating module cards -->
+      <div class="hub-card card-float-1" style="top:8%;left:2%">Pricing Monitor</div>
+      <div class="hub-card card-float-2" style="top:6%;right:2%">Risk Monitor</div>
+      <div class="hub-card card-float-3" style="top:46%;right:0%">Client Lookup</div>
+      <div class="hub-card card-float-1" style="bottom:14%;left:2%">Email &amp; Telegram Alerts</div>
+      <div class="hub-card card-float-2" style="bottom:6%;left:30%">Swaps Simulator</div>
     </div>
 
+  </div><!-- /hero-inner -->
+
+  <!-- wave transition to white -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 2880 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(8,145,178,.45)" d="M0,45 C480,90 960,0 1440,45 C1920,90 2400,10 2880,45 L2880,120 L0,120 Z"/>
+      <path fill="rgba(7,89,133,.35)" d="M0,65 C480,20 960,100 1440,65 C1920,20 2400,95 2880,65 L2880,120 L0,120 Z"/>
+      <path fill="rgba(4,17,31,.6)"   d="M0,85 C600,45 1200,115 1800,85 C2400,45 2600,105 2880,85 L2880,120 L0,120 Z"/>
+    </svg>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,transparent,#fff)"></div>
   </div>
+
+</div><!-- /hero -->
+
+<!-- ═══════════════════════════════════════════
+     STATEMENT
+═══════════════════════════════════════════ -->
+<section class="statement">
+  <p class="eyebrow-gradient">Built for Broker Operations</p>
+  <h2>A Complete<br>MT5 Operations<br><span class="underline-accent">Platform</span></h2>
+  <p class="sub">One platform for pricing, risk, clients, and alerts. Purpose-built for forex broker operations teams.</p>
+  <a href="features.html" class="btn btn-dark btn-lg">Explore Features</a>
 </section>
 
-<!-- ── TRUST STRIP ── -->
-<div class="trust-strip">
+<!-- ═══════════════════════════════════════════
+     FEATURES  (bento grid)
+═══════════════════════════════════════════ -->
+<section class="features-section" id="features">
   <div class="container">
-    <div class="trust-inner">
-      <span class="trust-label">Trusted by MT5 brokers</span>
-      <div class="trust-sep"></div>
-      <div class="trust-logos">
-        <span class="trust-logo">Forex Broker</span>
-        <span class="trust-logo">CFD House</span>
-        <span class="trust-logo">Prime Broker</span>
-        <span class="trust-logo">Prop Trading Co.</span>
-        <span class="trust-logo">Multi-Asset Firm</span>
-      </div>
-    </div>
-  </div>
-</div>
+    <p class="eyebrow-gradient text-center" data-reveal>Everything you need</p>
+    <h2 class="text-center" style="color:var(--text)" data-reveal style="--d:.07s">What We Do</h2>
+    <p class="section-sub" data-reveal style="--d:.14s">Six modules, one platform. Every tool your MT5 operations team needs.</p>
 
-<!-- ── FEATURES ── -->
-<section class="section features-section" id="features">
-  <div class="container">
-    <div class="text-center" data-reveal>
-      <div class="eyebrow"><span class="eyebrow-line"></span>Everything you need</div>
-      <h2>What <span class="gradient-text">We Do</span></h2>
-      <p class="section-sub">Six modules, one platform. Every tool your MT5 operations team needs, connected in a single secure dashboard.</p>
-    </div>
+    <div class="bento-grid">
 
-    <div class="features-grid">
-
-      <div class="feat-card" data-reveal style="--d:.05s">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Pricing Monitor – dark wide card -->
+      <div class="bento-card dark span-2 shimmer-card" data-reveal style="--d:.05s">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="3" width="20" height="14" rx="2"/>
             <line x1="3" y1="21" x2="21" y2="21"/>
             <polyline points="5,10 9,7 12,9 16,5 21,6"/>
           </svg>
         </div>
         <h3>Pricing Monitor</h3>
-        <p>Live bid/ask prices and spreads for all your symbols. Spot anomalies and off-market prices the moment they happen.</p>
+        <p>Live bid/ask prices and spreads for every symbol. Spot off-market prices and spread anomalies the moment they happen.</p>
+        <!-- mini stat strip -->
+        <div class="mini-stat-row">
+          <div class="mini-stat">
+            <div class="mini-stat-label">Symbols</div>
+            <div class="mini-stat-val">184</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-label">Avg spread</div>
+            <div class="mini-stat-val" style="color:#4ade80">0.9</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-label">Alerts</div>
+            <div class="mini-stat-val" style="color:#fbbf24">2</div>
+          </div>
+        </div>
       </div>
 
-      <div class="feat-card" data-reveal style="--d:.1s">
-        <div class="feat-icon">
+      <!-- Risk Monitor -->
+      <div class="bento-card shimmer-card" data-reveal style="--d:.1s">
+        <div class="bento-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             <polyline points="9,12 11,14 15,10"/>
           </svg>
         </div>
         <h3>Risk Monitor</h3>
-        <p>Real-time equity, margin level, and floating P&amp;L. Color-coded alerts automatically flag accounts approaching margin call.</p>
+        <p>Real-time equity, margin level, and floating P&amp;L. Color-coded flags for accounts approaching margin call.</p>
       </div>
 
-      <div class="feat-card" data-reveal style="--d:.15s">
-        <div class="feat-icon">
+      <!-- Client Lookup -->
+      <div class="bento-card shimmer-card" data-reveal style="--d:.15s">
+        <div class="bento-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
         </div>
         <h3>Client Lookup</h3>
-        <p>Search any client instantly by login, email, or name. See their open positions and account settings without touching MT5.</p>
+        <p>Search any client by login, email, or name. See open positions and account details without touching MT5.</p>
       </div>
 
-      <div class="feat-card" data-reveal style="--d:.2s">
-        <div class="feat-icon">
+      <!-- Swaps -->
+      <div class="bento-card shimmer-card" data-reveal style="--d:.2s">
+        <div class="bento-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-            <polyline points="14,2 14,8 20,8"/>
-            <line x1="8" y1="13" x2="16" y2="13"/>
-            <line x1="8" y1="17" x2="12" y2="17"/>
+            <polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
           </svg>
         </div>
-        <h3>Swaps &amp; Group Simulator</h3>
-        <p>View current swap rates for every group and symbol. Simulate changes and preview the impact before your clients see it.</p>
+        <h3>Swaps &amp; Simulator</h3>
+        <p>View swap rates for every group and symbol. Simulate changes before your clients see them.</p>
       </div>
 
-      <div class="feat-card" data-reveal style="--d:.25s">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 01-3.46 0"/>
+      <!-- Alerts – dark wide -->
+      <div class="bento-card dark span-2 shimmer-card" data-reveal style="--d:.25s">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
           </svg>
         </div>
         <h3>Email &amp; Telegram Alerts</h3>
-        <p>Instant notifications for margin calls, spread spikes, and server events. Delivered to your inbox and Telegram the second they trigger.</p>
+        <p>Instant notifications for margin calls, spread spikes, and server events — delivered to your inbox and Telegram the second they trigger.</p>
       </div>
 
-      <div class="feat-card" data-reveal style="--d:.3s">
-        <div class="feat-icon">
+      <!-- Symbol Hours -->
+      <div class="bento-card shimmer-card" data-reveal style="--d:.3s">
+        <div class="bento-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12,6 12,12 16,14"/>
+            <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
           </svg>
         </div>
         <h3>Symbol Hours &amp; Holidays</h3>
-        <p>Manage trading hours and market holiday schedules for every symbol. Never leave a market open during an exchange closure again.</p>
+        <p>Manage trading hours and holiday schedules for every symbol. Never leave a market open during an exchange closure.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ── STATS ── -->
-<div class="stats-section">
-  <div class="container">
-    <div class="stats-inner">
-      <div class="stat-block" data-reveal>
-        <div class="stat-num"><b>6</b></div>
-        <div class="stat-desc">Platform modules included</div>
-      </div>
-      <div class="stat-block" data-reveal style="--d:.08s">
-        <div class="stat-num">∞</div>
-        <div class="stat-desc">Team accounts, no per-seat fee</div>
-      </div>
-      <div class="stat-block" data-reveal style="--d:.16s">
-        <div class="stat-num">&lt;<b>1h</b></div>
-        <div class="stat-desc">From sign-up to live operations</div>
-      </div>
-      <div class="stat-block" data-reveal style="--d:.24s">
-        <div class="stat-num">24<b>/7</b></div>
-        <div class="stat-desc">Real-time data, always on</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── HOW IT WORKS ── -->
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════ -->
 <section class="section how-section" id="how-it-works">
   <div class="container">
     <div class="text-center" data-reveal>
-      <div class="eyebrow"><span class="eyebrow-line"></span>How it works</div>
-      <h2>Up and Running <span class="gradient-text">in Minutes</span></h2>
+      <p class="eyebrow-gradient">How it works</p>
+      <h2 style="color:var(--text)">Up and Running<br>in Minutes</h2>
       <p class="section-sub">No complex setup. Connect your MT5 server and your team is live.</p>
     </div>
-
     <div class="how-inner">
       <div class="steps">
         <div class="step" data-reveal style="--d:.05s">
@@ -259,7 +302,7 @@
           <div class="step-num">2</div>
           <div class="step-body">
             <h3>Connect your MT5 server</h3>
-            <p>We connect to your MT5 Manager API. Provide your server host, port, and manager credentials. Done.</p>
+            <p>We connect via your MT5 Manager API. Provide your server host, port, and credentials. Done.</p>
           </div>
         </div>
         <div class="step" data-reveal style="--d:.19s">
@@ -277,28 +320,18 @@
           </div>
         </div>
       </div>
-
-      <div data-reveal style="--d:.1s">
+      <div data-reveal style="--d:.12s">
         <div class="how-visual">
-          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Risk Monitor · Live</div>
+          <div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Risk Monitor · Live</div>
           <div class="risk-card-demo">
             <div class="risk-demo-head">
               <span class="risk-demo-login">Login #1045820</span>
               <span class="risk-demo-badge badge-crit">Margin critical</span>
             </div>
             <div class="risk-demo-stats">
-              <div>
-                <div class="risk-demo-stat-label">Equity</div>
-                <div class="risk-demo-stat-val" style="color:#f87171">$1,240</div>
-              </div>
-              <div>
-                <div class="risk-demo-stat-label">Margin %</div>
-                <div class="risk-demo-stat-val" style="color:#f87171">18%</div>
-              </div>
-              <div>
-                <div class="risk-demo-stat-label">Floating</div>
-                <div class="risk-demo-stat-val" style="color:#f87171">−$860</div>
-              </div>
+              <div><div class="risk-demo-stat-label">Equity</div><div class="risk-demo-stat-val" style="color:#f87171">$1,240</div></div>
+              <div><div class="risk-demo-stat-label">Margin %</div><div class="risk-demo-stat-val" style="color:#f87171">18%</div></div>
+              <div><div class="risk-demo-stat-label">Floating</div><div class="risk-demo-stat-val" style="color:#f87171">−$860</div></div>
             </div>
           </div>
           <div class="risk-card-demo">
@@ -307,18 +340,9 @@
               <span class="risk-demo-badge badge-warn">Watch</span>
             </div>
             <div class="risk-demo-stats">
-              <div>
-                <div class="risk-demo-stat-label">Equity</div>
-                <div class="risk-demo-stat-val">$8,450</div>
-              </div>
-              <div>
-                <div class="risk-demo-stat-label">Margin %</div>
-                <div class="risk-demo-stat-val" style="color:#fbbf24">52%</div>
-              </div>
-              <div>
-                <div class="risk-demo-stat-label">Floating</div>
-                <div class="risk-demo-stat-val" style="color:#fbbf24">−$320</div>
-              </div>
+              <div><div class="risk-demo-stat-label">Equity</div><div class="risk-demo-stat-val">$8,450</div></div>
+              <div><div class="risk-demo-stat-label">Margin %</div><div class="risk-demo-stat-val" style="color:#fbbf24">52%</div></div>
+              <div><div class="risk-demo-stat-label">Floating</div><div class="risk-demo-stat-val" style="color:#fbbf24">−$320</div></div>
             </div>
           </div>
           <div class="risk-card-demo">
@@ -327,18 +351,9 @@
               <span class="risk-demo-badge badge-ok">Healthy</span>
             </div>
             <div class="risk-demo-stats">
-              <div>
-                <div class="risk-demo-stat-label">Equity</div>
-                <div class="risk-demo-stat-val">$42,100</div>
-              </div>
-              <div>
-                <div class="risk-demo-stat-label">Margin %</div>
-                <div class="risk-demo-stat-val" style="color:#4ade80">310%</div>
-              </div>
-              <div>
-                <div class="risk-demo-stat-label">Floating</div>
-                <div class="risk-demo-stat-val" style="color:#4ade80">+$2,800</div>
-              </div>
+              <div><div class="risk-demo-stat-label">Equity</div><div class="risk-demo-stat-val">$42,100</div></div>
+              <div><div class="risk-demo-stat-label">Margin %</div><div class="risk-demo-stat-val" style="color:#4ade80">310%</div></div>
+              <div><div class="risk-demo-stat-label">Floating</div><div class="risk-demo-stat-val" style="color:#4ade80">+$2,800</div></div>
             </div>
           </div>
         </div>
@@ -347,12 +362,14 @@
   </div>
 </section>
 
-<!-- ── PRICING ── -->
+<!-- ═══════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════ -->
 <section class="section pricing-section" id="pricing">
   <div class="container">
     <div class="text-center" data-reveal>
-      <div class="eyebrow"><span class="eyebrow-line"></span>Pricing</div>
-      <h2>Simple, <span class="gradient-text">Transparent</span> Pricing</h2>
+      <p class="eyebrow-gradient">Pricing</p>
+      <h2 style="color:var(--text)">Simple, Transparent Pricing</h2>
       <p class="section-sub">One plan. Full platform access. No seat limits, no hidden fees.</p>
     </div>
     <div class="pricing-card-wrap" data-reveal style="--d:.1s">
@@ -366,7 +383,7 @@
         <div class="pricing-billing">Monthly · Cancel anytime</div>
         <hr class="pricing-divider" />
         <div class="pricing-feats">
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Real-time pricing monitor, all symbols, live</div>
+          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Real-time pricing monitor, all symbols</div>
           <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Account risk monitoring with margin alerts</div>
           <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Client lookup &amp; open position viewer</div>
           <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Swaps &amp; group simulator</div>
@@ -382,21 +399,23 @@
   </div>
 </section>
 
-<!-- ── CTA ── -->
+<!-- ═══════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════ -->
 <section class="cta-section">
   <div class="container" data-reveal>
-    <div class="cta-card">
-      <h2>Ready to Run Your Operations<br>in One Place?</h2>
-      <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
-      <div class="cta-btns">
-        <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
-        <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
-      </div>
+    <h2 style="color:#fff">Ready to Run Your Operations<br>in One Place?</h2>
+    <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
+    <div class="cta-btns">
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-primary btn-lg">Get Started →</a>
+      <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
@@ -443,25 +462,26 @@
 </footer>
 
 <script>
+// Nav: switch to light after hero
 (function () {
   var nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', function () {
-    nav.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
+  var hero = document.querySelector('.hero');
+  function check() {
+    var h = hero ? hero.offsetHeight - 80 : 400;
+    nav.classList.toggle('on-light', window.scrollY > h);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
 })();
 
+// Scroll reveal
 (function () {
   var els = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window)) {
-    els.forEach(function (el) { el.classList.add('visible'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
+  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
   }, { threshold: 0.1 });
-  els.forEach(function (el) { io.observe(el); });
+  els.forEach(function(el){ io.observe(el); });
 })();
 </script>
 

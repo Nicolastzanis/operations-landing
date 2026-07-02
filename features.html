@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="main-nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
       <div class="nav-mark">OT</div>
@@ -26,15 +26,15 @@
     </div>
     <div class="nav-actions">
       <a href="https://web-production-c8c34.up.railway.app" class="nav-login">Log in</a>
-      <a href="https://web-production-c8c34.up.railway.app/#register" class="nav-get-started">Get Started →</a>
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="nav-cta">Get Started →</a>
     </div>
   </div>
 </nav>
 
 <div class="page-hero">
   <div class="container page-hero-inner">
-    <div class="eyebrow"><span class="eyebrow-line"></span>Platform Features</div>
-    <h1>Everything Your Ops Team <span class="gradient-text">Needs</span></h1>
+    <p class="eyebrow-gradient">Platform Features</p>
+    <h1>Everything Your Ops Team Needs</h1>
     <p>Six powerful modules, one unified platform. Built specifically for MT5 broker operations teams who need real data in real time.</p>
   </div>
 </div>
@@ -294,13 +294,11 @@
 <!-- CTA -->
 <section class="cta-section">
   <div class="container" data-reveal>
-    <div class="cta-card">
-      <h2>Ready to see it live on your server?</h2>
-      <p>Register your brokerage and connect your MT5 server. Your team can be live within the hour.</p>
-      <div class="cta-btns">
-        <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
-        <a href="pricing.html" class="btn btn-ghost-white btn-lg">View Pricing</a>
-      </div>
+    <h2 style="color:#fff">Ready to See It Live on Your Server?</h2>
+    <p>Register your brokerage and connect your MT5 server. Your team can be live within the hour.</p>
+    <div class="cta-btns">
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-primary btn-lg">Get Started →</a>
+      <a href="pricing.html" class="btn btn-ghost-white btn-lg">View Pricing</a>
     </div>
   </div>
 </section>
@@ -349,8 +347,14 @@
 
 <script>
 (function () {
-  var nav = document.querySelector('.nav');
-  window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
+  var nav = document.getElementById('main-nav');
+  var hero = document.querySelector('.page-hero');
+  function check() {
+    var h = hero ? hero.offsetHeight - 40 : 100;
+    nav.classList.toggle('on-light', window.scrollY > h);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
 })();
 (function () {
   var els = document.querySelectorAll('[data-reveal]');

@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="main-nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
       <div class="nav-mark">OT</div>
@@ -26,15 +26,15 @@
     </div>
     <div class="nav-actions">
       <a href="https://web-production-c8c34.up.railway.app" class="nav-login">Log in</a>
-      <a href="https://web-production-c8c34.up.railway.app/#register" class="nav-get-started">Get Started →</a>
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="nav-cta">Get Started →</a>
     </div>
   </div>
 </nav>
 
 <div class="page-hero">
   <div class="container page-hero-inner">
-    <div class="eyebrow"><span class="eyebrow-line"></span>Pricing</div>
-    <h1>Simple, <span class="gradient-text">Transparent</span> Pricing</h1>
+    <p class="eyebrow-gradient">Pricing</p>
+    <h1>Simple, Transparent Pricing</h1>
     <p>One plan. Full platform access for your entire team. No seat limits, no hidden fees, no long-term lock-in.</p>
   </div>
 </div>
@@ -133,13 +133,11 @@
 
 <section class="cta-section">
   <div class="container" data-reveal>
-    <div class="cta-card">
-      <h2>Ready to get started?</h2>
-      <p>Register your brokerage and have your operations team live within the hour.</p>
-      <div class="cta-btns">
-        <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
-        <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
-      </div>
+    <h2 style="color:#fff">Ready to Get Started?</h2>
+    <p>Register your brokerage and have your operations team live within the hour.</p>
+    <div class="cta-btns">
+      <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-primary btn-lg">Get Started →</a>
+      <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
     </div>
   </div>
 </section>
@@ -189,8 +187,14 @@
 
 <script>
 (function () {
-  var nav = document.querySelector('.nav');
-  window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
+  var nav = document.getElementById('main-nav');
+  var hero = document.querySelector('.page-hero');
+  function check() {
+    var h = hero ? hero.offsetHeight - 40 : 100;
+    nav.classList.toggle('on-light', window.scrollY > h);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
 })();
 (function () {
   var els = document.querySelectorAll('[data-reveal]');
