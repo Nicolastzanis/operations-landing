@@ -7,7 +7,7 @@
   <meta name="description" content="Real-time pricing, risk monitoring, and client management for MT5 brokers. Built for operations teams who can't afford to miss a thing." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -79,16 +79,22 @@
       </div>
     </div>
 
-    <!-- RIGHT: animated hub — OT node left, cards right column -->
+    <!-- RIGHT: animated hub — tree/branch layout -->
     <div class="hero-hub-wrap">
 
-      <!-- OT node: centered at x=90, y=210 within 520×420 wrap -->
+      <!-- OT node at x=90, y=210 -->
       <div class="hub-glow"></div>
       <div class="pulse-ring"  style="width:136px;height:136px;left:90px;top:210px;transform:translate(-50%,-50%) scale(.8)"></div>
       <div class="pulse-ring-2" style="width:136px;height:136px;left:90px;top:210px;transform:translate(-50%,-50%) scale(.8)"></div>
       <div class="hub-center">OT</div>
 
-      <!-- Precise SVG lines + animated dots (viewBox matches 520×420 layout) -->
+      <!-- Tree-branch SVG — all cards at x=252, spine at x=200 -->
+      <!--
+        Card positions (top, cy):  81/102 · 135/156 · 189/210 · 243/264 · 297/318
+        Horizontal trunk:   (90,210) → (200,210)
+        Vertical spine:     (200,102) → (200,318)
+        5 branches:         (200,cy) → (252,cy)
+      -->
       <svg class="hub-svg" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter id="dot-glow">
@@ -97,69 +103,77 @@
           </filter>
         </defs>
 
-        <!-- 5 dashed track lines: hub(90,210) → card left edges (230, card_cy) -->
-        <line x1="90" y1="210" x2="230" y2="101" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="90" y1="210" x2="230" y2="155" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="90" y1="210" x2="230" y2="210" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="90" y1="210" x2="230" y2="265" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="90" y1="210" x2="230" y2="319" stroke="rgba(8,145,178,.28)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <!-- Horizontal trunk: hub → spine junction -->
+        <line x1="138" y1="210" x2="200" y2="210" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
 
-        <!-- small anchor dots at card side -->
-        <circle cx="230" cy="101" r="3"  fill="rgba(8,145,178,.55)"/>
-        <circle cx="230" cy="155" r="3"  fill="rgba(8,145,178,.55)"/>
-        <circle cx="230" cy="210" r="3"  fill="rgba(8,145,178,.55)"/>
-        <circle cx="230" cy="265" r="3"  fill="rgba(8,145,178,.55)"/>
-        <circle cx="230" cy="319" r="3"  fill="rgba(8,145,178,.55)"/>
+        <!-- Vertical spine -->
+        <line x1="200" y1="102" x2="200" y2="318" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
 
-        <!-- animated data dots: card → hub -->
-        <circle r="4" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
-          <animate attributeName="cx" values="230;90" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-          <animate attributeName="cy" values="101;210" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+        <!-- 5 horizontal branches (all perfectly straight) -->
+        <line x1="200" y1="102" x2="252" y2="102" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="200" y1="156" x2="252" y2="156" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="200" y1="210" x2="252" y2="210" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="200" y1="264" x2="252" y2="264" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <line x1="200" y1="318" x2="252" y2="318" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+        <!-- Spine junction dot -->
+        <circle cx="200" cy="210" r="3.5" fill="#0891b2" opacity="0.6"/>
+
+        <!-- Branch endpoint dots -->
+        <circle cx="252" cy="102" r="2.5" fill="rgba(56,189,248,.7)"/>
+        <circle cx="252" cy="156" r="2.5" fill="rgba(56,189,248,.7)"/>
+        <circle cx="252" cy="210" r="2.5" fill="rgba(56,189,248,.7)"/>
+        <circle cx="252" cy="264" r="2.5" fill="rgba(56,189,248,.7)"/>
+        <circle cx="252" cy="318" r="2.5" fill="rgba(56,189,248,.7)"/>
+
+        <!-- Animated dots travel: card → branch → spine → trunk → hub -->
+        <circle r="3.5" fill="#38bdf8" filter="url(#dot-glow)">
+          <animateMotion calcMode="linear" dur="2.4s" repeatCount="indefinite" begin="0s"
+            path="M 252,102 L 200,102 L 200,210 L 90,210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.4s" repeatCount="indefinite" begin="0s"/>
         </circle>
-        <circle r="4" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
-          <animate attributeName="cx" values="230;90" dur="2s"   repeatCount="indefinite" begin="0.5s"/>
-          <animate attributeName="cy" values="155;210" dur="2s"   repeatCount="indefinite" begin="0.5s"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+        <circle r="3.5" fill="#38bdf8" filter="url(#dot-glow)">
+          <animateMotion calcMode="linear" dur="2.1s" repeatCount="indefinite" begin="0.7s"
+            path="M 252,156 L 200,156 L 200,210 L 90,210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.1s" repeatCount="indefinite" begin="0.7s"/>
         </circle>
-        <circle r="4" fill="#7dd3fc" filter="url(#dot-glow)" opacity="0">
-          <animate attributeName="cx" values="230;90" dur="1.6s"  repeatCount="indefinite" begin="1s"/>
-          <animate attributeName="cy" values="210;210" dur="1.6s"  repeatCount="indefinite" begin="1s"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="1.6s" repeatCount="indefinite" begin="1s"/>
+        <circle r="3.5" fill="#7dd3fc" filter="url(#dot-glow)">
+          <animateMotion calcMode="linear" dur="1.7s" repeatCount="indefinite" begin="1.4s"
+            path="M 252,210 L 90,210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="1.7s" repeatCount="indefinite" begin="1.4s"/>
         </circle>
-        <circle r="4" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
-          <animate attributeName="cx" values="230;90" dur="2.2s"  repeatCount="indefinite" begin="0.3s"/>
-          <animate attributeName="cy" values="265;210" dur="2.2s"  repeatCount="indefinite" begin="0.3s"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
+        <circle r="3.5" fill="#38bdf8" filter="url(#dot-glow)">
+          <animateMotion calcMode="linear" dur="2.1s" repeatCount="indefinite" begin="0.3s"
+            path="M 252,264 L 200,264 L 200,210 L 90,210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.1s" repeatCount="indefinite" begin="0.3s"/>
         </circle>
-        <circle r="4" fill="#7dd3fc" filter="url(#dot-glow)" opacity="0">
-          <animate attributeName="cx" values="230;90" dur="1.9s"  repeatCount="indefinite" begin="1.5s"/>
-          <animate attributeName="cy" values="319;210" dur="1.9s"  repeatCount="indefinite" begin="1.5s"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.85;1" dur="1.9s" repeatCount="indefinite" begin="1.5s"/>
+        <circle r="3.5" fill="#7dd3fc" filter="url(#dot-glow)">
+          <animateMotion calcMode="linear" dur="2.5s" repeatCount="indefinite" begin="1.8s"
+            path="M 252,318 L 200,318 L 200,210 L 90,210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.5s" repeatCount="indefinite" begin="1.8s"/>
         </circle>
 
-        <!-- hub receive pulse -->
+        <!-- Hub receive pulse -->
         <circle cx="90" cy="210" fill="none" stroke="#0891b2" stroke-width="1.8" opacity="0">
-          <animate attributeName="r" values="10;38" dur="2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.9;0"   dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="10;40" dur="2.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite"/>
         </circle>
       </svg>
 
-      <!-- Module cards: absolutely positioned to match SVG card endpoints -->
-      <!-- top of card = center_y − 21, so:  101-21=80, 155-21=134, 210-21=189, 265-21=244, 319-21=298 -->
-      <div class="hub-card card-float-1" style="top:80px;left:242px">
+      <!-- Cards — top = cy−21: 81, 135, 189, 243, 297 — all at left:252 -->
+      <div class="hub-card card-float-1" style="top:81px;left:256px">
         <span class="hub-card-dot"></span>Pricing Monitor
       </div>
-      <div class="hub-card card-float-2" style="top:134px;left:242px">
+      <div class="hub-card card-float-2" style="top:135px;left:256px">
         <span class="hub-card-dot"></span>Risk Monitor
       </div>
-      <div class="hub-card card-float-3" style="top:189px;left:242px">
+      <div class="hub-card" style="top:189px;left:256px">
         <span class="hub-card-dot"></span>Client Lookup
       </div>
-      <div class="hub-card card-float-1" style="top:244px;left:242px">
+      <div class="hub-card card-float-3" style="top:243px;left:256px">
         <span class="hub-card-dot"></span>Swaps Simulator
       </div>
-      <div class="hub-card card-float-2" style="top:298px;left:242px">
+      <div class="hub-card card-float-2" style="top:297px;left:256px">
         <span class="hub-card-dot"></span>Email &amp; Telegram Alerts
       </div>
 
@@ -184,8 +198,8 @@
 ═══════════════════════════════════════════ -->
 <section class="statement">
   <p class="eyebrow-gradient">Built for Broker Operations</p>
-  <h2>A Complete<br>MT5 Operations<br><span class="underline-accent">Platform</span></h2>
-  <p class="sub">One platform for pricing, risk, clients, and alerts. Purpose-built for forex broker operations teams.</p>
+  <h2>Your ops team<br>already knows what<br>needs watching.<br><span class="underline-accent">We built the tool.</span></h2>
+  <p class="sub">Six modules covering everything an MT5 broker operations team checks every single day — in one place, in real time.</p>
   <a href="features.html" class="btn btn-dark btn-lg">Explore Features</a>
 </section>
 
@@ -203,27 +217,25 @@
       <!-- Pricing Monitor – dark wide card -->
       <div class="bento-card dark span-2 shimmer-card" data-reveal style="--d:.05s">
         <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/>
-            <line x1="3" y1="21" x2="21" y2="21"/>
-            <polyline points="5,10 9,7 12,9 16,5 21,6"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
           </svg>
         </div>
         <h3>Pricing Monitor</h3>
         <p>Live bid/ask prices and spreads for every symbol. Spot off-market prices and spread anomalies the moment they happen.</p>
-        <!-- mini stat strip -->
-        <div class="mini-stat-row">
+        <div class="mini-stat-row" style="margin-top:auto;padding-top:20px">
           <div class="mini-stat">
-            <div class="mini-stat-label">Symbols</div>
+            <div class="mini-stat-label">Symbols tracked</div>
             <div class="mini-stat-val">184</div>
           </div>
           <div class="mini-stat">
             <div class="mini-stat-label">Avg spread</div>
-            <div class="mini-stat-val" style="color:#4ade80">0.9</div>
+            <div class="mini-stat-val" style="color:#4ade80">0.9 pts</div>
           </div>
           <div class="mini-stat">
-            <div class="mini-stat-label">Alerts</div>
-            <div class="mini-stat-val" style="color:#fbbf24">2</div>
+            <div class="mini-stat-label">Spike alerts</div>
+            <div class="mini-stat-val" style="color:#fbbf24">2 active</div>
           </div>
         </div>
       </div>
@@ -231,58 +243,81 @@
       <!-- Risk Monitor -->
       <div class="bento-card shimmer-card" data-reveal style="--d:.1s">
         <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <polyline points="9,12 11,14 15,10"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
           </svg>
         </div>
         <h3>Risk Monitor</h3>
-        <p>Real-time equity, margin level, and floating P&amp;L. Color-coded flags for accounts approaching margin call.</p>
+        <p>Real-time equity, margin level, and floating P&amp;L — color-coded so your team spots danger before it becomes a stop-out.</p>
+        <div class="bento-tag-row">
+          <span class="bento-tag red">Critical</span>
+          <span class="bento-tag amber">Watch</span>
+          <span class="bento-tag green">Healthy</span>
+        </div>
       </div>
 
       <!-- Client Lookup -->
       <div class="bento-card shimmer-card" data-reveal style="--d:.15s">
         <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="7" r="4"/>
+            <path d="M10.3 15H7a4 4 0 0 0-4 4v2"/>
+            <circle cx="17" cy="17" r="3"/>
+            <path d="m21 21-1.9-1.9"/>
           </svg>
         </div>
         <h3>Client Lookup</h3>
-        <p>Search any client by login, email, or name. See open positions and account details without touching MT5.</p>
+        <p>Find any client by login, email, or name. See open positions and account details — no MT5 Manager login required.</p>
       </div>
 
       <!-- Swaps -->
       <div class="bento-card shimmer-card" data-reveal style="--d:.2s">
         <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-            <polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m2 9 3-3 3 3"/>
+            <path d="M13 18H7a2 2 0 0 1-2-2V6"/>
+            <path d="m22 15-3 3-3-3"/>
+            <path d="M11 6h6a2 2 0 0 1 2 2v10"/>
           </svg>
         </div>
         <h3>Swaps &amp; Simulator</h3>
-        <p>View swap rates for every group and symbol. Simulate changes before your clients see them.</p>
+        <p>View live swap rates across all groups. Simulate changes before they go live — no client surprises.</p>
       </div>
 
       <!-- Alerts – dark wide -->
       <div class="bento-card dark span-2 shimmer-card" data-reveal style="--d:.25s">
         <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+            <path d="M4 2C2.8 3.7 2 5.8 2 8"/>
+            <path d="M20 2c1.2 1.7 2 3.8 2 6"/>
           </svg>
         </div>
         <h3>Email &amp; Telegram Alerts</h3>
-        <p>Instant notifications for margin calls, spread spikes, and server events — delivered to your inbox and Telegram the second they trigger.</p>
+        <p>Margin calls, spread spikes, server disconnects — sent to your team's inbox and Telegram the second they trigger. No delays, no missed events.</p>
+        <div class="bento-alert-strip">
+          <div class="bento-alert-item red">
+            <span class="bento-alert-dot red-dot"></span>MARGIN CALL · Login #1045820 · 18%
+          </div>
+          <div class="bento-alert-item amber">
+            <span class="bento-alert-dot amber-dot"></span>SPREAD SPIKE · GBPJPY · 21 pts
+          </div>
+        </div>
       </div>
 
       <!-- Symbol Hours -->
       <div class="bento-card shimmer-card" data-reveal style="--d:.3s">
         <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8"/>
+            <path d="M12 9v4l2 2"/>
+            <path d="M5 3 2 6"/>
+            <path d="m22 6-3-3"/>
           </svg>
         </div>
         <h3>Symbol Hours &amp; Holidays</h3>
-        <p>Manage trading hours and holiday schedules for every symbol. Never leave a market open during an exchange closure.</p>
+        <p>Manage trading session hours and market holiday schedules. See which markets are open right now.</p>
       </div>
 
     </div>
