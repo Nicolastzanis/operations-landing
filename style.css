@@ -396,17 +396,18 @@ h3 { font-size: 18px; font-weight: 700; }
   background: #0d1f3c; color: #fff;
 }
 .bento-icon {
-  width: 48px; height: 48px; border-radius: 13px;
-  background: var(--primary-lt);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px; flex-shrink: 0;
+  display: flex; align-items: center;
+  margin-bottom: 24px; flex-shrink: 0;
 }
-.bento-icon svg { width: 24px; height: 24px; }
+.bento-icon svg { width: 44px; height: 44px; }
+/* Light cards: dark navy icon (ftiaxeto style) */
+.bento-card:not(.dark) .bento-icon svg { stroke: var(--text); }
+/* Dark cards: keep light stroke */
+.bento-card.dark .bento-icon svg { stroke: #38bdf8; }
 .bento-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
 .bento-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
 .bento-card.dark p { color: rgba(186,230,253,.6); }
 .bento-card.dark h3 { color: #fff; }
-.bento-card.dark .bento-icon { background: rgba(8,145,178,.2); }
 
 /* bento tag rows */
 .bento-tag-row { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
@@ -610,7 +611,8 @@ h3 { font-size: 18px; font-weight: 700; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 56px; align-items: start; }
 .contact-info { display: flex; flex-direction: column; gap: 28px; }
 .contact-item { display: flex; gap: 16px; align-items: flex-start; }
-.contact-item-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-lt); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-item-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--text); }
+.contact-item-icon svg { width: 32px; height: 32px; }
 .contact-item-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); margin-bottom: 4px; }
 .contact-item-val { font-size: 15px; font-weight: 600; color: var(--text); }
 .contact-item-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
