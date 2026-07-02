@@ -32,11 +32,9 @@
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-grid"></div>
-  <div class="page-hero-glow"></div>
   <div class="container page-hero-inner">
     <div class="eyebrow"><span class="eyebrow-line"></span>About Us</div>
-    <h1>Built by people who know brokerage operations</h1>
+    <h1>Built by People Who <span class="gradient-text">Know Operations</span></h1>
     <p>Operations Tool was created out of frustration with the tools available to forex broker ops teams. We knew there had to be a better way than spreadsheets and multiple MT5 Manager windows.</p>
   </div>
 </div>
@@ -159,20 +157,7 @@
 <script>
 (function () {
   var nav = document.querySelector('.nav');
-  var hero = document.querySelector('.page-hero');
-  function check() {
-    var h = hero ? hero.offsetHeight : 200;
-    if (window.scrollY > h - 80) nav.classList.add('on-light');
-    else nav.classList.remove('on-light');
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  check();
-})();
-(function () {
-  var els = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
-  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
-  els.forEach(function(el){ io.observe(el); });
+  window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
 })();
 </script>
 </body>

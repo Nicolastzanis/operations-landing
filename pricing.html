@@ -32,11 +32,9 @@
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-grid"></div>
-  <div class="page-hero-glow"></div>
   <div class="container page-hero-inner">
     <div class="eyebrow"><span class="eyebrow-line"></span>Pricing</div>
-    <h1>Simple, transparent pricing</h1>
+    <h1>Simple, <span class="gradient-text">Transparent</span> Pricing</h1>
     <p>One plan. Full platform access for your entire team. No seat limits, no hidden fees, no long-term lock-in.</p>
   </div>
 </div>
@@ -134,14 +132,14 @@
 </section>
 
 <section class="cta-section">
-  <div class="cta-section-grid"></div>
-  <div class="cta-section-glow"></div>
   <div class="container" data-reveal>
-    <h2>Ready to get started?</h2>
-    <p>Register your brokerage and have your operations team live within the hour.</p>
-    <div class="cta-btns">
-      <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
-      <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
+    <div class="cta-card">
+      <h2>Ready to get started?</h2>
+      <p>Register your brokerage and have your operations team live within the hour.</p>
+      <div class="cta-btns">
+        <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
+        <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
+      </div>
     </div>
   </div>
 </section>
@@ -192,19 +190,12 @@
 <script>
 (function () {
   var nav = document.querySelector('.nav');
-  var hero = document.querySelector('.page-hero');
-  function check() {
-    var h = hero ? hero.offsetHeight : 200;
-    if (window.scrollY > h - 80) nav.classList.add('on-light');
-    else nav.classList.remove('on-light');
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  check();
+  window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
 })();
 (function () {
   var els = document.querySelectorAll('[data-reveal]');
   if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
-  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
   els.forEach(function(el){ io.observe(el); });
 })();
 </script>
