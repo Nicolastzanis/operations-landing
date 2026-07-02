@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Operations Tool | MT5 Broker Operations Platform</title>
-  <meta name="description" content="Real-time pricing, risk monitoring, and client management for MT5 brokers. Built for operations teams who can't afford downtime." />
+  <meta name="description" content="Real-time pricing, risk monitoring, and client management for MT5 brokers. Built for operations teams who can't afford to miss a thing." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<!-- ── NAV ─────────────────────────────────────────────────────────────── -->
-<nav class="nav">
+<!-- ── NAV ── -->
+<nav class="nav" id="main-nav">
   <div class="container nav-inner">
     <a href="/" class="nav-logo">
       <div class="nav-mark">OT</div>
@@ -32,34 +32,46 @@
   </div>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<!-- ── HERO ── -->
 <section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
   <div class="container hero-inner">
 
     <div class="hero-content">
-      <span class="eyebrow">MT5 Broker Operations Platform</span>
-      <h1>Run your brokerage with total confidence</h1>
-      <p class="lead" style="margin-top:18px">
-        Real-time pricing, risk monitoring, and client management, built for MT5 broker operations teams who cannot afford to miss a thing.
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        MT5 Broker Operations Platform
+      </div>
+      <h1>Run your brokerage<br>with <em>total confidence</em></h1>
+      <p class="hero-lead">
+        Real-time pricing, risk monitoring, and client management — built for MT5 operations teams who cannot afford to miss a thing.
       </p>
       <div class="hero-ctas">
         <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-primary btn-lg">Get Started →</a>
-        <a href="features.html" class="btn btn-outline btn-lg">See features</a>
+        <a href="features.html" class="btn btn-ghost-white btn-lg">See features</a>
       </div>
-      <div class="hero-note">
+      <div class="hero-trust">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        No long-term contract · Cancel anytime · Crypto payment
+        No long-term contract
+        <span class="hero-trust-sep">·</span>
+        Cancel anytime
+        <span class="hero-trust-sep">·</span>
+        Crypto payment
       </div>
     </div>
 
     <!-- Dashboard mockup -->
-    <div class="hero-mockup">
+    <div class="hero-mockup-wrap">
+      <div class="hero-mockup-halo"></div>
       <div class="mockup-window">
         <div class="mockup-titlebar">
           <div class="mockup-dot r"></div>
           <div class="mockup-dot y"></div>
           <div class="mockup-dot g"></div>
-          <span style="margin-left:10px;font-size:11px;color:rgba(255,255,255,.25);font-family:monospace">app.operationstool.io · Pricing Monitor</span>
+          <span style="margin-left:10px;font-size:11px;color:rgba(255,255,255,.25);font-family:monospace">operationstool.io · Pricing Monitor</span>
         </div>
         <div class="mockup-body">
           <div class="mockup-row">
@@ -123,139 +135,109 @@
   </div>
 </section>
 
-<!-- ── FEATURES ──────────────────────────────────────────────────────────── -->
+<!-- ── STATS STRIP ── -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-block" data-reveal>
+        <div class="stat-num"><b>6</b></div>
+        <div class="stat-desc">Platform modules included</div>
+      </div>
+      <div class="stat-block" data-reveal style="--d:.08s">
+        <div class="stat-num"><b>∞</b></div>
+        <div class="stat-desc">Team accounts, no per-seat cost</div>
+      </div>
+      <div class="stat-block" data-reveal style="--d:.16s">
+        <div class="stat-num"><b>&lt; 1h</b></div>
+        <div class="stat-desc">From register to live operations</div>
+      </div>
+      <div class="stat-block" data-reveal style="--d:.24s">
+        <div class="stat-num">24<b>/7</b></div>
+        <div class="stat-desc">Real-time data, always on</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ── -->
 <section class="section" id="features">
   <div class="container">
-    <div class="text-center">
-      <span class="eyebrow">Everything you need</span>
+    <div class="text-center" data-reveal>
+      <div class="eyebrow"><span class="eyebrow-line"></span>Everything you need</div>
       <h2>One platform for your entire ops team</h2>
       <p class="section-sub">Every tool your MT5 operations team needs, connected in a single secure dashboard.</p>
     </div>
 
     <div class="features-grid">
 
-      <!-- Pricing Monitor -->
-      <div class="feat-card">
+      <div class="feat-card" data-reveal style="--d:.05s">
         <div class="feat-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Monitor frame -->
-            <rect x="4" y="8" width="56" height="36" rx="3"/>
-            <!-- Stand neck -->
-            <line x1="24" y1="44" x2="40" y2="44"/>
-            <!-- Stand base -->
-            <line x1="18" y1="50" x2="46" y2="50"/>
-            <!-- Chart line -->
-            <polyline points="12,34 22,24 30,28 39,16 50,21 56,18"/>
-            <!-- Peak dots -->
-            <circle cx="22" cy="24" r="2.2" fill="#1c3250"/>
-            <circle cx="39" cy="16" r="2.2" fill="#1c3250"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <polyline points="7,17 7,21"/>
+            <polyline points="17,17 17,21"/>
+            <line x1="3" y1="21" x2="21" y2="21"/>
+            <polyline points="5,10 9,7 12,9 16,5 21,6"/>
           </svg>
         </div>
         <h3>Pricing Monitor</h3>
         <p>Live bid/ask prices and spreads for all your symbols. Spot anomalies and off-market prices the moment they happen.</p>
       </div>
 
-      <!-- Risk Monitor -->
-      <div class="feat-card">
+      <div class="feat-card" data-reveal style="--d:.1s">
         <div class="feat-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Gauge arc -->
-            <path d="M8 46 A24 24 0 0 1 56 46"/>
-            <!-- Danger zone arc (red) -->
-            <path d="M44 22.5 A24 24 0 0 1 56 46" stroke="#e53e3e" stroke-width="3.5" opacity=".4"/>
-            <!-- Tick marks -->
-            <line x1="8"  y1="46" x2="13" y2="39"/>
-            <line x1="32" y1="22" x2="32" y2="28"/>
-            <line x1="56" y1="46" x2="51" y2="39"/>
-            <line x1="46" y1="26" x2="43" y2="31"/>
-            <!-- Needle -->
-            <line x1="32" y1="46" x2="46" y2="27"/>
-            <!-- Pivot -->
-            <circle cx="32" cy="46" r="4" fill="#1c3250"/>
-            <circle cx="32" cy="46" r="2" fill="#fff"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9,12 11,14 15,10"/>
           </svg>
         </div>
         <h3>Risk Monitor</h3>
         <p>Real-time equity, margin level, and floating P&amp;L. Color-coded alerts automatically flag accounts approaching margin call.</p>
       </div>
 
-      <!-- Client Lookup -->
-      <div class="feat-card">
+      <div class="feat-card" data-reveal style="--d:.15s">
         <div class="feat-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Person head -->
-            <circle cx="22" cy="20" r="9"/>
-            <!-- Person shoulder curve -->
-            <path d="M4 52c0-9.9 8.1-18 18-18"/>
-            <!-- Magnifying glass body -->
-            <circle cx="42" cy="40" r="12"/>
-            <!-- Handle -->
-            <line x1="51" y1="49" x2="59" y2="57"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <path d="M8 11a3 3 0 016 0"/>
           </svg>
         </div>
         <h3>Client Lookup</h3>
         <p>Search any client instantly by login, email, or name. See their open positions and account settings without touching MT5.</p>
       </div>
 
-      <!-- Swaps Manager -->
-      <div class="feat-card">
+      <div class="feat-card" data-reveal style="--d:.2s">
         <div class="feat-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Document base -->
-            <path d="M10 6h28l14 14v38H10z"/>
-            <!-- Folded corner -->
-            <polyline points="38,6 38,20 52,20"/>
-            <!-- Swap arrows on document -->
-            <line x1="20" y1="32" x2="44" y2="32"/>
-            <polyline points="37,26 44,32 37,38"/>
-            <line x1="44" y1="44" x2="20" y2="44"/>
-            <polyline points="27,38 20,44 27,50"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="12" y2="17"/>
           </svg>
         </div>
         <h3>Swaps &amp; Group Simulator</h3>
         <p>View current swap rates for every group and symbol. Simulate changes and preview the impact before your clients see it.</p>
       </div>
 
-      <!-- Alerts -->
-      <div class="feat-card">
+      <div class="feat-card" data-reveal style="--d:.25s">
         <div class="feat-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Bell body -->
-            <path d="M32 8C19 8 16 18 16 26v12l-6 7h44l-6-7V26C48 18 45 8 32 8z"/>
-            <!-- Clapper -->
-            <path d="M26 45a6 6 0 0012 0"/>
-            <!-- Telegram/email badge -->
-            <circle cx="46" cy="17" r="9" fill="#0891b2" stroke="none"/>
-            <polyline points="41,17 45,21 51,13" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0"/>
+            <circle cx="18" cy="6" r="4" fill="#0891b2" stroke="none"/>
+            <polyline points="16,6 17.5,7.5 20,5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h3>Email &amp; Telegram Alerts</h3>
         <p>Instant notifications for margin calls, spread spikes, and server events. Delivered to your inbox and Telegram the second they trigger.</p>
       </div>
 
-      <!-- Symbol Hours -->
-      <div class="feat-card">
+      <div class="feat-card" data-reveal style="--d:.3s">
         <div class="feat-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#1c3250" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Clock face -->
-            <circle cx="26" cy="28" r="20"/>
-            <!-- Hour + minute hands -->
-            <polyline points="26,14 26,28 34,33"/>
-            <!-- Calendar (bottom-right, overlapping) -->
-            <rect x="36" y="38" width="22" height="20" rx="3" fill="white" stroke="#1c3250"/>
-            <!-- Calendar header bar -->
-            <line x1="36" y1="45" x2="58" y2="45"/>
-            <!-- Calendar pin left -->
-            <line x1="42" y1="35" x2="42" y2="41"/>
-            <!-- Calendar pin right -->
-            <line x1="52" y1="35" x2="52" y2="41"/>
-            <!-- Calendar dots row 1 -->
-            <circle cx="42" cy="50" r="1.5" fill="#1c3250"/>
-            <circle cx="47" cy="50" r="1.5" fill="#1c3250"/>
-            <circle cx="52" cy="50" r="1.5" fill="#1c3250"/>
-            <!-- Calendar dots row 2 -->
-            <circle cx="42" cy="55" r="1.5" fill="#1c3250"/>
-            <circle cx="47" cy="55" r="1.5" fill="#1c3250"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12,6 12,12 16,14"/>
           </svg>
         </div>
         <h3>Symbol Hours &amp; Holidays</h3>
@@ -266,39 +248,39 @@
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ──────────────────────────────────────────────────────── -->
+<!-- ── HOW IT WORKS ── -->
 <section class="section" id="how-it-works" style="background:var(--bg-soft)">
   <div class="container">
-    <div class="text-center">
-      <span class="eyebrow">How it works</span>
+    <div class="text-center" data-reveal>
+      <div class="eyebrow"><span class="eyebrow-line"></span>How it works</div>
       <h2>Up and running in minutes</h2>
       <p class="section-sub">No complex setup. Connect your MT5 server and your team is live.</p>
     </div>
 
     <div class="how-inner">
       <div class="steps">
-        <div class="step">
+        <div class="step" data-reveal style="--d:.05s">
           <div class="step-num">1</div>
           <div class="step-body">
             <h3>Register your brokerage</h3>
             <p>Create your company account in under 2 minutes. One admin account, unlimited team members.</p>
           </div>
         </div>
-        <div class="step">
+        <div class="step" data-reveal style="--d:.12s">
           <div class="step-num">2</div>
           <div class="step-body">
             <h3>Connect your MT5 server</h3>
             <p>We connect to your MT5 Manager API. Provide your server host, port, and manager credentials. Done.</p>
           </div>
         </div>
-        <div class="step">
+        <div class="step" data-reveal style="--d:.19s">
           <div class="step-num">3</div>
           <div class="step-body">
             <h3>Your team goes live</h3>
             <p>Invite your operations team, assign permissions, and start monitoring. Data flows in real-time from minute one.</p>
           </div>
         </div>
-        <div class="step">
+        <div class="step" data-reveal style="--d:.26s">
           <div class="step-num">4</div>
           <div class="step-body">
             <h3>Customise &amp; brand</h3>
@@ -307,66 +289,67 @@
         </div>
       </div>
 
-      <!-- Risk monitor preview -->
-      <div class="how-visual">
-        <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Risk Monitor · Live</div>
-        <div class="risk-card-demo">
-          <div class="risk-demo-head">
-            <span class="risk-demo-login">Login #1045820</span>
-            <span class="risk-demo-badge badge-crit">Margin critical</span>
-          </div>
-          <div class="risk-demo-stats">
-            <div>
-              <div class="risk-demo-stat-label">Equity</div>
-              <div class="risk-demo-stat-val" style="color:#f87171">$1,240</div>
+      <div data-reveal style="--d:.1s">
+        <div class="how-visual">
+          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Risk Monitor · Live</div>
+          <div class="risk-card-demo">
+            <div class="risk-demo-head">
+              <span class="risk-demo-login">Login #1045820</span>
+              <span class="risk-demo-badge badge-crit">Margin critical</span>
             </div>
-            <div>
-              <div class="risk-demo-stat-label">Margin %</div>
-              <div class="risk-demo-stat-val" style="color:#f87171">18%</div>
-            </div>
-            <div>
-              <div class="risk-demo-stat-label">Floating</div>
-              <div class="risk-demo-stat-val" style="color:#f87171">−$860</div>
-            </div>
-          </div>
-        </div>
-        <div class="risk-card-demo">
-          <div class="risk-demo-head">
-            <span class="risk-demo-login">Login #1045234</span>
-            <span class="risk-demo-badge badge-warn">Watch</span>
-          </div>
-          <div class="risk-demo-stats">
-            <div>
-              <div class="risk-demo-stat-label">Equity</div>
-              <div class="risk-demo-stat-val">$8,450</div>
-            </div>
-            <div>
-              <div class="risk-demo-stat-label">Margin %</div>
-              <div class="risk-demo-stat-val" style="color:#fbbf24">52%</div>
-            </div>
-            <div>
-              <div class="risk-demo-stat-label">Floating</div>
-              <div class="risk-demo-stat-val" style="color:#fbbf24">−$320</div>
+            <div class="risk-demo-stats">
+              <div>
+                <div class="risk-demo-stat-label">Equity</div>
+                <div class="risk-demo-stat-val" style="color:#f87171">$1,240</div>
+              </div>
+              <div>
+                <div class="risk-demo-stat-label">Margin %</div>
+                <div class="risk-demo-stat-val" style="color:#f87171">18%</div>
+              </div>
+              <div>
+                <div class="risk-demo-stat-label">Floating</div>
+                <div class="risk-demo-stat-val" style="color:#f87171">−$860</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="risk-card-demo">
-          <div class="risk-demo-head">
-            <span class="risk-demo-login">Login #1044991</span>
-            <span class="risk-demo-badge badge-ok">Healthy</span>
+          <div class="risk-card-demo">
+            <div class="risk-demo-head">
+              <span class="risk-demo-login">Login #1045234</span>
+              <span class="risk-demo-badge badge-warn">Watch</span>
+            </div>
+            <div class="risk-demo-stats">
+              <div>
+                <div class="risk-demo-stat-label">Equity</div>
+                <div class="risk-demo-stat-val">$8,450</div>
+              </div>
+              <div>
+                <div class="risk-demo-stat-label">Margin %</div>
+                <div class="risk-demo-stat-val" style="color:#fbbf24">52%</div>
+              </div>
+              <div>
+                <div class="risk-demo-stat-label">Floating</div>
+                <div class="risk-demo-stat-val" style="color:#fbbf24">−$320</div>
+              </div>
+            </div>
           </div>
-          <div class="risk-demo-stats">
-            <div>
-              <div class="risk-demo-stat-label">Equity</div>
-              <div class="risk-demo-stat-val">$42,100</div>
+          <div class="risk-card-demo">
+            <div class="risk-demo-head">
+              <span class="risk-demo-login">Login #1044991</span>
+              <span class="risk-demo-badge badge-ok">Healthy</span>
             </div>
-            <div>
-              <div class="risk-demo-stat-label">Margin %</div>
-              <div class="risk-demo-stat-val" style="color:#4ade80">310%</div>
-            </div>
-            <div>
-              <div class="risk-demo-stat-label">Floating</div>
-              <div class="risk-demo-stat-val" style="color:#4ade80">+$2,800</div>
+            <div class="risk-demo-stats">
+              <div>
+                <div class="risk-demo-stat-label">Equity</div>
+                <div class="risk-demo-stat-val">$42,100</div>
+              </div>
+              <div>
+                <div class="risk-demo-stat-label">Margin %</div>
+                <div class="risk-demo-stat-val" style="color:#4ade80">310%</div>
+              </div>
+              <div>
+                <div class="risk-demo-stat-label">Floating</div>
+                <div class="risk-demo-stat-val" style="color:#4ade80">+$2,800</div>
+              </div>
             </div>
           </div>
         </div>
@@ -375,16 +358,16 @@
   </div>
 </section>
 
-<!-- ── PRICING ───────────────────────────────────────────────────────────── -->
+<!-- ── PRICING ── -->
 <section class="section pricing-section" id="pricing">
   <div class="container">
-    <div class="text-center">
-      <span class="eyebrow">Pricing</span>
+    <div class="text-center" data-reveal>
+      <div class="eyebrow"><span class="eyebrow-line"></span>Pricing</div>
       <h2>Simple, transparent pricing</h2>
       <p class="section-sub">One plan. Full platform access. No seat limits, no hidden fees.</p>
     </div>
 
-    <div class="pricing-card-wrap">
+    <div class="pricing-card-wrap" data-reveal style="--d:.1s">
       <div class="pricing-card">
         <div class="pricing-badge">Full Access</div>
         <div class="pricing-name">Operations Suite</div>
@@ -411,19 +394,21 @@
   </div>
 </section>
 
-<!-- ── CTA ───────────────────────────────────────────────────────────────── -->
-<section class="cta-section" id="contact">
-  <div class="container">
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-section-grid"></div>
+  <div class="cta-section-glow"></div>
+  <div class="container" data-reveal>
     <h2>Ready to run your operations in one place?</h2>
     <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
     <div class="cta-btns">
       <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
-      <a href="mailto:hello@operationstool.io" class="btn btn-lg" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)">Contact us</a>
+      <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+<!-- ── FOOTER ── -->
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
@@ -468,6 +453,39 @@
     </div>
   </div>
 </footer>
+
+<script>
+// Nav: switch style when scrolled past hero
+(function () {
+  var nav = document.getElementById('main-nav');
+  var hero = document.querySelector('.hero');
+  function check() {
+    var heroH = hero ? hero.offsetHeight : 300;
+    if (window.scrollY > heroH - 80) nav.classList.add('on-light');
+    else nav.classList.remove('on-light');
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
+
+// Scroll-reveal with IntersectionObserver
+(function () {
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 
 </body>
 </html>

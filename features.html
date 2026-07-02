@@ -32,8 +32,10 @@
 </nav>
 
 <div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
   <div class="container page-hero-inner">
-    <span class="eyebrow">Platform Features</span>
+    <div class="eyebrow"><span class="eyebrow-line"></span>Platform Features</div>
     <h1>Everything your ops team needs</h1>
     <p>Six powerful modules, one unified platform. Built specifically for MT5 broker operations teams who need real data in real time.</p>
   </div>
@@ -293,12 +295,14 @@
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="container">
+  <div class="cta-section-grid"></div>
+  <div class="cta-section-glow"></div>
+  <div class="container" data-reveal>
     <h2>Ready to see it live on your server?</h2>
     <p>Register your brokerage and connect your MT5 server. Your team can be live within the hour.</p>
     <div class="cta-btns">
       <a href="https://web-production-c8c34.up.railway.app/#register" class="btn btn-white btn-lg">Get Started →</a>
-      <a href="pricing.html" class="btn btn-lg" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)">View Pricing</a>
+      <a href="pricing.html" class="btn btn-ghost-white btn-lg">View Pricing</a>
     </div>
   </div>
 </section>
@@ -345,5 +349,24 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var nav = document.querySelector('.nav');
+  var hero = document.querySelector('.page-hero');
+  function check() {
+    var h = hero ? hero.offsetHeight : 200;
+    if (window.scrollY > h - 80) nav.classList.add('on-light');
+    else nav.classList.remove('on-light');
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
+(function () {
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
