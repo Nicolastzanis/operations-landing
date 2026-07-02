@@ -642,6 +642,7 @@ h3 { font-size: 18px; font-weight: 700; }
   .hero-hub-wrap { display: none; }
   .how-inner { grid-template-columns: 1fr; }
   .nav-links { display: none; }
+  .nav-login { display: none; }
   .bento-grid { grid-template-columns: 1fr 1fr; }
   .bento-card.span-2 { grid-column: span 1; }
   .feat-detail { grid-template-columns: 1fr; gap: 40px; }
