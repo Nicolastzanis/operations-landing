@@ -548,6 +548,7 @@ h3 { font-size: 18px; font-weight: 700; }
 .footer-col-links { display: flex; flex-direction: column; gap: 12px; }
 .footer-col-links a { font-size: 13px; color: rgba(255,255,255,.3); transition: color .15s; }
 .footer-col-links a:hover { color: rgba(255,255,255,.8); }
+.footer-disclaimer { font-size: 11px; color: rgba(255,255,255,.18); line-height: 1.6; margin: 0 0 20px; max-width: 640px; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .footer-copy { font-size: 12px; color: rgba(255,255,255,.2); }
 .footer-legal-links { display: flex; gap: 20px; }
