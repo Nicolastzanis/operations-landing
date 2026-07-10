@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nomous | MT5 Broker Operations Platform</title>
   <meta name="description" content="Real-time pricing, risk monitoring, client management, and an AI assistant for MT5 brokers. Built for operations teams who can't afford to miss a thing." />
+  <meta name="theme-color" content="#FFFFFF" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/logo-n.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <!-- ── NAV ── -->
 <nav class="nav" id="main-nav">
-  <div class="container nav-inner">
+  <div class="nav-inner">
     <a href="/" class="nav-logo">
       <div class="nav-mark">N</div>
       Nomous
@@ -27,410 +29,286 @@
     </div>
     <div class="nav-actions">
       <a href="https://app.nomous.tech" class="nav-login">Log in</a>
-      <a href="contact.html" class="nav-cta">Get Started →</a>
+      <a href="contact.html" class="nav-cta">Get Started</a>
     </div>
   </div>
 </nav>
 
+<div class="frame">
+
 <!-- ═══════════════════════════════════════════
-     HERO
+     001 — HERO
 ═══════════════════════════════════════════ -->
-<div class="hero">
+<section class="sec sec-first">
+  <div class="sec-bar">
+    <span>001 — Operations Platform</span>
+    <span><span class="dot"></span>Live · MT5 bridge connected</span>
+  </div>
 
-  <!-- hero content -->
-  <div class="hero-inner">
+  <div class="hero-head">
+    <h1 data-reveal>The all-in-one<br>MT5 operations<br>platform.</h1>
+    <p class="hero-lead" data-reveal style="--d:.08s">
+      Real-time pricing, risk monitoring, and client management. Built for MT5 broker operations teams who cannot afford to miss a thing.
+    </p>
+    <div class="hero-actions" data-reveal style="--d:.16s">
+      <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
+      <a href="features.html" class="btn btn-outline btn-lg">View Modules</a>
+    </div>
+    <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract — cancel anytime</p>
+  </div>
 
-    <!-- LEFT -->
-    <div style="animation: fadeUp .6s ease both">
-      <p class="hero-eyebrow">SEAMLESS · REAL-TIME · SECURE</p>
-      <h1>The All-in-One MT5<br>Operations<br>Platform</h1>
-      <p class="hero-lead">
-        Real-time pricing, risk monitoring, and client management. Built for MT5 broker operations teams who cannot afford to miss a thing.
+  <!-- cinematic light study -->
+  <figure class="media-frame">
+    <video autoplay muted playsinline preload="auto" poster="assets/hero-light-poster.jpg" aria-hidden="true">
+      <source src="assets/hero-light.mp4" type="video/mp4" />
+    </video>
+    <figcaption class="media-caption">
+      <span>Fig. 01 — Data architecture, light study</span>
+      <span>Nomous / ambient render · 16:9</span>
+    </figcaption>
+  </figure>
+
+  <!-- telemetry strip -->
+  <div class="telemetry">
+    <div class="telemetry-cell">
+      <div class="telemetry-label">Symbols tracked</div>
+      <div class="telemetry-val">184</div>
+    </div>
+    <div class="telemetry-cell">
+      <div class="telemetry-label">Avg spread</div>
+      <div class="telemetry-val">0.9<span class="telemetry-unit">pts</span></div>
+    </div>
+    <div class="telemetry-cell alert">
+      <div class="telemetry-label">Spike alerts</div>
+      <div class="telemetry-val">2<span class="telemetry-unit">active</span></div>
+    </div>
+    <div class="telemetry-cell">
+      <div class="telemetry-label">Modules</div>
+      <div class="telemetry-val">07</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     002 — THESIS
+═══════════════════════════════════════════ -->
+<section class="sec">
+  <div class="statement-grid">
+    <div class="statement-label" data-reveal>002 — Thesis</div>
+    <div class="statement-body">
+      <h2 data-reveal>Your ops team already knows what needs watching. We built the tool.</h2>
+      <p class="statement-sub" data-reveal style="--d:.1s">
+        Seven modules covering everything an MT5 broker operations team checks every single day — in one place, in real time.
       </p>
-      <a href="contact.html" class="btn btn-primary btn-lg">
-        Get Started →
-      </a>
-      <div class="hero-trust" style="margin-top:20px">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        No long-term contract
-        <span class="hero-trust-sep">·</span>
-        Cancel anytime
-      </div>
-    </div>
-
-    <!-- RIGHT: animated hub - tree/branch layout -->
-    <div class="hero-hub-wrap">
-
-      <!-- OT node at x=90, y=210 -->
-      <div class="hub-glow"></div>
-      <div class="pulse-ring"  style="width:136px;height:136px;left:90px;top:210px;transform:translate(-50%,-50%) scale(.8)"></div>
-      <div class="pulse-ring-2" style="width:136px;height:136px;left:90px;top:210px;transform:translate(-50%,-50%) scale(.8)"></div>
-      <div class="hub-center">N</div>
-
-      <!-- Tree-branch SVG - all cards at x=252, spine at x=200 -->
-      <!--
-        Card positions (top, cy):  81/102 · 135/156 · 189/210 · 243/264 · 297/318
-        Horizontal trunk:   (90,210) → (200,210)
-        Vertical spine:     (200,102) → (200,318)
-        5 branches:         (200,cy) → (252,cy)
-      -->
-      <svg class="hub-svg" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="dot-glow">
-            <feGaussianBlur stdDeviation="2.5" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!-- Horizontal trunk: hub → spine junction -->
-        <line x1="138" y1="210" x2="200" y2="210" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-
-        <!-- Vertical spine -->
-        <line x1="200" y1="102" x2="200" y2="318" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-
-        <!-- 5 horizontal branches (all perfectly straight) -->
-        <line x1="200" y1="102" x2="252" y2="102" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="200" y1="156" x2="252" y2="156" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="200" y1="210" x2="252" y2="210" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="200" y1="264" x2="252" y2="264" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <line x1="200" y1="318" x2="252" y2="318" stroke="rgba(8,145,178,.4)" stroke-width="1.2" stroke-dasharray="5 4"/>
-
-        <!-- Spine junction dot -->
-        <circle cx="200" cy="210" r="3.5" fill="#0891b2" opacity="0.6"/>
-
-        <!-- Branch endpoint dots -->
-        <circle cx="252" cy="102" r="2.5" fill="rgba(56,189,248,.7)"/>
-        <circle cx="252" cy="156" r="2.5" fill="rgba(56,189,248,.7)"/>
-        <circle cx="252" cy="210" r="2.5" fill="rgba(56,189,248,.7)"/>
-        <circle cx="252" cy="264" r="2.5" fill="rgba(56,189,248,.7)"/>
-        <circle cx="252" cy="318" r="2.5" fill="rgba(56,189,248,.7)"/>
-
-        <!-- Animated dots travel: card → branch → spine → trunk → hub -->
-        <circle r="3.5" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
-          <animateMotion calcMode="linear" dur="2.4s" repeatCount="indefinite" begin="0s"
-            path="M 252,102 L 200,102 L 200,210 L 90,210"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.4s" repeatCount="indefinite" begin="0s"/>
-        </circle>
-        <circle r="3.5" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
-          <animateMotion calcMode="linear" dur="2.1s" repeatCount="indefinite" begin="0.7s"
-            path="M 252,156 L 200,156 L 200,210 L 90,210"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.1s" repeatCount="indefinite" begin="0.7s"/>
-        </circle>
-        <circle r="3.5" fill="#7dd3fc" filter="url(#dot-glow)" opacity="0">
-          <animateMotion calcMode="linear" dur="1.7s" repeatCount="indefinite" begin="1.4s"
-            path="M 252,210 L 90,210"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="1.7s" repeatCount="indefinite" begin="1.4s"/>
-        </circle>
-        <circle r="3.5" fill="#38bdf8" filter="url(#dot-glow)" opacity="0">
-          <animateMotion calcMode="linear" dur="2.1s" repeatCount="indefinite" begin="0.3s"
-            path="M 252,264 L 200,264 L 200,210 L 90,210"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.1s" repeatCount="indefinite" begin="0.3s"/>
-        </circle>
-        <circle r="3.5" fill="#7dd3fc" filter="url(#dot-glow)" opacity="0">
-          <animateMotion calcMode="linear" dur="2.5s" repeatCount="indefinite" begin="1.8s"
-            path="M 252,318 L 200,318 L 200,210 L 90,210"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.04;0.9;1" dur="2.5s" repeatCount="indefinite" begin="1.8s"/>
-        </circle>
-
-        <!-- Hub receive pulse -->
-        <circle cx="90" cy="210" fill="none" stroke="#0891b2" stroke-width="1.8" opacity="0">
-          <animate attributeName="r" values="10;40" dur="2.2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-
-      <!-- Cards - top = cy-21: 81, 135, 189, 243, 297 - all at left:252 -->
-      <div class="hub-card card-float-1" style="top:81px;left:256px">
-        <span class="hub-card-dot"></span>Pricing Monitor
-      </div>
-      <div class="hub-card card-float-2" style="top:135px;left:256px">
-        <span class="hub-card-dot"></span>Risk Monitor
-      </div>
-      <div class="hub-card" style="top:189px;left:256px">
-        <span class="hub-card-dot"></span>Client Lookup
-      </div>
-      <div class="hub-card card-float-3" style="top:243px;left:256px">
-        <span class="hub-card-dot"></span>Swaps Simulator
-      </div>
-      <div class="hub-card card-float-2" style="top:297px;left:256px">
-        <span class="hub-card-dot"></span>Email &amp; Telegram Alerts
-      </div>
-
-    </div>
-
-  </div><!-- /hero-inner -->
-
-
-</div><!-- /hero -->
-
-<!-- ═══════════════════════════════════════════
-     STATEMENT
-═══════════════════════════════════════════ -->
-<section class="statement">
-  <p class="eyebrow-gradient">Built for Broker Operations</p>
-  <h2>Your ops team<br>already knows what<br>needs watching.<br><span class="underline-accent">We built the tool.</span></h2>
-  <p class="sub">Seven modules covering everything an MT5 broker operations team checks every single day, in one place, in real time.</p>
-  <a href="features.html" class="btn btn-dark btn-lg">Explore Features</a>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     FEATURES  (bento grid)
-═══════════════════════════════════════════ -->
-<section class="features-section" id="features">
-  <div class="container">
-    <p class="eyebrow-gradient text-center" data-reveal>Everything you need</p>
-    <h2 class="text-center" style="color:var(--text)" data-reveal style="--d:.07s">What We Do</h2>
-    <p class="section-sub" data-reveal style="--d:.14s">Seven modules, one platform. Every tool your MT5 operations team needs.</p>
-
-    <div class="bento-grid">
-
-      <!-- Pricing Monitor – dark wide card -->
-      <div class="bento-card dark span-2 shimmer-card" data-reveal style="--d:.05s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-            <polyline points="16 7 22 7 22 13"/>
-          </svg>
-        </div>
-        <h3>Pricing Monitor</h3>
-        <p>Live bid/ask prices and spreads for every symbol. Spot off-market prices and spread anomalies the moment they happen.</p>
-        <div class="mini-stat-row" style="margin-top:auto;padding-top:20px">
-          <div class="mini-stat">
-            <div class="mini-stat-label">Symbols tracked</div>
-            <div class="mini-stat-val">184</div>
-          </div>
-          <div class="mini-stat">
-            <div class="mini-stat-label">Avg spread</div>
-            <div class="mini-stat-val" style="color:#4ade80">0.9 pts</div>
-          </div>
-          <div class="mini-stat">
-            <div class="mini-stat-label">Spike alerts</div>
-            <div class="mini-stat-val" style="color:#fbbf24">2 active</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Risk Monitor -->
-      <div class="bento-card shimmer-card" data-reveal style="--d:.1s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
-        </div>
-        <h3>Risk Monitor</h3>
-        <p>Real-time equity, margin level, and floating P&amp;L, color-coded so your team spots danger before it becomes a stop-out.</p>
-        <div class="bento-tag-row">
-          <span class="bento-tag red">Critical</span>
-          <span class="bento-tag amber">Watch</span>
-          <span class="bento-tag green">Healthy</span>
-        </div>
-      </div>
-
-      <!-- Client Lookup -->
-      <div class="bento-card shimmer-card" data-reveal style="--d:.15s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="10" cy="7" r="4"/>
-            <path d="M10.3 15H7a4 4 0 0 0-4 4v2"/>
-            <circle cx="17" cy="17" r="3"/>
-            <path d="m21 21-1.9-1.9"/>
-          </svg>
-        </div>
-        <h3>Client Lookup</h3>
-        <p>Find any client by login, email, or name. See open positions and account details. No MT5 Manager login required.</p>
-      </div>
-
-      <!-- Swaps -->
-      <div class="bento-card shimmer-card" data-reveal style="--d:.2s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m2 9 3-3 3 3"/>
-            <path d="M13 18H7a2 2 0 0 1-2-2V6"/>
-            <path d="m22 15-3 3-3-3"/>
-            <path d="M11 6h6a2 2 0 0 1 2 2v10"/>
-          </svg>
-        </div>
-        <h3>Swaps &amp; Simulator</h3>
-        <p>View live swap rates across all groups. Simulate changes before they go live. No client surprises.</p>
-      </div>
-
-      <!-- TPA AI -->
-      <div class="bento-card shimmer-card" data-reveal style="--d:.22s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-          </svg>
-        </div>
-        <h3>TPA AI</h3>
-        <p>Ask your platform anything in plain English. Answers are grounded in your broker's own live data, never mixed with anyone else's.</p>
-      </div>
-
-      <!-- Alerts – dark wide -->
-      <div class="bento-card dark span-2 shimmer-card" data-reveal style="--d:.25s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-            <path d="M4 2C2.8 3.7 2 5.8 2 8"/>
-            <path d="M20 2c1.2 1.7 2 3.8 2 6"/>
-          </svg>
-        </div>
-        <h3>Email &amp; Telegram Alerts</h3>
-        <p>Margin calls, spread spikes, and server disconnects are sent to your team's inbox and Telegram the second they trigger. No delays, no missed events.</p>
-        <div class="bento-alert-strip">
-          <div class="bento-alert-item red">
-            <span class="bento-alert-dot red-dot"></span>MARGIN CALL · Login #1045820 · 18%
-          </div>
-          <div class="bento-alert-item amber">
-            <span class="bento-alert-dot amber-dot"></span>SPREAD SPIKE · GBPJPY · 21 pts
-          </div>
-        </div>
-      </div>
-
-      <!-- Symbol Hours -->
-      <div class="bento-card shimmer-card" data-reveal style="--d:.3s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="13" r="8"/>
-            <path d="M12 9v4l2 2"/>
-            <path d="M5 3 2 6"/>
-            <path d="m22 6-3-3"/>
-          </svg>
-        </div>
-        <h3>Symbol Hours &amp; Holidays</h3>
-        <p>Manage trading session hours and market holiday schedules. See which markets are open right now.</p>
-      </div>
-
+      <div data-reveal style="--d:.18s"><a href="features.html" class="link-sweep">Explore Features →</a></div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     HOW IT WORKS
+     003 — MODULES
 ═══════════════════════════════════════════ -->
-<section class="section how-section" id="how-it-works">
-  <div class="container">
-    <div class="text-center" data-reveal>
-      <p class="eyebrow-gradient">How it works</p>
-      <h2 style="color:var(--text)">Up and Running<br>in Minutes</h2>
-      <p class="section-sub">No complex setup. Connect your MT5 server and your team is live.</p>
-    </div>
-    <div class="how-inner">
-      <div class="steps">
-        <div class="step" data-reveal style="--d:.05s">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <h3>Register your brokerage</h3>
-            <p>Create your company account in under 2 minutes. One admin account, unlimited team members.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal style="--d:.12s">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <h3>Connect your MT5 server</h3>
-            <p>We connect via your MT5 Manager API. Provide your server host, port, and credentials. Done.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal style="--d:.19s">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <h3>Your team goes live</h3>
-            <p>Invite your operations team, assign permissions, and start monitoring. Data flows in real-time from minute one.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal style="--d:.26s">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <h3>Customise &amp; brand</h3>
-            <p>Upload your company logo, configure alerts, and make the platform feel like your own internal tool.</p>
-          </div>
-        </div>
+<section class="sec" id="features">
+  <div class="sec-bar">
+    <span>003 — Modules</span>
+    <span>Seven units · one platform</span>
+  </div>
+  <div class="arch-grid">
+
+    <div class="arch-cell" data-reveal>
+      <div class="arch-cell-top"><span class="arch-cell-index">01</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
       </div>
-      <div data-reveal style="--d:.12s">
-        <div class="how-visual">
-          <div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Risk Monitor · Live</div>
-          <div class="risk-card-demo">
-            <div class="risk-demo-head">
-              <span class="risk-demo-login">Login #1045820</span>
-              <span class="risk-demo-badge badge-crit">Margin critical</span>
-            </div>
-            <div class="risk-demo-stats">
-              <div><div class="risk-demo-stat-label">Equity</div><div class="risk-demo-stat-val" style="color:#f87171">$1,240</div></div>
-              <div><div class="risk-demo-stat-label">Margin %</div><div class="risk-demo-stat-val" style="color:#f87171">18%</div></div>
-              <div><div class="risk-demo-stat-label">Floating</div><div class="risk-demo-stat-val" style="color:#f87171">−$860</div></div>
-            </div>
-          </div>
-          <div class="risk-card-demo">
-            <div class="risk-demo-head">
-              <span class="risk-demo-login">Login #1045234</span>
-              <span class="risk-demo-badge badge-warn">Watch</span>
-            </div>
-            <div class="risk-demo-stats">
-              <div><div class="risk-demo-stat-label">Equity</div><div class="risk-demo-stat-val">$8,450</div></div>
-              <div><div class="risk-demo-stat-label">Margin %</div><div class="risk-demo-stat-val" style="color:#fbbf24">52%</div></div>
-              <div><div class="risk-demo-stat-label">Floating</div><div class="risk-demo-stat-val" style="color:#fbbf24">−$320</div></div>
-            </div>
-          </div>
-          <div class="risk-card-demo">
-            <div class="risk-demo-head">
-              <span class="risk-demo-login">Login #1044991</span>
-              <span class="risk-demo-badge badge-ok">Healthy</span>
-            </div>
-            <div class="risk-demo-stats">
-              <div><div class="risk-demo-stat-label">Equity</div><div class="risk-demo-stat-val">$42,100</div></div>
-              <div><div class="risk-demo-stat-label">Margin %</div><div class="risk-demo-stat-val" style="color:#4ade80">310%</div></div>
-              <div><div class="risk-demo-stat-label">Floating</div><div class="risk-demo-stat-val" style="color:#4ade80">+$2,800</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h3>Pricing Monitor</h3>
+      <p>Live bid/ask prices and spreads for every symbol. Spot off-market prices and spread anomalies the moment they happen.</p>
     </div>
+
+    <div class="arch-cell" data-reveal style="--d:.05s">
+      <div class="arch-cell-top"><span class="arch-cell-index">02</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Risk Monitor</h3>
+      <p>Real-time equity, margin level, and floating P&amp;L — so your team spots danger before it becomes a stop-out.</p>
+    </div>
+
+    <div class="arch-cell" data-reveal style="--d:.1s">
+      <div class="arch-cell-top"><span class="arch-cell-index">03</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>
+      </div>
+      <h3>Client Lookup</h3>
+      <p>Find any client by login, email, or name. See open positions and account details. No MT5 Manager login required.</p>
+    </div>
+
+    <div class="arch-cell" data-reveal style="--d:.15s">
+      <div class="arch-cell-top"><span class="arch-cell-index">04</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 3-3 3 3"/><path d="M13 18H7a2 2 0 0 1-2-2V6"/><path d="m22 15-3 3-3-3"/><path d="M11 6h6a2 2 0 0 1 2 2v10"/></svg>
+      </div>
+      <h3>Swaps &amp; Simulator</h3>
+      <p>View live swap rates across all groups. Simulate changes before they go live. No client surprises.</p>
+    </div>
+
+    <div class="arch-cell" data-reveal style="--d:.1s">
+      <div class="arch-cell-top"><span class="arch-cell-index">05</span><span class="arch-cell-tag">AI</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+      </div>
+      <h3>TPA AI</h3>
+      <p>Ask your platform anything in plain English. Answers are grounded in your broker's own live data, never mixed with anyone else's.</p>
+    </div>
+
+    <div class="arch-cell" data-reveal style="--d:.15s">
+      <div class="arch-cell-top"><span class="arch-cell-index">06</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      </div>
+      <h3>Email &amp; Telegram Alerts</h3>
+      <p>Margin calls, spread spikes, and server disconnects reach your team's inbox and Telegram the second they trigger.</p>
+    </div>
+
+    <div class="arch-cell" data-reveal style="--d:.2s">
+      <div class="arch-cell-top"><span class="arch-cell-index">07</span></div>
+      <div class="arch-cell-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
+      </div>
+      <h3>Symbol Hours &amp; Holidays</h3>
+      <p>Manage trading session hours and market holiday schedules. See which markets are open right now.</p>
+    </div>
+
+    <a href="features.html" class="arch-cell link-cell" data-reveal style="--d:.25s">
+      <span class="link-sweep">All Features →</span>
+    </a>
+
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     PRICING
+     004 — DEPLOYMENT
 ═══════════════════════════════════════════ -->
-<section class="section pricing-section" id="pricing">
-  <div class="container">
-    <div class="text-center" data-reveal>
-      <p class="eyebrow-gradient">Pricing</p>
-      <h2 style="color:var(--text)">Pricing Built Around Your Brokerage</h2>
-      <p class="section-sub">One plan. Full platform access. No seat limits, no hidden fees.</p>
-    </div>
-    <div class="pricing-card-wrap" data-reveal style="--d:.1s">
-      <div class="pricing-card">
-        <div class="pricing-badge">Full Access</div>
-        <div class="pricing-name">Operations Suite</div>
-        <div style="margin-top:10px">
-          <span class="pricing-amount">Custom</span>
+<section class="sec" id="how-it-works">
+  <div class="sec-bar">
+    <span>004 — Deployment</span>
+    <span>Live in minutes</span>
+  </div>
+  <div class="deploy-grid">
+
+    <div class="steps-col">
+      <div class="steps-intro" data-reveal>
+        <h2>Up and running<br>in minutes.</h2>
+        <p>No complex setup. Connect your MT5 server and your team is live.</p>
+      </div>
+      <div class="step" data-reveal style="--d:.05s">
+        <div class="step-num">Step 01</div>
+        <div class="step-body">
+          <h3>Register your brokerage</h3>
+          <p>Create your company account in under 2 minutes. One admin account, unlimited team members.</p>
         </div>
-        <div class="pricing-billing">Tailored to your brokerage · Cancel anytime</div>
-        <hr class="pricing-divider" />
-        <div class="pricing-feats">
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Real-time pricing monitor, all symbols</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Account risk monitoring with margin alerts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Client lookup &amp; open position viewer</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Swaps &amp; group simulator</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Email &amp; Telegram instant alerts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Symbol hours &amp; market holiday manager</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Custom branding &amp; company logo</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Unlimited team accounts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>TPA AI assistant, trained on your own data</div>
+      </div>
+      <div class="step" data-reveal style="--d:.1s">
+        <div class="step-num">Step 02</div>
+        <div class="step-body">
+          <h3>Connect your MT5 server</h3>
+          <p>We connect via your MT5 Manager API. Provide your server host, port, and credentials. Done.</p>
         </div>
-        <a href="contact.html" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Contact Us →</a>
-        <p class="pricing-note">We'll get back to you within one business day</p>
+      </div>
+      <div class="step" data-reveal style="--d:.15s">
+        <div class="step-num">Step 03</div>
+        <div class="step-body">
+          <h3>Your team goes live</h3>
+          <p>Invite your operations team, assign permissions, and start monitoring. Data flows in real time from minute one.</p>
+        </div>
+      </div>
+      <div class="step" data-reveal style="--d:.2s">
+        <div class="step-num">Step 04</div>
+        <div class="step-body">
+          <h3>Customise &amp; brand</h3>
+          <p>Upload your company logo, configure alerts, and make the platform feel like your own internal tool.</p>
+        </div>
       </div>
     </div>
+
+    <div class="ledger-col">
+      <div data-reveal style="--d:.1s">
+        <div class="ledger">
+          <div class="ledger-head">
+            <span>Risk Monitor — live feed</span>
+            <span>Refresh 1s</span>
+          </div>
+          <div class="ledger-cols">
+            <span>Login</span><span>Equity</span><span>Margin</span><span>Floating</span><span>State</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-cell">#1045820</span>
+            <span class="ledger-cell">$1,240</span>
+            <span class="ledger-cell">18%</span>
+            <span class="ledger-cell">−$860</span>
+            <span class="st st-crit">Critical</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-cell">#1045234</span>
+            <span class="ledger-cell">$8,450</span>
+            <span class="ledger-cell">52%</span>
+            <span class="ledger-cell">−$320</span>
+            <span class="st st-watch">Watch</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-cell">#1044991</span>
+            <span class="ledger-cell">$42,100</span>
+            <span class="ledger-cell">310%</span>
+            <span class="ledger-cell">+$2,800</span>
+            <span class="st st-ok">Healthy</span>
+          </div>
+        </div>
+        <div class="ledger-caption">Fig. 02 — Account risk ledger · illustrative data</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     CTA
+     005 — ENGAGEMENT
 ═══════════════════════════════════════════ -->
-<section class="cta-section">
+<section class="sec" id="pricing">
+  <div class="sec-bar">
+    <span>005 — Engagement</span>
+    <span>One plan · full access</span>
+  </div>
+  <div class="pricing-panel">
+
+    <div class="pricing-left" data-reveal>
+      <div class="pricing-kicker">Operations Suite</div>
+      <div class="pricing-huge">Custom.</div>
+      <div class="pricing-terms">Tailored to your brokerage — cancel anytime</div>
+      <a href="contact.html" class="btn btn-primary btn-lg">Contact Us →</a>
+      <div class="pricing-foot">Response within one business day</div>
+    </div>
+
+    <div class="pricing-list" data-reveal style="--d:.08s">
+      <div class="pricing-row"><span>Real-time pricing monitor, all symbols</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Account risk monitoring with margin alerts</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Client lookup &amp; open position viewer</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Swaps &amp; group simulator</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Email &amp; Telegram instant alerts</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Symbol hours &amp; market holiday manager</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Custom branding &amp; company logo</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>Unlimited team accounts</span><span class="mono-tag">Included</span></div>
+      <div class="pricing-row"><span>TPA AI assistant, trained on your own data</span><span class="mono-tag">Included</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     006 — CONTACT
+═══════════════════════════════════════════ -->
+<section class="sec cta-section">
   <div class="container" data-reveal>
-    <h2 style="color:#fff">Ready to Run Your Operations<br>in One Place?</h2>
+    <span class="cta-kicker">006 — Contact</span>
+    <h2>Ready to run your operations<br>in one place?</h2>
     <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
     <div class="cta-btns">
       <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
@@ -447,7 +325,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo">
-          <div class="nav-mark" style="width:28px;height:28px;font-size:11px">N</div>
+          <div class="nav-mark">N</div>
           Nomous
         </div>
         <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
@@ -478,7 +356,7 @@
     </div>
     <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved.</span>
+      <span class="footer-copy">© 2026 Nomous — All rights reserved</span>
       <div class="footer-legal-links">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -488,19 +366,9 @@
   </div>
 </footer>
 
-<script>
-// Nav: switch to light after hero
-(function () {
-  var nav = document.getElementById('main-nav');
-  var hero = document.querySelector('.hero');
-  function check() {
-    var h = hero ? hero.offsetHeight - 80 : 400;
-    nav.classList.toggle('on-light', window.scrollY > h);
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  check();
-})();
+</div><!-- /frame -->
 
+<script>
 // Scroll reveal
 (function () {
   var els = document.querySelectorAll('[data-reveal]');
