@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "-l", "5500", "."],
       "port": 5500
+    },
+    {
+      "name": "operations-tool",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /Users/nicolastzanis/Desktop/operations-tool && exec .venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8000"],
+      "port": 8000
     }
   ]
 }
