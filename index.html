@@ -44,28 +44,30 @@
     <span>001 — Operations Platform</span>
   </div>
 
-  <div class="hero-head">
-    <h1 data-reveal>The all-in-one<br>MT5 operations<br>platform.</h1>
-    <p class="hero-lead" data-reveal style="--d:.08s">
-      Real-time pricing, risk monitoring, and client management. Built for MT5 broker operations teams who cannot afford to miss a thing.
-    </p>
-    <div class="hero-actions" data-reveal style="--d:.16s">
-      <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
-      <a href="features.html" class="btn btn-outline btn-lg">View Modules</a>
+  <!-- scroll cinema — assembly sequence scrubbed by scroll depth -->
+  <div class="cine" id="cine">
+    <div class="cine-stage">
+      <canvas class="cine-canvas" id="cine-canvas" aria-hidden="true"></canvas>
+      <div class="cine-overlay" id="cine-overlay">
+        <h1 data-reveal>The all-in-one<br>MT5 operations<br>platform.</h1>
+        <p class="hero-lead" data-reveal style="--d:.08s">
+          Real-time pricing, risk monitoring, and client management. Built for MT5 broker operations teams who cannot afford to miss a thing.
+        </p>
+        <div class="hero-actions" data-reveal style="--d:.16s">
+          <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
+          <a href="features.html" class="btn btn-outline btn-lg">View Modules</a>
+        </div>
+        <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract — cancel anytime</p>
+      </div>
+      <div class="cine-hud">
+        <span>Fig. 01 — Data architecture, assembly sequence</span>
+        <span id="cine-progress">Assembly 000%</span>
+      </div>
+      <noscript>
+        <img class="cine-fallback" src="assets/hero-light-poster.jpg" alt="Nomous data architecture" />
+      </noscript>
     </div>
-    <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract — cancel anytime</p>
   </div>
-
-  <!-- cinematic light study -->
-  <figure class="media-frame">
-    <video autoplay muted playsinline preload="auto" poster="assets/hero-light-poster.jpg" aria-hidden="true">
-      <source src="assets/hero-light.mp4" type="video/mp4" />
-    </video>
-    <figcaption class="media-caption">
-      <span>Fig. 01 — Data architecture, light study</span>
-      <span>Nomous / ambient render · 16:9</span>
-    </figcaption>
-  </figure>
 
   <!-- telemetry strip -->
   <div class="telemetry">
@@ -376,6 +378,233 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
   }, { threshold: 0.1 });
   els.forEach(function(el){ io.observe(el); });
+})();
+
+// Scroll cinema — procedural data-architecture matrix, scrubbed by scroll.
+// Vector-drawn on canvas at device resolution: razor-crisp at any size,
+// exact brand palette, zero image payload.
+(function () {
+  var track   = document.getElementById('cine');
+  var canvas  = document.getElementById('cine-canvas');
+  if (!track || !canvas || !canvas.getContext) return;
+
+  var ctx     = canvas.getContext('2d');
+  var overlay = document.getElementById('cine-overlay');
+  var hudPct  = document.getElementById('cine-progress');
+  var nav     = document.getElementById('main-nav');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var INK = '17,17,17', ORANGE = '232,86,12', INDIGO = '79,70,229';
+
+  // deterministic rng
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rnd = mulberry32(1337);
+
+  // ── world ────────────────────────────────────────────────
+  var AISLE = 1.05, GAP = 0.62, COLS = 6, ROWS = 16;
+  var Z0 = 2.3, DZ = 0.85, ZNEAR = 1.55, ZFAR = Z0 + (ROWS - 1) * DZ + 0.55;
+  var colX = [];               // lattice x positions, both sides
+  for (var i = 0; i < COLS; i++) { colX.push(AISLE + i * GAP); }
+  var XMAX = AISLE + (COLS - 1) * GAP + 0.4;
+
+  var fins = [], nodes = [], signals = [];
+  (function build() {
+    var i, j, s;
+    for (s = -1; s <= 1; s += 2) {
+      for (i = 0; i < COLS; i++) {
+        for (j = 0; j < ROWS; j++) {
+          var z = Z0 + j * DZ;
+          if (rnd() < 0.12) continue;                    // organic gaps
+          fins.push({
+            x: s * colX[i], zA: z - 0.27, zB: z + 0.27,
+            h: 0.95 + rnd() * 0.25,
+            t0: 0.13 + 0.40 * (j / (ROWS - 1)) + rnd() * 0.05, dur: 0.12
+          });
+        }
+      }
+    }
+    for (s = -1; s <= 1; s += 2)
+      for (i = 0; i < COLS; i++)
+        for (j = 0; j < ROWS; j++)
+          nodes.push({ x: s * colX[i], z: Z0 + j * DZ, t0: 0.32 + rnd() * 0.38, dur: 0.07 });
+
+    // signal routes: clean manhattan walks along the floor lattice
+    for (var k = 0; k < 8; k++) {
+      var side = k % 2 ? 1 : -1;
+      var ci = Math.floor(rnd() * COLS);
+      var pts = [], z = Z0 + (ROWS - 1) * DZ, y = 0.015;
+      pts.push([side * colX[ci], y, z]);
+      while (z > Z0 + DZ) {
+        z -= DZ;
+        if (rnd() < 0.30 && ci > 0 && ci < COLS - 1) {   // lateral jog
+          ci += rnd() < 0.5 ? -1 : 1;
+          pts.push([side * colX[ci], y, z + DZ * 0.5]);
+        }
+        pts.push([side * colX[ci], y, z]);
+      }
+      signals.push({ pts: pts, color: k < 5 ? ORANGE : INDIGO,
+                     t0: 0.50 + k * 0.034, dur: 0.32 });
+    }
+  })();
+
+  // ── camera / projection ─────────────────────────────────
+  var W = 0, H = 0, dpr = 1, F = 0, CX = 0, HORIZON = 0, CAMH = 2.7;
+  function project(x, y, z) {
+    var s = F / z;
+    return { x: CX + x * s, y: HORIZON + (CAMH - y) * s };
+  }
+  function fade(z) { // dissolve to white with depth
+    var f = 1 - (z - 8.5) / (ZFAR - 8.5);
+    return f < 0 ? 0 : (f > 1 ? 1 : f) * 0.95 + 0.05;
+  }
+  function easeOut(t) { t = t < 0 ? 0 : (t > 1 ? 1 : t); return 1 - Math.pow(1 - t, 3); }
+  function stage(p, t0, dur) { return easeOut((p - t0) / dur); }
+  function hair() { return Math.max(1, Math.round(dpr)); }
+
+  // ── scene ────────────────────────────────────────────────
+  function drawScene(p) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
+    var i, j, s, a, e, lw = hair();
+
+    // longitudinal floor lines — extend from near toward the horizon
+    for (s = -1; s <= 1; s += 2) {
+      for (i = 0; i < COLS; i++) {
+        e = stage(p, 0.00 + i * 0.018, 0.16);
+        if (e <= 0) continue;
+        var zEnd = ZNEAR + (ZFAR - ZNEAR) * e;
+        var p1 = project(s * colX[i], 0, ZNEAR), p2 = project(s * colX[i], 0, zEnd);
+        ctx.strokeStyle = 'rgba(' + INK + ',' + (0.16).toFixed(3) + ')';
+        ctx.lineWidth = lw;
+        ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+      }
+    }
+    // lateral floor lines — near rows first, grow from the aisle outward
+    for (j = 0; j < ROWS; j++) {
+      e = stage(p, 0.03 + j * 0.012, 0.14);
+      if (e <= 0) continue;
+      var z = Z0 + j * DZ, f = fade(z);
+      var xr = AISLE + (XMAX - AISLE) * e;
+      ctx.strokeStyle = 'rgba(' + INK + ',' + (0.13 * f).toFixed(3) + ')';
+      ctx.lineWidth = lw;
+      var l1 = project(-xr, 0, z), l2 = project(-AISLE, 0, z),
+          r1 = project(AISLE, 0, z),  r2 = project(xr, 0, z);
+      ctx.beginPath(); ctx.moveTo(l1.x, l1.y); ctx.lineTo(l2.x, l2.y);
+      ctx.moveTo(r1.x, r1.y); ctx.lineTo(r2.x, r2.y); ctx.stroke();
+    }
+
+    // glass fins — rise from the floor, back rows later
+    for (i = fins.length - 1; i >= 0; i--) {
+      var fin = fins[i];
+      e = stage(p, fin.t0, fin.dur);
+      if (e <= 0) continue;
+      var h = fin.h * e, f2 = fade((fin.zA + fin.zB) / 2);
+      if (f2 <= 0.06) continue;
+      var a1 = project(fin.x, 0, fin.zA), a2 = project(fin.x, 0, fin.zB),
+          b1 = project(fin.x, h, fin.zA), b2 = project(fin.x, h, fin.zB);
+      ctx.fillStyle = 'rgba(' + INK + ',' + (0.026 * f2).toFixed(3) + ')';
+      ctx.beginPath(); ctx.moveTo(a1.x, a1.y); ctx.lineTo(a2.x, a2.y);
+      ctx.lineTo(b2.x, b2.y); ctx.lineTo(b1.x, b1.y); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = 'rgba(' + INK + ',' + (0.30 * f2).toFixed(3) + ')';
+      ctx.lineWidth = lw;
+      ctx.beginPath(); ctx.moveTo(a1.x, a1.y); ctx.lineTo(b1.x, b1.y);
+      ctx.moveTo(a2.x, a2.y); ctx.lineTo(b2.x, b2.y);
+      ctx.moveTo(b1.x, b1.y); ctx.lineTo(b2.x, b2.y); ctx.stroke();
+    }
+
+    // lattice nodes — pop in
+    for (i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      e = stage(p, n.t0, n.dur);
+      if (e <= 0) continue;
+      var f3 = fade(n.z);
+      if (f3 <= 0.06) continue;
+      var pt = project(n.x, 0, n.z);
+      var sz = Math.min(8 * dpr, Math.max(1.6 * dpr, 16 * dpr / n.z)) * e;
+      ctx.fillStyle = 'rgba(' + INK + ',' + (0.8 * f3).toFixed(3) + ')';
+      ctx.fillRect(pt.x - sz / 2, pt.y - sz / 2, sz, sz);
+    }
+
+    // signal routes — draw along their length
+    for (i = 0; i < signals.length; i++) {
+      var sig = signals[i];
+      e = stage(p, sig.t0, sig.dur);
+      if (e <= 0) continue;
+      var pts = sig.pts, total = pts.length - 1, upto = e * total;
+      ctx.strokeStyle = 'rgba(' + sig.color + ',0.62)';
+      ctx.lineWidth = Math.max(1, Math.round(1.05 * dpr));
+      ctx.beginPath();
+      var q0 = project(pts[0][0], pts[0][1], pts[0][2]);
+      ctx.moveTo(q0.x, q0.y);
+      for (j = 1; j <= Math.floor(upto); j++) {
+        var q = project(pts[j][0], pts[j][1], pts[j][2]);
+        ctx.lineTo(q.x, q.y);
+      }
+      var frac = upto - Math.floor(upto);
+      if (frac > 0 && Math.floor(upto) < total) {
+        var A = pts[Math.floor(upto)], B = pts[Math.floor(upto) + 1];
+        var qq = project(A[0] + (B[0] - A[0]) * frac, A[1] + (B[1] - A[1]) * frac, A[2] + (B[2] - A[2]) * frac);
+        ctx.lineTo(qq.x, qq.y);
+      }
+      ctx.stroke();
+    }
+
+    // central orange spine — lands last, races toward the viewer
+    e = stage(p, 0.80, 0.17);
+    if (e > 0) {
+      var zs = ZFAR - (ZFAR - ZNEAR) * e;
+      var s1 = project(0, 0.01, ZFAR), s2 = project(0, 0.01, zs);
+      ctx.strokeStyle = 'rgba(' + ORANGE + ',0.10)';
+      ctx.lineWidth = Math.round(4 * dpr);
+      ctx.beginPath(); ctx.moveTo(s1.x, s1.y); ctx.lineTo(s2.x, s2.y); ctx.stroke();
+      ctx.strokeStyle = 'rgba(' + ORANGE + ',0.8)';
+      ctx.lineWidth = Math.max(1, Math.round(1.3 * dpr));
+      ctx.beginPath(); ctx.moveTo(s1.x, s1.y); ctx.lineTo(s2.x, s2.y); ctx.stroke();
+    }
+  }
+
+  // ── plumbing ─────────────────────────────────────────────
+  var raf = null, lastP = -1;
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    var r = canvas.getBoundingClientRect();
+    W = canvas.width  = Math.round(r.width * dpr);
+    H = canvas.height = Math.round(r.height * dpr);
+    F = 0.56 * H; CX = W / 2; HORIZON = 0.30 * H;
+    lastP = -1;
+  }
+  function progress() {
+    var navH = nav ? nav.offsetHeight : 68;
+    var rect = track.getBoundingClientRect();
+    var span = rect.height - (window.innerHeight - navH);
+    if (span <= 0) return 1;
+    return Math.min(1, Math.max(0, (navH - rect.top) / span));
+  }
+  function update() {
+    raf = null;
+    var p = reduced ? 1 : progress();
+    if (p === lastP) return;
+    lastP = p;
+    drawScene(p);
+    if (hudPct) hudPct.textContent = 'Assembly ' + String(Math.round(p * 100)).padStart(3, '0') + '%';
+    if (overlay && !reduced) {
+      var f = Math.min(1, Math.max(0, (p - 0.55) / 0.30)); // fade 55% → 85%
+      overlay.style.opacity = String(1 - f);
+      overlay.style.transform = 'translateY(' + (-24 * f) + 'px)';
+      overlay.style.visibility = f >= 1 ? 'hidden' : 'visible';
+    }
+  }
+  function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+
+  if (!reduced) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+  window.addEventListener('resize', function () { size(); onScroll(); });
+  window.addEventListener('load', function () { size(); update(); });
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(function () { size(); update(); }).observe(canvas);
+  }
+  size(); update();
 })();
 </script>
 
