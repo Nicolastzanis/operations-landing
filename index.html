@@ -401,7 +401,11 @@
   var rnd = mulberry32(1337);
 
   // ── world ────────────────────────────────────────────────
-  var AISLE = 1.05, GAP = 0.62, COLS = 6, ROWS = 16;
+  // Small viewports get a lighter scene (fewer fins/nodes/routes) — canvas
+  // 2D redraw cost scales directly with shape count, and this runs on every
+  // scroll frame, so mobile needs a real cut, not just a resolution tweak.
+  var MOBILE = window.innerWidth < 640;
+  var AISLE = 1.05, GAP = 0.62, COLS = MOBILE ? 4 : 6, ROWS = MOBILE ? 10 : 16;
   var Z0 = 2.3, DZ = 0.85, ZNEAR = 1.55, ZFAR = Z0 + (ROWS - 1) * DZ + 0.55;
   var colX = [];               // lattice x positions, both sides
   for (var i = 0; i < COLS; i++) { colX.push(AISLE + i * GAP); }
@@ -429,7 +433,7 @@
           nodes.push({ x: s * colX[i], z: Z0 + j * DZ, t0: 0.32 + rnd() * 0.38, dur: 0.07 });
 
     // signal routes: clean manhattan walks along the floor lattice
-    for (var k = 0; k < 8; k++) {
+    for (var k = 0, kMax = MOBILE ? 5 : 8; k < kMax; k++) {
       var side = k % 2 ? 1 : -1;
       var ci = Math.floor(rnd() * COLS);
       var pts = [], z = Z0 + (ROWS - 1) * DZ, y = 0.015;
@@ -442,7 +446,7 @@
         }
         pts.push([side * colX[ci], y, z]);
       }
-      signals.push({ pts: pts, color: k < 5 ? ORANGE : INDIGO,
+      signals.push({ pts: pts, color: k < Math.ceil(kMax * 0.625) ? ORANGE : INDIGO,
                      t0: 0.50 + k * 0.034, dur: 0.32 });
     }
   })();
@@ -566,7 +570,7 @@
   // ── plumbing ─────────────────────────────────────────────
   var raf = null, lastP = -1;
   function size() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    dpr = Math.min(window.devicePixelRatio || 1, MOBILE ? 1.5 : 2.5);
     var r = canvas.getBoundingClientRect();
     W = canvas.width  = Math.round(r.width * dpr);
     H = canvas.height = Math.round(r.height * dpr);
@@ -599,8 +603,12 @@
   if (!reduced) {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
-  window.addEventListener('resize', function () { size(); onScroll(); });
   window.addEventListener('load', function () { size(); update(); });
+  // ResizeObserver on the canvas covers every case a window 'resize' listener
+  // would (including dvh changes from mobile browser chrome show/hide) —
+  // having both fires a full relayout+redraw twice per event, which is
+  // exactly the kind of double work that shows up as scroll jank on mobile,
+  // where address-bar collapse fires resize repeatedly during a scroll.
   if ('ResizeObserver' in window) {
     new ResizeObserver(function () { size(); update(); }).observe(canvas);
   }
