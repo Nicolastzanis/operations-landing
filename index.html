@@ -44,10 +44,64 @@
     <span>001 — The Processing Core</span>
   </div>
 
-  <!-- scroll cinema — raw MT5 data in, processed by the chip, ops intelligence out -->
+  <!-- live chip — always-animated 3D ambient scene, not scroll-driven -->
   <div class="cine" id="cine">
-    <div class="cine-stage">
+    <div class="cine-stage" id="cine-stage">
       <canvas class="cine-canvas" id="cine-canvas" aria-hidden="true"></canvas>
+      <div class="cine-spotlight" id="cine-spotlight" aria-hidden="true"></div>
+
+      <!-- soft organic color blob behind the panels — the one non-rectangular
+           mass in the composition, keeps the scene from reading as pure boxes -->
+      <div class="panel3d-blob" aria-hidden="true"></div>
+
+      <!-- the product itself, in 3D: a real dashboard panel (not an invented
+           metaphor object), tilting toward the cursor, with two smaller
+           panels stacked behind it at depth, live-ticking numbers -->
+      <div class="panel3d-scene" id="panel3d-scene">
+        <div class="panel3d-group" id="panel3d-group">
+
+          <div class="panel3d panel3d-mini pm-pricing">
+            <div class="pm-head">EURUSD <span class="pm-tag">Live</span></div>
+            <svg class="pm-spark" viewBox="0 0 100 32" preserveAspectRatio="none"><polyline id="sparkLine" points="0,20 12,18 24,22 36,14 48,17 60,9 72,13 84,6 100,10"/></svg>
+          </div>
+
+          <div class="panel3d panel3d-main">
+            <div class="ledger-head">
+              <span>Risk Monitor — live feed</span>
+              <span class="cine-live"><span class="cine-live-dot"></span>Live</span>
+            </div>
+            <div class="ledger-cols">
+              <span>Login</span><span>Equity</span><span>Margin</span><span>State</span>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-cell">#1045820</span>
+              <span class="ledger-cell" id="tick-eq1">$1,240</span>
+              <span class="ledger-cell" id="tick-mg1">18%</span>
+              <span class="st st-crit">Critical</span>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-cell">#1045234</span>
+              <span class="ledger-cell" id="tick-eq2">$8,450</span>
+              <span class="ledger-cell" id="tick-mg2">52%</span>
+              <span class="st st-watch">Watch</span>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-cell">#1044991</span>
+              <span class="ledger-cell" id="tick-eq3">$42,100</span>
+              <span class="ledger-cell" id="tick-mg3">310%</span>
+              <span class="st st-ok">Healthy</span>
+            </div>
+          </div>
+
+          <div class="panel3d panel3d-mini pm-alerts">
+            <div class="pm-head">Alerts <span class="pm-tag pm-tag-alt">2 active</span></div>
+            <div class="pm-alert-row"><span class="pm-dot"></span>Margin call — #1045820</div>
+            <div class="pm-alert-row pm-dim"><span class="pm-dot pm-dot-dim"></span>Spread spike — XAUUSD</div>
+          </div>
+
+        </div>
+      </div>
+
       <div class="cine-overlay" id="cine-overlay">
         <h1 data-reveal>The processing core<br>for your MT5<br>operations.</h1>
         <p class="hero-lead" data-reveal style="--d:.08s">
@@ -60,8 +114,8 @@
         <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract — cancel anytime</p>
       </div>
       <div class="cine-hud">
-        <span>Fig. 01 — Signal processing sequence</span>
-        <span id="cine-progress">Processing 000%</span>
+        <span>Fig. 01 — Live risk monitor, illustrative data</span>
+        <span class="cine-live"><span class="cine-live-dot"></span>Live</span>
       </div>
       <noscript>
         <img class="cine-fallback" src="assets/hero-light-poster.jpg" alt="Nomous data architecture" />
@@ -400,38 +454,25 @@
   els.forEach(function(el){ io.observe(el); });
 })();
 
-// Scroll cinema — the Nomous chip: raw MT5 data streams in from the left,
-// gets processed by a central chip die, and exits as clean ops intelligence
-// on the right. Vector-drawn on canvas at device resolution: razor-crisp at
-// any size, exact brand palette, zero image payload.
+// Ambient background — ticking candlesticks, drifting tickers, floating
+// particles. The chip itself and the output cards are real 3D DOM elements
+// now (see the next block); this canvas layer is just texture behind them.
 (function () {
   var track   = document.getElementById('cine');
   var canvas  = document.getElementById('cine-canvas');
   if (!track || !canvas || !canvas.getContext) return;
 
   var ctx     = canvas.getContext('2d');
-  var overlay = document.getElementById('cine-overlay');
-  var hudPct  = document.getElementById('cine-progress');
-  var nav     = document.getElementById('main-nav');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var INK = '243,245,252', ORANGE = '59,130,246', INDIGO = '139,92,246';
 
-  // deterministic rng
   function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
   var rnd = mulberry32(1337);
 
-  // ── world ────────────────────────────────────────────────
-  // Logical coordinate space, flat 2D (no perspective — a chip package reads
-  // far more clearly front-on than forced into a 3D floor grid). Origin at
-  // center; scaled to the canvas at draw time in size().
   var MOBILE = window.innerWidth < 640;
   var TICKERS = ['EURUSD', 'XAUUSD', 'GBPJPY', 'USDJPY', 'GBPUSD', 'AUDUSD'];
-  var CHIP_R = 1.55;                 // die half-size
-  var PIN_LEN = 0.34, PIN_GAP = 0.42;
-  var PIN_ROWS = MOBILE ? 3 : 4;     // pins per side
 
-  // input candlesticks (raw MT5 data, loosely scattered, left of chip)
   var candles = [];
   (function buildCandles() {
     var count = MOBILE ? 10 : 18;
@@ -441,284 +482,187 @@
       var y = -1.7 + rnd() * 3.4;
       var h = 0.22 + rnd() * 0.5;
       var wick = h * (1.3 + rnd() * 0.8);
-      candles.push({
-        x: x, y: y, h: h, wick: wick,
-        up: rnd() < 0.5,
-        t0: 0.02 + rnd() * 0.16, dur: 0.10
-      });
+      candles.push({ x: x, y: y, h: h, wick: wick, up: rnd() < 0.5, phase: rnd() * Math.PI * 2 });
     }
   })();
-  // ticker labels drifting toward the chip
   var tickers = [];
   (function buildTickers() {
     var count = MOBILE ? 3 : 5;
     for (var i = 0; i < count; i++) {
-      tickers.push({
-        label: TICKERS[i % TICKERS.length],
-        x: -9.3, y: -2.5 + i * (5 / (count - 1 || 1)),
-        t0: 0.0 + i * 0.03, dur: 0.14
-      });
+      tickers.push({ label: TICKERS[i % TICKERS.length], x: -9.3, y: -2.5 + i * (5 / (count - 1 || 1)), phase: rnd() * Math.PI * 2 });
     }
   })();
-  // output cards (processed intelligence, orderly grid, right of chip)
-  var cards = [];
-  (function buildCards() {
-    var rows = MOBILE ? 2 : 3, cols = MOBILE ? 1 : 2;
-    var kinds = ['pct', 'check', 'bell', 'bar', 'check', 'pct'];
-    var k = 0;
-    for (var r = 0; r < rows; r++) {
-      for (var c = 0; c < cols; c++) {
-        cards.push({
-          x: 5.7 + c * 1.7, y: 1.9 - r * 1.7,
-          kind: kinds[k++ % kinds.length],
-          t0: 0.66 + (r * cols + c) * 0.035, dur: 0.14
-        });
-      }
-    }
-  })();
-  // signal traces: input cluster -> chip left pins, chip right pins -> output cards
-  var inSignals = [], outSignals = [];
-  (function buildSignals() {
-    var n = MOBILE ? 3 : PIN_ROWS;
-    for (var i = 0; i < n; i++) {
-      var py = (i - (n - 1) / 2) * PIN_GAP;
-      var startY = -2.2 + i * (4.4 / (n - 1 || 1));
-      inSignals.push({
-        pts: [[-9.6, startY], [-CHIP_R - 1.1, startY], [-CHIP_R - 1.1, py], [-CHIP_R - PIN_LEN, py]],
-        color: i % 2 ? INDIGO : ORANGE,
-        t0: 0.30 + i * 0.03, dur: 0.22
+  var particles = [];
+  (function buildParticles() {
+    var count = MOBILE ? 14 : 30;
+    for (var i = 0; i < count; i++) {
+      particles.push({
+        x: -10.5 + rnd() * 21, y: -5.5 + rnd() * 11,
+        r: 0.6 + rnd() * 1.6,
+        vx: (rnd() - 0.5) * 0.10, vy: (rnd() - 0.5) * 0.06,
+        phase: rnd() * Math.PI * 2, speed: 0.4 + rnd() * 0.5,
+        color: rnd() < 0.5 ? ORANGE : INDIGO
       });
-      outSignals.push({
-        pts: [[CHIP_R + PIN_LEN, py], [CHIP_R + 1.1, py], [CHIP_R + 1.1, startY * 0.6], [8.6, startY * 0.6]],
-        color: i % 2 ? ORANGE : INDIGO,
-        t0: 0.70 + i * 0.03, dur: 0.22
-      });
-    }
-  })();
-  // die circuit traces — right-angle paths radiating from the center mark
-  var dieTraces = [];
-  (function buildDie() {
-    var arms = MOBILE ? 4 : 6;
-    for (var i = 0; i < arms; i++) {
-      var ang = (i / arms) * Math.PI * 2;
-      var midx = Math.cos(ang) * CHIP_R * 0.55, midy = Math.sin(ang) * CHIP_R * 0.55;
-      var endx = Math.cos(ang) * CHIP_R * 0.85, endy = Math.sin(ang) * CHIP_R * 0.85;
-      dieTraces.push({ pts: [[0, 0], [midx, midy], [endx, endy]], t0: 0.18 + i * 0.02, dur: 0.10 });
     }
   })();
 
-  function easeOut(t) { t = t < 0 ? 0 : (t > 1 ? 1 : t); return 1 - Math.pow(1 - t, 3); }
-  function stage(p, t0, dur) { return easeOut((p - t0) / dur); }
   function hair() { return Math.max(1, Math.round(dpr)); }
-  function lerpPath(pts, e) {
-    var total = pts.length - 1, upto = e * total, out = [pts[0]];
-    for (var j = 1; j <= Math.floor(upto); j++) out.push(pts[j]);
-    var frac = upto - Math.floor(upto);
-    if (frac > 0 && Math.floor(upto) < total) {
-      var A = pts[Math.floor(upto)], B = pts[Math.floor(upto) + 1];
-      out.push([A[0] + (B[0] - A[0]) * frac, A[1] + (B[1] - A[1]) * frac]);
-    }
-    return out;
-  }
-  function strokePath(pts) {
-    ctx.beginPath();
-    var q0 = P(pts[0][0], pts[0][1]); ctx.moveTo(q0.x, q0.y);
-    for (var j = 1; j < pts.length; j++) { var q = P(pts[j][0], pts[j][1]); ctx.lineTo(q.x, q.y); }
-    ctx.stroke();
+  function glowDot(px, py, radius, color, alpha) {
+    var g = ctx.createRadialGradient(px, py, 0, px, py, radius);
+    g.addColorStop(0, 'rgba(' + color + ',' + alpha.toFixed(3) + ')');
+    g.addColorStop(1, 'rgba(' + color + ',0)');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(px, py, radius, 0, Math.PI * 2); ctx.fill();
   }
 
-  // ── projection ───────────────────────────────────────────
   var W = 0, H = 0, dpr = 1, CX = 0, CY = 0, SCALE = 1;
   function P(x, y) { return { x: CX + x * SCALE, y: CY - y * SCALE }; }
 
-  // ── scene ────────────────────────────────────────────────
-  function drawScene(p) {
+  function drawScene(t) {
     ctx.clearRect(0, 0, W, H);
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    var i, e, lw = hair();
+    var i, lw = hair();
 
-    // input candlesticks — raw data, pop in loosely (chaos, on purpose)
     for (i = 0; i < candles.length; i++) {
       var c = candles[i];
-      e = stage(p, c.t0, c.dur);
-      if (e <= 0) continue;
-      var cx = P(c.x, c.y), bodyH = c.h * SCALE * e, wickH = c.wick * SCALE * e;
+      var flicker = 0.36 + 0.14 * Math.sin(t * 0.6 + c.phase);
+      var cx = P(c.x, c.y), bodyH = c.h * SCALE, wickH = c.wick * SCALE;
       var col = c.up ? ORANGE : INDIGO;
-      ctx.strokeStyle = 'rgba(' + INK + ',' + (0.5 * e).toFixed(3) + ')';
+      ctx.strokeStyle = 'rgba(' + INK + ',' + flicker.toFixed(3) + ')';
       ctx.lineWidth = lw;
       ctx.beginPath(); ctx.moveTo(cx.x, cx.y - wickH / 2); ctx.lineTo(cx.x, cx.y + wickH / 2); ctx.stroke();
-      ctx.fillStyle = 'rgba(' + col + ',' + (0.55 * e).toFixed(3) + ')';
+      ctx.fillStyle = 'rgba(' + col + ',' + (flicker + 0.1).toFixed(3) + ')';
       ctx.fillRect(cx.x - 2.2 * dpr, cx.y - bodyH / 2, 4.4 * dpr, Math.max(1, bodyH));
     }
-    // ticker labels
     ctx.font = (10 * dpr) + 'px "Space Mono", monospace';
     ctx.textBaseline = 'middle';
     for (i = 0; i < tickers.length; i++) {
-      var t = tickers[i];
-      e = stage(p, t.t0, t.dur);
-      if (e <= 0) continue;
-      var tp = P(t.x, t.y);
-      ctx.fillStyle = 'rgba(' + INK + ',' + (0.30 * e).toFixed(3) + ')';
-      ctx.fillText(t.label, tp.x, tp.y);
+      var tk = tickers[i];
+      var tp = P(tk.x, tk.y);
+      var talpha = 0.20 + 0.08 * Math.sin(t * 0.5 + tk.phase);
+      ctx.fillStyle = 'rgba(' + INK + ',' + talpha.toFixed(3) + ')';
+      ctx.fillText(tk.label, tp.x, tp.y);
     }
 
-    // input -> chip signal traces
-    for (i = 0; i < inSignals.length; i++) {
-      var s = inSignals[i];
-      e = stage(p, s.t0, s.dur);
-      if (e <= 0) continue;
-      ctx.strokeStyle = 'rgba(' + s.color + ',0.55)';
-      ctx.lineWidth = Math.max(1, Math.round(1.1 * dpr));
-      strokePath(lerpPath(s.pts, e));
-    }
-
-    // ── the chip ──
-    var chipE = stage(p, 0.05, 0.18);
-    if (chipE > 0) {
-      var half = CHIP_R * SCALE * chipE;
-      var tl = P(-CHIP_R * chipE, CHIP_R * chipE), br = P(CHIP_R * chipE, -CHIP_R * chipE);
-      // pins — tick marks on all 4 sides
-      ctx.strokeStyle = 'rgba(' + INK + ',' + (0.55 * chipE).toFixed(3) + ')';
-      ctx.lineWidth = lw;
-      var n = PIN_ROWS;
-      for (i = 0; i < n; i++) {
-        var py = (i - (n - 1) / 2) * PIN_GAP;
-        if (Math.abs(py) > CHIP_R) continue;
-        var lp1 = P(-CHIP_R, py), lp2 = P(-CHIP_R - PIN_LEN * chipE, py);
-        var rp1 = P(CHIP_R, py),  rp2 = P(CHIP_R + PIN_LEN * chipE, py);
-        ctx.beginPath(); ctx.moveTo(lp1.x, lp1.y); ctx.lineTo(lp2.x, lp2.y); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(rp1.x, rp1.y); ctx.lineTo(rp2.x, rp2.y); ctx.stroke();
-      }
-      // chip body
-      ctx.fillStyle = 'rgba(' + INK + ',0.035)';
-      ctx.fillRect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
-      ctx.strokeStyle = 'rgba(' + INK + ',' + (0.7 * chipE).toFixed(3) + ')';
-      ctx.lineWidth = lw;
-      ctx.strokeRect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
-
-      // die circuit traces radiating from center
-      for (i = 0; i < dieTraces.length; i++) {
-        var dt = dieTraces[i];
-        var de = stage(p, dt.t0, dt.dur);
-        if (de <= 0) continue;
-        ctx.strokeStyle = 'rgba(' + INK + ',' + (0.4 * de).toFixed(3) + ')';
-        ctx.lineWidth = lw;
-        strokePath(lerpPath(dt.pts, de));
-        var endPt = dt.pts[dt.pts.length - 1], ep = P(endPt[0] * de, endPt[1] * de);
-        ctx.fillStyle = 'rgba(' + (i % 2 ? INDIGO : ORANGE) + ',' + (0.7 * de).toFixed(3) + ')';
-        var dotSz = 2.4 * dpr;
-        ctx.fillRect(ep.x - dotSz / 2, ep.y - dotSz / 2, dotSz, dotSz);
-      }
-      // center mark
-      var markE = stage(p, 0.5, 0.12);
-      if (markE > 0) {
-        var mp = P(0, 0), r = 5 * dpr * markE;
-        ctx.strokeStyle = 'rgba(' + ORANGE + ',' + (0.85 * markE).toFixed(3) + ')';
-        ctx.lineWidth = Math.max(1, Math.round(1.4 * dpr));
-        ctx.beginPath(); ctx.arc(mp.x, mp.y, r, 0, Math.PI * 2); ctx.stroke();
-      }
-      // processing pulse sweep — a soft ring that expands once near the end
-      var pulseE = stage(p, 0.85, 0.15);
-      if (pulseE > 0 && pulseE < 1) {
-        var pr = (CHIP_R * 0.3 + CHIP_R * 1.4 * pulseE) * SCALE;
-        var pc = P(0, 0);
-        ctx.strokeStyle = 'rgba(' + INDIGO + ',' + (0.35 * (1 - pulseE)).toFixed(3) + ')';
-        ctx.lineWidth = Math.max(1, Math.round(1.2 * dpr));
-        ctx.beginPath(); ctx.arc(pc.x, pc.y, pr, 0, Math.PI * 2); ctx.stroke();
-      }
-    }
-
-    // chip -> output signal traces
-    for (i = 0; i < outSignals.length; i++) {
-      var os = outSignals[i];
-      e = stage(p, os.t0, os.dur);
-      if (e <= 0) continue;
-      ctx.strokeStyle = 'rgba(' + os.color + ',0.6)';
-      ctx.lineWidth = Math.max(1, Math.round(1.1 * dpr));
-      strokePath(lerpPath(os.pts, e));
-    }
-
-    // output cards — clean, orderly (the "processed" contrast to raw candles)
-    for (i = 0; i < cards.length; i++) {
-      var card = cards[i];
-      e = stage(p, card.t0, card.dur);
-      if (e <= 0) continue;
-      var w = 1.35 * SCALE * e, h = 0.9 * SCALE * e;
-      var pc2 = P(card.x, card.y);
-      ctx.fillStyle = 'rgba(' + INK + ',0.03)';
-      ctx.fillRect(pc2.x - w / 2, pc2.y - h / 2, w, h);
-      ctx.strokeStyle = 'rgba(' + INK + ',' + (0.4 * e).toFixed(3) + ')';
-      ctx.lineWidth = lw;
-      ctx.strokeRect(pc2.x - w / 2, pc2.y - h / 2, w, h);
-      // glyph inside
-      ctx.strokeStyle = 'rgba(' + (i % 2 ? INDIGO : ORANGE) + ',' + (0.85 * e).toFixed(3) + ')';
-      ctx.lineWidth = Math.max(1, Math.round(1.3 * dpr));
-      var gx = pc2.x, gy = pc2.y, gs = Math.min(w, h) * 0.24;
-      if (card.kind === 'check') {
-        ctx.beginPath(); ctx.moveTo(gx - gs, gy); ctx.lineTo(gx - gs * 0.3, gy + gs * 0.8); ctx.lineTo(gx + gs, gy - gs * 0.7); ctx.stroke();
-      } else if (card.kind === 'bar') {
-        ctx.beginPath();
-        ctx.moveTo(gx - gs, gy + gs * 0.6); ctx.lineTo(gx - gs, gy - gs * 0.2);
-        ctx.moveTo(gx, gy + gs * 0.6); ctx.lineTo(gx, gy - gs * 0.9);
-        ctx.moveTo(gx + gs, gy + gs * 0.6); ctx.lineTo(gx + gs, gy - gs * 0.5);
-        ctx.stroke();
-      } else if (card.kind === 'bell') {
-        ctx.beginPath(); ctx.arc(gx, gy - gs * 0.1, gs * 0.75, Math.PI, 0); ctx.lineTo(gx + gs * 0.75, gy + gs * 0.5); ctx.lineTo(gx - gs * 0.75, gy + gs * 0.5); ctx.closePath(); ctx.stroke();
-      } else { // pct
-        ctx.beginPath(); ctx.arc(gx - gs * 0.5, gy - gs * 0.5, gs * 0.28, 0, Math.PI * 2); ctx.stroke();
-        ctx.beginPath(); ctx.arc(gx + gs * 0.5, gy + gs * 0.5, gs * 0.28, 0, Math.PI * 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(gx - gs * 0.8, gy + gs * 0.8); ctx.lineTo(gx + gs * 0.8, gy - gs * 0.8); ctx.stroke();
-      }
+    var half = 10.5, halfY = 5.5;
+    for (i = 0; i < particles.length; i++) {
+      var pt = particles[i];
+      pt.x += pt.vx * (1 / 60); pt.y += pt.vy * (1 / 60);
+      if (pt.x > half) pt.x = -half; if (pt.x < -half) pt.x = half;
+      if (pt.y > halfY) pt.y = -halfY; if (pt.y < -halfY) pt.y = halfY;
+      var twinkle = 0.35 + 0.35 * Math.sin(t * pt.speed + pt.phase);
+      var pp = P(pt.x, pt.y);
+      glowDot(pp.x, pp.y, pt.r * dpr * 3.2, pt.color, twinkle * 0.5);
+      ctx.fillStyle = 'rgba(' + pt.color + ',' + Math.min(1, twinkle + 0.25).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(pp.x, pp.y, pt.r * dpr, 0, Math.PI * 2); ctx.fill();
     }
   }
 
-  // ── plumbing ─────────────────────────────────────────────
-  var raf = null, lastP = -1;
+  var raf = null, running = false, startTime = 0;
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, MOBILE ? 1.5 : 2.5);
     var r = canvas.getBoundingClientRect();
     W = canvas.width  = Math.round(r.width * dpr);
     H = canvas.height = Math.round(r.height * dpr);
-    CX = W / 2; CY = H * 0.52;
+    CX = W * (MOBILE ? 0.5 : 0.60); CY = H * 0.52;
     SCALE = Math.min(W / 21, H / 11);
-    lastP = -1;
   }
-  function progress() {
-    var navH = nav ? nav.offsetHeight : 68;
-    var rect = track.getBoundingClientRect();
-    var span = rect.height - (window.innerHeight - navH);
-    if (span <= 0) return 1;
-    return Math.min(1, Math.max(0, (navH - rect.top) / span));
+  function frame(now) {
+    if (!running) return;
+    if (!startTime) startTime = now;
+    drawScene((now - startTime) / 1000);
+    raf = requestAnimationFrame(frame);
   }
-  function update() {
+  function start() {
+    if (running || reduced) return;
+    running = true;
+    raf = requestAnimationFrame(frame);
+  }
+  function stop() {
+    running = false;
+    if (raf) cancelAnimationFrame(raf);
     raf = null;
-    var p = reduced ? 1 : progress();
-    if (p === lastP) return;
-    lastP = p;
-    drawScene(p);
-    if (hudPct) hudPct.textContent = 'Processing ' + String(Math.round(p * 100)).padStart(3, '0') + '%';
-    if (overlay && !reduced) {
-      var f = Math.min(1, Math.max(0, (p - 0.55) / 0.30)); // fade 55% → 85%
-      overlay.style.opacity = String(1 - f);
-      overlay.style.transform = 'translateY(' + (-24 * f) + 'px)';
-      overlay.style.visibility = f >= 1 ? 'hidden' : 'visible';
-    }
   }
-  function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
 
-  if (!reduced) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
-  window.addEventListener('load', function () { size(); update(); });
-  // ResizeObserver on the canvas covers every case a window 'resize' listener
-  // would (including dvh changes from mobile browser chrome show/hide) —
-  // having both fires a full relayout+redraw twice per event, which is
-  // exactly the kind of double work that shows up as scroll jank on mobile,
-  // where address-bar collapse fires resize repeatedly during a scroll.
+  window.addEventListener('load', function () { size(); if (reduced) drawScene(0); else start(); });
   if ('ResizeObserver' in window) {
-    new ResizeObserver(function () { size(); update(); }).observe(canvas);
+    new ResizeObserver(function () { size(); if (reduced) drawScene(0); }).observe(canvas);
   }
-  size(); update();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting && !document.hidden) start(); else stop();
+    }, { threshold: 0.01 }).observe(track);
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+
+  size();
+  if (reduced) drawScene(0);
+})();
+
+// The dashboard panel: a real DOM element with CSS 3D transforms so it tilts
+// toward the cursor like a product hero, plus a cursor-reactive background
+// glow. Live-looking numbers underline the "processed in real time" pitch
+// without pretending to be a real feed.
+(function () {
+  var stage = document.getElementById('cine-stage');
+  var group = document.getElementById('panel3d-group');
+  if (!stage || !group) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var BASE_RX = 6, BASE_RY = -10;
+
+  if (!reduced && canHover) {
+    // ── cursor-reactive tilt + spotlight + parallax, smoothed with lerp ──
+    var targetX = 58, targetY = 53, curX = 58, curY = 53;
+    stage.addEventListener('mousemove', function (e) {
+      var r = stage.getBoundingClientRect();
+      targetX = ((e.clientX - r.left) / r.width) * 100;
+      targetY = ((e.clientY - r.top) / r.height) * 100;
+    });
+    stage.addEventListener('mouseleave', function () { targetX = 58; targetY = 53; });
+
+    (function loop() {
+      curX += (targetX - curX) * 0.06;
+      curY += (targetY - curY) * 0.06;
+      stage.style.setProperty('--mx', curX + '%');
+      stage.style.setProperty('--my', curY + '%');
+      stage.style.setProperty('--mxn', curX.toFixed(2));
+      stage.style.setProperty('--myn', curY.toFixed(2));
+      var rx = BASE_RX + (53 - curY) * 0.16;
+      var ry = BASE_RY + (curX - 58) * 0.16;
+      group.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  if (reduced) return; // leave the ticking numbers/sparkline off too
+
+  // ── live-looking numbers on the risk ledger ──
+  function flash(el, text) {
+    el.textContent = text;
+    el.classList.remove('tick-flash'); void el.offsetWidth; el.classList.add('tick-flash');
+  }
+  function jitterMoney(base, spread) { return Math.round(base + (Math.random() - 0.5) * spread); }
+  setInterval(function () {
+    var eq1 = document.getElementById('tick-eq1'), eq2 = document.getElementById('tick-eq2');
+    if (eq1) flash(eq1, '$' + jitterMoney(1240, 60).toLocaleString());
+    if (eq2) flash(eq2, '$' + jitterMoney(8450, 120).toLocaleString());
+  }, 2600);
+
+  // ── sparkline: small random walk, redrawn periodically ──
+  var spark = document.getElementById('sparkLine');
+  if (spark) {
+    var pts = [20, 18, 22, 14, 17, 9, 13, 6, 10];
+    setInterval(function () {
+      pts.shift();
+      var last = pts[pts.length - 1];
+      pts.push(Math.max(2, Math.min(28, last + (Math.random() - 0.5) * 10)));
+      spark.setAttribute('points', pts.map(function (y, i) { return (i * 12.5) + ',' + y.toFixed(1); }).join(' '));
+    }, 1400);
+  }
 })();
 </script>
 
