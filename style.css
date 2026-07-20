@@ -1,9 +1,12 @@
 /* ════════════════════════════════════════════════════════════
-   NOMOUS — ARCHITECTURAL LIGHT SYSTEM
-   Pure white gallery surfaces · hairline grid structure ·
-   charcoal typography · mono telemetry microlabels.
-   Accents (orange / indigo) are reserved for microscopic
-   UI alerts, active borders, and link indicators only.
+   NOMOUS — DARK / NEON ARCHITECTURAL SYSTEM
+   Deep navy canvas · hairline grid structure (still the same
+   structural bones as the light system) · near-white typography ·
+   mono telemetry microlabels. --orange/--indigo tokens now carry
+   the electric-blue + violet accent pair used for glow, active
+   borders, and link indicators. --surface-strong/--on-surface-strong
+   are the one bright "inverse" fill (primary buttons, badges) that
+   pops against the dark canvas.
    ════════════════════════════════════════════════════════════ */
 
 /* ── Reset & base ── */
@@ -22,23 +25,28 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img, video { max-width: 100%; display: block; }
-::selection { background: var(--ink); color: #fff; }
+::selection { background: var(--surface-strong); color: var(--on-surface-strong); }
 
 /* ── Tokens ── */
 :root {
-  /* architectural palette */
-  --bg:        #FFFFFF;   /* pure white canvas          */
-  --bg-soft:   #F9F9F9;   /* raw concrete, light        */
-  --bg-dim:    #F1F1F1;   /* stone                      */
-  --line:      #E5E5E5;   /* 1px structural hairline    */
-  --ink:       #111111;   /* deep charcoal — typography */
-  --ink-60:    #555555;   /* body text                  */
-  --muted:     #6F6F6F;   /* secondary text             */
-  --faint:     #9A9A9A;   /* microlabels                */
+  /* dark/neon palette — deep navy canvas, glowing blue + violet accents */
+  --bg:        #0A0E1F;   /* deep navy canvas            */
+  --bg-soft:   #0D1226;   /* soft panel, hover states     */
+  --bg-dim:    #131A35;   /* stone — cards, dim panels    */
+  --line:      #1E2847;   /* 1px structural hairline      */
+  --ink:       #F3F5FC;   /* near-white — typography      */
+  --ink-60:    #B7C0DA;   /* body text                    */
+  --muted:     #8994B8;   /* secondary text               */
+  --faint:     #5B6690;   /* microlabels                  */
 
-  /* brand accents — microscopic use only */
-  --orange:    #E8560C;
-  --indigo:    #4F46E5;
+  /* brand accents — electric blue + violet, used for emphasis/glow */
+  --orange:    #3B82F6;   /* (legacy name) now the blue accent   */
+  --indigo:    #8B5CF6;   /* violet accent                       */
+
+  /* the one bright "inverse" surface — primary buttons/badges pop
+     against the dark canvas instead of receding into it */
+  --surface-strong:    #F3F5FC;
+  --on-surface-strong: #0A0E1F;
 
   /* type */
   --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
@@ -49,12 +57,12 @@ img, video { max-width: 100%; display: block; }
   --nav-h: 68px;                  /* sticky nav height  */
 
   /* legacy aliases (inner pages reference these) */
-  --text:       #111111;
-  --text-muted: #6F6F6F;
-  --border:     #E5E5E5;
-  --primary:    #111111;
-  --primary-dk: #000000;
-  --primary-lt: #F1F1F1;
+  --text:       #F3F5FC;
+  --text-muted: #8994B8;
+  --border:     #1E2847;
+  --primary:    #F3F5FC;
+  --primary-dk: #FFFFFF;
+  --primary-lt: #131A35;
 }
 
 /* ── Keyframes ── */
@@ -156,19 +164,19 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 
 .btn-primary,
 .btn-dark {
-  background: var(--ink); color: #fff; border-color: var(--ink);
+  background: var(--surface-strong); color: var(--on-surface-strong); border-color: var(--surface-strong);
 }
 .btn-primary:hover,
-.btn-dark:hover { background: #000; border-color: #000; }
+.btn-dark:hover { background: #DCE3F5; border-color: #DCE3F5; }
 .btn-outline {
-  background: #fff; color: var(--ink); border-color: var(--ink);
+  background: transparent; color: var(--ink); border-color: var(--ink);
 }
-.btn-outline:hover { background: var(--ink); color: #fff; }
+.btn-outline:hover { background: var(--surface-strong); color: var(--on-surface-strong); }
 .btn-white {
-  background: #fff; color: var(--ink); border-color: #fff;
+  background: var(--surface-strong); color: var(--on-surface-strong); border-color: var(--surface-strong);
 }
 .btn-white::before { border-color: rgba(255,255,255,.35); }
-.btn-white:hover { background: var(--bg-dim); border-color: var(--bg-dim); }
+.btn-white:hover { background: #DCE3F5; border-color: #DCE3F5; }
 .btn-ghost-white {
   background: transparent; color: #fff; border-color: rgba(255,255,255,.45);
 }
@@ -181,7 +189,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
    ════════════════════════════════════════════ */
 .nav {
   position: sticky; top: 0; z-index: 200;
-  background: rgba(255,255,255,.92);
+  background: rgba(10,14,31,.86);
   border-bottom: 1px solid var(--line);
 }
 /* backdrop-filter on a sticky element forces a re-blur of everything behind
@@ -193,7 +201,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   .nav { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 }
 @media not (hover: hover) or not (pointer: fine) {
-  .nav { background: rgba(255,255,255,.98); }
+  .nav { background: rgba(10,14,31,.97); }
 }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -235,7 +243,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   padding: 12px 22px; border-radius: 0;
   font-family: var(--font-mono);
   font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
-  background: var(--ink); color: #fff; border: 1px solid var(--ink);
+  background: var(--surface-strong); color: var(--on-surface-strong); border: 1px solid var(--surface-strong);
   transition: transform .18s ease, background .18s;
 }
 .nav-cta::before {
@@ -245,7 +253,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   border: 1px solid var(--line);
   transition: transform .18s ease;
 }
-.nav-cta:hover { background: #000; transform: translate(2px, 2px); }
+.nav-cta:hover { background: #DCE3F5; transform: translate(2px, 2px); }
 .nav-cta:hover::before { transform: translate(-3px, -3px); }
 
 /* ════════════════════════════════════════════
@@ -326,9 +334,9 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   content: '';
   position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(90deg,
-    rgba(255,255,255,.88) 0%,
-    rgba(255,255,255,.62) 40%,
-    rgba(255,255,255,0) 72%);
+    rgba(10,14,31,.90) 0%,
+    rgba(10,14,31,.66) 40%,
+    rgba(10,14,31,0) 72%);
 }
 .cine-overlay h1 { max-width: 1000px; }
 .cine-overlay .hero-actions { pointer-events: auto; }
@@ -565,11 +573,14 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 .pricing-row-label svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--orange); }
 
 /* ════════════════════════════════════════════
-   CTA — charcoal type-block band
-   (the one dark surface: product signature panel)
+   CTA — the signature glow panel
    ════════════════════════════════════════════ */
 .cta-section {
-  background: var(--ink);
+  background:
+    radial-gradient(ellipse 60% 90% at 20% 0%, rgba(139,92,246,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 90% at 80% 100%, rgba(59,130,246,.16) 0%, transparent 60%),
+    linear-gradient(180deg, #0D1230 0%, #0A0E1F 100%);
+  border-top: 1px solid var(--line);
   padding: clamp(88px, 10vw, 128px) var(--gx);
   text-align: center;
 }
@@ -584,9 +595,9 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   max-width: 520px; margin: 22px auto 46px; font-size: 15.5px; line-height: 1.7;
 }
 .cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.cta-section .btn-primary { background: #fff; color: var(--ink); border-color: #fff; }
+.cta-section .btn-primary { background: #fff; color: var(--on-surface-strong); border-color: #fff; }
 .cta-section .btn-primary::before { border-color: rgba(255,255,255,.3); }
-.cta-section .btn-primary:hover { background: var(--bg-dim); border-color: var(--bg-dim); }
+.cta-section .btn-primary:hover { background: #DCE3F5; border-color: #DCE3F5; }
 
 /* ════════════════════════════════════════════
    FOOTER — light, structural
@@ -671,9 +682,10 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   content: "—"; position: absolute; left: 0;
   color: var(--ink); font-weight: 400;
 }
-/* product screens stay charcoal: dark artefacts framed on the light wall */
+/* product screens sit in a distinct panel shade — a step darker/richer
+   than the page canvas so they still read as a framed artefact */
 .feat-detail-visual {
-  background: var(--ink);
+  background: var(--bg-dim);
   border: 1px solid var(--line); border-radius: 0;
   padding: 24px;
   min-height: 220px; display: flex; flex-direction: column; gap: 10px;
@@ -767,7 +779,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 }
 .pricing-badge {
   position: absolute; top: 0; left: 0; transform: none;
-  background: var(--ink); color: #fff;
+  background: var(--surface-strong); color: var(--on-surface-strong);
   font-family: var(--font-mono);
   font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
   padding: 7px 14px; border-radius: 0;
