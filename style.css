@@ -420,6 +420,38 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 }
 .statement-body .link-sweep { margin-top: 36px; }
 
+/* input -> chip -> output strip — the vision, stated plainly and always
+   visible (the canvas hero tells the same story, but only while scrolling) */
+.chip-strip {
+  display: flex; align-items: center; gap: 22px;
+  margin-top: 56px; padding-top: 40px;
+  border-top: 1px solid var(--line);
+  max-width: 720px; flex-wrap: wrap;
+}
+.chip-strip-node {
+  display: flex; flex-direction: column; gap: 10px;
+  flex: 1; min-width: 140px;
+}
+.chip-strip-icon { width: 26px; height: 26px; color: var(--ink); opacity: .85; }
+.chip-strip-node-chip .chip-strip-icon { color: var(--orange); opacity: 1; }
+.chip-strip-label {
+  font-size: 13.5px; font-weight: 500; color: var(--ink);
+}
+.chip-strip-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--faint);
+}
+.chip-strip-arrow {
+  font-family: var(--font-mono);
+  font-size: 16px; color: var(--orange); opacity: .7;
+  flex-shrink: 0; padding-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .chip-strip { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .chip-strip-arrow { transform: rotate(90deg); padding: 0 0 0 12px; }
+}
+
 /* ════════════════════════════════════════════
    MODULES — CAD grid of units
    ════════════════════════════════════════════ */
