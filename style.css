@@ -208,7 +208,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 }
 .nav-mark {
   width: 28px; height: 28px; border-radius: 0; border: none;
-  background: url('assets/logo-n.png') center / contain no-repeat;
+  background: url('assets/logo-n.png?v=1') center / contain no-repeat;
   color: transparent; font-size: 0;
   display: inline-flex; flex-shrink: 0;
 }
