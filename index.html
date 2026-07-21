@@ -37,20 +37,20 @@
 <div class="frame">
 
 <!-- ═══════════════════════════════════════════
-     001 — HERO
+     001 · HERO
 ═══════════════════════════════════════════ -->
 <section class="sec sec-first">
   <div class="sec-bar">
-    <span>001 — The Processing Core</span>
+    <span>001 · The Processing Core</span>
   </div>
 
-  <!-- live chip — always-animated 3D ambient scene, not scroll-driven -->
+  <!-- live chip: always-animated 3D ambient scene, not scroll-driven -->
   <div class="cine" id="cine">
     <div class="cine-stage" id="cine-stage">
       <canvas class="cine-canvas" id="cine-canvas" aria-hidden="true"></canvas>
       <div class="cine-spotlight" id="cine-spotlight" aria-hidden="true"></div>
 
-      <!-- soft organic color blob behind the panels — the one non-rectangular
+      <!-- soft organic color blob behind the panels: the one non-rectangular
            mass in the composition, keeps the scene from reading as pure boxes -->
       <div class="panel3d-blob" aria-hidden="true"></div>
 
@@ -67,7 +67,7 @@
 
           <div class="panel3d panel3d-main">
             <div class="ledger-head">
-              <span>Risk Monitor — live feed</span>
+              <span>Risk Monitor · live feed</span>
               <span class="cine-live"><span class="cine-live-dot"></span>Live</span>
             </div>
             <div class="ledger-cols">
@@ -95,8 +95,8 @@
 
           <div class="panel3d panel3d-mini pm-alerts">
             <div class="pm-head">Alerts <span class="pm-tag pm-tag-alt">2 active</span></div>
-            <div class="pm-alert-row"><span class="pm-dot"></span>Margin call — #1045820</div>
-            <div class="pm-alert-row pm-dim"><span class="pm-dot pm-dot-dim"></span>Spread spike — XAUUSD</div>
+            <div class="pm-alert-row"><span class="pm-dot"></span>Margin call · #1045820</div>
+            <div class="pm-alert-row pm-dim"><span class="pm-dot pm-dot-dim"></span>Spread spike · XAUUSD</div>
           </div>
 
         </div>
@@ -105,16 +105,16 @@
       <div class="cine-overlay" id="cine-overlay">
         <h1 data-reveal>The processing core<br>for your MT5<br>operations.</h1>
         <p class="hero-lead" data-reveal style="--d:.08s">
-          Every price tick, position, and margin call — processed in real time and turned into pricing, risk, and client intelligence your ops team can act on instantly.
+          Every price tick, position, and margin call, processed in real time and turned into pricing, risk, and client intelligence your ops team can act on instantly.
         </p>
         <div class="hero-actions" data-reveal style="--d:.16s">
           <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
           <a href="features.html" class="btn btn-outline btn-lg">View Modules</a>
         </div>
-        <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract — cancel anytime</p>
+        <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract, cancel anytime</p>
       </div>
       <div class="cine-hud">
-        <span>Fig. 01 — Live risk monitor, illustrative data</span>
+        <span>Fig. 01 · Live risk monitor, illustrative data</span>
         <span class="cine-live"><span class="cine-live-dot"></span>Live</span>
       </div>
       <noscript>
@@ -127,14 +127,14 @@
   <div class="telemetry">
     <div class="telemetry-cell">
       <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Symbols tracked</div>
-      <div class="telemetry-val">184</div>
+      <div class="telemetry-val" id="tel-symbols">184</div>
     </div>
     <div class="telemetry-cell">
       <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11 13 15 21 7"/><path d="M15 7h6v6"/></svg>Avg spread</div>
-      <div class="telemetry-val">0.9<span class="telemetry-unit">pts</span></div>
+      <div class="telemetry-val"><span id="tel-spread">0.9</span><span class="telemetry-unit">pts</span></div>
     </div>
     <div class="telemetry-cell alert">
-      <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Spike alerts</div>
+      <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Spike alerts<span class="telemetry-live-dot"></span></div>
       <div class="telemetry-val">2<span class="telemetry-unit">active</span></div>
     </div>
     <div class="telemetry-cell">
@@ -145,15 +145,15 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     002 — THESIS
+     002 · THESIS
 ═══════════════════════════════════════════ -->
 <section class="sec">
   <div class="statement-grid">
-    <div class="statement-label" data-reveal>002 — Thesis</div>
+    <div class="statement-label" data-reveal>002 · Thesis</div>
     <div class="statement-body">
       <h2 data-reveal>Your ops team already knows what needs watching. We built the tool.</h2>
       <p class="statement-sub" data-reveal style="--d:.1s">
-        Seven modules covering everything an MT5 broker operations team checks every single day — in one place, in real time.
+        Seven modules covering everything an MT5 broker operations team checks every single day, in one place, in real time.
       </p>
       <div data-reveal style="--d:.18s"><a href="features.html" class="link-sweep">Explore Features →</a></div>
 
@@ -162,18 +162,21 @@
           <svg class="chip-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="2" x2="5" y2="9"/><rect x="3" y="9" width="4" height="7" rx="0.5"/><line x1="5" y1="16" x2="5" y2="22"/><line x1="12" y1="6" x2="12" y2="11"/><rect x="10" y="11" width="4" height="9" rx="0.5"/><line x1="19" y1="2" x2="19" y2="6"/><rect x="17" y="6" width="4" height="6" rx="0.5"/><line x1="19" y1="12" x2="19" y2="17"/></svg>
           <span class="chip-strip-label">Raw MT5 Data</span>
           <span class="chip-strip-sub">Prices · positions · margin</span>
+          <span class="st st-ok chip-strip-status">Online</span>
         </div>
-        <div class="chip-strip-arrow">→</div>
+        <div class="chip-strip-arrow"><span class="chip-strip-pulse"></span></div>
         <div class="chip-strip-node chip-strip-node-chip">
           <svg class="chip-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V3M12 7V3M15 7V3M9 21v-4M12 21v-4M15 21v-4M7 9H3M7 12H3M7 15H3M21 9h-4M21 12h-4M21 15h-4"/></svg>
           <span class="chip-strip-label">Nomous</span>
           <span class="chip-strip-sub">Processed in real time</span>
+          <span class="cine-live chip-strip-status"><span class="cine-live-dot"></span>Live</span>
         </div>
-        <div class="chip-strip-arrow">→</div>
+        <div class="chip-strip-arrow"><span class="chip-strip-pulse chip-strip-pulse-alt"></span></div>
         <div class="chip-strip-node">
           <svg class="chip-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
           <span class="chip-strip-label">Ops Intelligence</span>
           <span class="chip-strip-sub">Pricing · risk · alerts</span>
+          <span class="st st-ok chip-strip-status">Online</span>
         </div>
       </div>
     </div>
@@ -181,19 +184,25 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     003 — MODULES
+     003 · MODULES
 ═══════════════════════════════════════════ -->
 <section class="sec" id="features">
   <div class="sec-bar">
-    <span>003 — Modules</span>
+    <span>003 · Modules</span>
     <span>Seven units · one platform</span>
   </div>
   <div class="arch-grid">
 
     <div class="arch-cell" data-reveal>
       <div class="arch-cell-top"><span class="arch-cell-index">01</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="2" x2="5" y2="9"/><rect x="3" y="9" width="4" height="7" rx="0.5"/><line x1="5" y1="16" x2="5" y2="22"/><line x1="12" y1="6" x2="12" y2="11"/><rect x="10" y="11" width="4" height="9" rx="0.5"/><line x1="19" y1="2" x2="19" y2="6"/><rect x="17" y="6" width="4" height="6" rx="0.5"/><line x1="19" y1="12" x2="19" y2="17"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="2" x2="5" y2="9"/><rect x="3" y="9" width="4" height="7" rx="0.5"/><line x1="5" y1="16" x2="5" y2="22"/><line x1="12" y1="6" x2="12" y2="11"/><rect x="10" y="11" width="4" height="9" rx="0.5"/><line x1="19" y1="2" x2="19" y2="6"/><rect x="17" y="6" width="4" height="6" rx="0.5"/><line x1="19" y1="12" x2="19" y2="17"/></svg>
+        </div>
+        <div class="mod-live mod-tick">
+          <div class="mod-tick-row"><span class="mod-tick-sym">EURUSD</span><span class="mod-tick-bid">1.08421</span><span class="mod-tick-ask">1.08438</span></div>
+          <div class="mod-tick-row"><span class="mod-tick-sym">XAUUSD</span><span class="mod-tick-bid mod-live-delay1">2341.20</span><span class="mod-tick-ask mod-live-delay1">2341.65</span></div>
+        </div>
       </div>
       <h3>Pricing Monitor</h3>
       <p>Live bid/ask prices and spreads for every symbol. Spot off-market prices and spread anomalies the moment they happen.</p>
@@ -201,17 +210,32 @@
 
     <div class="arch-cell" data-reveal style="--d:.05s">
       <div class="arch-cell-top"><span class="arch-cell-index">02</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="mod-live mod-risk">
+          <div class="mod-risk-row"><span class="st st-crit">Critical</span><span class="mod-risk-val">18% margin</span></div>
+          <div class="mod-risk-bar"><span class="mod-risk-bar-fill"></span></div>
+        </div>
       </div>
       <h3>Risk Monitor</h3>
-      <p>Real-time equity, margin level, and floating P&amp;L — so your team spots danger before it becomes a stop-out.</p>
+      <p>Real-time equity, margin level, and floating P&amp;L, so your team spots danger before it becomes a stop-out.</p>
     </div>
 
     <div class="arch-cell" data-reveal style="--d:.1s">
       <div class="arch-cell-top"><span class="arch-cell-index">03</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>
+        </div>
+        <div class="mod-live mod-search">
+          <div class="mod-search-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Search login, email, name…</span>
+          </div>
+          <div class="mod-search-result">#1048823 <span class="mod-search-name">J. Turner</span><span class="mod-search-sub">2 open positions</span></div>
+        </div>
       </div>
       <h3>Client Lookup</h3>
       <p>Find any client by login, email, or name. See open positions and account details. No MT5 Manager login required.</p>
@@ -219,8 +243,14 @@
 
     <div class="arch-cell" data-reveal style="--d:.15s">
       <div class="arch-cell-top"><span class="arch-cell-index">04</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 3-3 3 3"/><path d="M13 18H7a2 2 0 0 1-2-2V6"/><path d="m22 15-3 3-3-3"/><path d="M11 6h6a2 2 0 0 1 2 2v10"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 3-3 3 3"/><path d="M13 18H7a2 2 0 0 1-2-2V6"/><path d="m22 15-3 3-3-3"/><path d="M11 6h6a2 2 0 0 1 2 2v10"/></svg>
+        </div>
+        <div class="mod-live mod-swap">
+          <div class="mod-swap-row"><span class="mod-swap-sym">EURUSD</span><span class="mod-swap-neg">−1.20</span><span class="mod-swap-pos">+0.40</span></div>
+          <div class="mod-swap-row"><span class="mod-swap-sym">XAUUSD</span><span class="mod-swap-neg">−3.80</span><span class="mod-swap-pos">+1.10</span></div>
+        </div>
       </div>
       <h3>Swaps &amp; Simulator</h3>
       <p>View live swap rates across all groups. Simulate changes before they go live. No client surprises.</p>
@@ -228,8 +258,14 @@
 
     <div class="arch-cell" data-reveal style="--d:.1s">
       <div class="arch-cell-top"><span class="arch-cell-index">05</span><span class="arch-cell-tag">AI</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V3M12 7V3M15 7V3M9 21v-4M12 21v-4M15 21v-4M7 9H3M7 12H3M7 15H3M21 9h-4M21 12h-4M21 15h-4"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V3M12 7V3M15 7V3M9 21v-4M12 21v-4M15 21v-4M7 9H3M7 12H3M7 15H3M21 9h-4M21 12h-4M21 15h-4"/></svg>
+        </div>
+        <div class="mod-live mod-chat">
+          <div class="mod-chat-q">Which accounts are near margin call?</div>
+          <div class="mod-chat-a">3 accounts under 20% margin<span class="mod-chat-cursor"></span></div>
+        </div>
       </div>
       <h3>Nomous AI</h3>
       <p>Ask your platform anything in plain English. Answers are grounded in your broker's own live data, never mixed with anyone else's.</p>
@@ -237,8 +273,14 @@
 
     <div class="arch-cell" data-reveal style="--d:.15s">
       <div class="arch-cell-top"><span class="arch-cell-index">06</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        </div>
+        <div class="mod-live mod-alerts">
+          <div class="pm-alert-row"><span class="pm-dot"></span>Margin call · #1045820</div>
+          <div class="pm-alert-row pm-dim"><span class="pm-dot pm-dot-dim"></span>Spread spike · XAUUSD</div>
+        </div>
       </div>
       <h3>Email &amp; Telegram Alerts</h3>
       <p>Margin calls, spread spikes, and server disconnects reach your team's inbox and Telegram the second they trigger.</p>
@@ -246,8 +288,14 @@
 
     <div class="arch-cell" data-reveal style="--d:.2s">
       <div class="arch-cell-top"><span class="arch-cell-index">07</span></div>
-      <div class="arch-cell-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
+      <div class="arch-cell-visual">
+        <div class="arch-cell-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
+        </div>
+        <div class="mod-live mod-hours">
+          <div class="mod-hours-row"><span>EURUSD</span><span class="st st-ok">Open</span></div>
+          <div class="mod-hours-row"><span>XAUUSD</span><span class="st st-watch">Closes 2h 14m</span></div>
+        </div>
       </div>
       <h3>Symbol Hours &amp; Holidays</h3>
       <p>Manage trading session hours and market holiday schedules. See which markets are open right now.</p>
@@ -261,11 +309,11 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     004 — DEPLOYMENT
+     004 · DEPLOYMENT
 ═══════════════════════════════════════════ -->
 <section class="sec" id="how-it-works">
   <div class="sec-bar">
-    <span>004 — Deployment</span>
+    <span>004 · Deployment</span>
     <span>Live in minutes</span>
   </div>
   <div class="deploy-grid">
@@ -309,8 +357,16 @@
       <div data-reveal style="--d:.1s">
         <div class="ledger">
           <div class="ledger-head">
-            <span>Risk Monitor — live feed</span>
+            <span>Risk Monitor · live feed</span>
             <span>Refresh 1s</span>
+          </div>
+          <div class="conn-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>MT5 Manager API</span>
+            <span class="conn-pill-sep">·</span>
+            <span>Encrypted</span>
+            <span class="conn-pill-sep">·</span>
+            <span id="tick-latency" class="conn-pill-live">&lt;12ms</span>
           </div>
           <div class="ledger-cols">
             <span>Login</span><span>Equity</span><span>Margin</span><span>Floating</span><span>State</span>
@@ -337,7 +393,7 @@
             <span class="st st-ok">Healthy</span>
           </div>
         </div>
-        <div class="ledger-caption">Fig. 02 — Account risk ledger · illustrative data</div>
+        <div class="ledger-caption">Fig. 02 · Account risk ledger · illustrative data</div>
       </div>
     </div>
 
@@ -345,11 +401,11 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     005 — ENGAGEMENT
+     005 · ENGAGEMENT
 ═══════════════════════════════════════════ -->
 <section class="sec" id="pricing">
   <div class="sec-bar">
-    <span>005 — Engagement</span>
+    <span>005 · Engagement</span>
     <span>One plan · full access</span>
   </div>
   <div class="pricing-panel">
@@ -357,7 +413,7 @@
     <div class="pricing-left" data-reveal>
       <div class="pricing-kicker">Operations Suite</div>
       <div class="pricing-huge">Custom.</div>
-      <div class="pricing-terms">Tailored to your brokerage — cancel anytime</div>
+      <div class="pricing-terms">Tailored to your brokerage, cancel anytime</div>
       <a href="contact.html" class="btn btn-primary btn-lg">Contact Us →</a>
       <div class="pricing-foot">Response within one business day</div>
     </div>
@@ -378,11 +434,11 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     006 — CONTACT
+     006 · CONTACT
 ═══════════════════════════════════════════ -->
 <section class="sec cta-section">
   <div class="container" data-reveal>
-    <span class="cta-kicker">006 — Contact</span>
+    <span class="cta-kicker">006 · Contact</span>
     <h2>Ready to run your operations<br>in one place?</h2>
     <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
     <div class="cta-btns">
@@ -431,7 +487,7 @@
     </div>
     <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous — All rights reserved</span>
+      <span class="footer-copy">© 2026 Nomous. All rights reserved</span>
       <div class="footer-legal-links">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -454,7 +510,7 @@
   els.forEach(function(el){ io.observe(el); });
 })();
 
-// Ambient background — ticking candlesticks, drifting tickers, floating
+// Ambient background: ticking candlesticks, drifting tickers, floating
 // particles. The chip itself and the output cards are real 3D DOM elements
 // now (see the next block); this canvas layer is just texture behind them.
 (function () {
@@ -616,13 +672,13 @@
 
   if (!reduced && canHover) {
     // ── cursor-reactive tilt + spotlight + parallax, smoothed with lerp ──
-    var targetX = 58, targetY = 53, curX = 58, curY = 53;
+    var targetX = 68, targetY = 53, curX = 68, curY = 53;
     stage.addEventListener('mousemove', function (e) {
       var r = stage.getBoundingClientRect();
       targetX = ((e.clientX - r.left) / r.width) * 100;
       targetY = ((e.clientY - r.top) / r.height) * 100;
     });
-    stage.addEventListener('mouseleave', function () { targetX = 58; targetY = 53; });
+    stage.addEventListener('mouseleave', function () { targetX = 68; targetY = 53; });
 
     (function loop() {
       curX += (targetX - curX) * 0.06;
@@ -632,7 +688,7 @@
       stage.style.setProperty('--mxn', curX.toFixed(2));
       stage.style.setProperty('--myn', curY.toFixed(2));
       var rx = BASE_RX + (53 - curY) * 0.16;
-      var ry = BASE_RY + (curX - 58) * 0.16;
+      var ry = BASE_RY + (curX - 68) * 0.16;
       group.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
       requestAnimationFrame(loop);
     })();
@@ -663,6 +719,28 @@
       spark.setAttribute('points', pts.map(function (y, i) { return (i * 12.5) + ',' + y.toFixed(1); }).join(' '));
     }, 1400);
   }
+})();
+
+// Deployment ledger connection pill: small ticking latency number, the
+// same "this is live" proof as the hero, reused on the 004 section.
+(function () {
+  var el = document.getElementById('tick-latency');
+  if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  setInterval(function () {
+    el.textContent = '<' + (8 + Math.round(Math.random() * 9)) + 'ms';
+  }, 2200);
+})();
+
+// Hero telemetry strip: symbols tracked and avg spread drift quietly,
+// the same "this number is actually moving" cue used everywhere else.
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sym = document.getElementById('tel-symbols');
+  var spread = document.getElementById('tel-spread');
+  setInterval(function () {
+    if (sym) sym.textContent = 180 + Math.round(Math.random() * 9);
+    if (spread) spread.textContent = (0.7 + Math.random() * 0.5).toFixed(1);
+  }, 2800);
 })();
 </script>
 

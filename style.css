@@ -342,7 +342,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
    the composition doesn't read as pure boxes */
 .panel3d-blob {
   position: absolute; z-index: 1;
-  left: 58%; top: 50%; width: 44vw; height: 44vw; max-width: 560px; max-height: 560px;
+  left: 68%; top: 50%; width: 44vw; height: 44vw; max-width: 560px; max-height: 560px;
   transform: translate(-50%, -50%);
   background:
     radial-gradient(closest-side, rgba(59,130,246,.16), transparent 72%),
@@ -359,7 +359,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 /* ── the product, in 3D: a real dashboard panel tilting toward the cursor,
    with two smaller panels stacked behind it at depth ── */
 .panel3d-scene {
-  position: absolute; left: 58%; top: 53%; z-index: 2;
+  position: absolute; left: 68%; top: 53%; z-index: 2;
   width: clamp(280px, 27vw, 360px);
   height: clamp(220px, 21vw, 280px);
   transform: translate(-50%, -50%);
@@ -500,21 +500,45 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   color: var(--faint);
 }
 
-/* telemetry strip */
+/* telemetry strip — same "proof of life" language as the hero/modules:
+   subtle lift + glow on hover, a pulsing live dot on the alert cell,
+   and two of the numbers tick quietly on their own */
 .telemetry {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--line);
   border-top: 1px solid var(--line);
 }
-.telemetry-cell { background: var(--bg); padding: 30px 32px 34px; }
+.telemetry-cell {
+  position: relative;
+  background: var(--bg); padding: 30px 32px 34px;
+  transition: background .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+.telemetry-cell:hover {
+  background: linear-gradient(160deg, rgba(32,42,74,.7), rgba(13,17,34,.85));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 20px 44px -26px rgba(59,130,246,.5);
+  transform: translateY(-3px);
+  z-index: 1;
+}
+.telemetry-cell:nth-child(4n+2):hover, .telemetry-cell:nth-child(4n+3):hover {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 20px 44px -26px rgba(139,92,246,.5);
+}
 .telemetry-label {
   display: flex; align-items: center; gap: 8px;
   font-family: var(--font-mono);
   font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
   color: var(--faint); margin-bottom: 12px;
 }
-.telemetry-label svg { width: 14px; height: 14px; flex-shrink: 0; }
+.telemetry-label svg { width: 14px; height: 14px; flex-shrink: 0; transition: color .35s ease, filter .35s ease; }
 .telemetry-cell.alert .telemetry-label svg { color: var(--orange); }
+.telemetry-cell:hover .telemetry-label svg { color: var(--orange); filter: drop-shadow(0 0 8px rgba(59,130,246,.6)); }
+.telemetry-cell:nth-child(4n+2):hover .telemetry-label svg, .telemetry-cell:nth-child(4n+3):hover .telemetry-label svg {
+  color: var(--indigo); filter: drop-shadow(0 0 8px rgba(139,92,246,.6));
+}
+.telemetry-live-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--orange);
+  animation: blink 1.6s ease-in-out infinite;
+}
 .telemetry-val {
   font-size: clamp(26px, 2.6vw, 36px);
   font-weight: 300; letter-spacing: -.02em; line-height: 1;
@@ -565,14 +589,44 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--faint);
 }
+.chip-strip-status { margin-top: 4px; }
+/* animated connector — a traveling glow between nodes, like a live link
+   rather than a static arrow */
 .chip-strip-arrow {
-  font-family: var(--font-mono);
-  font-size: 16px; color: var(--orange); opacity: .7;
-  flex-shrink: 0; padding-bottom: 20px;
+  position: relative;
+  width: 40px; height: 1px;
+  background: var(--line);
+  flex-shrink: 0; margin-bottom: 24px;
+  overflow: visible;
+}
+.chip-strip-pulse {
+  position: absolute; top: 50%; left: 0;
+  width: 6px; height: 6px; margin-top: -3px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 10px 2px rgba(59,130,246,.7);
+  animation: chipPulseMove 2.4s linear infinite;
+}
+.chip-strip-pulse-alt { background: var(--indigo); box-shadow: 0 0 10px 2px rgba(139,92,246,.7); animation-delay: 1.2s; }
+@keyframes chipPulseMove {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
 }
 @media (max-width: 640px) {
   .chip-strip { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .chip-strip-arrow { transform: rotate(90deg); padding: 0 0 0 12px; }
+  .chip-strip-arrow { width: 1px; height: 24px; margin: 0 0 0 12px; }
+  .chip-strip-pulse { animation-name: chipPulseMoveV; left: 50%; top: 0; margin-top: 0; margin-left: -3px; }
+  @keyframes chipPulseMoveV {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip-strip-pulse { animation: none; opacity: .8; }
 }
 
 /* ════════════════════════════════════════════
@@ -625,7 +679,8 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   color: var(--indigo); border: 1px solid var(--indigo);
   padding: 3px 8px 2px;
 }
-.arch-cell-icon { margin-top: auto; padding-top: 48px; color: var(--ink); }
+.arch-cell-visual { margin-top: auto; padding-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+.arch-cell-icon { color: var(--ink); }
 .arch-cell-icon svg {
   width: 22px; height: 22px; display: block;
   transition: color .35s ease, transform .35s ease, filter .35s ease;
@@ -640,6 +695,78 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 .arch-cell h3 { margin-top: 14px; margin-bottom: 10px; }
 .arch-cell p { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
 .arch-cell.link-cell { background: var(--bg-soft); justify-content: flex-end; }
+
+/* ── module live previews — each card gets a small "proof" of what it
+   actually does, in the same live-product language as the hero ── */
+.mod-live {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  transition: border-color .35s ease, background .35s ease;
+}
+.arch-cell:hover .mod-live { border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.05); }
+
+/* 01 — pricing ticker */
+.mod-tick-row { display: flex; align-items: center; gap: 10px; padding: 3px 0; }
+.mod-tick-row + .mod-tick-row { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 7px; }
+.mod-tick-sym { color: var(--faint); flex: 1; letter-spacing: .04em; }
+.mod-tick-bid, .mod-tick-ask { color: var(--ink); animation: modTickFlicker 2.6s ease-in-out infinite; }
+.mod-tick-ask { color: var(--orange); }
+.mod-live-delay1 { animation-delay: 1.1s; }
+@keyframes modTickFlicker { 0%, 100% { opacity: 1; } 48% { opacity: .55; } 52% { opacity: 1; } }
+
+/* 02 — risk bar */
+.mod-risk-row { display: flex; align-items: center; justify-content: space-between; }
+.mod-risk-val { color: var(--faint); }
+.mod-risk-bar { margin-top: 10px; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.mod-risk-bar-fill {
+  display: block; height: 100%; width: 18%; border-radius: 2px;
+  background: var(--orange); box-shadow: 0 0 8px 1px rgba(59,130,246,.6);
+  animation: modRiskPulse 3s ease-in-out infinite;
+}
+@keyframes modRiskPulse { 0%, 100% { width: 16%; } 50% { width: 21%; } }
+
+/* 03 — client search */
+.mod-search-bar { display: flex; align-items: center; gap: 8px; color: var(--faint); }
+.mod-search-bar svg { width: 12px; height: 12px; flex-shrink: 0; }
+.mod-search-result {
+  margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line);
+  color: var(--ink);
+  animation: modSearchFade 3.2s ease-in-out infinite;
+}
+.mod-search-name { color: var(--faint); margin-left: 6px; }
+.mod-search-sub { display: block; color: var(--faint); margin-top: 2px; font-size: 9px; }
+@keyframes modSearchFade { 0%, 80%, 100% { opacity: 1; } 90% { opacity: .45; } }
+
+/* 04 — swap rates */
+.mod-swap-row { display: flex; align-items: center; gap: 10px; padding: 3px 0; }
+.mod-swap-row + .mod-swap-row { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 7px; }
+.mod-swap-sym { color: var(--faint); flex: 1; letter-spacing: .04em; }
+.mod-swap-neg { color: var(--orange); }
+.mod-swap-pos { color: var(--indigo); }
+
+/* 05 — AI chat */
+.mod-chat-q { color: var(--faint); }
+.mod-chat-a {
+  margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line);
+  color: var(--ink);
+}
+.mod-chat-cursor {
+  display: inline-block; width: 5px; height: 11px; margin-left: 3px;
+  background: var(--indigo); vertical-align: -1px;
+  animation: cineLivePulse 1s steps(2) infinite;
+}
+
+/* 06 — alerts (reuses .pm-alert-row / .pm-dot from the hero panel) */
+.mod-alerts .pm-alert-row { font-size: 10.5px; margin-bottom: 6px; }
+.mod-alerts .pm-alert-row:last-child { margin-bottom: 0; }
+
+/* 07 — symbol hours */
+.mod-hours-row { display: flex; align-items: center; justify-content: space-between; padding: 3px 0; }
+.mod-hours-row + .mod-hours-row { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 7px; }
 .arch-cell.link-cell:hover { background: var(--bg-dim); box-shadow: none; transform: none; border-radius: 0; }
 .arch-cell.link-cell:hover::after { opacity: 0; }
 
@@ -679,6 +806,21 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
   color: var(--faint);
 }
+/* connection status pill — a small "this is live" proof, like a network badge */
+.conn-pill {
+  display: flex; align-items: center; gap: 8px;
+  margin: 14px 20px 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(59,130,246,.10);
+  border: 1px solid rgba(59,130,246,.28);
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink);
+}
+.conn-pill svg { width: 13px; height: 13px; color: var(--orange); flex-shrink: 0; }
+.conn-pill-sep { color: var(--faint); }
+.conn-pill-live { color: var(--orange); margin-left: auto; }
 .ledger-cols, .ledger-row {
   display: grid; grid-template-columns: 1.3fr 1fr .9fr 1fr 1.1fr;
   gap: 10px; align-items: center;
