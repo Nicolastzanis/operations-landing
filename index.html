@@ -654,18 +654,33 @@
     raf = null;
   }
 
-  window.addEventListener('load', function () { size(); if (reduced) drawScene(0); else start(); });
+  // A rAF loop competing with the compositor for every scroll frame is a
+  // reliable source of mobile scroll jank, especially here where each
+  // particle allocates a fresh canvas gradient per frame. Pause the loop for
+  // the duration of a touch scroll and resume shortly after it settles.
+  var isVisible = false, scrollPaused = false, scrollTimer = null;
+  function updateRunning() {
+    if (isVisible && !document.hidden && !scrollPaused) start(); else stop();
+  }
+  if (MOBILE) {
+    window.addEventListener('scroll', function () {
+      if (!scrollPaused) { scrollPaused = true; stop(); }
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () { scrollPaused = false; updateRunning(); }, 150);
+    }, { passive: true });
+  }
+
+  window.addEventListener('load', function () { size(); if (reduced) drawScene(0); else updateRunning(); });
   if ('ResizeObserver' in window) {
     new ResizeObserver(function () { size(); if (reduced) drawScene(0); }).observe(canvas);
   }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting && !document.hidden) start(); else stop();
+      isVisible = entries[0].isIntersecting;
+      updateRunning();
     }, { threshold: 0.01 }).observe(track);
   }
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stop(); else start();
-  });
+  document.addEventListener('visibilitychange', updateRunning);
 
   size();
   if (reduced) drawScene(0);
