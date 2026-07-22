@@ -91,6 +91,10 @@
             <input type="email" id="c-email" name="email" required />
           </div>
           <div class="field">
+            <label>Telegram username (optional)</label>
+            <input type="text" id="c-telegram" name="telegram" placeholder="@yourhandle" />
+          </div>
+          <div class="field">
             <label>Subject</label>
             <select id="c-subject" name="subject">
               <option value="">Select a topic</option>
@@ -197,6 +201,7 @@
     var payload = {
       name: document.getElementById('c-name').value,
       email: document.getElementById('c-email').value,
+      telegram: document.getElementById('c-telegram').value,
       subject: document.getElementById('c-subject').value,
       message: document.getElementById('c-message').value
     };

@@ -58,6 +58,7 @@ class Handler(SimpleHTTPRequestHandler):
 
         name = clean(data.get("name"), 200)
         email = clean(data.get("email"), 200)
+        telegram = clean(data.get("telegram"), 100)
         subject_key = clean(data.get("subject"), 50)
         message = clean(data.get("message"), 5000)
 
@@ -74,7 +75,8 @@ class Handler(SimpleHTTPRequestHandler):
             f"New contact form submission from nomous.tech\n\n"
             f"Name: {name}\n"
             f"Email: {email}\n"
-            f"Topic: {subject_label}\n\n"
+            + (f"Telegram: {telegram}\n" if telegram else "")
+            + f"Topic: {subject_label}\n\n"
             f"Message:\n{message}\n"
         )
 
