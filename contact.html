@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -92,7 +93,7 @@
           </div>
           <div class="field">
             <label>Telegram username (optional)</label>
-            <input type="text" id="c-telegram" name="telegram" placeholder="@yourhandle" />
+            <input type="text" id="c-telegram" name="telegram" />
           </div>
           <div class="field">
             <label>Subject</label>
@@ -108,6 +109,9 @@
           <div class="field">
             <label>Message</label>
             <textarea id="c-message" name="message" placeholder="Tell us how we can help..." required></textarea>
+          </div>
+          <div class="field">
+            <div class="g-recaptcha" data-sitekey="6LcAq18tAAAAAC3kJmBZTYRUfb6oo0mqKMkT1b91"></div>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" id="c-btn" style="width:100%;justify-content:center">Send Message →</button>
           <div id="c-result" style="display:none;font-size:14px;padding:12px 16px;border-radius:var(--radius);margin-top:4px"></div>
@@ -194,6 +198,13 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    var recaptchaToken = (typeof grecaptcha !== 'undefined') ? grecaptcha.getResponse() : '';
+    if (!recaptchaToken) {
+      showResult(false, 'Please confirm you\'re not a robot before sending.');
+      return;
+    }
+
     btn.disabled = true;
     btn.textContent = 'Sending...';
     result.style.display = 'none';
@@ -203,7 +214,8 @@
       email: document.getElementById('c-email').value,
       telegram: document.getElementById('c-telegram').value,
       subject: document.getElementById('c-subject').value,
-      message: document.getElementById('c-message').value
+      message: document.getElementById('c-message').value,
+      recaptchaToken: recaptchaToken
     };
 
     fetch('/api/contact', {
@@ -217,16 +229,19 @@
           showResult(true, 'Message sent. We will get back to you as soon as possible.');
           btn.textContent = 'Message sent';
           form.reset();
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
         } else {
           showResult(false, res.data.error || 'Something went wrong. Please email us directly at hello@nomous.tech.');
           btn.disabled = false;
           btn.textContent = 'Send Message →';
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
         }
       })
       .catch(function () {
         showResult(false, 'Something went wrong. Please email us directly at hello@nomous.tech.');
         btn.disabled = false;
         btn.textContent = 'Send Message →';
+        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
       });
   });
 })();

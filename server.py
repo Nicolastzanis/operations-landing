@@ -2,6 +2,7 @@ import json
 import os
 import re
 import urllib.request
+import urllib.parse
 import urllib.error
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
@@ -12,6 +13,36 @@ EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 CONTACT_FROM = os.getenv("CONTACT_FROM", "Nomous Contact Form <hello@nomous.tech>")
 CONTACT_TO = [addr.strip() for addr in os.getenv("CONTACT_TO", "").split(",") if addr.strip()]
+RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY")
+
+
+def verify_recaptcha(token, remote_ip):
+    """Verify a reCAPTCHA v2 response token with Google. Returns True only on
+    an explicit success; any network/parsing failure fails closed (False),
+    since this gate exists specifically to stop automated submissions."""
+    if not token:
+        return False
+    data = urllib.parse.urlencode({
+        "secret": RECAPTCHA_SECRET_KEY,
+        "response": token,
+        "remoteip": remote_ip,
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        "https://www.google.com/recaptcha/api/siteverify",
+        data=data,
+        method="POST",
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "Mozilla/5.0 (compatible; NomousContactForm/1.0)",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            result = json.loads(resp.read())
+            return bool(result.get("success"))
+    except Exception as e:
+        print("reCAPTCHA verification failed:", e)
+        return False
 
 SUBJECT_LABELS = {
     "demo": "Request a demo",
@@ -45,7 +76,7 @@ class Handler(SimpleHTTPRequestHandler):
             self._send_json(404, {"error": "Not found"})
             return
 
-        if not RESEND_API_KEY or not CONTACT_TO:
+        if not RESEND_API_KEY or not CONTACT_TO or not RECAPTCHA_SECRET_KEY:
             self._send_json(500, {"error": "Contact form is not configured yet."})
             return
 
@@ -61,12 +92,16 @@ class Handler(SimpleHTTPRequestHandler):
         telegram = clean(data.get("telegram"), 100)
         subject_key = clean(data.get("subject"), 50)
         message = clean(data.get("message"), 5000)
+        recaptcha_token = clean(data.get("recaptchaToken"), 5000)
 
         if not name or not email or not message:
             self._send_json(400, {"error": "Name, email, and message are required."})
             return
         if not EMAIL_RE.match(email):
             self._send_json(400, {"error": "Please enter a valid email address."})
+            return
+        if not verify_recaptcha(recaptcha_token, self.client_address[0]):
+            self._send_json(400, {"error": "reCAPTCHA verification failed. Please try again."})
             return
 
         subject_label = SUBJECT_LABELS.get(subject_key, "General enquiry")
