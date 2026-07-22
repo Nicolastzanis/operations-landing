@@ -195,29 +195,8 @@
         </ul>
       </div>
       <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Economic News · Live</div>
-        <div class="fc-mock">
-          <div class="fc-mock-head"><span>Today · UTC+3</span><span id="fc-clock">14:22:07</span></div>
-          <div class="fc-mock-row">
-            <span class="fc-tag fc-tag-high">High</span>
-            <span class="fc-mock-name">CPI m/m</span>
-            <span class="fc-mock-note">US inflation print, often moves USD pairs</span>
-            <span class="fc-mock-time">14:30</span>
-          </div>
-          <div class="fc-mock-row">
-            <span class="fc-tag fc-tag-high">High</span>
-            <span class="fc-mock-name">Fed Rate Decision</span>
-            <span class="fc-mock-note">Rate path guidance for the quarter</span>
-            <span class="fc-mock-time">Tomorrow</span>
-          </div>
-          <div class="fc-mock-row">
-            <span class="fc-tag fc-tag-med">Med</span>
-            <span class="fc-mock-name">Retail Sales m/m</span>
-            <span class="fc-mock-note">Consumer demand signal</span>
-            <span class="fc-mock-time">Fri 14:30</span>
-          </div>
-          <div class="fc-mock-foot">Telegram alert fires 30 minutes before each event</div>
-        </div>
+        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">High Impact News</div>
+        <img src="assets/screens/news.png" alt="High Impact News: economic calendar filtered to high-impact events, with timezone selector and live clock" class="feat-shot" />
       </div>
     </div>
 
@@ -294,15 +273,6 @@
   if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
   var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
   els.forEach(function(el){ io.observe(el); });
-})();
-(function () {
-  var el = document.getElementById('fc-clock');
-  if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  function tick() {
-    el.textContent = new Date().toLocaleTimeString('en-GB', { hour12: false });
-  }
-  tick();
-  setInterval(tick, 1000);
 })();
 </script>
 </body>
