@@ -30,10 +30,10 @@ img, video { max-width: 100%; display: block; }
 /* ── Tokens ── */
 :root {
   /* dark/neon palette — deep navy canvas, glowing blue + violet accents */
-  --bg:        #0A0E1F;   /* deep navy canvas            */
-  --bg-soft:   #0D1226;   /* soft panel, hover states     */
-  --bg-dim:    #131A35;   /* stone — cards, dim panels    */
-  --line:      #1E2847;   /* 1px structural hairline      */
+  --bg:        #12172E;   /* deep navy canvas (lightened) */
+  --bg-soft:   #161C36;   /* soft panel, hover states     */
+  --bg-dim:    #1C2444;   /* stone — cards, dim panels    */
+  --line:      #2A3560;   /* 1px structural hairline      */
   --ink:       #F3F5FC;   /* near-white — typography      */
   --ink-60:    #B7C0DA;   /* body text                    */
   --muted:     #8994B8;   /* secondary text               */
