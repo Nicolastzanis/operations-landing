@@ -92,6 +92,10 @@ class Handler(SimpleHTTPRequestHandler):
             headers={
                 "Authorization": f"Bearer {RESEND_API_KEY}",
                 "Content-Type": "application/json",
+                # Python's default urllib User-Agent ("Python-urllib/3.x") is a
+                # common bot-detection trigger and got this blocked upstream
+                # with a Cloudflare 403 (error code 1010) before this was added.
+                "User-Agent": "Mozilla/5.0 (compatible; NomousContactForm/1.0)",
             },
         )
         try:
