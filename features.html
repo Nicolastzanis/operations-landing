@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Features | Nomous</title>
-  <meta name="description" content="Every tool your MT5 broker operations team needs: pricing, risk, clients, swaps, alerts, and an AI assistant." />
+  <meta name="description" content="Every tool your MT5 broker operations team needs: pricing, risk, clients, swaps, alerts, economic news, and an AI assistant." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -35,7 +35,7 @@
   <div class="container page-hero-inner">
     <p class="eyebrow-gradient">Platform Features</p>
     <h1>Everything Your Ops Team Needs</h1>
-    <p>Seven powerful modules, one unified platform. Built specifically for MT5 broker operations teams who need real data in real time.</p>
+    <p>Eight powerful modules, one unified platform. Built specifically for MT5 broker operations teams who need real data in real time.</p>
   </div>
 </div>
 
@@ -82,11 +82,11 @@
       </div>
     </div>
 
-    <!-- Client Lookup -->
+    <!-- Clients -->
     <div class="feat-detail">
       <div class="feat-detail-text">
         <span class="eyebrow">Module 03</span>
-        <h2>Client Lookup</h2>
+        <h2>Clients</h2>
         <p>Find any client instantly by MT5 login number, email address, or name. View their account balance, open positions, trade history, and group settings, all without logging into MT5 Manager.</p>
         <p>Your support and compliance teams get exactly the information they need, with no unnecessary access to the full Manager terminal.</p>
         <ul>
@@ -97,8 +97,8 @@
         </ul>
       </div>
       <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Client Lookup</div>
-        <img src="assets/screens/clients.png" alt="Client Lookup: search accounts and view open positions" class="feat-shot" />
+        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Clients</div>
+        <img src="assets/screens/clients.png" alt="Clients: search accounts and view open positions" class="feat-shot" />
       </div>
     </div>
 
@@ -180,6 +180,47 @@
       </div>
     </div>
 
+    <!-- News -->
+    <div class="feat-detail reverse">
+      <div class="feat-detail-text">
+        <span class="eyebrow">Module 08</span>
+        <h2>News</h2>
+        <p>High-impact economic calendar events, from CPI to rate decisions, explained in plain English so your team knows what's about to move spreads and margin requirements before it happens.</p>
+        <p>A Telegram alert fires automatically 30 minutes before each event. Your delivery list is fully isolated: your subscribers are never visible to another broker, and you can't see anyone else's either.</p>
+        <ul>
+          <li>High-impact economic calendar, filtered to what matters</li>
+          <li>Plain-English explanation per event</li>
+          <li>Timezone selector and live clock</li>
+          <li>Automatic Telegram alert 30 minutes before release</li>
+        </ul>
+      </div>
+      <div class="feat-detail-visual">
+        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Economic News · Live</div>
+        <div class="fc-mock">
+          <div class="fc-mock-head"><span>Today · UTC+3</span><span id="fc-clock">14:22:07</span></div>
+          <div class="fc-mock-row">
+            <span class="fc-tag fc-tag-high">High</span>
+            <span class="fc-mock-name">CPI m/m</span>
+            <span class="fc-mock-note">US inflation print, often moves USD pairs</span>
+            <span class="fc-mock-time">14:30</span>
+          </div>
+          <div class="fc-mock-row">
+            <span class="fc-tag fc-tag-high">High</span>
+            <span class="fc-mock-name">Fed Rate Decision</span>
+            <span class="fc-mock-note">Rate path guidance for the quarter</span>
+            <span class="fc-mock-time">Tomorrow</span>
+          </div>
+          <div class="fc-mock-row">
+            <span class="fc-tag fc-tag-med">Med</span>
+            <span class="fc-mock-name">Retail Sales m/m</span>
+            <span class="fc-mock-note">Consumer demand signal</span>
+            <span class="fc-mock-time">Fri 14:30</span>
+          </div>
+          <div class="fc-mock-foot">Telegram alert fires 30 minutes before each event</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -253,6 +294,15 @@
   if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
   var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
   els.forEach(function(el){ io.observe(el); });
+})();
+(function () {
+  var el = document.getElementById('fc-clock');
+  if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function tick() {
+    el.textContent = new Date().toLocaleTimeString('en-GB', { hour12: false });
+  }
+  tick();
+  setInterval(tick, 1000);
 })();
 </script>
 </body>
