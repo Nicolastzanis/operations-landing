@@ -1,20 +1,17 @@
 import json
 import os
 import re
-import smtplib
-from email.mime.text import MIMEText
-from email.utils import formatdate, make_msgid
+import urllib.request
+import urllib.error
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 port = int(os.getenv("PORT", 8080))
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
-SMTP_HOST = os.getenv("SMTP_HOST", "mail.privateemail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
-SMTP_USER = os.getenv("SMTP_USER")
-SMTP_PASS = os.getenv("SMTP_PASS")
-CONTACT_TO = [addr.strip() for addr in os.getenv("CONTACT_TO", SMTP_USER or "").split(",") if addr.strip()]
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+CONTACT_FROM = os.getenv("CONTACT_FROM", "Nomous Contact Form <hello@nomous.tech>")
+CONTACT_TO = [addr.strip() for addr in os.getenv("CONTACT_TO", "").split(",") if addr.strip()]
 
 SUBJECT_LABELS = {
     "demo": "Request a demo",
@@ -48,7 +45,7 @@ class Handler(SimpleHTTPRequestHandler):
             self._send_json(404, {"error": "Not found"})
             return
 
-        if not SMTP_USER or not SMTP_PASS:
+        if not RESEND_API_KEY or not CONTACT_TO:
             self._send_json(500, {"error": "Contact form is not configured yet."})
             return
 
@@ -73,30 +70,39 @@ class Handler(SimpleHTTPRequestHandler):
 
         subject_label = SUBJECT_LABELS.get(subject_key, "General enquiry")
 
-        body = (
+        text_body = (
             f"New contact form submission from nomous.tech\n\n"
             f"Name: {name}\n"
             f"Email: {email}\n"
             f"Topic: {subject_label}\n\n"
             f"Message:\n{message}\n"
         )
-        msg = MIMEText(body, "plain", "utf-8")
-        msg["Subject"] = f"Nomous Contact: {subject_label} - {name}"
-        msg["From"] = SMTP_USER
-        msg["To"] = ", ".join(CONTACT_TO)
-        # No Reply-To here on purpose: setting it to the visitor's address
-        # (a different domain than From) is exactly the pattern Namecheap's
-        # spam filter flags as likely reply-spoofing (their error JFE040032).
-        # The visitor's email is in the body above; reply from there instead.
-        msg["Date"] = formatdate(localtime=True)
-        msg["Message-ID"] = make_msgid(domain=SMTP_USER.split("@")[-1])
 
+        payload = json.dumps({
+            "from": CONTACT_FROM,
+            "to": CONTACT_TO,
+            "subject": f"Nomous Contact: {subject_label} - {name}",
+            "text": text_body,
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            "https://api.resend.com/emails",
+            data=payload,
+            method="POST",
+            headers={
+                "Authorization": f"Bearer {RESEND_API_KEY}",
+                "Content-Type": "application/json",
+            },
+        )
         try:
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
-                server.starttls()
-                server.login(SMTP_USER, SMTP_PASS)
-                server.sendmail(SMTP_USER, CONTACT_TO, msg.as_string())
-        except Exception:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                resp.read()
+        except urllib.error.HTTPError as e:
+            print("Resend API error:", e.code, e.read())
+            self._send_json(502, {"error": "Could not send message right now. Please email us directly."})
+            return
+        except Exception as e:
+            print("Contact form send failed:", e)
             self._send_json(502, {"error": "Could not send message right now. Please email us directly."})
             return
 
