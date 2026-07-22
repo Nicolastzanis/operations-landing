@@ -97,14 +97,21 @@
           </div>
           <div class="field">
             <label>Subject</label>
-            <select id="c-subject" name="subject">
-              <option value="">Select a topic</option>
-              <option value="demo">Request a demo</option>
-              <option value="pricing">Pricing question</option>
-              <option value="technical">Technical question</option>
-              <option value="account">Account support</option>
-              <option value="other">Other</option>
-            </select>
+            <div class="subject-select" id="c-subject-wrap">
+              <button type="button" class="subject-select-trigger" id="c-subject-trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="placeholder" id="c-subject-label">Select a topic</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+              </button>
+              <ul class="subject-select-list" id="c-subject-list" role="listbox" tabindex="-1" hidden>
+                <li role="option" data-value="" aria-selected="true">Select a topic</li>
+                <li role="option" data-value="demo">Request a demo</li>
+                <li role="option" data-value="pricing">Pricing question</li>
+                <li role="option" data-value="technical">Technical question</li>
+                <li role="option" data-value="account">Account support</li>
+                <li role="option" data-value="other">Other</li>
+              </ul>
+              <input type="hidden" id="c-subject" name="subject" value="" />
+            </div>
           </div>
           <div class="field">
             <label>Message</label>
@@ -174,6 +181,48 @@
   }
   window.addEventListener('scroll', check, { passive: true });
   check();
+})();
+
+(function () {
+  var wrap = document.getElementById('c-subject-wrap');
+  if (!wrap) return;
+  var trigger = document.getElementById('c-subject-trigger');
+  var label = document.getElementById('c-subject-label');
+  var list = document.getElementById('c-subject-list');
+  var hidden = document.getElementById('c-subject');
+  var options = list.querySelectorAll('li');
+
+  function close() {
+    wrap.classList.remove('open');
+    list.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  function open() {
+    wrap.classList.add('open');
+    list.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function select(li) {
+    options.forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+    li.setAttribute('aria-selected', 'true');
+    hidden.value = li.getAttribute('data-value');
+    label.textContent = li.textContent;
+    label.classList.toggle('placeholder', !hidden.value);
+    close();
+  }
+
+  trigger.addEventListener('click', function () {
+    if (list.hidden) open(); else close();
+  });
+  options.forEach(function (li) {
+    li.addEventListener('click', function () { select(li); });
+  });
+  document.addEventListener('click', function (e) {
+    if (!wrap.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
 })();
 
 (function () {

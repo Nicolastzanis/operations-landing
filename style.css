@@ -1111,7 +1111,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   font-size: 12.5px; font-weight: 500; color: var(--ink);
   display: block; margin-bottom: 6px;
 }
-.contact-form input, .contact-form textarea, .contact-form select {
+.contact-form input, .contact-form textarea {
   width: 100%; padding: 12px 14px;
   background: rgba(255,255,255,.02);
   border: 1px solid var(--line); border-radius: 10px;
@@ -1119,20 +1119,53 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
   outline: none;
 }
-.contact-form select option {
-  /* the near-transparent select background only reads correctly because the
-     dark page shows through it; Windows Chrome/Edge render the native
-     option list against their own opaque white panel instead, which left
-     light text unreadable there even though it looked fine on Mac. */
-  background: var(--bg);
-  color: var(--ink);
-}
-.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+.contact-form input:focus, .contact-form textarea:focus {
   border-color: var(--indigo);
   background: rgba(255,255,255,.035);
   box-shadow: 0 0 0 3px rgba(139,92,246,.15);
 }
 .contact-form textarea { min-height: 130px; resize: vertical; }
+
+/* Custom subject dropdown, replacing a native <select>: Windows Chrome/Edge
+   render the option-list popup against their own opaque white panel and
+   mostly ignore custom option styling (only the built-in blue hover/selection
+   highlight stayed readable there), so a real select could never be made to
+   look right on both platforms. A plain styled listbox avoids the native
+   popup entirely. */
+.subject-select { position: relative; }
+.subject-select-trigger {
+  width: 100%; padding: 12px 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--line); border-radius: 10px;
+  font-family: inherit; font-size: 14px; color: var(--ink);
+  text-align: left; cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.subject-select-trigger .placeholder { color: var(--muted); }
+.subject-select-trigger svg { flex-shrink: 0; transition: transform .2s ease; color: var(--muted); }
+.subject-select.open .subject-select-trigger svg { transform: rotate(180deg); }
+.subject-select-trigger:focus-visible,
+.subject-select.open .subject-select-trigger {
+  border-color: var(--indigo);
+  background: rgba(255,255,255,.035);
+  box-shadow: 0 0 0 3px rgba(139,92,246,.15);
+  outline: none;
+}
+.subject-select-list {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px;
+  padding: 6px; margin: 0; list-style: none;
+  box-shadow: 0 20px 44px -20px rgba(0,0,0,.6);
+}
+.subject-select-list[hidden] { display: none; }
+.subject-select-list li {
+  padding: 10px 12px; border-radius: 7px;
+  font-size: 14px; color: var(--ink); cursor: pointer;
+}
+.subject-select-list li:hover,
+.subject-select-list li.active { background: rgba(255,255,255,.06); }
+.subject-select-list li[aria-selected="true"] { color: var(--indigo); }
 
 /* legal */
 .legal-content { max-width: 760px; margin: 0 auto; }
