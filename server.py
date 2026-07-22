@@ -3,6 +3,7 @@ import os
 import re
 import smtplib
 from email.mime.text import MIMEText
+from email.utils import formatdate, make_msgid
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 port = int(os.getenv("PORT", 8080))
@@ -80,10 +81,12 @@ class Handler(SimpleHTTPRequestHandler):
             f"Message:\n{message}\n"
         )
         msg = MIMEText(body, "plain", "utf-8")
-        msg["Subject"] = f"[Nomous Contact] {subject_label} — {name}"
+        msg["Subject"] = f"[Nomous Contact] {subject_label} - {name}"
         msg["From"] = SMTP_USER
         msg["To"] = ", ".join(CONTACT_TO)
         msg["Reply-To"] = email
+        msg["Date"] = formatdate(localtime=True)
+        msg["Message-ID"] = make_msgid(domain=SMTP_USER.split("@")[-1])
 
         try:
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
