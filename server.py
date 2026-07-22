@@ -13,7 +13,7 @@ SMTP_HOST = os.getenv("SMTP_HOST", "mail.privateemail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
 SMTP_USER = os.getenv("SMTP_USER")
 SMTP_PASS = os.getenv("SMTP_PASS")
-CONTACT_TO = os.getenv("CONTACT_TO", SMTP_USER)
+CONTACT_TO = [addr.strip() for addr in os.getenv("CONTACT_TO", SMTP_USER or "").split(",") if addr.strip()]
 
 SUBJECT_LABELS = {
     "demo": "Request a demo",
@@ -82,14 +82,14 @@ class Handler(SimpleHTTPRequestHandler):
         msg = MIMEText(body, "plain", "utf-8")
         msg["Subject"] = f"[Nomous Contact] {subject_label} — {name}"
         msg["From"] = SMTP_USER
-        msg["To"] = CONTACT_TO
+        msg["To"] = ", ".join(CONTACT_TO)
         msg["Reply-To"] = email
 
         try:
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
                 server.starttls()
                 server.login(SMTP_USER, SMTP_PASS)
-                server.sendmail(SMTP_USER, [CONTACT_TO], msg.as_string())
+                server.sendmail(SMTP_USER, CONTACT_TO, msg.as_string())
         except Exception:
             self._send_json(502, {"error": "Could not send message right now. Please email us directly."})
             return
