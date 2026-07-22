@@ -81,10 +81,13 @@ class Handler(SimpleHTTPRequestHandler):
             f"Message:\n{message}\n"
         )
         msg = MIMEText(body, "plain", "utf-8")
-        msg["Subject"] = f"[Nomous Contact] {subject_label} - {name}"
+        msg["Subject"] = f"Nomous Contact: {subject_label} - {name}"
         msg["From"] = SMTP_USER
         msg["To"] = ", ".join(CONTACT_TO)
-        msg["Reply-To"] = email
+        # No Reply-To here on purpose: setting it to the visitor's address
+        # (a different domain than From) is exactly the pattern Namecheap's
+        # spam filter flags as likely reply-spoofing (their error JFE040032).
+        # The visitor's email is in the body above; reply from there instead.
         msg["Date"] = formatdate(localtime=True)
         msg["Message-ID"] = make_msgid(domain=SMTP_USER.split("@")[-1])
 
