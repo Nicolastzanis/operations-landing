@@ -1119,6 +1119,14 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
   outline: none;
 }
+.contact-form select option {
+  /* the near-transparent select background only reads correctly because the
+     dark page shows through it; Windows Chrome/Edge render the native
+     option list against their own opaque white panel instead, which left
+     light text unreadable there even though it looked fine on Mac. */
+  background: var(--bg);
+  color: var(--ink);
+}
 .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
   border-color: var(--indigo);
   background: rgba(255,255,255,.035);
