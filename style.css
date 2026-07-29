@@ -11,7 +11,14 @@
 
 /* ── Reset & base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-snap-type: y proximity; scroll-padding-top: var(--nav-h, 68px); }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h, 68px); }
+/* scroll-snap fights momentum scrolling on mobile Safari/Chrome — a well-known
+   source of stutter/"heaviness" independent of any per-frame render cost.
+   Only one section actually snaps, so it isn't carrying real design weight;
+   keep it for desktop/mouse users where it's cheap, drop it on touch. */
+@media (hover: hover) and (pointer: fine) {
+  html { scroll-snap-type: y proximity; }
+}
 body {
   font-family: var(--font-sans);
   background: var(--bg);
