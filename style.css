@@ -263,6 +263,42 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
 .nav-cta:hover { background: #DCE3F5; transform: translate(2px, 2px); }
 .nav-cta:hover::before { transform: translate(-3px, -3px); }
 
+/* ── mobile menu toggle — .nav-links collapses into a dropdown below 900px,
+   opened via this button instead of just disappearing ── */
+.nav-burger {
+  display: none;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: transparent; border: none; padding: 0; cursor: pointer;
+}
+.nav-burger span {
+  display: block; width: 20px; height: 1.5px; background: var(--ink);
+  transition: transform .25s ease, opacity .2s ease;
+}
+.nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+.nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+@media (max-width: 900px) {
+  .nav-inner { gap: 14px; }
+  .nav-cta { padding: 10px 14px; font-size: 9.5px; white-space: nowrap; }
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: rgba(10,14,31,.98);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav.nav-open .nav-links { display: flex; }
+  .nav-links a {
+    padding: 16px var(--gx);
+    border-bottom: 1px solid var(--line);
+    font-size: 11.5px;
+  }
+  .nav-links a.active { border-bottom-color: var(--line); }
+}
+
 /* ════════════════════════════════════════════
    STRUCTURAL FRAME — CAD blueprint skeleton
    ════════════════════════════════════════════ */
@@ -1259,7 +1295,6 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 900px) {
-  .nav-links { display: none; }
   .how-inner { grid-template-columns: 1fr; }
   .feat-detail { grid-template-columns: 1fr; gap: 40px; }
   .feat-detail.reverse .feat-detail-visual { order: 0; }
@@ -1281,7 +1316,13 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   /* same story for the deployment section's ledger mockup: it repeats what
      the hero already showed, and the 4 steps carry the actual content */
   .ledger-col { display: none; }
-  .telemetry { grid-template-columns: 1fr; }
+  /* the hero used to force a near-full-viewport-tall stage on every screen
+     size (a desktop "cinematic" pattern) — on a phone that's an entire
+     extra screen of scrolling before any real content shows up */
+  .cine-stage { height: auto; min-height: 650px; }
+  .telemetry { grid-template-columns: 1fr 1fr; }
+  .telemetry-cell { padding: 20px 18px 22px; }
+  .telemetry-val { font-size: 22px; }
   .media-frame video, .media-frame img { aspect-ratio: 16 / 10; }
   .steps-col, .ledger-col, .pricing-left, .pricing-list { padding: 40px 24px; }
   /* narrow screens can't separate a text column from the scene, so dim the

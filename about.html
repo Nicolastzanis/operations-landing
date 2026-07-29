@@ -28,8 +28,25 @@
     <div class="nav-actions">
       <a href="contact.html" class="nav-cta">Get Started →</a>
     </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<script>
+(function () {
+  var nav = document.getElementById('main-nav');
+  var burger = document.getElementById('nav-burger');
+  if (!nav || !burger) return;
+  burger.addEventListener('click', function () {
+    var open = nav.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
+  });
+})();
+</script>
 
 <div class="page-hero">
   <div class="container page-hero-inner">
