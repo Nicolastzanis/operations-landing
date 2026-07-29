@@ -360,9 +360,15 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   transform-style: preserve-3d;
   animation: panelFloat 7s ease-in-out infinite;
 }
+/* translateY, not margin-top — margin-top is a layout property, so the old
+   version forced a full page-layout recompute every frame of this infinite
+   animation, fighting the scroll compositor the whole time it was on
+   screen. transform is compositor-only (GPU, no layout/paint), same visual
+   float with none of the cost — this was the main source of mobile scroll
+   jank on this page. */
 @keyframes panelFloat {
-  0%, 100% { margin-top: 0; }
-  50% { margin-top: -12px; }
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50%      { transform: translate(-50%, -50%) translateY(-12px); }
 }
 .panel3d-group {
   position: relative; width: 100%; height: 100%;
@@ -377,6 +383,15 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3
   border: 1px solid rgba(255,255,255,.10);
   backdrop-filter: blur(14px);
   box-shadow: 0 30px 70px -24px rgba(59,130,246,.4), inset 0 1px 0 rgba(255,255,255,.12);
+}
+/* blobMorph animates border-radius, which has no transform equivalent —
+   unlike panelFloat above it can't be made compositor-only, so on touch
+   devices (no fine pointer — the same signal already used for the nav's
+   backdrop-filter gate above) it's cheaper to just freeze the shape and
+   drop the blur than to keep paying for it every frame. */
+@media not (hover: hover) or not (pointer: fine) {
+  .panel3d-blob { animation: none; }
+  .panel3d { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(18,22,42,.92); }
 }
 .panel3d-main {
   inset: 0;
