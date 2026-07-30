@@ -1,0 +1,725 @@
+/* ============================================================
+   Nomous — foundation
+   Light body, dark surfaces. Dark areas (nav, hero, the security
+   band, footer) carry .theme-dark, which re-points the same token
+   names — so every component below works on either background
+   without a variant class of its own.
+   ============================================================ */
+
+:root {
+  /* Light surfaces */
+  --bg:            #ffffff;
+  --bg-alt:        #f5f5f7;   /* the Apple-grey band */
+  --card:          #ffffff;
+
+  --text:          #0f172a;   /* slate-900 */
+  --text-dim:      #64748b;   /* slate-500 */
+  --text-dimmer:   #94a3b8;   /* slate-400 */
+  --hairline:      rgba(15, 23, 42, 0.10);
+
+  --accent:        #2563eb;
+  --accent-text:   #2563eb;
+  --accent-soft:   #3b82f6;
+  --accent-sky:    #38bdf8;
+  --accent-warm:   #0d9488;
+
+  /* Dark surfaces, referenced by .theme-dark and the wave */
+  --dark:          #04111f;
+  --dark-deep:     #060f1c;
+
+  --measure:       58ch;
+  --gutter:        clamp(1.5rem, 5vw, 5rem);
+  --radius:        16px;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+          'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display-font: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Any dark band. Same variable names, different values. */
+.theme-dark {
+  --bg:            #04111f;
+  --bg-alt:        #071627;
+  --card:          #0b1a2c;
+
+  --text:          #ffffff;
+  --text-dim:      rgba(191, 214, 240, 0.66);
+  --text-dimmer:   rgba(148, 178, 214, 0.5);
+  --hairline:      rgba(255, 255, 255, 0.10);
+
+  --accent-text:   #7db2ff;
+
+  color: var(--text);
+  background: var(--bg);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  /* The canvas engine does its own smoothing — native smooth scroll would
+     fight the lerp and produce a double-eased, floaty feel. */
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p { margin: 0; }
+a { color: inherit; }
+
+/* ------------------------------------------------------------
+   Scroll track + sticky stage (the security sequence)
+   ------------------------------------------------------------ */
+
+.scroll-track {
+  position: relative;
+  height: var(--track-height, 400vh);
+}
+
+.scroll-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--dark);
+  will-change: transform;
+}
+
+.scroll-stage__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Scrim: the footage puts its brightest areas dead centre, exactly where the
+   headline sits, so an edge vignette alone isn't enough. */
+.scroll-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 42%,
+      rgba(4, 17, 31, var(--scrim, 0.3)) 0%,
+      rgba(4, 17, 31, 0.7) 100%),
+    linear-gradient(to top, rgba(4, 17, 31, 0.82) 0%, transparent 50%);
+  z-index: 1;
+}
+
+/* ------------------------------------------------------------
+   Overlay copy layer
+   ------------------------------------------------------------ */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  pointer-events: none;
+}
+
+.overlay__block {
+  grid-area: 1 / 1;               /* stack every block in the same cell */
+  max-width: var(--measure);
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 1px 34px rgba(4, 17, 31, 0.7);
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  will-change: opacity, transform;
+}
+
+.overlay__block.is-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+}
+
+.overlay--left  { place-items: center start; text-align: left; }
+.overlay--left  .overlay__block { text-align: left; }
+.overlay--right { place-items: center end; text-align: right; }
+.overlay--right .overlay__block { text-align: right; }
+/* padding-bottom leaves room for the scroll cue that sits below the overlay
+   on --bottom-anchored sections; measured clearance was only ~5px at mobile
+   viewport heights before this was widened. */
+.overlay--bottom { place-items: end center; padding-bottom: clamp(5.5rem, 15vh, 11rem); }
+
+/* ------------------------------------------------------------
+   Scroll cue
+   Tells the visitor a long pinned section responds to scroll —
+   easy to miss since the canvas fills the whole viewport and can
+   read as a static banner otherwise. Self-dismisses in JS the
+   moment progress moves (see bindScrollCue in main.js).
+   ------------------------------------------------------------ */
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.25rem, 3vh, 2rem);
+  z-index: 3;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(255, 255, 255, 0.75);
+  opacity: 1;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+.scroll-cue.is-hidden { opacity: 0; }
+
+.scroll-cue__label {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.scroll-cue__icon {
+  position: relative;
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+}
+
+.scroll-cue__wheel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 3.5px;
+  height: 7px;
+  border-radius: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  animation: scroll-cue-wheel 1.7s ease-in-out infinite;
+}
+
+@keyframes scroll-cue-wheel {
+  0%   { opacity: 1; transform: translate(-50%, 0); }
+  55%  { opacity: 0; transform: translate(-50%, 13px); }
+  56%  { opacity: 0; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue__wheel { animation: none; opacity: 1; }
+}
+
+/* ------------------------------------------------------------
+   Typography
+   ------------------------------------------------------------ */
+
+.eyebrow {
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  /* Gradient wordmark-style eyebrow, as on the reference site. */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-sky));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.theme-dark .eyebrow {
+  background: none;
+  color: var(--accent-text);
+}
+
+.display {
+  font-family: var(--display-font);
+  font-size: clamp(2.6rem, 7vw, 5.25rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.headline {
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.subhead {
+  margin-top: 1.5rem;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+.overlay__block .subhead { color: rgba(226, 236, 248, 0.78); }
+
+/* Gradient rule under a display heading — the reference's signature accent. */
+.underline-accent {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.12em;
+}
+.underline-accent::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 50%, var(--accent-sky) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-sky));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+.theme-dark .gradient-text {
+  background: linear-gradient(100deg, #fff 20%, #7db2ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------ */
+
+.actions {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.overlay--left .actions { justify-content: flex-start; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease),
+              box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+
+/* Dark pill on light backgrounds; inverts on dark ones. */
+.btn--primary {
+  background: #0f172a;
+  color: #fff;
+  border: 1px solid #0f172a;
+  box-shadow: 0 12px 30px -12px rgba(15, 23, 42, 0.5);
+}
+.btn--primary:hover { background: #1e293b; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--hairline);
+}
+.btn--ghost:hover { border-color: rgba(15, 23, 42, 0.3); }
+
+/* The nav is a dark bar but deliberately not .theme-dark — that would
+   overwrite its translucent background. So it opts into the dark button
+   treatment explicitly, or its label renders slate-900 on navy. */
+.theme-dark .btn--ghost,
+.nav .btn--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.theme-dark .btn--ghost:hover,
+.nav .btn--ghost:hover { border-color: rgba(255, 255, 255, 0.38); }
+
+.theme-dark .btn--primary,
+.nav .btn--primary {
+  background: #fff;
+  color: #04111f;
+  border-color: #fff;
+}
+
+/* Blue glow pill — the primary call to action on dark. */
+.btn--glow {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.55);
+}
+.btn--glow:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 50px rgba(37, 99, 235, 0.8);
+}
+
+/* ------------------------------------------------------------
+   Nav — permanently dark, as on the reference site
+   ------------------------------------------------------------ */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem var(--gutter);
+  background: rgba(4, 17, 31, 0.9);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: #fff;
+}
+.nav__logo { width: 30px; height: 30px; display: block; }
+
+.nav__links {
+  display: flex;
+  gap: 1.9rem;
+  align-items: center;
+  font-size: 0.9rem;
+  color: rgba(226, 236, 248, 0.72);
+}
+.nav__links a {
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+  white-space: nowrap;
+}
+.nav__links a:hover { color: #fff; }
+.nav__links .is-current { color: #fff; }
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav__burger span {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
+}
+.nav.is-open .nav__burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav.is-open .nav__burger span:nth-child(2) { opacity: 0; }
+.nav.is-open .nav__burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav { flex-wrap: wrap; }
+  .nav__burger { display: flex; }
+
+  .nav__links {
+    /* max-height animates; height:auto does not. Closed state is fully inert. */
+    order: 3;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s var(--ease), opacity 0.3s var(--ease),
+                visibility 0.4s, margin-top 0.4s var(--ease);
+  }
+  .nav.is-open .nav__links {
+    max-height: 460px;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 1rem;
+  }
+  .nav__links a:not(.btn) {
+    padding: 0.9rem 0.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    font-size: 1rem;
+  }
+  .nav__links .btn { margin: 1rem 0 0.35rem; justify-content: center; }
+}
+
+/* ------------------------------------------------------------
+   Wave divider
+   Three offset crests scrolling horizontally, then a fade into the
+   next surface. --wave-to sets what it resolves into.
+   ------------------------------------------------------------ */
+
+.wave {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(90px, 11vw, 150px);
+  overflow: hidden;
+  line-height: 0;
+  background: var(--dark);
+}
+.wave--up { transform: rotate(180deg); }
+
+.wave svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  animation: wave-scroll 18s linear infinite;
+}
+
+/* The crests are drawn in blue, then dissolved into the destination colour. */
+.wave::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 62%;
+  background: linear-gradient(to bottom, transparent, var(--wave-to, #ffffff) 78%);
+}
+
+@keyframes wave-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ------------------------------------------------------------
+   Sections
+   ------------------------------------------------------------ */
+
+.section {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+  padding: clamp(5rem, 13vh, 8.5rem) var(--gutter);
+}
+.section--alt { background: var(--bg-alt); }
+.section--line { border-top: 1px solid var(--hairline); }
+
+.section__inner { max-width: 1120px; margin: 0 auto; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 3.5rem;
+}
+@media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 540px) { .grid { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.card:hover {
+  box-shadow: 0 20px 50px -24px rgba(15, 23, 42, 0.28);
+  transform: translateY(-3px);
+}
+.theme-dark .card:hover { box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.7); }
+
+.card h3 {
+  font-size: 1.08rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.6rem;
+}
+.card p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 1.75rem;
+}
+.badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  box-shadow: 0 0 10px var(--accent-warm);
+}
+
+/* ------------------------------------------------------------
+   Shared primitives
+   ------------------------------------------------------------ */
+
+.mono-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: 1.4rem;
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7);
+  animation: pulse 2.4s var(--ease) infinite;
+  flex: none;
+}
+.theme-dark .pulse { background: #2fd6a5; }
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.55); }
+  70%  { box-shadow: 0 0 0 9px rgba(13, 148, 136, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ------------------------------------------------------------
+   HUD readout strip
+   ------------------------------------------------------------ */
+
+.hud {
+  position: relative;
+  z-index: 3;
+  background: var(--bg-alt);
+  border-block: 1px solid var(--hairline);
+  padding: 2.5rem var(--gutter);
+}
+
+.hud__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.hud__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--accent);
+}
+
+.hud__val {
+  font-family: var(--mono);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.hud__key {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+}
+
+@media (max-width: 720px) {
+  .hud__inner { grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1rem; }
+}
+
+/* ------------------------------------------------------------
+   Loader (unused on the static hero; kept for media-heavy pages)
+   ------------------------------------------------------------ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--dark);
+  display: grid;
+  place-items: center;
+  transition: opacity 0.8s var(--ease), visibility 0.8s;
+}
+.loader.is-done { opacity: 0; visibility: hidden; }
+
+.loader__bar {
+  width: min(190px, 40vw);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loader__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-sky));
+  transition: width 0.3s var(--ease);
+}
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay__block { transition-duration: 0.01ms; transform: none; }
+  .btn:hover, .card:hover { transform: none; }
+  .pulse { animation: none; }
+  .wave svg { animation: none; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}

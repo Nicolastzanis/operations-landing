@@ -1,316 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Nomous</title>
-  <meta name="description" content="Get in touch with the Nomous team. We respond as soon as possible." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | Nomous</title>
+<meta name="description" content="Have a question, want a demo, or need help with your account? Get in touch with the Nomous team.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
-<nav class="nav" id="main-nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-mark">N</div>
-      Nomous
-    </a>
-    <div class="nav-links">
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html" class="active">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a href="contact.html" class="nav-cta">Get Started →</a>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+<header class="nav" data-nav>
+  <a class="nav__brand" href="index.html">
+    <img class="nav__logo" src="assets/brand/logo-n-sm.webp" alt="" width="30" height="30">
+    Nomous
+  </a>
+  <button class="nav__burger" data-burger aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links">
+    <a href="features.html">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html" class="is-current">Contact</a>
+    <a class="btn btn--ghost" href="#form">Get Started</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero theme-dark">
+    <p class="mono-tag"><span class="pulse"></span>Contact</p>
+    <h1 class="display">Get in touch.</h1>
+    <p class="subhead">
+      Have a question, want a demo, or need help with your account? Send us a
+      message and we will get back to you as soon as possible.
+    </p>
+  </section>
+
+  <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
-</nav>
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var burger = document.getElementById('nav-burger');
-  if (!nav || !burger) return;
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  nav.querySelectorAll('.nav-links a').forEach(function (a) {
-    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
-  });
-})();
-</script>
 
-<div class="page-hero">
-  <div class="container page-hero-inner">
-    <p class="eyebrow-gradient">Contact</p>
-    <h1>Get in Touch</h1>
-    <p>Have a question, want a demo, or need help with your account? Send us a message and we will get back to you as soon as possible.</p>
-  </div>
-</div>
 
-<section class="section">
-  <div class="container">
-    <div class="contact-grid">
+  <section class="section" id="form">
+    <div class="section__inner">
+      <div class="contact-grid">
 
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <!-- Direct channels -->
+        <div data-reveal>
+          <div class="contact-card">
+            <span class="contact-card__key">Email</span>
+            <a class="contact-card__val" href="mailto:hello@nomous.tech">hello@nomous.tech</a>
+            <p class="contact-card__note">We respond as soon as possible</p>
           </div>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-val"><a href="mailto:hello@nomous.tech" style="color:inherit">hello@nomous.tech</a></div>
-            <div class="contact-item-sub">We respond as soon as possible</div>
+
+          <div class="contact-card">
+            <span class="contact-card__key">Telegram</span>
+            <a class="contact-card__val" href="https://t.me/fintechnomous" target="_blank" rel="noopener noreferrer">@fintechnomous</a>
+            <p class="contact-card__note">Fastest way to reach us for urgent questions</p>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-card__key">Support hours</span>
+            <span class="contact-card__val">Monday to Friday</span>
+            <p class="contact-card__note">09:00 to 18:00 EET (UTC+3)</p>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-          </div>
-          <div>
-            <div class="contact-item-label">Telegram</div>
-            <div class="contact-item-val"><a href="https://t.me/fintechnomous" style="color:inherit">@fintechnomous</a></div>
-            <div class="contact-item-sub">Fastest way to reach us for urgent questions</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          </div>
-          <div>
-            <div class="contact-item-label">Support hours</div>
-            <div class="contact-item-val">Monday to Friday</div>
-            <div class="contact-item-sub">09:00 to 18:00 EET (UTC+3)</div>
-          </div>
-        </div>
-        <div class="contact-cta-card">
-          <div class="contact-cta-card-title">Ready to get started?</div>
-          <p>Send us a message and we'll walk you through pricing and onboarding for your brokerage.</p>
-        </div>
-      </div>
 
-      <div>
-        <form class="contact-form" id="c-form">
-          <div class="field">
-            <label>Your name</label>
-            <input type="text" id="c-name" name="name" required />
-          </div>
-          <div class="field">
-            <label>Email address</label>
-            <input type="email" id="c-email" name="email" required />
-          </div>
-          <div class="field">
-            <label>Telegram username (optional)</label>
-            <input type="text" id="c-telegram" name="telegram" />
-          </div>
-          <div class="field">
-            <label>Subject</label>
-            <div class="subject-select" id="c-subject-wrap">
-              <button type="button" class="subject-select-trigger" id="c-subject-trigger" aria-haspopup="listbox" aria-expanded="false">
-                <span class="placeholder" id="c-subject-label">Select a topic</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
-              </button>
-              <ul class="subject-select-list" id="c-subject-list" role="listbox" tabindex="-1" hidden>
-                <li role="option" data-value="" aria-selected="true">Select a topic</li>
-                <li role="option" data-value="demo">Request a demo</li>
-                <li role="option" data-value="pricing">Pricing question</li>
-                <li role="option" data-value="technical">Technical question</li>
-                <li role="option" data-value="account">Account support</li>
-                <li role="option" data-value="other">Other</li>
-              </ul>
-              <input type="hidden" id="c-subject" name="subject" value="" />
+        <!-- Message form -->
+        <div data-reveal>
+          <h2 class="module__title" style="margin-bottom:0.75rem">Ready to get started?</h2>
+          <p class="contact-card__note" style="margin-bottom:2rem">
+            Send us a message and we'll walk you through pricing and onboarding
+            for your brokerage.
+          </p>
+
+          <!-- Posts to server.py's /api/contact (Resend + reCAPTCHA v2),
+               same endpoint the previous build used. See data-contact-form
+               handling in js/main.js. -->
+          <form class="form" data-contact-form>
+            <div class="form__row">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" required autocomplete="email">
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <label>Message</label>
-            <textarea id="c-message" name="message" placeholder="Tell us how we can help..." required></textarea>
-          </div>
-          <div class="field">
-            <div class="g-recaptcha" data-sitekey="6LfMsV8tAAAAAPLWlI362y7OtGmo6JL0pTy5nfIm"></div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg" id="c-btn" style="width:100%;justify-content:center">Send Message →</button>
-          <div id="c-result" style="display:none;font-size:14px;padding:12px 16px;border-radius:var(--radius);margin-top:4px"></div>
-        </form>
-      </div>
 
+            <div class="form__row">
+              <div class="field">
+                <label for="telegram">Telegram username (optional)</label>
+                <input id="telegram" name="telegram" type="text" placeholder="@username">
+              </div>
+              <div class="field">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                  <option value="" selected disabled>Select a topic</option>
+                  <option value="demo">Request a demo</option>
+                  <option value="pricing">Pricing question</option>
+                  <option value="technical">Technical question</option>
+                  <option value="account">Account support</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <div class="g-recaptcha" data-sitekey="6LfMsV8tAAAAAPLWlI362y7OtGmo6JL0pTy5nfIm" style="margin-top:0.5rem"></div>
+
+            <div class="actions" style="justify-content:flex-start; margin-top:0.5rem">
+              <button class="btn btn--primary" type="submit">Send Message</button>
+            </div>
+            <p class="contact-card__note" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+</main>
+
+<footer class="site-footer theme-dark">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
       <div>
-        <div class="footer-logo"><div class="nav-mark" style="width:28px;height:28px;font-size:11px">N</div>Nomous</div>
-        <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+        <a class="site-footer__brand" href="index.html">Nomous</a>
+        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
       </div>
       <div>
-        <div class="footer-col-title">Platform</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Platform</p>
+        <div class="site-footer__links">
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
           <a href="contact.html">Get Started</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Company</p>
+        <div class="site-footer__links">
           <a href="about.html">About Us</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Legal</p>
+        <div class="site-footer__links">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
-    <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved.</span>
-      <div class="footer-legal-links">
+
+    <p class="site-footer__disclaimer">
+      Nomous is an operational software platform for MT5 brokerage teams. We do
+      not provide investment, financial, or trading advice, and we are not a
+      licensed or regulated financial services provider.
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Nomous. All rights reserved.</span>
+      <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </span>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var hero = document.querySelector('.page-hero');
-  function check() {
-    var h = hero ? hero.offsetHeight - 40 : 100;
-    nav.classList.toggle('on-light', window.scrollY > h);
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  check();
-})();
-
-(function () {
-  var wrap = document.getElementById('c-subject-wrap');
-  if (!wrap) return;
-  var trigger = document.getElementById('c-subject-trigger');
-  var label = document.getElementById('c-subject-label');
-  var list = document.getElementById('c-subject-list');
-  var hidden = document.getElementById('c-subject');
-  var options = list.querySelectorAll('li');
-
-  function close() {
-    wrap.classList.remove('open');
-    list.hidden = true;
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-  function open() {
-    wrap.classList.add('open');
-    list.hidden = false;
-    trigger.setAttribute('aria-expanded', 'true');
-  }
-  function select(li) {
-    options.forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
-    li.setAttribute('aria-selected', 'true');
-    hidden.value = li.getAttribute('data-value');
-    label.textContent = li.textContent;
-    label.classList.toggle('placeholder', !hidden.value);
-    close();
-  }
-
-  trigger.addEventListener('click', function () {
-    if (list.hidden) open(); else close();
-  });
-  options.forEach(function (li) {
-    li.addEventListener('click', function () { select(li); });
-  });
-  document.addEventListener('click', function (e) {
-    if (!wrap.contains(e.target)) close();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') close();
-  });
-})();
-
-(function () {
-  var form = document.getElementById('c-form');
-  if (!form) return;
-  var btn = document.getElementById('c-btn');
-  var result = document.getElementById('c-result');
-
-  function showResult(ok, text) {
-    result.style.display = 'block';
-    if (ok) {
-      result.style.background = 'color-mix(in oklch, #22c55e 10%, transparent)';
-      result.style.color = '#15803d';
-      result.style.border = '1px solid color-mix(in oklch, #22c55e 25%, transparent)';
-    } else {
-      result.style.background = 'color-mix(in oklch, #ef4444 10%, transparent)';
-      result.style.color = '#b91c1c';
-      result.style.border = '1px solid color-mix(in oklch, #ef4444 25%, transparent)';
-    }
-    result.textContent = text;
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var recaptchaToken = (typeof grecaptcha !== 'undefined') ? grecaptcha.getResponse() : '';
-    if (!recaptchaToken) {
-      showResult(false, 'Please confirm you\'re not a robot before sending.');
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    result.style.display = 'none';
-
-    var payload = {
-      name: document.getElementById('c-name').value,
-      email: document.getElementById('c-email').value,
-      telegram: document.getElementById('c-telegram').value,
-      subject: document.getElementById('c-subject').value,
-      message: document.getElementById('c-message').value,
-      recaptchaToken: recaptchaToken
-    };
-
-    fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
-      .then(function (res) {
-        if (res.ok) {
-          showResult(true, 'Message sent. We will get back to you as soon as possible.');
-          btn.textContent = 'Message sent';
-          form.reset();
-          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-        } else {
-          showResult(false, res.data.error || 'Something went wrong. Please email us directly at hello@nomous.tech.');
-          btn.disabled = false;
-          btn.textContent = 'Send Message →';
-          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-        }
-      })
-      .catch(function () {
-        showResult(false, 'Something went wrong. Please email us directly at hello@nomous.tech.');
-        btn.disabled = false;
-        btn.textContent = 'Send Message →';
-        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-      });
-  });
-})();
-</script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

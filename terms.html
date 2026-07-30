@@ -1,87 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms &amp; Conditions | Nomous</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms &amp; Conditions | Nomous</title>
+<meta name="description" content="The terms governing your use of the Nomous platform and website.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
 
-<nav class="nav" id="main-nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-mark">N</div>
-      Nomous
-    </a>
-    <div class="nav-links">
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a href="contact.html" class="nav-cta">Get Started →</a>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+<header class="nav" data-nav>
+  <a class="nav__brand" href="index.html">
+    <img class="nav__logo" src="assets/brand/logo-n-sm.webp" alt="" width="30" height="30">
+    Nomous
+  </a>
+  <button class="nav__burger" data-burger aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links">
+    <a href="features.html">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn--ghost" href="contact.html">Get Started</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero theme-dark">
+    <p class="mono-tag"><span class="pulse"></span>Legal</p>
+    <h1 class="headline">Terms &amp; Conditions</h1>
+    <p class="subhead">Last updated: 7 July 2026</p>
+  </section>
+
+  <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
-</nav>
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var burger = document.getElementById('nav-burger');
-  if (!nav || !burger) return;
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  nav.querySelectorAll('.nav-links a').forEach(function (a) {
-    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
-  });
-})();
-</script>
 
-<div class="page-hero">
-  <div class="container page-hero-inner">
-    <span class="eyebrow">Legal</span>
-    <h1>Terms &amp; Conditions</h1>
-    <p class="legal-updated">Last updated: 7 July 2026</p>
-  </div>
-</div>
 
-<section class="section">
-  <div class="container">
-    <div class="legal-content">
+  <section class="section">
+    <div class="section__inner">
+      <div class="legal">
+<p class="legal__p">These Terms and Conditions ("Terms") govern your use of the Nomous platform and website (together, "the Service"). By registering an account or using the Service, you agree to be bound by these Terms on behalf of the brokerage entity you represent.</p>
 
-      <p>These Terms and Conditions ("Terms") govern your use of the Nomous platform and website (together, "the Service"). By registering an account or using the Service, you agree to be bound by these Terms on behalf of the brokerage entity you represent.</p>
+      <h2 class="legal__h">1. The service</h2>
+      <p class="legal__p">Nomous provides a SaaS platform for MT5 forex broker operations teams, including real-time pricing monitoring, risk monitoring, client account lookup, swap management, alerts, symbol hours &amp; holiday management, economic news, and an AI assistant ("Nomous AI").</p>
+      <p class="legal__p">We reserve the right to modify, add, suspend, or discontinue any part of the Service at any time, with reasonable notice to registered users where the change materially reduces functionality.</p>
 
-      <h2>1. The service</h2>
-      <p>Nomous provides a SaaS platform for MT5 forex broker operations teams, including real-time pricing monitoring, risk monitoring, client account lookup, swap management, alerts, symbol hours &amp; holiday management, economic news, and an AI assistant ("Nomous AI").</p>
-      <p>We reserve the right to modify, add, suspend, or discontinue any part of the Service at any time, with reasonable notice to registered users where the change materially reduces functionality.</p>
+      <h2 class="legal__h">2. Not a regulated financial services provider</h2>
+      <p class="legal__p">Nomous is an operational software tool sold to brokerages that are already licensed to provide investment or brokerage services. We do not execute trades, hold or transmit client funds, provide portfolio management, or give investment, financial, tax, or trading advice of any kind, including through Nomous AI (see Section 8).</p>
+      <p class="legal__p">Nomous is not itself a licensed investment firm, broker, or financial services provider, and is not registered with or regulated by CySEC or any equivalent financial regulator. You remain solely responsible for holding and maintaining any licence, registration, or regulatory approval required for your own brokerage business, and for your own compliance with applicable financial services, AML, and data protection law.</p>
 
-      <h2>2. Not a regulated financial services provider</h2>
-      <p>Nomous is an operational software tool sold to brokerages that are already licensed to provide investment or brokerage services. We do not execute trades, hold or transmit client funds, provide portfolio management, or give investment, financial, tax, or trading advice of any kind, including through Nomous AI (see Section 8).</p>
-      <p>Nomous is not itself a licensed investment firm, broker, or financial services provider, and is not registered with or regulated by CySEC or any equivalent financial regulator. You remain solely responsible for holding and maintaining any licence, registration, or regulatory approval required for your own brokerage business, and for your own compliance with applicable financial services, AML, and data protection law.</p>
+      <h2 class="legal__h">3. Account registration</h2>
+      <p class="legal__p">To use the platform you must register a company account. You agree to provide accurate information and keep your account credentials secure. You are responsible for all activity that occurs under your account.</p>
+      <p class="legal__p">Each account is for use by a single brokerage entity. Sharing accounts between unrelated companies is not permitted.</p>
 
-      <h2>3. Account registration</h2>
-      <p>To use the platform you must register a company account. You agree to provide accurate information and keep your account credentials secure. You are responsible for all activity that occurs under your account.</p>
-      <p>Each account is for use by a single brokerage entity. Sharing accounts between unrelated companies is not permitted.</p>
+      <h2 class="legal__h">4. Subscription and payment</h2>
+      <p class="legal__p">The Service is provided on a monthly subscription basis at the price stated at the time of registration. Payment is accepted in USDT cryptocurrency (TRC20 or ERC20 network).</p>
+      <p class="legal__p">Subscriptions are activated upon confirmation of payment, typically within 24 hours of receiving a valid transaction hash. Payments are non-refundable except as required by applicable law.</p>
+      <p class="legal__p">We reserve the right to change pricing with 30 days notice. Existing subscribers will be notified by email.</p>
+      <p class="legal__p"><strong>Cryptocurrency payment risk.</strong> Cryptocurrency transactions are irreversible once confirmed on-chain. You are responsible for sending the correct amount to the correct address on the correct network (TRC20 or ERC20). We cannot recover funds sent in error. We are not responsible for losses caused by cryptocurrency price volatility between the time an invoice is issued and the time payment is sent, or for network fees charged by the blockchain.</p>
 
-      <h2>4. Subscription and payment</h2>
-      <p>The Service is provided on a monthly subscription basis at the price stated at the time of registration. Payment is accepted in USDT cryptocurrency (TRC20 or ERC20 network).</p>
-      <p>Subscriptions are activated upon confirmation of payment, typically within 24 hours of receiving a valid transaction hash. Payments are non-refundable except as required by applicable law.</p>
-      <p>We reserve the right to change pricing with 30 days notice. Existing subscribers will be notified by email.</p>
-      <p><strong>Cryptocurrency payment risk.</strong> Cryptocurrency transactions are irreversible once confirmed on-chain. You are responsible for sending the correct amount to the correct address on the correct network (TRC20 or ERC20). We cannot recover funds sent in error. We are not responsible for losses caused by cryptocurrency price volatility between the time an invoice is issued and the time payment is sent, or for network fees charged by the blockchain.</p>
-
-      <h2>5. Acceptable use</h2>
-      <p>You agree not to:</p>
-      <ul>
+      <h2 class="legal__h">5. Acceptable use</h2>
+      <p class="legal__p">You agree not to:</p>
+      <ul class="legal__list">
         <li>Use the Service for any unlawful purpose</li>
         <li>Attempt to gain unauthorised access to any part of the Service</li>
         <li>Reverse engineer, decompile, or copy any part of the platform</li>
@@ -91,82 +83,90 @@
         <li>Attempt to bypass rate limits, usage caps, or per-account access controls</li>
       </ul>
 
-      <h2>6. MT5 server access</h2>
-      <p>By providing MT5 Manager credentials, you confirm that you are authorised to grant access to the MT5 server in question. You remain solely responsible for any actions taken on your MT5 server through use of the platform.</p>
-      <p>We access your MT5 server only to read data required for the features of the platform. We do not execute trades, modify accounts, or make changes to your MT5 configuration. Your MT5 Manager credentials are encrypted at rest.</p>
+      <h2 class="legal__h">6. MT5 server access</h2>
+      <p class="legal__p">By providing MT5 Manager credentials, you confirm that you are authorised to grant access to the MT5 server in question. You remain solely responsible for any actions taken on your MT5 server through use of the platform.</p>
+      <p class="legal__p">We access your MT5 server only to read data required for the features of the platform. We do not execute trades, modify accounts, or make changes to your MT5 configuration. Your MT5 Manager credentials are encrypted at rest.</p>
 
-      <h2>7. Data controller and processor roles</h2>
-      <p>Where you use the platform to view or process personal data belonging to your own end clients (for example, trading account holders looked up via Clients), you act as the data controller for that personal data and Nomous acts only as a data processor, processing it solely on your instructions and for the purpose of providing the Service. You are responsible for having a lawful basis to process that data and for your own obligations to your clients under applicable data protection law.</p>
-      <p>For data about your own company and team (account holders, admins, users you invite), Nomous acts as the data controller, as described in our <a href="privacy.html" style="color:var(--primary)">Privacy Policy</a>.</p>
+      <h2 class="legal__h">7. Data controller and processor roles</h2>
+      <p class="legal__p">Where you use the platform to view or process personal data belonging to your own end clients (for example, trading account holders looked up via Clients), you act as the data controller for that personal data and Nomous acts only as a data processor, processing it solely on your instructions and for the purpose of providing the Service. You are responsible for having a lawful basis to process that data and for your own obligations to your clients under applicable data protection law.</p>
+      <p class="legal__p">For data about your own company and team (account holders, admins, users you invite), Nomous acts as the data controller, as described in our <a href="privacy.html" style="color:var(--primary)">Privacy Policy</a>.</p>
 
-      <h2>8. Nomous AI assistant</h2>
-      <p>Nomous AI is an optional feature that answers questions using data from your own company account. Each broker's AI only ever has access to that broker's own data, never another company's.</p>
-      <p>AI-generated responses may occasionally be inaccurate, incomplete, or out of date, and must not be relied upon as financial, investment, legal, tax, or trading advice, nor as a substitute for your own verification of the underlying data in the platform. You remain solely responsible for any decisions made using information from Nomous AI.</p>
-      <p>To keep the Service fast and fair for all customers, Nomous AI usage is subject to daily and monthly usage limits. If a limit is reached, Nomous AI may temporarily decline to respond until the limit resets.</p>
+      <h2 class="legal__h">8. Nomous AI assistant</h2>
+      <p class="legal__p">Nomous AI is an optional feature that answers questions using data from your own company account. Each broker's AI only ever has access to that broker's own data, never another company's.</p>
+      <p class="legal__p">AI-generated responses may occasionally be inaccurate, incomplete, or out of date, and must not be relied upon as financial, investment, legal, tax, or trading advice, nor as a substitute for your own verification of the underlying data in the platform. You remain solely responsible for any decisions made using information from Nomous AI.</p>
+      <p class="legal__p">To keep the Service fast and fair for all customers, Nomous AI usage is subject to daily and monthly usage limits. If a limit is reached, Nomous AI may temporarily decline to respond until the limit resets.</p>
 
-      <h2>9. Intellectual property</h2>
-      <p>All rights in the platform, including software, design, and content, remain the property of Nomous. Nothing in these Terms grants you any intellectual property rights in the Service.</p>
-      <p>You retain ownership of your data, including any data retrieved from your MT5 server through the platform.</p>
+      <h2 class="legal__h">9. Intellectual property</h2>
+      <p class="legal__p">All rights in the platform, including software, design, and content, remain the property of Nomous. Nothing in these Terms grants you any intellectual property rights in the Service.</p>
+      <p class="legal__p">You retain ownership of your data, including any data retrieved from your MT5 server through the platform.</p>
 
-      <h2>10. Limitation of liability</h2>
-      <p>The Service is provided "as is" without warranties of any kind, express or implied. We do not warrant that the Service will be uninterrupted, error-free, or that data displayed (including Nomous AI output) will be accurate at all times.</p>
-      <p>To the maximum extent permitted by law, Nomous will not be liable for any indirect, incidental, or consequential damages arising from your use of the Service, including but not limited to trading losses, data loss, or business interruption.</p>
-      <p>Our total liability to you for any claim arising from use of the Service shall not exceed the amount you paid in the three months preceding the claim.</p>
+      <h2 class="legal__h">10. Limitation of liability</h2>
+      <p class="legal__p">The Service is provided "as is" without warranties of any kind, express or implied. We do not warrant that the Service will be uninterrupted, error-free, or that data displayed (including Nomous AI output) will be accurate at all times.</p>
+      <p class="legal__p">To the maximum extent permitted by law, Nomous will not be liable for any indirect, incidental, or consequential damages arising from your use of the Service, including but not limited to trading losses, data loss, or business interruption.</p>
+      <p class="legal__p">Our total liability to you for any claim arising from use of the Service shall not exceed the amount you paid in the three months preceding the claim.</p>
 
-      <h2>11. Termination</h2>
-      <p>You may cancel your subscription at any time. Access continues until the end of the current billing period. We may terminate your account immediately if you breach these Terms.</p>
+      <h2 class="legal__h">11. Termination</h2>
+      <p class="legal__p">You may cancel your subscription at any time. Access continues until the end of the current billing period. We may terminate your account immediately if you breach these Terms.</p>
 
-      <h2>12. Governing law</h2>
-      <p>These Terms are governed by the laws of the Republic of Cyprus, without regard to conflict-of-law principles. The courts of the Republic of Cyprus shall have exclusive jurisdiction over any dispute arising from these Terms or your use of the Service, following good-faith efforts to resolve the matter through direct negotiation.</p>
+      <h2 class="legal__h">12. Governing law</h2>
+      <p class="legal__p">These Terms are governed by the laws of the Republic of Cyprus, without regard to conflict-of-law principles. The courts of the Republic of Cyprus shall have exclusive jurisdiction over any dispute arising from these Terms or your use of the Service, following good-faith efforts to resolve the matter through direct negotiation.</p>
 
-      <h2>13. Contact</h2>
-      <p>For questions about these Terms, contact us at <a href="mailto:hello@nomous.tech" style="color:var(--primary)">hello@nomous.tech</a>.</p>
-
+      <h2 class="legal__h">13. Contact</h2>
+      <p class="legal__p">For questions about these Terms, contact us at <a href="mailto:hello@nomous.tech" style="color:var(--primary)">hello@nomous.tech</a>.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+</main>
+
+<footer class="site-footer theme-dark">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
       <div>
-        <div class="footer-logo"><div class="nav-mark" style="width:28px;height:28px;font-size:11px">N</div>Nomous</div>
-        <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+        <a class="site-footer__brand" href="index.html">Nomous</a>
+        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
       </div>
       <div>
-        <div class="footer-col-title">Platform</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Platform</p>
+        <div class="site-footer__links">
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
           <a href="contact.html">Get Started</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Company</p>
+        <div class="site-footer__links">
           <a href="about.html">About Us</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Legal</p>
+        <div class="site-footer__links">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
-    <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved.</span>
-      <div class="footer-legal-links">
+
+    <p class="site-footer__disclaimer">
+      Nomous is an operational software platform for MT5 brokerage teams. We do
+      not provide investment, financial, or trading advice, and we are not a
+      licensed or regulated financial services provider.
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Nomous. All rights reserved.</span>
+      <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </span>
     </div>
   </div>
 </footer>
 
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

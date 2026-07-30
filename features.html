@@ -1,300 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features | Nomous</title>
-  <meta name="description" content="Every tool your MT5 broker operations team needs: pricing, risk, clients, swaps, alerts, economic news, and an AI assistant." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Features | Nomous</title>
+<meta name="description" content="Eight modules, one unified platform. Pricing, risk, clients, swaps, alerts, symbol hours, AI and economic news for MT5 broker operations teams.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/features.css">
+
 </head>
 <body>
 
-<nav class="nav" id="main-nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-mark">N</div>
-      Nomous
-    </a>
-    <div class="nav-links">
-      <a href="features.html" class="active">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a href="contact.html" class="nav-cta">Get Started →</a>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+<!-- Animated grid field - pure CSS, sits behind everything. -->
+<header class="nav" data-nav>
+  <a class="nav__brand" href="index.html">
+    <img class="nav__logo" src="assets/brand/logo-n-sm.webp" alt="" width="30" height="30">
+    Nomous
+  </a>
+  <button class="nav__burger" data-burger aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links">
+    <a href="features.html" class="is-current">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn--ghost" href="contact.html">Get Started</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero theme-dark">
+    <p class="mono-tag"><span class="pulse"></span>Platform Features</p>
+    <h1 class="display">Eight modules.<br>One platform.</h1>
+    <p class="subhead">
+      Built specifically for MT5 broker operations teams who need real data in
+      real time. One connection, no write access, ever.
+    </p>
+  </section>
+
+  <div class="wave" style="--wave-to: #f5f5f7" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
-</nav>
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var burger = document.getElementById('nav-burger');
-  if (!nav || !burger) return;
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  nav.querySelectorAll('.nav-links a').forEach(function (a) {
-    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
-  });
-})();
-</script>
 
-<div class="page-hero">
-  <div class="container page-hero-inner">
-    <p class="eyebrow-gradient">Platform Features</p>
-    <h1>Everything Your Ops Team Needs</h1>
-    <p>Eight powerful modules, one unified platform. Built specifically for MT5 broker operations teams who need real data in real time.</p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="container">
-
-    <!-- Pricing Monitor -->
-    <div class="feat-detail">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 01</span>
-        <h2>Pricing Monitor</h2>
-        <p>See live bid/ask prices and spreads for every symbol on your MT5 server, updated in real time via WebSocket. No more manually checking MT5 Manager to verify prices.</p>
-        <p>Filter by symbol group, sort by spread width, and instantly spot anything that looks off before your clients do.</p>
-        <ul>
-          <li>Live bid, ask and spread for all symbols</li>
-          <li>Group and symbol filtering</li>
-          <li>Spread anomaly highlighting</li>
-          <li>Symbol search and sorting</li>
-        </ul>
+  <!-- ============================================================
+       HUD readout
+       ============================================================ -->
+  <section class="hud">
+    <div class="hud__inner">
+      <div class="hud__cell" data-reveal>
+        <span class="hud__val" data-count="8">8</span>
+        <span class="hud__key">Modules</span>
       </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Pricing Monitor · Live</div>
-        <img src="assets/screens/pricing-monitor.png" alt="Pricing Monitor: live bid/ask prices and spread tracking" class="feat-shot" />
+      <div class="hud__cell" data-reveal>
+        <span class="hud__val">&lt;1s</span>
+        <span class="hud__key">Propagation</span>
+      </div>
+      <div class="hud__cell" data-reveal>
+        <span class="hud__val">0</span>
+        <span class="hud__key">Write endpoints</span>
+      </div>
+      <div class="hud__cell" data-reveal>
+        <span class="hud__val">24/7</span>
+        <span class="hud__key">Monitoring</span>
       </div>
     </div>
+  </section>
 
-    <!-- Risk Monitor -->
-    <div class="feat-detail reverse">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 02</span>
-        <h2>Risk Monitor</h2>
-        <p>Monitor every connected account in real time. Equity, margin level, floating P&L and open positions, all visible at a glance without opening MT5 Manager.</p>
-        <p>Color-coded status badges flag accounts that are approaching margin call so your team can act before a stop-out happens.</p>
-        <ul>
-          <li>Real-time equity and margin levels</li>
-          <li>Floating P&L per account</li>
-          <li>Margin call and stop-out alerts</li>
-          <li>Filter by login, group or risk level</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Risk Monitor · accounts at risk</div>
-        <img src="assets/screens/risk-monitor.png" alt="Risk Monitor: account margin levels and exposure ranking" class="feat-shot" />
+  <!-- ============================================================
+       MODULES - sticky index rail + scroll-spy
+       ============================================================ -->
+  <section class="modules" id="modules">
+    <div class="modules__inner">
+
+      <aside class="rail" aria-label="Module index">
+        <p class="rail__title">Modules</p>
+        <ol class="rail__list" data-rail>
+          <li><a href="#m01" data-rail-item="m01"><span class="rail__num">01</span>Pricing Monitor</a></li>
+          <li><a href="#m02" data-rail-item="m02"><span class="rail__num">02</span>Risk Monitor</a></li>
+          <li><a href="#m03" data-rail-item="m03"><span class="rail__num">03</span>Clients</a></li>
+          <li><a href="#m04" data-rail-item="m04"><span class="rail__num">04</span>Swaps &amp; Simulator</a></li>
+          <li><a href="#m05" data-rail-item="m05"><span class="rail__num">05</span>Alerts</a></li>
+          <li><a href="#m06" data-rail-item="m06"><span class="rail__num">06</span>Hours &amp; Holidays</a></li>
+          <li><a href="#m07" data-rail-item="m07"><span class="rail__num">07</span>Nomous AI</a></li>
+          <li><a href="#m08" data-rail-item="m08"><span class="rail__num">08</span>News</a></li>
+        </ol>
+      </aside>
+
+      <div class="modules__flow">
+
+        <!-- 01 -->
+        <article class="module" id="m01" data-module="m01">
+          <header class="module__head" data-reveal>
+            <span class="module__num">01</span>
+            <h2 class="module__title">Pricing Monitor</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>See live bid/ask prices and spreads for every symbol on your MT5 server, updated in real time via WebSocket. No more manually checking MT5 Manager to verify prices.</p>
+            <p>Filter by symbol group, sort by spread width, and instantly spot anything that looks off before your clients do.</p>
+            <ul class="module__list">
+              <li>Live bid, ask and spread for all symbols</li>
+              <li>Group and symbol filtering</li>
+              <li>Spread anomaly highlighting</li>
+              <li>Symbol search and sorting</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/pricing</span>
+              <span class="shot__live"><span class="pulse"></span>Live</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/pricing-monitor.webp" width="1600" height="923" alt="Pricing Monitor showing live bid, ask and spread values across currency pairs" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 02 -->
+        <article class="module" id="m02" data-module="m02">
+          <header class="module__head" data-reveal>
+            <span class="module__num">02</span>
+            <h2 class="module__title">Risk Monitor</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Monitor every connected account in real time. Equity, margin level, floating P&amp;L and open positions, all visible at a glance without opening MT5 Manager.</p>
+            <p>Color-coded status badges flag accounts that are approaching margin call so your team can act before a stop-out happens.</p>
+            <ul class="module__list">
+              <li>Real-time equity and margin levels</li>
+              <li>Floating P&amp;L per account</li>
+              <li>Margin call and stop-out alerts</li>
+              <li>Filter by login, group or risk level</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/risk</span>
+              <span class="shot__live"><span class="pulse"></span>Accounts at risk</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/risk-monitor.webp" width="1600" height="534" alt="Risk Monitor ranking accounts by margin level and exposure" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 03 -->
+        <article class="module" id="m03" data-module="m03">
+          <header class="module__head" data-reveal>
+            <span class="module__num">03</span>
+            <h2 class="module__title">Clients</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Find any client instantly by MT5 login number, email address, or name. View their account balance, open positions, trade history, and group settings, all without logging into MT5 Manager.</p>
+            <p>Your support and compliance teams get exactly the information they need, with no unnecessary access to the full Manager terminal.</p>
+            <ul class="module__list">
+              <li>Search by login, email or name</li>
+              <li>View open positions and history</li>
+              <li>Account balance and equity snapshot</li>
+              <li>Group and leverage settings</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/clients</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/clients.webp" width="1600" height="504" alt="Clients module: account search with open positions and history" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 04 -->
+        <article class="module" id="m04" data-module="m04">
+          <header class="module__head" data-reveal>
+            <span class="module__num">04</span>
+            <h2 class="module__title">Swaps &amp; Group Simulator</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>View current swap rates across all groups and symbols on your server. Before changing anything, use the simulator to model the effect of new swap values, so there are no surprises for your clients.</p>
+            <ul class="module__list">
+              <li>View all group swap rates in one table</li>
+              <li>Simulate rate changes before applying</li>
+              <li>Compare groups side by side</li>
+              <li>Export swap schedules</li>
+            </ul>
+          </div>
+          <div class="shot-pair">
+            <figure class="shot" data-reveal data-tilt>
+              <figcaption class="shot__bar"><span class="shot__label">/swaps</span></figcaption>
+              <div class="shot__frame">
+                <img src="assets/screens/swaps.webp" width="1600" height="411" alt="Swap Rates table across groups and symbols" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure class="shot" data-reveal data-tilt>
+              <figcaption class="shot__bar"><span class="shot__label">/swaps/simulator</span></figcaption>
+              <div class="shot__frame">
+                <img src="assets/screens/group-simulator.webp" width="1600" height="983" alt="Group Simulator modelling the effect of swap rate changes before they are applied" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 05 -->
+        <article class="module" id="m05" data-module="m05">
+          <header class="module__head" data-reveal>
+            <span class="module__num">05</span>
+            <h2 class="module__title">Email &amp; Telegram Alerts</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Configure alerts for any event that matters: margin calls, spread spikes, MT5 server disconnects, large trades. Notifications go out instantly to your team's email and Telegram.</p>
+            <ul class="module__list">
+              <li>Margin call and stop-out alerts</li>
+              <li>Spread spike notifications</li>
+              <li>Server connection loss alerts</li>
+              <li>Configurable thresholds per alert type</li>
+              <li>Email and Telegram delivery</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/alerts</span>
+              <span class="shot__live"><span class="pulse"></span>Configuration</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/alerts.webp" width="1600" height="989" alt="Alerts module: notification configuration and alert history" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 06 -->
+        <article class="module" id="m06" data-module="m06">
+          <header class="module__head" data-reveal>
+            <span class="module__num">06</span>
+            <h2 class="module__title">Symbol Hours &amp; Holidays</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Manage trading session hours and market holiday schedules for every symbol group on your server. See at a glance which markets are open right now and which are scheduled to close.</p>
+            <ul class="module__list">
+              <li>Trading hours per symbol and group</li>
+              <li>Market holiday calendar</li>
+              <li>Current open/closed status</li>
+              <li>Scheduled closures and early closes</li>
+            </ul>
+          </div>
+          <div class="shot-pair">
+            <figure class="shot" data-reveal data-tilt>
+              <figcaption class="shot__bar"><span class="shot__label">/hours</span></figcaption>
+              <div class="shot__frame">
+                <img src="assets/screens/symbol-hours.webp" width="1600" height="955" alt="Symbol Hours: trading session schedule by instrument" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure class="shot" data-reveal data-tilt>
+              <figcaption class="shot__bar"><span class="shot__label">/holidays</span></figcaption>
+              <div class="shot__frame">
+                <img src="assets/screens/holidays.webp" width="1600" height="674" alt="Holidays: market holiday calendar by symbol group" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 07 -->
+        <article class="module" id="m07" data-module="m07">
+          <header class="module__head" data-reveal>
+            <span class="module__num">07</span>
+            <h2 class="module__title">Nomous AI</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Ask your platform anything in plain English about spreads, account risk, client positions, swap rates, or upcoming holidays, and get an instant answer grounded in your broker's own real-time data.</p>
+            <p>Every broker's AI only ever sees that broker's own data. Nothing is shared, mixed, or visible across accounts, and every conversation is saved so your team can pick up where it left off.</p>
+            <ul class="module__list">
+              <li>Plain-English answers about your live data</li>
+              <li>Strict per-broker data isolation</li>
+              <li>Persistent conversation history</li>
+              <li>Usage limits to keep the platform fast and fair for everyone</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/ai</span>
+              <span class="shot__live"><span class="pulse"></span>Isolated per broker</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/nomous-ai.webp" width="1600" height="773" alt="Nomous AI answering questions grounded in the broker's live data" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 08 -->
+        <article class="module" id="m08" data-module="m08">
+          <header class="module__head" data-reveal>
+            <span class="module__num">08</span>
+            <h2 class="module__title">News</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>High-impact economic calendar events, from CPI to rate decisions, explained in plain English so your team knows what's about to move spreads and margin requirements before it happens.</p>
+            <p>A Telegram alert fires automatically 30 minutes before each event. Your delivery list is fully isolated: your subscribers are never visible to another broker, and you can't see anyone else's either.</p>
+            <ul class="module__list">
+              <li>High-impact economic calendar, filtered to what matters</li>
+              <li>Plain-English explanation per event</li>
+              <li>Timezone selector and live clock</li>
+              <li>Automatic Telegram alert 30 minutes before release</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/news</span>
+              <span class="shot__live"><span class="pulse"></span>T-30 alerts</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/news.webp" width="1600" height="752" alt="High Impact News: economic calendar with timezone selector and live clock" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
       </div>
     </div>
+  </section>
 
-    <!-- Clients -->
-    <div class="feat-detail">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 03</span>
-        <h2>Clients</h2>
-        <p>Find any client instantly by MT5 login number, email address, or name. View their account balance, open positions, trade history, and group settings, all without logging into MT5 Manager.</p>
-        <p>Your support and compliance teams get exactly the information they need, with no unnecessary access to the full Manager terminal.</p>
-        <ul>
-          <li>Search by login, email or name</li>
-          <li>View open positions and history</li>
-          <li>Account balance and equity snapshot</li>
-          <li>Group and leverage settings</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Clients</div>
-        <img src="assets/screens/clients.png" alt="Clients: search accounts and view open positions" class="feat-shot" />
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="section section--line cta" id="cta">
+    <div class="section__inner" style="text-align:center">
+      <p class="mono-tag" style="justify-content:center"><span class="pulse"></span>Live in under an hour</p>
+      <h2 class="display">Ready to see it live<br>on your server?</h2>
+      <p class="subhead" style="margin-inline:auto">
+        Register your brokerage and connect your MT5 server. Your team can be
+        live within the hour.
+      </p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn btn--primary" href="contact.html">Get Started</a>
+        <a class="btn btn--ghost" href="pricing.html">View pricing</a>
       </div>
     </div>
+  </section>
 
-    <!-- Swaps Manager -->
-    <div class="feat-detail reverse">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 04</span>
-        <h2>Swaps &amp; Group Simulator</h2>
-        <p>View current swap rates across all groups and symbols on your server. Before changing anything, use the simulator to model the effect of new swap values, so there are no surprises for your clients.</p>
-        <ul>
-          <li>View all group swap rates in one table</li>
-          <li>Simulate rate changes before applying</li>
-          <li>Compare groups side by side</li>
-          <li>Export swap schedules</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Swap Rates</div>
-        <img src="assets/screens/swaps.png" alt="Swap Rates: import and manage overnight swap rates" class="feat-shot" />
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin:12px 0">Group Simulator</div>
-        <img src="assets/screens/Group-Simulator.png" alt="Group Simulator: model the effect of swap rate changes before applying them" class="feat-shot" />
-      </div>
-    </div>
+</main>
 
-    <!-- Alerts -->
-    <div class="feat-detail">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 05</span>
-        <h2>Email &amp; Telegram Alerts</h2>
-        <p>Configure alerts for any event that matters: margin calls, spread spikes, MT5 server disconnects, large trades. Notifications go out instantly to your team's email and Telegram.</p>
-        <ul>
-          <li>Margin call and stop-out alerts</li>
-          <li>Spread spike notifications</li>
-          <li>Server connection loss alerts</li>
-          <li>Configurable thresholds per alert type</li>
-          <li>Email and Telegram delivery</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Alerts · configuration</div>
-        <img src="assets/screens/alerts.png" alt="Alerts: configure notifications and view alert history" class="feat-shot" />
-      </div>
-    </div>
-
-    <!-- Symbol Hours -->
-    <div class="feat-detail reverse">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 06</span>
-        <h2>Symbol Hours &amp; Holidays</h2>
-        <p>Manage trading session hours and market holiday schedules for every symbol group on your server. See at a glance which markets are open right now and which are scheduled to close.</p>
-        <ul>
-          <li>Trading hours per symbol and group</li>
-          <li>Market holiday calendar</li>
-          <li>Current open/closed status</li>
-          <li>Scheduled closures and early closes</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Symbol Hours</div>
-        <img src="assets/screens/symbol-hours.png" alt="Symbol Hours: trading session schedule by instrument" class="feat-shot" />
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin:12px 0">Holidays</div>
-        <img src="assets/screens/holidays.png" alt="Holidays: market holiday calendar by symbol group" class="feat-shot" />
-      </div>
-    </div>
-
-    <!-- Nomous AI -->
-    <div class="feat-detail">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 07</span>
-        <h2>Nomous AI</h2>
-        <p>Ask your platform anything in plain English about spreads, account risk, client positions, swap rates, or upcoming holidays, and get an instant answer grounded in your broker's own real-time data.</p>
-        <p>Every broker's AI only ever sees that broker's own data. Nothing is shared, mixed, or visible across accounts, and every conversation is saved so your team can pick up where it left off.</p>
-        <ul>
-          <li>Plain-English answers about your live data</li>
-          <li>Strict per-broker data isolation</li>
-          <li>Persistent conversation history</li>
-          <li>Usage limits to keep the platform fast and fair for everyone</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Nomous AI</div>
-        <img src="assets/screens/nomous-ai.png" alt="Nomous AI: plain-English assistant grounded in your broker's live data" class="feat-shot" />
-      </div>
-    </div>
-
-    <!-- News -->
-    <div class="feat-detail reverse">
-      <div class="feat-detail-text">
-        <span class="eyebrow">Module 08</span>
-        <h2>News</h2>
-        <p>High-impact economic calendar events, from CPI to rate decisions, explained in plain English so your team knows what's about to move spreads and margin requirements before it happens.</p>
-        <p>A Telegram alert fires automatically 30 minutes before each event. Your delivery list is fully isolated: your subscribers are never visible to another broker, and you can't see anyone else's either.</p>
-        <ul>
-          <li>High-impact economic calendar, filtered to what matters</li>
-          <li>Plain-English explanation per event</li>
-          <li>Timezone selector and live clock</li>
-          <li>Automatic Telegram alert 30 minutes before release</li>
-        </ul>
-      </div>
-      <div class="feat-detail-visual">
-        <div style="font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">High Impact News</div>
-        <img src="assets/screens/news.png" alt="High Impact News: economic calendar filtered to high-impact events, with timezone selector and live clock" class="feat-shot" />
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container" data-reveal>
-    <h2 style="color:#fff">Ready to See It Live on Your Server?</h2>
-    <p>Register your brokerage and connect your MT5 server. Your team can be live within the hour.</p>
-    <div class="cta-btns">
-      <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
-      <a href="pricing.html" class="btn btn-ghost-white btn-lg">View Pricing</a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+<footer class="site-footer theme-dark">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
       <div>
-        <div class="footer-logo"><div class="nav-mark" style="width:28px;height:28px;font-size:11px">N</div>Nomous</div>
-        <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+        <a class="site-footer__brand" href="index.html">Nomous</a>
+        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
       </div>
       <div>
-        <div class="footer-col-title">Platform</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Platform</p>
+        <div class="site-footer__links">
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
           <a href="contact.html">Get Started</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Company</p>
+        <div class="site-footer__links">
           <a href="about.html">About Us</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Legal</p>
+        <div class="site-footer__links">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
-    <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved.</span>
-      <div class="footer-legal-links">
+
+    <p class="site-footer__disclaimer">
+      Nomous is an operational software platform for MT5 brokerage teams. We do
+      not provide investment, financial, or trading advice, and we are not a
+      licensed or regulated financial services provider.
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Nomous. All rights reserved.</span>
+      <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </span>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var hero = document.querySelector('.page-hero');
-  function check() {
-    var h = hero ? hero.offsetHeight - 40 : 100;
-    nav.classList.toggle('on-light', window.scrollY > h);
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  check();
-})();
-(function () {
-  var els = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
-  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
-  els.forEach(function(el){ io.observe(el); });
-})();
-</script>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/features.js"></script>
 </body>
 </html>

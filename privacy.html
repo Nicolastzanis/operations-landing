@@ -1,81 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy | Nomous</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy | Nomous</title>
+<meta name="description" content="How Nomous collects, uses, shares and safeguards information when you use our platform.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
 
-<nav class="nav" id="main-nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-mark">N</div>
-      Nomous
-    </a>
-    <div class="nav-links">
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a href="contact.html" class="nav-cta">Get Started →</a>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+<header class="nav" data-nav>
+  <a class="nav__brand" href="index.html">
+    <img class="nav__logo" src="assets/brand/logo-n-sm.webp" alt="" width="30" height="30">
+    Nomous
+  </a>
+  <button class="nav__burger" data-burger aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links">
+    <a href="features.html">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn--ghost" href="contact.html">Get Started</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero theme-dark">
+    <p class="mono-tag"><span class="pulse"></span>Legal</p>
+    <h1 class="headline">Privacy Policy</h1>
+    <p class="subhead">Last updated: 7 July 2026</p>
+  </section>
+
+  <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
-</nav>
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var burger = document.getElementById('nav-burger');
-  if (!nav || !burger) return;
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  nav.querySelectorAll('.nav-links a').forEach(function (a) {
-    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
-  });
-})();
-</script>
 
-<div class="page-hero">
-  <div class="container page-hero-inner">
-    <span class="eyebrow">Legal</span>
-    <h1>Privacy Policy</h1>
-    <p class="legal-updated">Last updated: 7 July 2026</p>
-  </div>
-</div>
 
-<section class="section">
-  <div class="container">
-    <div class="legal-content">
+  <section class="section">
+    <div class="section__inner">
+      <div class="legal">
+<p class="legal__p">Nomous ("we", "us", "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, share, and safeguard information when you use our platform and website, and applies to personal data processed in connection with the Service.</p>
 
-      <p>Nomous ("we", "us", "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, share, and safeguard information when you use our platform and website, and applies to personal data processed in connection with the Service.</p>
-
-      <h2>1. Information we collect</h2>
+      <h2 class="legal__h">1. Information we collect</h2>
       <h3>Account information</h3>
-      <p>When you register, we collect your company name, email address, and a password (stored as a secure hash, never in plain text). We also store your company's MT5 server connection credentials, which are encrypted at rest and used solely to connect to your MT5 Manager API.</p>
+      <p class="legal__p">When you register, we collect your company name, email address, and a password (stored as a secure hash, never in plain text). We also store your company's MT5 server connection credentials, which are encrypted at rest and used solely to connect to your MT5 Manager API.</p>
 
       <h3>Usage data</h3>
-      <p>We may collect information about how the platform is used, including pages visited, features accessed, and actions taken. Key account security events (logins, permission changes, MT5 configuration changes) are recorded in an activity log visible to your own admins, and automatically purged after 7 days.</p>
+      <p class="legal__p">We may collect information about how the platform is used, including pages visited, features accessed, and actions taken. Key account security events (logins, permission changes, MT5 configuration changes) are recorded in an activity log visible to your own admins, and automatically purged after 7 days.</p>
 
       <h3>Nomous AI conversation data</h3>
-      <p>If you use the Nomous AI assistant, we store the questions you ask and the answers given so you can review your conversation history. To generate an answer, Nomous AI may include relevant operational data from your own company account (such as current pricing, risk, client, swap, or holiday data) as context, never data belonging to another company.</p>
+      <p class="legal__p">If you use the Nomous AI assistant, we store the questions you ask and the answers given so you can review your conversation history. To generate an answer, Nomous AI may include relevant operational data from your own company account (such as current pricing, risk, client, swap, or holiday data) as context, never data belonging to another company.</p>
 
       <h3>Payment information</h3>
-      <p>We do not store credit card numbers or bank details. Payments are made via cryptocurrency. We record the transaction hash you submit for payment verification purposes only.</p>
+      <p class="legal__p">We do not store credit card numbers or bank details. Payments are made via cryptocurrency. We record the transaction hash you submit for payment verification purposes only.</p>
 
-      <h2>2. How we use your information</h2>
-      <ul>
+      <h2 class="legal__h">2. How we use your information</h2>
+      <ul class="legal__list">
         <li>To provide and maintain the platform</li>
         <li>To authenticate your account and control access</li>
         <li>To connect to your MT5 server on your behalf</li>
@@ -84,95 +76,103 @@
         <li>To respond to support requests</li>
         <li>To improve the platform based on usage patterns</li>
       </ul>
-      <p>Our legal basis for this processing is performance of our contract with you (your subscription), and, for security logging and product improvement, our legitimate interest in keeping the platform secure and reliable.</p>
+      <p class="legal__p">Our legal basis for this processing is performance of our contract with you (your subscription), and, for security logging and product improvement, our legitimate interest in keeping the platform secure and reliable.</p>
 
-      <h2>3. MT5 server data</h2>
-      <p>The platform connects to your MT5 server using credentials you provide. Data retrieved from your MT5 server (account data, pricing, positions) is processed in real time and is not stored on our servers beyond what is necessary to display it to your authorised users or to generate a Nomous AI response you requested.</p>
-      <p>Your MT5 Manager credentials are encrypted at rest and are never shared with third parties.</p>
+      <h2 class="legal__h">3. MT5 server data</h2>
+      <p class="legal__p">The platform connects to your MT5 server using credentials you provide. Data retrieved from your MT5 server (account data, pricing, positions) is processed in real time and is not stored on our servers beyond what is necessary to display it to your authorised users or to generate a Nomous AI response you requested.</p>
+      <p class="legal__p">Your MT5 Manager credentials are encrypted at rest and are never shared with third parties.</p>
 
-      <h2>4. Third-party sub-processors</h2>
-      <p>We use a small number of third-party providers to operate the Service:</p>
-      <ul>
+      <h2 class="legal__h">4. Third-party sub-processors</h2>
+      <p class="legal__p">We use a small number of third-party providers to operate the Service:</p>
+      <ul class="legal__list">
         <li><strong>Hosting (Railway):</strong> runs our application and databases.</li>
         <li><strong>AI provider (Anthropic):</strong> powers the Nomous AI assistant. When you use Nomous AI, your question and the relevant account context are sent to Anthropic's API to generate a response; the response is returned to you and stored in your conversation history as described above.</li>
         <li><strong>Email/Telegram delivery:</strong> used only to deliver the alerts you configure.</li>
       </ul>
-      <p>Each company's data is strictly isolated in our systems and is never combined with, or made visible to, another company, including when generating Nomous AI responses. Nomous AI usage is also cost-capped per customer, so no customer's usage can affect another's.</p>
+      <p class="legal__p">Each company's data is strictly isolated in our systems and is never combined with, or made visible to, another company, including when generating Nomous AI responses. Nomous AI usage is also cost-capped per customer, so no customer's usage can affect another's.</p>
 
-      <h2>5. International data transfers</h2>
-      <p>Our AI sub-processor (Anthropic) may process data outside the European Economic Area (EEA), including in the United States. Where this occurs, we rely on appropriate safeguards, such as Standard Contractual Clauses, to protect your data in accordance with applicable data protection law.</p>
+      <h2 class="legal__h">5. International data transfers</h2>
+      <p class="legal__p">Our AI sub-processor (Anthropic) may process data outside the European Economic Area (EEA), including in the United States. Where this occurs, we rely on appropriate safeguards, such as Standard Contractual Clauses, to protect your data in accordance with applicable data protection law.</p>
 
-      <h2>6. Data sharing</h2>
-      <p>We do not sell, rent, or trade your personal data to third parties. We share data only with the sub-processors listed in Section 4, under confidentiality and data-processing obligations.</p>
-      <p>We may disclose data if required by law or to protect the rights, property, or safety of Nomous or our users.</p>
+      <h2 class="legal__h">6. Data sharing</h2>
+      <p class="legal__p">We do not sell, rent, or trade your personal data to third parties. We share data only with the sub-processors listed in Section 4, under confidentiality and data-processing obligations.</p>
+      <p class="legal__p">We may disclose data if required by law or to protect the rights, property, or safety of Nomous or our users.</p>
 
-      <h2>7. Data controller and processor roles</h2>
-      <p>For data about your own company and the users you invite, Nomous is the data controller. For personal data belonging to your own end clients that you view or process through the platform (for example, via Clients), you are the data controller and Nomous acts only as a data processor, acting on your instructions. See our <a href="terms.html" style="color:var(--primary)">Terms &amp; Conditions</a> for more detail on this relationship.</p>
+      <h2 class="legal__h">7. Data controller and processor roles</h2>
+      <p class="legal__p">For data about your own company and the users you invite, Nomous is the data controller. For personal data belonging to your own end clients that you view or process through the platform (for example, via Clients), you are the data controller and Nomous acts only as a data processor, acting on your instructions. See our <a href="terms.html" style="color:var(--primary)">Terms &amp; Conditions</a> for more detail on this relationship.</p>
 
-      <h2>8. Data retention</h2>
-      <p>We retain account data for as long as your subscription is active. If you cancel, your data is retained for 30 days to allow reactivation, then deleted. Activity logs are automatically purged after 7 days. Nomous AI conversations are retained until you delete them or your account is closed. You may request earlier deletion of any of the above by contacting us.</p>
+      <h2 class="legal__h">8. Data retention</h2>
+      <p class="legal__p">We retain account data for as long as your subscription is active. If you cancel, your data is retained for 30 days to allow reactivation, then deleted. Activity logs are automatically purged after 7 days. Nomous AI conversations are retained until you delete them or your account is closed. You may request earlier deletion of any of the above by contacting us.</p>
 
-      <h2>9. Security</h2>
-      <p>We use industry-standard measures to protect your data, including HTTPS encryption in transit, bcrypt password hashing, encryption at rest for MT5 Manager credentials, optional two-factor authentication (TOTP) on user accounts, optional IP allowlisting to restrict login to specific IP addresses or ranges, rate limiting on login and account-security endpoints, strict per-company data isolation enforced at the application level, and audit logging of key account actions. No method of transmission or storage is 100% secure; we cannot guarantee absolute security.</p>
+      <h2 class="legal__h">9. Security</h2>
+      <p class="legal__p">We use industry-standard measures to protect your data, including HTTPS encryption in transit, bcrypt password hashing, encryption at rest for MT5 Manager credentials, optional two-factor authentication (TOTP) on user accounts, optional IP allowlisting to restrict login to specific IP addresses or ranges, rate limiting on login and account-security endpoints, strict per-company data isolation enforced at the application level, and audit logging of key account actions. No method of transmission or storage is 100% secure; we cannot guarantee absolute security.</p>
 
-      <h2>10. Cookies</h2>
-      <p>The platform uses session cookies for authentication only. We do not use tracking or advertising cookies. The marketing website may use basic analytics to understand visitor numbers.</p>
+      <h2 class="legal__h">10. Cookies</h2>
+      <p class="legal__p">The platform uses session cookies for authentication only. We do not use tracking or advertising cookies. The marketing website may use basic analytics to understand visitor numbers.</p>
 
-      <h2>11. Your rights</h2>
-      <p>Subject to applicable law, you have the right to access, correct, delete, restrict, or port your personal data, and to object to certain processing. To exercise these rights, contact us at <a href="mailto:hello@nomous.tech" style="color:var(--primary)">hello@nomous.tech</a>.</p>
-      <p>If you are located in the EU/EEA and believe we have not addressed your concern, you also have the right to lodge a complaint with your local data protection supervisory authority, or with the Office of the Commissioner for Personal Data Protection in Cyprus.</p>
+      <h2 class="legal__h">11. Your rights</h2>
+      <p class="legal__p">Subject to applicable law, you have the right to access, correct, delete, restrict, or port your personal data, and to object to certain processing. To exercise these rights, contact us at <a href="mailto:hello@nomous.tech" style="color:var(--primary)">hello@nomous.tech</a>.</p>
+      <p class="legal__p">If you are located in the EU/EEA and believe we have not addressed your concern, you also have the right to lodge a complaint with your local data protection supervisory authority, or with the Office of the Commissioner for Personal Data Protection in Cyprus.</p>
 
-      <h2>12. Changes to this policy</h2>
-      <p>We may update this Privacy Policy from time to time. We will notify registered users of material changes by email. Continued use of the platform after changes constitutes acceptance of the updated policy.</p>
+      <h2 class="legal__h">12. Changes to this policy</h2>
+      <p class="legal__p">We may update this Privacy Policy from time to time. We will notify registered users of material changes by email. Continued use of the platform after changes constitutes acceptance of the updated policy.</p>
 
-      <h2>13. Contact</h2>
-      <p>For privacy-related questions, contact us at <a href="mailto:hello@nomous.tech" style="color:var(--primary)">hello@nomous.tech</a>.</p>
-
+      <h2 class="legal__h">13. Contact</h2>
+      <p class="legal__p">For privacy-related questions, contact us at <a href="mailto:hello@nomous.tech" style="color:var(--primary)">hello@nomous.tech</a>.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+</main>
+
+<footer class="site-footer theme-dark">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
       <div>
-        <div class="footer-logo"><div class="nav-mark" style="width:28px;height:28px;font-size:11px">N</div>Nomous</div>
-        <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+        <a class="site-footer__brand" href="index.html">Nomous</a>
+        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
       </div>
       <div>
-        <div class="footer-col-title">Platform</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Platform</p>
+        <div class="site-footer__links">
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
           <a href="contact.html">Get Started</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Company</p>
+        <div class="site-footer__links">
           <a href="about.html">About Us</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Legal</p>
+        <div class="site-footer__links">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
-    <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved.</span>
-      <div class="footer-legal-links">
+
+    <p class="site-footer__disclaimer">
+      Nomous is an operational software platform for MT5 brokerage teams. We do
+      not provide investment, financial, or trading advice, and we are not a
+      licensed or regulated financial services provider.
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Nomous. All rights reserved.</span>
+      <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </span>
     </div>
   </div>
 </footer>
 
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

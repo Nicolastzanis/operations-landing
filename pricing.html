@@ -1,225 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing | Nomous</title>
-  <meta name="description" content="One plan, full platform access, tailored pricing for your entire MT5 broker operations team." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing | Nomous</title>
+<meta name="description" content="One plan, full platform access for your entire team. No seat limits, no hidden fees, no long-term lock-in.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
 
-<nav class="nav" id="main-nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-mark">N</div>
-      Nomous
-    </a>
-    <div class="nav-links">
-      <a href="features.html">Features</a>
-      <a href="pricing.html" class="active">Pricing</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a href="contact.html" class="nav-cta">Get Started →</a>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var burger = document.getElementById('nav-burger');
-  if (!nav || !burger) return;
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  nav.querySelectorAll('.nav-links a').forEach(function (a) {
-    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
-  });
-})();
-</script>
+<header class="nav" data-nav>
+  <a class="nav__brand" href="index.html">
+    <img class="nav__logo" src="assets/brand/logo-n-sm.webp" alt="" width="30" height="30">
+    Nomous
+  </a>
+  <button class="nav__burger" data-burger aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links">
+    <a href="features.html">Features</a>
+    <a href="pricing.html" class="is-current">Pricing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn--ghost" href="contact.html">Get Started</a>
+  </nav>
+</header>
 
-<div class="page-hero">
-  <div class="container page-hero-inner">
-    <p class="eyebrow-gradient">Pricing</p>
-    <h1>Pricing Built Around Your Brokerage</h1>
-    <p>One plan. Full platform access for your entire team. No seat limits, no hidden fees, no long-term lock-in. Get in touch and we'll put together a quote for your brokerage.</p>
-  </div>
-</div>
+<main>
 
-<section class="section">
-  <div class="container">
-    <div class="pricing-card-wrap">
-      <div class="pricing-card">
-        <div class="pricing-badge">Full Access</div>
-        <div class="pricing-name">Operations Suite</div>
-        <div style="margin-top:10px">
-          <span class="pricing-amount">Custom</span>
+  <section class="page-hero theme-dark">
+    <p class="mono-tag"><span class="pulse"></span>Pricing</p>
+    <h1 class="display">Built around<br>your brokerage.</h1>
+    <p class="subhead">
+      One plan. Full platform access for your entire team. No seat limits, no
+      hidden fees, no long-term lock-in.
+    </p>
+  </section>
+
+  <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       The plan
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner" style="text-align:center">
+      <div class="plan" data-reveal data-tilt>
+        <p class="plan__name">Operations Suite</p>
+        <p class="plan__price">Custom</p>
+        <p class="plan__note">Tailored to your brokerage · Cancel anytime</p>
+        <ul class="plan__list">
+          <li>Real-time pricing monitor, all symbols live</li>
+          <li>Account risk monitoring with margin alerts</li>
+          <li>Clients and open position viewer</li>
+          <li>Swaps and group simulator</li>
+          <li>Email and Telegram instant alerts</li>
+          <li>Symbol hours and market holiday manager</li>
+          <li>Economic news and Telegram alerts</li>
+          <li>Nomous AI assistant, trained on your own data</li>
+          <li>Custom branding and company logo</li>
+          <li>Unlimited team accounts</li>
+          <li>MT5 Manager API connection</li>
+        </ul>
+        <div class="actions" style="justify-content:center">
+          <a class="btn btn--primary" href="contact.html">Contact us</a>
         </div>
-        <div class="pricing-billing">Tailored to your brokerage · Cancel anytime</div>
-        <hr class="pricing-divider" />
-        <div class="pricing-feats">
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Real-time pricing monitor, all symbols live</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Account risk monitoring with margin alerts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Clients and open position viewer</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Swaps and group simulator</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Email and Telegram instant alerts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Symbol hours and market holiday manager</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Custom branding and company logo</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Unlimited team accounts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>MT5 Manager API connection</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Economic news and Telegram alerts</div>
-          <div class="pricing-feat"><div class="pricing-feat-check">✓</div>Nomous AI assistant, trained on your own data</div>
-        </div>
-        <a href="contact.html" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Contact Us →</a>
-        <p class="pricing-note">We'll get back to you as soon as possible</p>
+        <p class="plan__note" style="margin-top:1.25rem">We'll get back to you as soon as possible</p>
       </div>
     </div>
+  </section>
 
-    <!-- What's included detail -->
-    <div style="max-width:760px;margin:80px auto 0">
-      <h2 style="text-align:center;margin-bottom:48px">What's included</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:28px;font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:1">7</div>
-          <div><div style="font-size:15px;font-weight:700;margin-bottom:5px">All 7 platform modules</div><div style="font-size:13.5px;color:var(--muted);line-height:1.6">All included from day one: Pricing, Risk, Clients, Swaps, Alerts, Symbol Hours, AI.</div></div>
-        </div>
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text)">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+  <!-- ============================================================
+       What's included
+       ============================================================ -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>001</b> What's included</p>
+      <h2 class="headline" data-reveal>Everything, from day one.</h2>
+
+      <div class="principles">
+        <article class="principle" data-reveal>
+          <h3>All eight platform modules</h3>
+          <p>Pricing, Risk, Clients, Swaps, Alerts, Symbol Hours, Nomous AI and News. Nothing gated behind a higher tier.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Unlimited team members</h3>
+          <p>No per-seat pricing. Add your entire operations team, compliance staff and management at no extra cost.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Custom branding</h3>
+          <p>Upload your company logo and display name. The platform looks like yours.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Secure MT5 connection</h3>
+          <p>Connect via MT5 Manager API. Your data stays on your server. We only read what you authorise.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>No setup fee</h3>
+          <p>No installation, no onboarding charge and no minimum contract. You pay monthly and can cancel at any time.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Live demo first</h3>
+          <p>We can arrange a demo on a demo MT5 account so you see the platform with real data before committing.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>002</b> Questions</p>
+      <h2 class="headline" data-reveal>Frequently asked.</h2>
+
+      <div class="faq" data-reveal>
+        <div class="faq__item" data-faq>
+          <button class="faq__q" aria-expanded="false">
+            How do I pay?
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a" hidden>
+            <p>We'll walk you through pricing and accepted payment methods once we've discussed your brokerage's needs. Get in touch to get started.</p>
           </div>
-          <div><div style="font-size:15px;font-weight:700;margin-bottom:5px">Unlimited team members</div><div style="font-size:13.5px;color:var(--muted);line-height:1.6">No per-seat pricing. Add your entire operations team at no extra cost.</div></div>
         </div>
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text)">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+
+        <div class="faq__item" data-faq>
+          <button class="faq__q" aria-expanded="false">
+            Is there a setup fee or contract?
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a" hidden>
+            <p>No setup fee, no minimum contract. You pay monthly and can cancel at any time. If you cancel, your access remains until the end of the paid month.</p>
           </div>
-          <div><div style="font-size:15px;font-weight:700;margin-bottom:5px">Custom branding</div><div style="font-size:13.5px;color:var(--muted);line-height:1.6">Upload your company logo and display name. The platform looks like yours.</div></div>
         </div>
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text)">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+
+        <div class="faq__item" data-faq>
+          <button class="faq__q" aria-expanded="false">
+            How many team members can I add?
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a" hidden>
+            <p>Unlimited. There is no per-seat pricing. You can add your entire operations team, compliance team, support staff and management under the same subscription.</p>
           </div>
-          <div><div style="font-size:15px;font-weight:700;margin-bottom:5px">Secure MT5 connection</div><div style="font-size:13.5px;color:var(--muted);line-height:1.6">Connect via MT5 Manager API. Your data stays on your server. We only read what you authorise.</div></div>
+        </div>
+
+        <div class="faq__item" data-faq>
+          <button class="faq__q" aria-expanded="false">
+            Do I need to install anything on my MT5 server?
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a" hidden>
+            <p>No installation required on your server. We connect via your existing MT5 Manager API using manager credentials you provide. You keep full control and can revoke access at any time.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-faq>
+          <button class="faq__q" aria-expanded="false">
+            Can I try it before paying?
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a" hidden>
+            <p>Contact us and we can arrange a live demo on a demo MT5 account so you can see the platform with real data before committing.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-faq>
+          <button class="faq__q" aria-expanded="false">
+            What happens after I get in touch?
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a" hidden>
+            <p>We'll discuss your brokerage's needs and put together a quote. Once you're ready to proceed, we'll send you a registration link and payment instructions. After payment is confirmed, your account is activated and you can connect your MT5 server and invite your team.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FAQ -->
-<section class="section" style="background:var(--bg-soft)">
-  <div class="container">
-    <h2 class="text-center">Frequently asked questions</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">How do I pay?</div>
-        <div class="faq-a">We'll walk you through pricing and accepted payment methods once we've discussed your brokerage's needs. Get in touch to get started.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Is there a setup fee or contract?</div>
-        <div class="faq-a">No setup fee, no minimum contract. You pay monthly and can cancel at any time. If you cancel, your access remains until the end of the paid month.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How many team members can I add?</div>
-        <div class="faq-a">Unlimited. There is no per-seat pricing. You can add your entire operations team, compliance team, support staff and management under the same subscription.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do I need to install anything on my MT5 server?</div>
-        <div class="faq-a">No installation required on your server. We connect via your existing MT5 Manager API using manager credentials you provide. You keep full control and can revoke access at any time.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Can I try it before paying?</div>
-        <div class="faq-a">Contact us and we can arrange a live demo on a demo MT5 account so you can see the platform with real data before committing.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What happens after I get in touch?</div>
-        <div class="faq-a">We'll discuss your brokerage's needs and put together a quote. Once you're ready to proceed, we'll send you a registration link and payment instructions. After payment is confirmed, your account is activated and you can connect your MT5 server and invite your team.</div>
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="section section--line">
+    <div class="section__inner" style="text-align:center">
+      <p class="mono-tag" style="justify-content:center"><span class="pulse"></span>Live in under an hour</p>
+      <h2 class="display">Ready to get started?</h2>
+      <p class="subhead" style="margin-inline:auto">
+        Register your brokerage and have your operations team live within the hour.
+      </p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn btn--primary" href="contact.html">Get Started</a>
+        <a class="btn btn--ghost" href="features.html">See all features</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="cta-section">
-  <div class="container" data-reveal>
-    <h2 style="color:#fff">Ready to Get Started?</h2>
-    <p>Register your brokerage and have your operations team live within the hour.</p>
-    <div class="cta-btns">
-      <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
-      <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
-    </div>
-  </div>
-</section>
+</main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+<footer class="site-footer theme-dark">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
       <div>
-        <div class="footer-logo"><div class="nav-mark" style="width:28px;height:28px;font-size:11px">N</div>Nomous</div>
-        <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+        <a class="site-footer__brand" href="index.html">Nomous</a>
+        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
       </div>
       <div>
-        <div class="footer-col-title">Platform</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Platform</p>
+        <div class="site-footer__links">
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
           <a href="contact.html">Get Started</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Company</p>
+        <div class="site-footer__links">
           <a href="about.html">About Us</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Legal</p>
+        <div class="site-footer__links">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
-    <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved.</span>
-      <div class="footer-legal-links">
+
+    <p class="site-footer__disclaimer">
+      Nomous is an operational software platform for MT5 brokerage teams. We do
+      not provide investment, financial, or trading advice, and we are not a
+      licensed or regulated financial services provider.
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Nomous. All rights reserved.</span>
+      <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </span>
     </div>
   </div>
 </footer>
 
-
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var hero = document.querySelector('.page-hero');
-  function check() {
-    var h = hero ? hero.offsetHeight - 40 : 100;
-    nav.classList.toggle('on-light', window.scrollY > h);
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  check();
-})();
-(function () {
-  var els = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
-  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
-  els.forEach(function(el){ io.observe(el); });
-})();
-</script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

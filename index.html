@@ -1,794 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nomous | MT5 Broker Operations Platform</title>
-  <meta name="description" content="Real-time pricing, risk monitoring, client management, and an AI assistant for MT5 brokers. Built for operations teams who can't afford to miss a thing." />
-  <meta name="theme-color" content="#0A0E1F" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo-n.png?v=1" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nomous | Read-only MT5 infrastructure for brokerages</title>
+<meta name="description" content="Nomous connects brokerages to the MT5 Web API over a strictly read-only integration. Real-time pricing, risk, client and alert data, without write access to your server.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="nav" id="main-nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <div class="nav-mark">N</div>
-      Nomous
-    </a>
-    <div class="nav-links">
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
+<!-- No loader: the hero is static, so there is nothing to wait on before
+     first paint. The one remaining sequence (security) streams in lazily as
+     you approach it. -->
+
+<!-- ============================================================
+     Nav
+     ============================================================ -->
+<header class="nav" data-nav>
+  <a class="nav__brand" href="index.html">
+    <img class="nav__logo" src="assets/brand/logo-n-sm.webp" alt="" width="30" height="30">
+    Nomous
+  </a>
+  <button class="nav__burger" data-burger aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links">
+    <a href="features.html">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn--ghost" href="contact.html">Get Started</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       HERO - no canvas. Navy gradient + drifting orbs + rising
+       particles, with a diagram that states the product's whole
+       premise: data moves one way and the return path is closed.
+       ============================================================ -->
+  <section class="hero theme-dark" id="top">
+
+    <div class="hero__orbs" aria-hidden="true">
+      <span class="orb orb--1"></span>
+      <span class="orb orb--2"></span>
+      <span class="orb orb--3"></span>
     </div>
-    <div class="nav-actions">
-      <a href="contact.html" class="nav-cta">Get Started</a>
+
+    <!-- Each particle carries its own size/position/timing. -->
+    <div class="hero__particles" aria-hidden="true">
+      <span class="particle" style="--size:5px; --left:8%;  --dur:7s;   --delay:0s"></span>
+      <span class="particle" style="--size:3px; --left:18%; --dur:9s;   --delay:1s"></span>
+      <span class="particle" style="--size:6px; --left:29%; --dur:8s;   --delay:2.5s"></span>
+      <span class="particle" style="--size:4px; --left:41%; --dur:10s;  --delay:0.5s"></span>
+      <span class="particle" style="--size:3px; --left:54%; --dur:7.5s; --delay:3s"></span>
+      <span class="particle" style="--size:6px; --left:66%; --dur:9.5s; --delay:1.5s"></span>
+      <span class="particle" style="--size:4px; --left:78%; --dur:8s;   --delay:2s"></span>
+      <span class="particle" style="--size:5px; --left:89%; --dur:7s;   --delay:4s"></span>
     </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<script>
-(function () {
-  var nav = document.getElementById('main-nav');
-  var burger = document.getElementById('nav-burger');
-  if (!nav || !burger) return;
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  nav.querySelectorAll('.nav-links a').forEach(function (a) {
-    a.addEventListener('click', function () { nav.classList.remove('nav-open'); });
-  });
-})();
-</script>
 
-<div class="frame">
+    <div class="hero__inner">
 
-<!-- ═══════════════════════════════════════════
-     001 · HERO
-═══════════════════════════════════════════ -->
-<section class="sec sec-first">
-  <div class="sec-bar">
-    <span>001 · The Processing Core</span>
-  </div>
-
-  <!-- live chip: always-animated 3D ambient scene, not scroll-driven -->
-  <div class="cine" id="cine">
-    <div class="cine-stage" id="cine-stage">
-      <canvas class="cine-canvas" id="cine-canvas" aria-hidden="true"></canvas>
-      <div class="cine-spotlight" id="cine-spotlight" aria-hidden="true"></div>
-
-      <!-- soft organic color blob behind the panels: the one non-rectangular
-           mass in the composition, keeps the scene from reading as pure boxes -->
-      <div class="panel3d-blob" aria-hidden="true"></div>
-
-      <!-- the product itself, in 3D: a real dashboard panel (not an invented
-           metaphor object), tilting toward the cursor, with two smaller
-           panels stacked behind it at depth, live-ticking numbers -->
-      <div class="panel3d-scene" id="panel3d-scene">
-        <div class="panel3d-group" id="panel3d-group">
-
-          <div class="panel3d panel3d-mini pm-pricing">
-            <div class="pm-head">EURUSD <span class="pm-tag">Live</span></div>
-            <svg class="pm-spark" viewBox="0 0 100 32" preserveAspectRatio="none"><polyline id="sparkLine" points="0,20 12,18 24,22 36,14 48,17 60,9 72,13 84,6 100,10"/></svg>
-          </div>
-
-          <div class="panel3d panel3d-main">
-            <div class="ledger-head">
-              <span>Risk Monitor · live feed</span>
-              <span class="cine-live"><span class="cine-live-dot"></span>Live</span>
-            </div>
-            <div class="ledger-cols">
-              <span>Login</span><span>Equity</span><span>Margin</span><span>State</span>
-            </div>
-            <div class="ledger-row">
-              <span class="ledger-cell">#1045820</span>
-              <span class="ledger-cell" id="tick-eq1">$1,240</span>
-              <span class="ledger-cell" id="tick-mg1">18%</span>
-              <span class="st st-crit">Critical</span>
-            </div>
-            <div class="ledger-row">
-              <span class="ledger-cell">#1045234</span>
-              <span class="ledger-cell" id="tick-eq2">$8,450</span>
-              <span class="ledger-cell" id="tick-mg2">52%</span>
-              <span class="st st-watch">Watch</span>
-            </div>
-            <div class="ledger-row">
-              <span class="ledger-cell">#1044991</span>
-              <span class="ledger-cell" id="tick-eq3">$42,100</span>
-              <span class="ledger-cell" id="tick-mg3">310%</span>
-              <span class="st st-ok">Healthy</span>
-            </div>
-          </div>
-
-          <div class="panel3d panel3d-mini pm-alerts">
-            <div class="pm-head">Alerts <span class="pm-tag pm-tag-alt">2 active</span></div>
-            <div class="pm-alert-row"><span class="pm-dot"></span>Margin call · #1045820</div>
-            <div class="pm-alert-row pm-dim"><span class="pm-dot pm-dot-dim"></span>Spread spike · XAUUSD</div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="cine-overlay" id="cine-overlay">
-        <h1 data-reveal>The processing core<br>for your MT5<br>operations.</h1>
-        <p class="hero-lead" data-reveal style="--d:.08s">
-          Every price tick, position, and margin call, processed in real time and turned into pricing, risk, and client intelligence your ops team can act on instantly.
+      <div class="hero__copy">
+        <p class="hero__eyebrow fade-up fade-up--1">Read-only · Real-time · MT5 native</p>
+        <h1 class="hero__title fade-up fade-up--2">
+          The <span class="hl"><em>processing core</em></span><br>for your MT5 operations.
+        </h1>
+        <p class="hero__sub fade-up fade-up--3">
+          Nomous links your MetaTrader 5 server to modern applications through a
+          strictly read-only integration. Full visibility, zero write surface.
         </p>
-        <div class="hero-actions" data-reveal style="--d:.16s">
-          <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
-          <a href="features.html" class="btn btn-outline btn-lg">View Modules</a>
+        <div class="hero__actions fade-up fade-up--4">
+          <a class="btn btn--glow" href="contact.html">Get Started</a>
+          <a class="btn btn--ghost" href="features.html">See how it works</a>
         </div>
-        <p class="hero-trust" data-reveal style="--d:.24s">No long-term contract, cancel anytime</p>
       </div>
-      <div class="cine-hud">
-        <span>Fig. 01 · Live risk monitor, illustrative data</span>
-        <span class="cine-live"><span class="cine-live-dot"></span>Live</span>
+
+      <div class="hero__visual fade-up fade-up--3">
+        <div>
+          <!-- Layout: chain in from the left, hub, fan out to the right.
+               Geometry note: the boxes' RENDERED size depends on their share of
+               the viewBox width, not their absolute units - the SVG scales to
+               its column. So widening the viewBox and scaling the boxes with it
+               buys connector length for free. -->
+          <svg class="hero__diagram" viewBox="0 40 880 328" role="img"
+               aria-label="Diagram: your MT5 server streams live data into the Nomous hub, which processes it and feeds the Pricing Monitor, Risk Monitor, Alerts and Nomous AI. Nothing is written back to the server.">
+            <defs>
+              <radialGradient id="hubGlow">
+                <stop offset="0%"   stop-color="#6366f1" stop-opacity="0.5"/>
+                <stop offset="55%"  stop-color="#4338ca" stop-opacity="0.16"/>
+                <stop offset="100%" stop-color="#4338ca" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#16233b"/>
+                <stop offset="100%" stop-color="#0b1424"/>
+              </linearGradient>
+              <linearGradient id="chipAI" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#1e2a55"/>
+                <stop offset="100%" stop-color="#111838"/>
+              </linearGradient>
+              <filter id="dot" x="-300%" y="-300%" width="700%" height="700%">
+                <feGaussianBlur stdDeviation="3" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="lift" x="-40%" y="-60%" width="180%" height="220%">
+                <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#02060f" flood-opacity="0.55"/>
+              </filter>
+            </defs>
+
+            <!-- connectors -->
+            <g stroke="rgba(150,158,240,0.24)" stroke-width="1.3" stroke-dasharray="5 6" fill="none">
+              <line x1="164" y1="204" x2="206" y2="204"/>
+              <line x1="360" y1="204" x2="404" y2="204"/>
+              <line x1="524" y1="204" x2="596" y2="90"/>
+              <line x1="524" y1="204" x2="596" y2="166"/>
+              <line x1="524" y1="204" x2="596" y2="242"/>
+              <line x1="524" y1="204" x2="596" y2="318"/>
+            </g>
+
+            <!-- inputs -->
+            <g filter="url(#lift)">
+              <rect x="0" y="166" width="164" height="76" rx="17" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+              <rect x="206" y="166" width="154" height="76" rx="17" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+            </g>
+
+            <g class="dg-icon" transform="translate(22,196)">
+              <rect x="0" y="0"  width="16" height="6" rx="1.6"/>
+              <rect x="0" y="10" width="16" height="6" rx="1.6"/>
+              <circle cx="3.2" cy="3" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="3.2" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+            </g>
+            <text x="50" y="199" class="dg-title">MT5 server</text>
+            <text x="50" y="219" class="dg-label">Manager API</text>
+
+            <g class="dg-icon dg-icon--live" transform="translate(228,196)">
+              <path d="M1.5 10.5 a7 7 0 0 1 13 0"/>
+              <path d="M4.8 12.4 a3.6 3.6 0 0 1 6.4 0"/>
+              <circle cx="8" cy="13.6" r="1.15" fill="currentColor" stroke="none"/>
+            </g>
+            <text x="256" y="199" class="dg-title">Live data</text>
+            <text x="256" y="219" class="dg-label dg-label--live">Streaming</text>
+
+            <!-- hub -->
+            <circle cx="464" cy="204" r="152" fill="url(#hubGlow)"/>
+            <circle cx="464" cy="204" r="76" fill="none" stroke="rgba(150,158,240,0.26)" stroke-width="1">
+              <animate attributeName="r" values="76;126" dur="3.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.45;0" dur="3.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="464" cy="204" r="76" fill="none" stroke="rgba(150,158,240,0.26)" stroke-width="1">
+              <animate attributeName="r" values="76;126" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.45;0" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <image href="assets/brand/logo-n.webp" x="406" y="146" width="116" height="116"
+                   class="dg-logo" preserveAspectRatio="xMidYMid meet"/>
+            <text x="464" y="296" text-anchor="middle" class="dg-label dg-label--muted">Processing · read only</text>
+
+            <!-- outputs -->
+            <g filter="url(#lift)">
+              <rect x="596" y="58"  width="284" height="64" rx="16" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+              <rect x="596" y="134" width="284" height="64" rx="16" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+              <rect x="596" y="210" width="284" height="64" rx="16" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+              <rect x="596" y="286" width="284" height="64" rx="16" fill="url(#chipAI)" stroke="rgba(150,158,240,0.55)"/>
+            </g>
+
+            <g class="dg-icon" transform="translate(622,82)">
+              <polyline points="0,8 3,8 5.5,2 8.5,14 11,7 13,8 16,8"/>
+            </g>
+            <text x="654" y="96" class="dg-title">Pricing Monitor</text>
+
+            <g class="dg-icon" transform="translate(622,158)">
+              <path d="M8 1 L14.5 3.8 V8.2 C14.5 12 8 15 8 15 C8 15 1.5 12 1.5 8.2 V3.8 Z"/>
+            </g>
+            <text x="654" y="172" class="dg-title">Risk Monitor</text>
+
+            <g class="dg-icon" transform="translate(622,234)">
+              <path d="M4 11.5 V7 a4 4 0 0 1 8 0 v4.5"/>
+              <path d="M2.4 11.8 h11.2"/>
+              <path d="M6.4 14.2 a1.8 1.8 0 0 0 3.2 0"/>
+            </g>
+            <text x="654" y="248" class="dg-title">Alerts</text>
+
+            <!-- The app uses the logo mark itself here, not a generic glyph. -->
+            <image href="assets/brand/logo-n-sm.webp" x="620" y="308" width="21" height="21"
+                   preserveAspectRatio="xMidYMid meet"/>
+            <text x="654" y="324" class="dg-title dg-title--ai">Nomous AI</text>
+
+            <!-- packets, sequenced so the eye follows server, live, hub, out -->
+            <circle r="4" fill="#969ef0" filter="url(#dot)">
+              <animate attributeName="cx" values="164;206" dur="2.6s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="204;204" dur="2.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="4" fill="#969ef0" filter="url(#dot)">
+              <animate attributeName="cx" values="360;404" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="204;204" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+            </circle>
+
+            <circle r="3.5" fill="#2fd6a5" filter="url(#dot)">
+              <animate attributeName="cx" values="524;596" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="204;90" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.5" fill="#2fd6a5" filter="url(#dot)">
+              <animate attributeName="cx" values="524;596" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="204;166" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.5" fill="#2fd6a5" filter="url(#dot)">
+              <animate attributeName="cx" values="524;596" dur="2.6s" begin="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="204;242" dur="2.6s" begin="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.5" fill="#969ef0" filter="url(#dot)">
+              <animate attributeName="cx" values="524;596" dur="2.6s" begin="1.35s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="204;318" dur="2.6s" begin="1.35s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="1.35s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+
+          <p class="hero__caption">One connection · nothing written back</p>
+        </div>
       </div>
-      <noscript>
-        <img class="cine-fallback" src="assets/hero-light-poster.jpg" alt="Nomous data architecture" />
-      </noscript>
+
     </div>
+  </section>
+
+  <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
 
-  <!-- telemetry strip -->
-  <div class="telemetry">
-    <div class="telemetry-cell">
-      <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Symbols tracked</div>
-      <div class="telemetry-val" id="tel-symbols">184</div>
+  <!-- ============================================================
+       001 - Claims. These two statements previously sat as overlay
+       copy on the hero frame sequence; the hero is static now, so
+       they live here rather than being lost.
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner">
+      <div class="claims">
+        <article class="claim" data-reveal>
+          <h3 class="gradient-text">Streaming, not polling.</h3>
+          <p>
+            Account state, positions, orders and balances propagate in real time
+            over a persistent connection, with no scheduled scrapes and no stale reads.
+          </p>
+        </article>
+        <article class="claim" data-reveal>
+          <h3>Built for the ones who can't go down.</h3>
+          <p>
+            Redundant regional nodes, automatic failover, and a connection layer
+            engineered for brokerages operating around the clock.
+          </p>
+        </article>
+      </div>
     </div>
-    <div class="telemetry-cell">
-      <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11 13 15 21 7"/><path d="M15 7h6v6"/></svg>Avg spread</div>
-      <div class="telemetry-val"><span id="tel-spread">0.9</span><span class="telemetry-unit">pts</span></div>
-    </div>
-    <div class="telemetry-cell alert">
-      <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Spike alerts<span class="telemetry-live-dot"></span></div>
-      <div class="telemetry-val">2<span class="telemetry-unit">active</span></div>
-    </div>
-    <div class="telemetry-cell">
-      <div class="telemetry-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>Modules</div>
-      <div class="telemetry-val">08</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════════════
-     002 · THESIS
-═══════════════════════════════════════════ -->
-<section class="sec">
-  <div class="statement-grid">
-    <div class="statement-label" data-reveal>002 · Thesis</div>
-    <div class="statement-body">
-      <h2 data-reveal>Your ops team already knows what needs watching. We built the tool.</h2>
-      <p class="statement-sub" data-reveal style="--d:.1s">
-        Eight modules covering everything an MT5 broker operations team checks every single day, in one place, in real time.
+  <!-- ============================================================
+       002 - Thesis + pipeline
+       ============================================================ -->
+  <section class="section" id="platform">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>002</b> Thesis</p>
+      <h2 class="headline" data-reveal>Your ops team already knows<br>what needs watching.</h2>
+      <p class="lede" data-reveal>
+        Eight modules covering everything an MT5 broker operations team checks
+        every single day, in one place, in real time.
       </p>
-      <div data-reveal style="--d:.18s"><a href="features.html" class="link-sweep">Explore Features →</a></div>
 
-      <div class="chip-strip" data-reveal style="--d:.26s">
-        <div class="chip-strip-node">
-          <svg class="chip-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="2" x2="5" y2="9"/><rect x="3" y="9" width="4" height="7" rx="0.5"/><line x1="5" y1="16" x2="5" y2="22"/><line x1="12" y1="6" x2="12" y2="11"/><rect x="10" y="11" width="4" height="9" rx="0.5"/><line x1="19" y1="2" x2="19" y2="6"/><rect x="17" y="6" width="4" height="6" rx="0.5"/><line x1="19" y1="12" x2="19" y2="17"/></svg>
-          <span class="chip-strip-label">Raw MT5 Data</span>
-          <span class="chip-strip-sub">Prices · positions · margin</span>
-          <span class="st st-ok chip-strip-status">Online</span>
+      <!-- The three-card pipeline that used to sit here was saying the same
+           thing as the hero hub. Removed rather than repeated. -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       003 - Modules
+       ============================================================ -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>003</b> Modules</p>
+      <h2 class="headline" data-reveal>Eight units. One platform.</h2>
+      <p class="lede" data-reveal>
+        Everything included from day one. No per-module pricing, no add-ons.
+      </p>
+
+      <div class="modgrid" data-reveal>
+        <a class="modcard" href="features.html#m01">
+          <span class="modcard__num">01</span>
+          <span class="modcard__name">Pricing Monitor</span>
+          <span class="modcard__desc">Live bid/ask and spreads for every symbol. Spot anomalies the moment they happen.</span>
+        </a>
+        <a class="modcard" href="features.html#m02">
+          <span class="modcard__num">02</span>
+          <span class="modcard__name">Risk Monitor</span>
+          <span class="modcard__desc">Equity, margin level and floating P&amp;L per account, with margin-call flags.</span>
+        </a>
+        <a class="modcard" href="features.html#m03">
+          <span class="modcard__num">03</span>
+          <span class="modcard__name">Clients</span>
+          <span class="modcard__desc">Find any account by login, email or name. Positions, history and settings.</span>
+        </a>
+        <a class="modcard" href="features.html#m04">
+          <span class="modcard__num">04</span>
+          <span class="modcard__name">Swaps &amp; Simulator</span>
+          <span class="modcard__desc">Model the effect of new swap values before anything reaches your clients.</span>
+        </a>
+        <a class="modcard" href="features.html#m05">
+          <span class="modcard__num">05</span>
+          <span class="modcard__name">Alerts</span>
+          <span class="modcard__desc">Margin calls, spread spikes and disconnects, delivered by email and Telegram.</span>
+        </a>
+        <a class="modcard" href="features.html#m06">
+          <span class="modcard__num">06</span>
+          <span class="modcard__name">Hours &amp; Holidays</span>
+          <span class="modcard__desc">Session hours and market holidays per symbol group, with live open/closed state.</span>
+        </a>
+        <a class="modcard" href="features.html#m07">
+          <span class="modcard__num">07</span>
+          <span class="modcard__name">Nomous AI</span>
+          <span class="modcard__desc">Ask in plain English. Answers grounded in your own live data, isolated per broker.</span>
+        </a>
+        <a class="modcard" href="features.html#m08">
+          <span class="modcard__num">08</span>
+          <span class="modcard__name">News</span>
+          <span class="modcard__desc">High-impact economic events explained, with an automatic alert 30 minutes ahead.</span>
+        </a>
+      </div>
+
+      <div class="actions" style="justify-content:flex-start" data-reveal>
+        <a class="btn btn--ghost" href="features.html">Explore all features</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       004 - Deployment
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>004</b> Deployment</p>
+      <h2 class="headline" data-reveal>Up and running in minutes.</h2>
+      <p class="lede" data-reveal>
+        No complex setup and nothing to install on your server. Connect your MT5
+        server and your team is live.
+      </p>
+
+      <div class="steps">
+        <div class="step" data-reveal>
+          <span class="step__num">Step 01</span>
+          <h3 class="step__title">Register your brokerage</h3>
+          <p class="step__desc">Create your company account in under two minutes. One admin account, unlimited team members.</p>
         </div>
-        <div class="chip-strip-arrow"><span class="chip-strip-pulse"></span></div>
-        <div class="chip-strip-node chip-strip-node-chip">
-          <svg class="chip-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V3M12 7V3M15 7V3M9 21v-4M12 21v-4M15 21v-4M7 9H3M7 12H3M7 15H3M21 9h-4M21 12h-4M21 15h-4"/></svg>
-          <span class="chip-strip-label">Nomous</span>
-          <span class="chip-strip-sub">Processed in real time</span>
-          <span class="cine-live chip-strip-status"><span class="cine-live-dot"></span>Live</span>
+        <div class="step" data-reveal>
+          <span class="step__num">Step 02</span>
+          <h3 class="step__title">Connect your MT5 server</h3>
+          <p class="step__desc">We connect via your MT5 Manager API. Provide your server host, port and credentials. Done.</p>
         </div>
-        <div class="chip-strip-arrow"><span class="chip-strip-pulse chip-strip-pulse-alt"></span></div>
-        <div class="chip-strip-node">
-          <svg class="chip-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-          <span class="chip-strip-label">Ops Intelligence</span>
-          <span class="chip-strip-sub">Pricing · risk · alerts</span>
-          <span class="st st-ok chip-strip-status">Online</span>
+        <div class="step" data-reveal>
+          <span class="step__num">Step 03</span>
+          <h3 class="step__title">Your team goes live</h3>
+          <p class="step__desc">Invite your operations team, assign permissions, and start monitoring. Data flows from minute one.</p>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step__num">Step 04</span>
+          <h3 class="step__title">Customise &amp; brand</h3>
+          <p class="step__desc">Upload your logo, configure alerts, and make the platform feel like your own internal tool.</p>
         </div>
       </div>
     </div>
+  </section>
+
+  <div class="wave wave--up" style="--wave-to: #ffffff" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
-</section>
 
-<!-- ═══════════════════════════════════════════
-     003 · MODULES
-═══════════════════════════════════════════ -->
-<section class="sec" id="features">
-  <div class="sec-bar">
-    <span>003 · Modules</span>
-    <span>Eight units · one platform</span>
-  </div>
-  <div class="arch-grid">
+  <!-- ============================================================
+       SECTION 3 - SECURITY (motion)
+       ============================================================ -->
+  <section class="scroll-track theme-dark"
+           style="--track-height: 450vh; --scrim: 0.2"
+           data-scroll-canvas
+           data-name="security"
+           data-frames="121"
+           data-ease="0.09"
+           id="security">
+    <div class="scroll-stage">
+      <canvas class="scroll-stage__canvas" data-canvas></canvas>
 
-    <div class="arch-cell" data-reveal>
-      <div class="arch-cell-top"><span class="arch-cell-index">01</span></div>
-      <h3>Pricing Monitor</h3>
-      <p>Live bid/ask prices and spreads for every symbol. Spot off-market prices and spread anomalies the moment they happen.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="2" x2="5" y2="9"/><rect x="3" y="9" width="4" height="7" rx="0.5"/><line x1="5" y1="16" x2="5" y2="22"/><line x1="12" y1="6" x2="12" y2="11"/><rect x="10" y="11" width="4" height="9" rx="0.5"/><line x1="19" y1="2" x2="19" y2="6"/><rect x="17" y="6" width="4" height="6" rx="0.5"/><line x1="19" y1="12" x2="19" y2="17"/></svg>
+      <div class="overlay overlay--bottom">
+        <div class="overlay__block" data-enter="0" data-exit="0.42">
+          <p class="eyebrow">Security Posture</p>
+          <h2 class="display">Read-only.<br>Enforced, not promised.</h2>
+          <p class="subhead">
+            Nomous holds no write capability against your MT5 server. Trading,
+            modification and administrative endpoints are absent from the
+            integration surface entirely.
+          </p>
         </div>
-        <div class="mod-live mod-tick">
-          <div class="mod-tick-row"><span class="mod-tick-sym">EURUSD</span><span class="mod-tick-bid">1.08421</span><span class="mod-tick-ask">1.08438</span></div>
-          <div class="mod-tick-row"><span class="mod-tick-sym">XAUUSD</span><span class="mod-tick-bid mod-live-delay1">2341.20</span><span class="mod-tick-ask mod-live-delay1">2341.65</span></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="arch-cell" data-reveal style="--d:.05s">
-      <div class="arch-cell-top"><span class="arch-cell-index">02</span></div>
-      <h3>Risk Monitor</h3>
-      <p>Real-time equity, margin level, and floating P&amp;L, so your team spots danger before it becomes a stop-out.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <div class="mod-live mod-risk">
-          <div class="mod-risk-row"><span class="st st-crit">Critical</span><span class="mod-risk-val">18% margin</span></div>
-          <div class="mod-risk-bar"><span class="mod-risk-bar-fill"></span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-cell" data-reveal style="--d:.1s">
-      <div class="arch-cell-top"><span class="arch-cell-index">03</span></div>
-      <h3>Clients</h3>
-      <p>Find any client by login, email, or name. See open positions and account details. No MT5 Manager login required.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>
-        </div>
-        <div class="mod-live mod-search">
-          <div class="mod-search-bar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-            <span>Search login, email, name…</span>
-          </div>
-          <div class="mod-search-result">#1048823 <span class="mod-search-name">J. Turner</span><span class="mod-search-sub">2 open positions</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-cell" data-reveal style="--d:.15s">
-      <div class="arch-cell-top"><span class="arch-cell-index">04</span></div>
-      <h3>Swaps &amp; Simulator</h3>
-      <p>View live swap rates across all groups. Simulate changes before they go live. No client surprises.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 3-3 3 3"/><path d="M13 18H7a2 2 0 0 1-2-2V6"/><path d="m22 15-3 3-3-3"/><path d="M11 6h6a2 2 0 0 1 2 2v10"/></svg>
-        </div>
-        <div class="mod-live mod-swap">
-          <div class="mod-swap-row"><span class="mod-swap-sym">EURUSD</span><span class="mod-swap-neg">−1.20</span><span class="mod-swap-pos">+0.40</span></div>
-          <div class="mod-swap-row"><span class="mod-swap-sym">XAUUSD</span><span class="mod-swap-neg">−3.80</span><span class="mod-swap-pos">+1.10</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-cell" data-reveal style="--d:.1s">
-      <div class="arch-cell-top"><span class="arch-cell-index">05</span><span class="arch-cell-tag">AI</span></div>
-      <h3>Nomous AI</h3>
-      <p>Ask your platform anything in plain English. Answers are grounded in your broker's own live data, never mixed with anyone else's.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V3M12 7V3M15 7V3M9 21v-4M12 21v-4M15 21v-4M7 9H3M7 12H3M7 15H3M21 9h-4M21 12h-4M21 15h-4"/></svg>
-        </div>
-        <div class="mod-live mod-chat">
-          <div class="mod-chat-q">Which accounts are near margin call?</div>
-          <div class="mod-chat-a">3 accounts under 20% margin<span class="mod-chat-cursor"></span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-cell" data-reveal style="--d:.15s">
-      <div class="arch-cell-top"><span class="arch-cell-index">06</span></div>
-      <h3>Email &amp; Telegram Alerts</h3>
-      <p>Margin calls, spread spikes, and server disconnects reach your team's inbox and Telegram the second they trigger.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-        </div>
-        <div class="mod-live mod-alerts">
-          <div class="pm-alert-row"><span class="pm-dot"></span>Margin call · #1045820</div>
-          <div class="pm-alert-row pm-dim"><span class="pm-dot pm-dot-dim"></span>Spread spike · XAUUSD</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-cell" data-reveal style="--d:.2s">
-      <div class="arch-cell-top"><span class="arch-cell-index">07</span></div>
-      <h3>Symbol Hours &amp; Holidays</h3>
-      <p>Manage trading session hours and market holiday schedules. See which markets are open right now.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
-        </div>
-        <div class="mod-live mod-hours">
-          <div class="mod-hours-row"><span>EURUSD</span><span class="st st-ok">Open</span></div>
-          <div class="mod-hours-row"><span>XAUUSD</span><span class="st st-watch">Closes 2h 14m</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-cell" data-reveal style="--d:.25s">
-      <div class="arch-cell-top"><span class="arch-cell-index">08</span></div>
-      <h3>News</h3>
-      <p>High-impact economic events explained in plain English, with automatic Telegram alerts 30 minutes before each release.</p>
-      <div class="arch-cell-visual">
-        <div class="arch-cell-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2Z"/><path d="M18 8h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H8"/><line x1="7" y1="8" x2="13" y2="8"/><line x1="7" y1="11" x2="13" y2="11"/><line x1="7" y1="14" x2="11" y2="14"/></svg>
-        </div>
-        <div class="mod-live mod-news">
-          <div class="mod-news-row"><span class="mod-news-tag">High</span><span class="mod-news-title">CPI m/m</span><span class="mod-news-time">14:30</span></div>
-          <div class="mod-news-row"><span class="mod-news-tag mod-news-tag-dim">Med</span><span class="mod-news-title">Rate Decision</span><span class="mod-news-time">Tomorrow</span></div>
-        </div>
-      </div>
-    </div>
-
-    <a href="features.html" class="arch-cell link-cell" data-reveal style="--d:.3s">
-      <span class="link-sweep">All Features →</span>
-    </a>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     004 · DEPLOYMENT
-═══════════════════════════════════════════ -->
-<section class="sec" id="how-it-works">
-  <div class="sec-bar">
-    <span>004 · Deployment</span>
-    <span>Live in minutes</span>
-  </div>
-  <div class="deploy-grid">
-
-    <div class="steps-col">
-      <div class="steps-intro" data-reveal>
-        <h2>Up and running<br>in minutes.</h2>
-        <p>No complex setup. Connect your MT5 server and your team is live.</p>
-      </div>
-      <div class="step" data-reveal style="--d:.05s">
-        <div class="step-num">Step 01</div>
-        <div class="step-body">
-          <h3>Register your brokerage</h3>
-          <p>Create your company account in under 2 minutes. One admin account, unlimited team members.</p>
-        </div>
-      </div>
-      <div class="step" data-reveal style="--d:.1s">
-        <div class="step-num">Step 02</div>
-        <div class="step-body">
-          <h3>Connect your MT5 server</h3>
-          <p>We connect via your MT5 Manager API. Provide your server host, port, and credentials. Done.</p>
-        </div>
-      </div>
-      <div class="step" data-reveal style="--d:.15s">
-        <div class="step-num">Step 03</div>
-        <div class="step-body">
-          <h3>Your team goes live</h3>
-          <p>Invite your operations team, assign permissions, and start monitoring. Data flows in real time from minute one.</p>
-        </div>
-      </div>
-      <div class="step" data-reveal style="--d:.2s">
-        <div class="step-num">Step 04</div>
-        <div class="step-body">
-          <h3>Customise &amp; brand</h3>
-          <p>Upload your company logo, configure alerts, and make the platform feel like your own internal tool.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="ledger-col">
-      <div data-reveal style="--d:.1s">
-        <div class="ledger">
-          <div class="ledger-head">
-            <span>Risk Monitor · live feed</span>
-            <span>Refresh 1s</span>
-          </div>
-          <div class="conn-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>MT5 Manager API</span>
-            <span class="conn-pill-sep">·</span>
-            <span>Encrypted</span>
-            <span class="conn-pill-sep">·</span>
-            <span id="tick-latency" class="conn-pill-live">&lt;12ms</span>
-          </div>
-          <div class="ledger-cols">
-            <span>Login</span><span>Equity</span><span>Margin</span><span>Floating</span><span>State</span>
-          </div>
-          <div class="ledger-row">
-            <span class="ledger-cell">#1045820</span>
-            <span class="ledger-cell">$1,240</span>
-            <span class="ledger-cell">18%</span>
-            <span class="ledger-cell">−$860</span>
-            <span class="st st-crit">Critical</span>
-          </div>
-          <div class="ledger-row">
-            <span class="ledger-cell">#1045234</span>
-            <span class="ledger-cell">$8,450</span>
-            <span class="ledger-cell">52%</span>
-            <span class="ledger-cell">−$320</span>
-            <span class="st st-watch">Watch</span>
-          </div>
-          <div class="ledger-row">
-            <span class="ledger-cell">#1044991</span>
-            <span class="ledger-cell">$42,100</span>
-            <span class="ledger-cell">310%</span>
-            <span class="ledger-cell">+$2,800</span>
-            <span class="st st-ok">Healthy</span>
+        <div class="overlay__block" data-enter="0.48" data-exit="1">
+          <h2 class="headline">Encrypted end to end.</h2>
+          <p class="subhead">
+            TLS 1.3 in transit, AES-256 at rest, IP-allowlisted connections and
+            fully auditable access logs for every request against your server.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="contact.html">Talk to our team</a>
           </div>
         </div>
-        <div class="ledger-caption">Fig. 02 · Account risk ledger · illustrative data</div>
+      </div>
+
+      <!-- Signals that this section responds to scroll (it's a long pinned
+           track, easy to mistake for a static banner). Fades out on its own
+           the moment the visitor scrolls a little; JS toggles is-hidden via
+           main.js's bindScrollCue, wired to the same onFrame as the overlay. -->
+      <div class="scroll-cue" data-scroll-cue aria-hidden="true">
+        <span class="scroll-cue__label">Scroll</span>
+        <span class="scroll-cue__icon"><span class="scroll-cue__wheel"></span></span>
       </div>
     </div>
+  </section>
 
+  <div class="wave" style="--wave-to: #f5f5f7" aria-hidden="true">
+    <svg viewBox="0 0 2880 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(37,99,235,0.55)" d="M0,50 C480,100 960,0 1440,50 C1920,100 2400,10 2880,50 L2880,140 L0,140 Z"/>
+      <path fill="rgba(29,78,216,0.40)" d="M0,70 C480,20 960,110 1440,70 C1920,20 2400,100 2880,70 L2880,140 L0,140 Z"/>
+      <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
+    </svg>
   </div>
-</section>
 
-<!-- ═══════════════════════════════════════════
-     005 · ENGAGEMENT
-═══════════════════════════════════════════ -->
-<section class="sec" id="pricing">
-  <div class="sec-bar">
-    <span>005 · Engagement</span>
-    <span>One plan · full access</span>
-  </div>
-  <div class="pricing-panel">
+  <!-- ============================================================
+       005 - Principles
+       ============================================================ -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>005</b> Principles</p>
+      <h2 class="headline" data-reveal>Why teams switch.</h2>
 
-    <div class="pricing-left" data-reveal>
-      <div class="pricing-kicker">Operations Suite</div>
-      <div class="pricing-huge">Custom.</div>
-      <div class="pricing-terms">Tailored to your brokerage, cancel anytime</div>
-      <a href="contact.html" class="btn btn-primary btn-lg">Contact Us →</a>
-      <div class="pricing-foot">We respond as soon as possible</div>
+      <div class="principles">
+        <article class="principle" data-reveal>
+          <h3>Real-time first</h3>
+          <p>Data that is 30 seconds old is useless in brokerage operations. Every number on the platform is live, updated via WebSocket, with no manual refresh.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Built for the job</h3>
+          <p>We only build what operations teams actually use. No bloat, no features added for the sake of a slide deck. Every module solves a real daily problem.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Simple to adopt</h3>
+          <p>No training sessions, no complex onboarding. If your team has used MT5 Manager, they will understand this platform within minutes of logging in.</p>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <div class="pricing-list" data-reveal style="--d:.08s">
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Real-time pricing monitor, all symbols</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Account risk monitoring with margin alerts</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>Clients &amp; open position viewer</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 3-3 3 3"/><path d="M13 18H7a2 2 0 0 1-2-2V6"/><path d="m22 15-3 3-3-3"/><path d="M11 6h6a2 2 0 0 1 2 2v10"/></svg>Swaps &amp; group simulator</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Email &amp; Telegram instant alerts</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>Symbol hours &amp; market holiday manager</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Custom branding &amp; company logo</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Unlimited team accounts</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2Z"/><path d="M18 8h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H8"/><line x1="7" y1="8" x2="13" y2="8"/><line x1="7" y1="11" x2="13" y2="11"/><line x1="7" y1="14" x2="11" y2="14"/></svg>Economic news &amp; Telegram alerts</span><span class="mono-tag">Included</span></div>
-      <div class="pricing-row"><span class="pricing-row-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h.01M12 12h.01M16 12h.01"/><path d="M21 12a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.31-3.75-.86L3 21l1.36-4.08A8.5 8.5 0 1 1 21 12Z"/></svg>Nomous AI assistant, trained on your own data</span><span class="mono-tag">Included</span></div>
+  <!-- ============================================================
+       006 - Pricing teaser
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner" style="text-align:center">
+      <p class="sec-bar" data-reveal><b>006</b> Engagement</p>
+      <h2 class="headline" data-reveal>One plan. Full access.</h2>
+      <p class="lede" style="margin-inline:auto" data-reveal>
+        No seat limits, no hidden fees, no long-term lock-in.
+      </p>
+
+      <div class="plan" data-reveal data-tilt>
+        <p class="plan__name">Operations Suite</p>
+        <p class="plan__price">Custom</p>
+        <p class="plan__note">Tailored to your brokerage · Cancel anytime</p>
+        <ul class="plan__list">
+          <li>All eight platform modules from day one</li>
+          <li>Unlimited team accounts, no per-seat pricing</li>
+          <li>Custom branding and company logo</li>
+          <li>MT5 Manager API connection</li>
+          <li>Nomous AI trained on your own data</li>
+        </ul>
+        <div class="actions" style="justify-content:center">
+          <a class="btn btn--primary" href="contact.html">Contact us</a>
+          <a class="btn btn--ghost" href="pricing.html">View pricing</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     006 · CONTACT
-═══════════════════════════════════════════ -->
-<section class="sec cta-section">
-  <div class="container" data-reveal>
-    <span class="cta-kicker">006 · Contact</span>
-    <h2>Ready to run your operations<br>in one place?</h2>
-    <p>Join brokers who have moved their operations team off spreadsheets and into a real-time platform built for the job.</p>
-    <div class="cta-btns">
-      <a href="contact.html" class="btn btn-primary btn-lg">Get Started →</a>
-      <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact us</a>
+  <!-- ============================================================
+       Closing CTA
+       ============================================================ -->
+  <section class="section section--line" id="contact">
+    <div class="section__inner" style="text-align:center">
+      <p class="mono-tag" style="justify-content:center"><span class="pulse"></span>Live in under an hour</p>
+      <h2 class="display">Connect your MT5 server.</h2>
+      <p class="subhead" style="margin-inline:auto">
+        Integration typically completes in under a day. No changes to your
+        trading infrastructure required.
+      </p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn btn--primary" href="contact.html">Get Started</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+</main>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer class="site-footer theme-dark">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
       <div>
-        <div class="footer-logo">
-          <div class="nav-mark">N</div>
-          Nomous
-        </div>
-        <p class="footer-tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+        <a class="site-footer__brand" href="index.html">Nomous</a>
+        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
       </div>
       <div>
-        <div class="footer-col-title">Platform</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Platform</p>
+        <div class="site-footer__links">
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
           <a href="contact.html">Get Started</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Company</p>
+        <div class="site-footer__links">
           <a href="about.html">About Us</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <div class="footer-col-links">
+        <p class="site-footer__title">Legal</p>
+        <div class="site-footer__links">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
-    <p class="footer-disclaimer">Nomous is an operational software platform for MT5 brokerage teams. We do not provide investment, financial, or trading advice, and we are not a licensed or regulated financial services provider.</p>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Nomous. All rights reserved</span>
-      <div class="footer-legal-links">
+
+    <p class="site-footer__disclaimer">
+      Nomous is an operational software platform for MT5 brokerage teams. We do
+      not provide investment, financial, or trading advice, and we are not a
+      licensed or regulated financial services provider.
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Nomous. All rights reserved.</span>
+      <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </span>
     </div>
   </div>
 </footer>
 
-</div><!-- /frame -->
-
-<script>
-// Scroll reveal
-(function () {
-  var els = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
-  }, { threshold: 0.1 });
-  els.forEach(function(el){ io.observe(el); });
-})();
-
-// Ambient background: ticking candlesticks, drifting tickers, floating
-// particles. The chip itself and the output cards are real 3D DOM elements
-// now (see the next block); this canvas layer is just texture behind them.
-(function () {
-  var track   = document.getElementById('cine');
-  var canvas  = document.getElementById('cine-canvas');
-  if (!track || !canvas || !canvas.getContext) return;
-
-  var ctx     = canvas.getContext('2d');
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var INK = '243,245,252', ORANGE = '59,130,246', INDIGO = '139,92,246';
-
-  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
-  var rnd = mulberry32(1337);
-
-  var MOBILE = window.innerWidth < 640;
-  var TICKERS = ['EURUSD', 'XAUUSD', 'GBPJPY', 'USDJPY', 'GBPUSD', 'AUDUSD'];
-
-  var candles = [];
-  (function buildCandles() {
-    var count = MOBILE ? 10 : 18;
-    for (var i = 0; i < count; i++) {
-      var col = i % (MOBILE ? 5 : 9);
-      var x = -6.6 - col * 0.42 + rnd() * 0.12;
-      var y = -1.7 + rnd() * 3.4;
-      var h = 0.22 + rnd() * 0.5;
-      var wick = h * (1.3 + rnd() * 0.8);
-      candles.push({ x: x, y: y, h: h, wick: wick, up: rnd() < 0.5, phase: rnd() * Math.PI * 2 });
-    }
-  })();
-  var tickers = [];
-  (function buildTickers() {
-    var count = MOBILE ? 3 : 5;
-    for (var i = 0; i < count; i++) {
-      tickers.push({ label: TICKERS[i % TICKERS.length], x: -9.3, y: -2.5 + i * (5 / (count - 1 || 1)), phase: rnd() * Math.PI * 2 });
-    }
-  })();
-  var particles = [];
-  (function buildParticles() {
-    var count = MOBILE ? 14 : 30;
-    for (var i = 0; i < count; i++) {
-      particles.push({
-        x: -10.5 + rnd() * 21, y: -5.5 + rnd() * 11,
-        r: 0.6 + rnd() * 1.6,
-        vx: (rnd() - 0.5) * 0.10, vy: (rnd() - 0.5) * 0.06,
-        phase: rnd() * Math.PI * 2, speed: 0.4 + rnd() * 0.5,
-        color: rnd() < 0.5 ? ORANGE : INDIGO
-      });
-    }
-  })();
-
-  function hair() { return Math.max(1, Math.round(dpr)); }
-  function glowDot(px, py, radius, color, alpha) {
-    var g = ctx.createRadialGradient(px, py, 0, px, py, radius);
-    g.addColorStop(0, 'rgba(' + color + ',' + alpha.toFixed(3) + ')');
-    g.addColorStop(1, 'rgba(' + color + ',0)');
-    ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(px, py, radius, 0, Math.PI * 2); ctx.fill();
-  }
-
-  var W = 0, H = 0, dpr = 1, CX = 0, CY = 0, SCALE = 1;
-  function P(x, y) { return { x: CX + x * SCALE, y: CY - y * SCALE }; }
-
-  function drawScene(t) {
-    ctx.clearRect(0, 0, W, H);
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    var i, lw = hair();
-
-    for (i = 0; i < candles.length; i++) {
-      var c = candles[i];
-      var flicker = 0.36 + 0.14 * Math.sin(t * 0.6 + c.phase);
-      var cx = P(c.x, c.y), bodyH = c.h * SCALE, wickH = c.wick * SCALE;
-      var col = c.up ? ORANGE : INDIGO;
-      ctx.strokeStyle = 'rgba(' + INK + ',' + flicker.toFixed(3) + ')';
-      ctx.lineWidth = lw;
-      ctx.beginPath(); ctx.moveTo(cx.x, cx.y - wickH / 2); ctx.lineTo(cx.x, cx.y + wickH / 2); ctx.stroke();
-      ctx.fillStyle = 'rgba(' + col + ',' + (flicker + 0.1).toFixed(3) + ')';
-      ctx.fillRect(cx.x - 2.2 * dpr, cx.y - bodyH / 2, 4.4 * dpr, Math.max(1, bodyH));
-    }
-    ctx.font = (10 * dpr) + 'px "Space Mono", monospace';
-    ctx.textBaseline = 'middle';
-    for (i = 0; i < tickers.length; i++) {
-      var tk = tickers[i];
-      var tp = P(tk.x, tk.y);
-      var talpha = 0.20 + 0.08 * Math.sin(t * 0.5 + tk.phase);
-      ctx.fillStyle = 'rgba(' + INK + ',' + talpha.toFixed(3) + ')';
-      ctx.fillText(tk.label, tp.x, tp.y);
-    }
-
-    var half = 10.5, halfY = 5.5;
-    for (i = 0; i < particles.length; i++) {
-      var pt = particles[i];
-      pt.x += pt.vx * (1 / 60); pt.y += pt.vy * (1 / 60);
-      if (pt.x > half) pt.x = -half; if (pt.x < -half) pt.x = half;
-      if (pt.y > halfY) pt.y = -halfY; if (pt.y < -halfY) pt.y = halfY;
-      var twinkle = 0.35 + 0.35 * Math.sin(t * pt.speed + pt.phase);
-      var pp = P(pt.x, pt.y);
-      glowDot(pp.x, pp.y, pt.r * dpr * 3.2, pt.color, twinkle * 0.5);
-      ctx.fillStyle = 'rgba(' + pt.color + ',' + Math.min(1, twinkle + 0.25).toFixed(3) + ')';
-      ctx.beginPath(); ctx.arc(pp.x, pp.y, pt.r * dpr, 0, Math.PI * 2); ctx.fill();
-    }
-  }
-
-  var raf = null, running = false, startTime = 0;
-  function size() {
-    dpr = Math.min(window.devicePixelRatio || 1, MOBILE ? 1.5 : 2.5);
-    var r = canvas.getBoundingClientRect();
-    W = canvas.width  = Math.round(r.width * dpr);
-    H = canvas.height = Math.round(r.height * dpr);
-    CX = W * (MOBILE ? 0.5 : 0.60); CY = H * 0.52;
-    SCALE = Math.min(W / 21, H / 11);
-  }
-  function frame(now) {
-    if (!running) return;
-    if (!startTime) startTime = now;
-    drawScene((now - startTime) / 1000);
-    raf = requestAnimationFrame(frame);
-  }
-  function start() {
-    if (running || reduced) return;
-    running = true;
-    raf = requestAnimationFrame(frame);
-  }
-  function stop() {
-    running = false;
-    if (raf) cancelAnimationFrame(raf);
-    raf = null;
-  }
-
-  // A rAF loop competing with the compositor for every scroll frame is a
-  // reliable source of mobile scroll jank, especially here where each
-  // particle allocates a fresh canvas gradient per frame. Pause the loop for
-  // the duration of a touch scroll and resume shortly after it settles.
-  var isVisible = false, scrollPaused = false, scrollTimer = null;
-  function updateRunning() {
-    if (isVisible && !document.hidden && !scrollPaused) start(); else stop();
-  }
-  if (MOBILE) {
-    window.addEventListener('scroll', function () {
-      if (!scrollPaused) { scrollPaused = true; stop(); }
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function () { scrollPaused = false; updateRunning(); }, 150);
-    }, { passive: true });
-  }
-
-  window.addEventListener('load', function () { size(); if (reduced) drawScene(0); else updateRunning(); });
-  if ('ResizeObserver' in window) {
-    new ResizeObserver(function () { size(); if (reduced) drawScene(0); }).observe(canvas);
-  }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      isVisible = entries[0].isIntersecting;
-      updateRunning();
-    }, { threshold: 0.01 }).observe(track);
-  }
-  document.addEventListener('visibilitychange', updateRunning);
-
-  size();
-  if (reduced) drawScene(0);
-})();
-
-// The dashboard panel: a real DOM element with CSS 3D transforms so it tilts
-// toward the cursor like a product hero, plus a cursor-reactive background
-// glow. Live-looking numbers underline the "processed in real time" pitch
-// without pretending to be a real feed.
-(function () {
-  var stage = document.getElementById('cine-stage');
-  var group = document.getElementById('panel3d-group');
-  if (!stage || !group) return;
-
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var BASE_RX = 6, BASE_RY = -10;
-
-  if (!reduced && canHover) {
-    // ── cursor-reactive tilt + spotlight + parallax, smoothed with lerp ──
-    var targetX = 68, targetY = 53, curX = 68, curY = 53;
-    stage.addEventListener('mousemove', function (e) {
-      var r = stage.getBoundingClientRect();
-      targetX = ((e.clientX - r.left) / r.width) * 100;
-      targetY = ((e.clientY - r.top) / r.height) * 100;
-    });
-    stage.addEventListener('mouseleave', function () { targetX = 68; targetY = 53; });
-
-    (function loop() {
-      curX += (targetX - curX) * 0.06;
-      curY += (targetY - curY) * 0.06;
-      stage.style.setProperty('--mx', curX + '%');
-      stage.style.setProperty('--my', curY + '%');
-      stage.style.setProperty('--mxn', curX.toFixed(2));
-      stage.style.setProperty('--myn', curY.toFixed(2));
-      var rx = BASE_RX + (53 - curY) * 0.16;
-      var ry = BASE_RY + (curX - 68) * 0.16;
-      group.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
-      requestAnimationFrame(loop);
-    })();
-  }
-
-  if (reduced) return; // leave the ticking numbers/sparkline off too
-
-  // ── live-looking numbers on the risk ledger ──
-  function flash(el, text) {
-    el.textContent = text;
-    el.classList.remove('tick-flash'); void el.offsetWidth; el.classList.add('tick-flash');
-  }
-  function jitterMoney(base, spread) { return Math.round(base + (Math.random() - 0.5) * spread); }
-  setInterval(function () {
-    var eq1 = document.getElementById('tick-eq1'), eq2 = document.getElementById('tick-eq2');
-    if (eq1) flash(eq1, '$' + jitterMoney(1240, 60).toLocaleString());
-    if (eq2) flash(eq2, '$' + jitterMoney(8450, 120).toLocaleString());
-  }, 2600);
-
-  // ── sparkline: small random walk, redrawn periodically ──
-  var spark = document.getElementById('sparkLine');
-  if (spark) {
-    var pts = [20, 18, 22, 14, 17, 9, 13, 6, 10];
-    setInterval(function () {
-      pts.shift();
-      var last = pts[pts.length - 1];
-      pts.push(Math.max(2, Math.min(28, last + (Math.random() - 0.5) * 10)));
-      spark.setAttribute('points', pts.map(function (y, i) { return (i * 12.5) + ',' + y.toFixed(1); }).join(' '));
-    }, 1400);
-  }
-})();
-
-// Deployment ledger connection pill: small ticking latency number, the
-// same "this is live" proof as the hero, reused on the 004 section.
-(function () {
-  var el = document.getElementById('tick-latency');
-  if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  setInterval(function () {
-    el.textContent = '<' + (8 + Math.round(Math.random() * 9)) + 'ms';
-  }, 2200);
-})();
-
-// Hero telemetry strip: symbols tracked and avg spread drift quietly,
-// the same "this number is actually moving" cue used everywhere else.
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var sym = document.getElementById('tel-symbols');
-  var spread = document.getElementById('tel-spread');
-  setInterval(function () {
-    if (sym) sym.textContent = 180 + Math.round(Math.random() * 9);
-    if (spread) spread.textContent = (0.7 + Math.random() * 0.5).toFixed(1);
-  }, 2800);
-})();
-</script>
-
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

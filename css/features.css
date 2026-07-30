@@ -1,0 +1,299 @@
+/* ============================================================
+   Nomous — Features page
+   Layers a HUD/terminal treatment on top of the tokens and
+   primitives in style.css. Loaded after it, never instead of it.
+   ============================================================ */
+
+:root { --rail-w: 210px; }
+
+/* ------------------------------------------------------------
+   Modules layout — sticky rail + flow
+   ------------------------------------------------------------ */
+
+.modules {
+  position: relative;
+  z-index: 2;
+  padding: clamp(5rem, 12vh, 8rem) var(--gutter) clamp(4rem, 10vh, 7rem);
+}
+
+.modules__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--rail-w) 1fr;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+
+.rail {
+  position: sticky;
+  top: 108px;
+  align-self: start;
+}
+
+.rail__title {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 0.9rem;
+}
+
+.rail__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.rail__list a {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--text-dimmer);
+  border-left: 2px solid transparent;
+  transition: color 0.3s var(--ease), background 0.3s var(--ease),
+              border-color 0.3s var(--ease);
+}
+
+.rail__list a:hover { color: var(--text); background: rgba(15, 23, 42, 0.04); }
+
+.rail__list a.is-active {
+  color: var(--accent);
+  font-weight: 600;
+  background: rgba(37, 99, 235, 0.07);
+  border-left-color: var(--accent);
+}
+
+.rail__num {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-dimmer);
+  transition: color 0.3s var(--ease);
+}
+.rail__list a.is-active .rail__num { color: var(--accent-text); }
+
+/* Below the breakpoint the rail becomes a horizontal scroller above the flow. */
+@media (max-width: 900px) {
+  .modules__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .rail {
+    position: sticky;
+    top: 62px;
+    z-index: 4;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0.75rem var(--gutter);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .rail__title { display: none; }
+  .rail__list {
+    flex-direction: row;
+    gap: 0.4rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .rail__list::-webkit-scrollbar { display: none; }
+  .rail__list a {
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 6px 6px 0 0;
+  }
+  .rail__list a.is-active { border-bottom-color: var(--accent); background: transparent; }
+}
+
+/* ------------------------------------------------------------
+   Module blocks
+   ------------------------------------------------------------ */
+
+.modules__flow {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5rem, 13vh, 9rem);
+}
+
+.module { scroll-margin-top: 120px; }
+
+.module__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.module__num {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+  /* Keeps the number column aligned across every module. */
+  min-width: 2.2ch;
+}
+
+.module__title {
+  font-family: var(--display-font);
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+}
+
+.module__body p {
+  font-size: clamp(1rem, 1.25vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--text-dim);
+  max-width: 62ch;
+}
+.module__body p + p { margin-top: 1rem; }
+
+.module__list {
+  list-style: none;
+  margin: 1.9rem 0 0;
+  padding: 0;
+  display: grid;
+  /* Fixed two columns rather than auto-fit: at wide widths auto-fit produced
+     three, which left a lone orphan on the four-item lists. */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem 1.75rem;
+  max-width: 74ch;
+}
+
+@media (max-width: 620px) {
+  .module__list { grid-template-columns: 1fr; }
+}
+
+.module__list li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+/* Monospace marker instead of a bullet — keeps the terminal register. */
+.module__list li::before {
+  content: '›';
+  position: absolute;
+  left: 0.35rem;
+  top: -0.05rem;
+  font-family: var(--mono);
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------
+   Screenshot frames
+   ------------------------------------------------------------ */
+
+.shot {
+  margin: 2.5rem 0 0;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: var(--radius);
+  /* The screenshots are dark product UI. A dark chrome around them reads as a
+     device bezel; a white frame would fight the image inside it. */
+  background: #0b1a2c;
+  box-shadow: 0 24px 60px -30px rgba(15, 23, 42, 0.45);
+  overflow: hidden;
+  transition: border-color 0.45s var(--ease), box-shadow 0.45s var(--ease),
+              transform 0.45s var(--ease);
+}
+
+.shot:hover {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 28px 70px -28px rgba(37, 99, 235, 0.4);
+}
+
+.shot__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.shot__label,
+.shot__live {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.shot__label { color: rgba(191, 214, 240, 0.6); }
+.shot__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #2fd6a5;
+}
+
+/* The frame clips the sweep; the image sits flush inside it. */
+.shot__frame { position: relative; overflow: hidden; }
+
+.shot__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Scanline sweep on hover — a single pass, not a loop, so it reads as a
+   response to the cursor rather than ambient noise. */
+.shot__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(120, 180, 255, 0.11) 50%,
+    transparent 65%
+  );
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.9s var(--ease);
+}
+.shot:hover .shot__frame::after { transform: translate3d(100%, 0, 0); }
+
+.shot-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  /* Without this the grid stretches both cards to the taller one's height,
+     leaving dead panel below the shorter screenshot. */
+  align-items: start;
+}
+.shot-pair .shot { margin-top: 2.5rem; }
+
+/* The nav current-page marker is owned by style.css. It used to be repeated
+   here as `color: var(--text)`, which resolved to slate-900 on the dark nav
+   (the bar is not .theme-dark) and made the active link invisible. */
+
+/* ------------------------------------------------------------
+   CTA
+   ------------------------------------------------------------ */
+
+.cta { border-top: 1px solid var(--hairline); background: transparent; }
+.cta .subhead { max-width: 52ch; }
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .shot__frame::after { display: none; }
+  .shot:hover { transform: none; }
+}
