@@ -33,41 +33,6 @@
 
 /* Drifting orbs — the depth in the background. Heavily blurred so they read
    as light, not as shapes. */
-.hero__orbs { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-
-/* Wider blur + lower opacity than the reference: the light reads as a soft
-   wash rather than three identifiable circles. */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(210px);
-  animation: blob 14s infinite ease-in-out;
-}
-.orb--1 {
-  top: -10%; left: -14%;
-  width: 760px; height: 760px;
-  background: #4338ca; opacity: 0.22;
-}
-.orb--2 {
-  top: 14%; right: -10%;
-  width: 600px; height: 600px;
-  background: #2563eb; opacity: 0.17;
-  animation-delay: 4.5s;
-}
-.orb--3 {
-  bottom: 4%; left: 30%;
-  width: 680px; height: 680px;
-  background: #0f766e; opacity: 0.12;
-  animation-delay: 9s;
-}
-
-@keyframes blob {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(40px, -60px) scale(1.08); }
-  66%  { transform: translate(-30px, 30px) scale(0.95); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
 /* Rising particles. Each span carries its own --size/--left/--dur/--delay
    from the markup, so the field is defined in one place. */
 .hero__particles { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -305,7 +270,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb, .particle { animation: none; }
+  .particle { animation: none; }
   .fade-up { opacity: 1; animation: none; }
   .hero__diagram animate,
   .hero__diagram animateTransform { display: none; }
