@@ -43,6 +43,12 @@
   display: flex;
   align-items: center;
 }
+/* On phones the 92vh min-height was forcing the hero to fill the screen
+   even though its actual content (no diagram, see below) is much shorter
+   — just let it size to content instead. */
+@media (max-width: 640px) {
+  .hero { padding: 6.5rem var(--gutter) 3rem; min-height: 0; }
+}
 
 /* Drifting orbs — the depth in the background. Heavily blurred so they read
    as light, not as shapes. */
@@ -216,6 +222,14 @@
   .hero__sub { max-width: 52ch; }
 }
 
+/* The diagram is the single heaviest thing in the hero — on phones it's
+   replaced by the plain-text caption already sitting under it (see
+   .hero__caption--mobile), matching how yambapay's mobile hero is text +
+   CTA only, no illustration. Must stay after both rules above it. */
+@media (max-width: 640px) {
+  .hero__visual { display: none; }
+}
+
 .hero__caption {
   margin-top: 1rem;
   text-align: center;
@@ -224,6 +238,11 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-dimmer);
+}
+
+.hero__caption--mobile { display: none; }
+@media (max-width: 640px) {
+  .hero__caption--mobile { display: block; text-align: left; margin-top: 1.5rem; }
 }
 
 /* SVG text can't inherit the page's font stack reliably across engines,
@@ -279,6 +298,15 @@
   margin: 0 auto;
 }
 @media (max-width: 780px) { .claims { grid-template-columns: 1fr; gap: 2.5rem; } }
+@media (max-width: 640px) {
+  .claims { gap: 1.75rem; }
+  .claim p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
 
 .claim h3 {
   font-family: var(--display-font);
@@ -437,6 +465,11 @@
 @media (max-width: 520px) { .steps { grid-template-columns: 1fr; gap: 1.75rem; } }
 
 @media (max-width: 640px) {
+  /* Stay 2-column instead of collapsing to a single stacked list — with a
+     1-line clamp the short step titles fit two-up even on a narrow phone,
+     halving the section's scroll length. */
+  .steps { grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1.25rem; margin-top: 2rem; }
+  .step { padding-top: 1.6rem; }
   .step__desc {
     display: -webkit-box;
     -webkit-line-clamp: 2;
