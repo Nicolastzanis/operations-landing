@@ -101,7 +101,7 @@
    correctly if the phrase ever wraps, where an absolutely-positioned bar
    would break. */
 .hero__title .hl {
-  background-image: linear-gradient(90deg, #a5b4fc, #7db2ff 45%, #67e8f9);
+  background-image: linear-gradient(90deg, #8b5cf6, #3b82f6 45%, #22d3ee);
   background-repeat: no-repeat;
   background-size: 100% 0.05em;
   /* On the baseline it struck through the 'p'/'g' descenders, so it needs the
@@ -115,7 +115,7 @@
 
 .hero__title em {
   font-style: normal;
-  background: linear-gradient(95deg, #c7d2fe 0%, #7db2ff 48%, #67e8f9 100%);
+  background: linear-gradient(95deg, #8b5cf6 0%, #3b82f6 48%, #22d3ee 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
