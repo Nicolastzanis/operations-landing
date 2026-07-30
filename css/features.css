@@ -86,6 +86,12 @@
 @media (max-width: 900px) {
   .modules__inner { grid-template-columns: 1fr; gap: 2rem; }
   .rail {
+    /* Without this, the rail (a 1fr grid item) inherits its horizontally-
+       scrollable child's full unwrapped content width as its own minimum
+       size — grid items default to min-width:auto, which ignores
+       overflow-x:auto on the child — and blows the whole page out past
+       the viewport instead of scrolling internally. */
+    min-width: 0;
     position: sticky;
     top: 62px;
     z-index: 4;

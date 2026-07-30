@@ -438,12 +438,11 @@ a { color: inherit; }
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 42px;
-  height: 42px;
-  padding: 0 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
   cursor: pointer;
 }
 .nav__burger span {
