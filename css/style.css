@@ -34,7 +34,12 @@
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
           'Helvetica Neue', Arial, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --display-font: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  /* All-sans headlines — was 'Playfair Display' (serif). Same stack as
+     --font so headlines and body share one typeface; the weight (800/900)
+     and letter-spacing already used on headline elements carry the
+     visual distinction instead. */
+  --display-font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+          'Helvetica Neue', Arial, sans-serif;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

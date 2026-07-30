@@ -14,28 +14,9 @@
   position: relative;
   overflow: hidden;
 
-  /* ─────────── HERO BACKGROUND: change it here ───────────
-     --hero-top is the dominant colour; the three below just carry it down
-     into the page base. Changing --hero-top alone already reads as a new
-     hero, so start there.
-
-     Two things to leave alone:
-       1. The final stop is var(--bg). The wave directly underneath is painted
-          in that same colour, so if the gradient ends on anything else you
-          get a hard seam at the join.
-       2. Keep five stops. On a gradient this tall, three band visibly on
-          8-bit displays.                                                   */
-  --hero-top:  #0a1130;
-  --hero-mid:  #091029;
-  --hero-low:  #070c1d;
-  --hero-foot: #060913;
-
-  background: linear-gradient(180deg,
-    var(--hero-top)  0%,
-    var(--hero-mid)  28%,
-    var(--hero-low)  55%,
-    var(--hero-foot) 78%,
-    var(--bg)       100%);
+  /* Flat colour, same as every other page's .page-hero — both just render
+     .theme-dark's own background: var(--bg), so they're always in sync. */
+  background: var(--bg);
   padding: clamp(8rem, 17vh, 11rem) var(--gutter) clamp(5rem, 12vh, 8rem);
   /* Fills most of the viewport without the 100vh trap on short laptop
      screens, where a full-height hero pushes all content below the fold. */
