@@ -351,6 +351,19 @@
 @media (max-width: 1040px) { .modgrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px)  { .modgrid { grid-template-columns: 1fr; } }
 
+/* Phones: these are a teaser grid linking to features.html, not the full
+   feature copy — clamp the description so eight stacked cards don't turn
+   into a second scroll of their own. */
+@media (max-width: 640px) {
+  .modcard { padding: 1.4rem 1.3rem; }
+  .modcard__desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 .modcard {
   position: relative;
   display: block;
@@ -421,7 +434,16 @@
   counter-reset: step;
 }
 @media (max-width: 940px) { .steps { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 2rem; } }
-@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; gap: 1.75rem; } }
+
+@media (max-width: 640px) {
+  .step__desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
 
 .step { position: relative; padding-top: 2.4rem; }
 
@@ -474,6 +496,16 @@
   margin-top: 3.5rem;
 }
 @media (max-width: 900px) { .principles { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .principles { gap: 0.9rem; margin-top: 2.25rem; }
+  .principle { padding: 1.4rem 1.5rem; }
+  .principle p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
 
 .principle {
   padding: 2rem 1.8rem;
@@ -562,6 +594,14 @@
   left: 0;
   color: var(--accent-warm);
   font-size: 0.9rem;
+}
+
+/* This is the homepage teaser for the plan on pricing.html, which already
+   lists every line item — on phones, drop the repeated list and keep just
+   the name/price/CTA so the plan card doesn't add another full screen. */
+@media (max-width: 640px) {
+  .plan { padding: 2rem 1.6rem; }
+  .plan__list { display: none; }
 }
 
 /* ------------------------------------------------------------

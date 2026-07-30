@@ -87,6 +87,12 @@ a { color: inherit; }
   position: relative;
   height: var(--track-height, 400vh);
 }
+/* On phones the 450vh scroll-driven security sequence alone was ~30% of the
+   entire homepage's scroll length. Shortening the scrub distance keeps the
+   pinned reveal but stops it from dominating the mobile scroll. */
+@media (max-width: 640px) {
+  .scroll-track { height: 190vh !important; }
+}
 
 .scroll-stage {
   position: sticky;
@@ -533,6 +539,11 @@ a { color: inherit; }
   z-index: 2;
   background: var(--bg);
   padding: clamp(5rem, 13vh, 8.5rem) var(--gutter);
+}
+/* The 13vh clamp was adding ~210px of padding per section on phones — over
+   1.5 screens of pure whitespace across the homepage. Tighten it up there. */
+@media (max-width: 640px) {
+  .section { padding: 3.75rem var(--gutter); }
 }
 .section--alt { background: var(--bg-alt); }
 .section--line { border-top: 1px solid var(--hairline); }
