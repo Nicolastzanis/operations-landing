@@ -282,3 +282,23 @@ if (!reducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').ma
      nomous[0].setEase(0.04)  -> much heavier brake
      nomous[0].setEase(0.15)  -> tighter, more responsive  */
 window.nomous = instances;
+
+/* ── Product tour: tab-switched screenshots with a soft crossfade ─────────── */
+for (const tour of document.querySelectorAll('[data-tour]')) {
+  const img = tour.querySelector('[data-tour-img]');
+  const cap = tour.querySelector('[data-tour-caption]');
+  const tabs = [...tour.querySelectorAll('.tour__tab')];
+  // fetch ahead so the first click doesn't show a blank frame
+  for (const t of tabs) { const pre = new Image(); pre.src = `assets/screens/${t.dataset.shot}.webp`; }
+  for (const t of tabs) {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => { x.classList.toggle('is-active', x === t); x.setAttribute('aria-selected', x === t); });
+      img.classList.add('is-swapping');
+      setTimeout(() => {
+        img.src = `assets/screens/${t.dataset.shot}.webp`;
+        img.onload = () => img.classList.remove('is-swapping');
+      }, 180);
+      if (cap) cap.textContent = t.dataset.caption || '';
+    });
+  }
+}

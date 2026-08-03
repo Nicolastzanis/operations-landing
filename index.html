@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nomous | Read-only MT5 infrastructure for brokerages</title>
-<meta name="description" content="Nomous connects brokerages to the MT5 Web API over a strictly read-only integration. Real-time pricing, risk, client and alert data, without write access to your server.">
+<title>Nomous | The MT5 operations platform for brokerages</title>
+<meta name="description" content="Real-time pricing, risk, clients and alerts for MT5 brokerages over one managed connection. Read-only by default. Every change you enable is confirmed and audited.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,13 +61,14 @@
     <div class="hero__inner">
 
       <div class="hero__copy">
-        <p class="hero__eyebrow fade-up fade-up--1">Read-only · Real-time · MT5 native</p>
+        <p class="hero__eyebrow fade-up fade-up--1">Real-time · MT5 native · Fully audited</p>
         <h1 class="hero__title fade-up fade-up--2">
           The <span class="hl"><em>processing core</em></span><br>for your MT5 operations.
         </h1>
         <p class="hero__sub fade-up fade-up--3">
-          Nomous links your MetaTrader 5 server to modern applications through a
-          strictly read-only integration. Full visibility, zero write surface.
+          Pricing, risk, clients and alerts from your MetaTrader 5 server,
+          live in one operations desk. Read-only by default. Every change
+          you allow is confirmed and audited.
         </p>
         <div class="hero__actions fade-up fade-up--4">
           <a class="btn btn--glow" href="contact.html">Get Started</a>
@@ -76,7 +77,7 @@
              inside it) is hidden — see the max-width:640px rule in
              sections.css. Keeps the "nothing written back" line without
              the diagram's weight. -->
-        <p class="hero__caption hero__caption--mobile">One connection · nothing written back</p>
+        <p class="hero__caption hero__caption--mobile">One connection · read-only by default</p>
       </div>
 
       <div class="hero__visual fade-up fade-up--3">
@@ -86,8 +87,8 @@
                the viewBox width, not their absolute units - the SVG scales to
                its column. So widening the viewBox and scaling the boxes with it
                buys connector length for free. -->
-          <svg class="hero__diagram" viewBox="0 40 880 328" role="img"
-               aria-label="Diagram: your MT5 server streams live data into the Nomous hub, which processes it and feeds the Pricing Monitor, Risk Monitor, Alerts and Nomous AI. Nothing is written back to the server.">
+          <svg class="hero__diagram" viewBox="0 40 880 392" role="img"
+               aria-label="Diagram: your MT5 server streams live data into the Nomous hub, which feeds the Pricing Monitor, Risk Monitor, Alerts and Nomous AI. A separate write path back to the server sits behind a switch that is off by default: opt-in, confirmed and audited.">
             <defs>
               <radialGradient id="hubGlow">
                 <stop offset="0%"   stop-color="#6366f1" stop-opacity="0.5"/>
@@ -109,6 +110,18 @@
               <filter id="lift" x="-40%" y="-60%" width="180%" height="220%">
                 <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#02060f" flood-opacity="0.55"/>
               </filter>
+              <linearGradient id="chipEdge" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#a5aaff" stop-opacity="0.6"/>
+                <stop offset="50%"  stop-color="#969ef0" stop-opacity="0.16"/>
+                <stop offset="100%" stop-color="#2fd6a5" stop-opacity="0.38"/>
+              </linearGradient>
+              <linearGradient id="chipAmber" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#241a2e"/>
+                <stop offset="100%" stop-color="#120d1d"/>
+              </linearGradient>
+              <filter id="amberGlow" x="-40%" y="-60%" width="180%" height="220%">
+                <feDropShadow dx="0" dy="7" stdDeviation="13" flood-color="#f59e0b" flood-opacity="0.3"/>
+              </filter>
             </defs>
 
             <!-- connectors -->
@@ -123,26 +136,30 @@
 
             <!-- inputs -->
             <g filter="url(#lift)">
-              <rect x="0" y="166" width="164" height="76" rx="17" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
-              <rect x="206" y="166" width="154" height="76" rx="17" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+              <rect x="0" y="166" width="164" height="76" rx="17" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
+              <rect x="206" y="166" width="154" height="76" rx="17" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
             </g>
 
+            <rect x="14" y="188" width="32" height="32" rx="9"
+                  fill="rgba(150,158,240,0.10)" stroke="rgba(150,158,240,0.35)"/>
             <g class="dg-icon" transform="translate(22,196)">
               <rect x="0" y="0"  width="16" height="6" rx="1.6"/>
               <rect x="0" y="10" width="16" height="6" rx="1.6"/>
               <circle cx="3.2" cy="3" r="0.9" fill="currentColor" stroke="none"/>
               <circle cx="3.2" cy="13" r="0.9" fill="currentColor" stroke="none"/>
             </g>
-            <text x="50" y="199" class="dg-title">MT5 server</text>
-            <text x="50" y="219" class="dg-label">Manager API</text>
+            <text x="56" y="199" class="dg-title">MT5 server</text>
+            <text x="56" y="219" class="dg-label">Manager API</text>
 
+            <rect x="220" y="188" width="32" height="32" rx="9"
+                  fill="rgba(47,214,165,0.10)" stroke="rgba(47,214,165,0.4)"/>
             <g class="dg-icon dg-icon--live" transform="translate(228,196)">
               <path d="M1.5 10.5 a7 7 0 0 1 13 0"/>
               <path d="M4.8 12.4 a3.6 3.6 0 0 1 6.4 0"/>
               <circle cx="8" cy="13.6" r="1.15" fill="currentColor" stroke="none"/>
             </g>
-            <text x="256" y="199" class="dg-title">Live data</text>
-            <text x="256" y="219" class="dg-label dg-label--live">Streaming</text>
+            <text x="262" y="199" class="dg-title">Live data</text>
+            <text x="262" y="219" class="dg-label dg-label--live">Streaming</text>
 
             <!-- hub -->
             <circle cx="464" cy="204" r="152" fill="url(#hubGlow)"/>
@@ -156,37 +173,78 @@
             </circle>
             <image href="assets/brand/logo-n.webp" x="406" y="146" width="116" height="116"
                    class="dg-logo" preserveAspectRatio="xMidYMid meet"/>
-            <text x="464" y="296" text-anchor="middle" class="dg-label dg-label--muted">Processing · read only</text>
+            <text x="464" y="296" text-anchor="middle" class="dg-label dg-label--muted">Processing · audited</text>
 
             <!-- outputs -->
             <g filter="url(#lift)">
-              <rect x="596" y="58"  width="284" height="64" rx="16" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
-              <rect x="596" y="134" width="284" height="64" rx="16" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
-              <rect x="596" y="210" width="284" height="64" rx="16" fill="url(#chip)" stroke="rgba(255,255,255,0.14)"/>
+              <rect x="596" y="58"  width="284" height="64" rx="16" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
+              <rect x="596" y="134" width="284" height="64" rx="16" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
+              <rect x="596" y="210" width="284" height="64" rx="16" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
               <rect x="596" y="286" width="284" height="64" rx="16" fill="url(#chipAI)" stroke="rgba(150,158,240,0.55)"/>
             </g>
 
+            <rect x="614" y="74" width="32" height="32" rx="9"
+                  fill="rgba(150,158,240,0.10)" stroke="rgba(150,158,240,0.4)"/>
             <g class="dg-icon" transform="translate(622,82)">
               <polyline points="0,8 3,8 5.5,2 8.5,14 11,7 13,8 16,8"/>
             </g>
-            <text x="654" y="96" class="dg-title">Pricing Monitor</text>
+            <text x="660" y="96" class="dg-title">Pricing Monitor</text>
 
-            <g class="dg-icon" transform="translate(622,158)">
+            <rect x="614" y="150" width="32" height="32" rx="9"
+                  fill="rgba(47,214,165,0.10)" stroke="rgba(47,214,165,0.4)"/>
+            <g class="dg-icon" transform="translate(622,158)" style="stroke:#2fd6a5;color:#2fd6a5">
               <path d="M8 1 L14.5 3.8 V8.2 C14.5 12 8 15 8 15 C8 15 1.5 12 1.5 8.2 V3.8 Z"/>
             </g>
-            <text x="654" y="172" class="dg-title">Risk Monitor</text>
+            <text x="660" y="172" class="dg-title">Risk Monitor</text>
 
-            <g class="dg-icon" transform="translate(622,234)">
+            <rect x="614" y="226" width="32" height="32" rx="9"
+                  fill="rgba(251,191,36,0.10)" stroke="rgba(251,191,36,0.4)"/>
+            <g class="dg-icon" transform="translate(622,234)" style="stroke:#fbbf24;color:#fbbf24">
               <path d="M4 11.5 V7 a4 4 0 0 1 8 0 v4.5"/>
               <path d="M2.4 11.8 h11.2"/>
               <path d="M6.4 14.2 a1.8 1.8 0 0 0 3.2 0"/>
             </g>
-            <text x="654" y="248" class="dg-title">Alerts</text>
+            <text x="660" y="248" class="dg-title">Alerts</text>
 
             <!-- The app uses the logo mark itself here, not a generic glyph. -->
-            <image href="assets/brand/logo-n-sm.webp" x="620" y="308" width="21" height="21"
+            <rect x="614" y="302" width="32" height="32" rx="9"
+                  fill="rgba(195,201,255,0.10)" stroke="rgba(195,201,255,0.45)"/>
+            <image href="assets/brand/logo-n-sm.webp" x="619" y="307" width="22" height="22"
                    preserveAspectRatio="xMidYMid meet"/>
-            <text x="654" y="324" class="dg-title dg-title--ai">Nomous AI</text>
+            <text x="660" y="324" class="dg-title dg-title--ai">Nomous AI</text>
+
+            <!-- the write path: it exists, and it is visibly OFF. Reads flow
+                 free along the top; the way back runs through one switch the
+                 broker owns. This is the sales pitch drawn as wiring. -->
+            <g fill="none" stroke="rgba(251,191,36,0.32)" stroke-width="1.2" stroke-dasharray="4 7">
+              <path d="M 700 350 V 398 H 599"/>
+              <path d="M 329 398 H 84 V 248"/>
+            </g>
+            <!-- arrowhead: the path points AT the server, making "write" unambiguous -->
+            <path d="M 79 252 L 84 242 L 89 252 Z" fill="rgba(251,191,36,0.45)"/>
+
+            <!-- the switch itself -->
+            <g filter="url(#amberGlow)">
+              <rect x="329" y="372" width="270" height="52" rx="15"
+                    fill="url(#chipAmber)" stroke="rgba(251,191,36,0.55)" stroke-width="1.1"/>
+            </g>
+            <!-- toggle, knob resting at OFF -->
+            <rect x="352" y="391" width="27" height="14" rx="7"
+                  fill="rgba(251,191,36,0.10)" stroke="rgba(251,191,36,0.55)" stroke-width="1.2"/>
+            <circle cx="359.5" cy="398" r="4.6" fill="#fbbf24"/>
+            <text x="392" y="396" class="dg-title" style="font-size:13px; fill:#fde68a">Write path</text>
+            <rect x="470" y="384" width="98" height="16" rx="8"
+                  fill="rgba(251,191,36,0.08)" stroke="rgba(251,191,36,0.5)" stroke-width="1"/>
+            <text x="519" y="395" text-anchor="middle" class="dg-label"
+                  style="font-size:8.5px; fill:#fbbf24">Off by default</text>
+            <text x="392" y="413" class="dg-label" style="font-size:9px; letter-spacing:0.06em; fill:rgba(251,191,36,0.62)">opt-in · confirmed · audited</text>
+
+            <!-- an amber packet tries the return path and stops at the switch -->
+            <circle r="3.4" fill="#fbbf24" filter="url(#dot)">
+              <animate attributeName="cx" values="700;700;607" keyTimes="0;0.3;1" dur="3.4s" begin="1s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="352;398;398" keyTimes="0;0.3;1" dur="3.4s" begin="1s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.3;0.85;1" dur="3.4s" begin="1s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- packets, sequenced so the eye follows server, live, hub, out -->
             <circle r="4" fill="#969ef0" filter="url(#dot)">
@@ -222,7 +280,7 @@
             </circle>
           </svg>
 
-          <p class="hero__caption">One connection · nothing written back</p>
+          <p class="hero__caption">One connection · read-only by default</p>
         </div>
       </div>
 
@@ -271,7 +329,7 @@
       <p class="sec-bar" data-reveal><b>002</b> Thesis</p>
       <h2 class="headline" data-reveal>Your ops team already knows<br>what needs watching.</h2>
       <p class="lede" data-reveal>
-        Eight modules covering everything an MT5 broker operations team checks
+        Ten modules covering everything an MT5 broker operations team checks
         every single day, in one place, in real time.
       </p>
 
@@ -286,7 +344,7 @@
   <section class="section section--alt">
     <div class="section__inner">
       <p class="sec-bar" data-reveal><b>003</b> Modules</p>
-      <h2 class="headline" data-reveal>Eight units. One platform.</h2>
+      <h2 class="headline" data-reveal>Ten modules. One platform.</h2>
       <p class="lede" data-reveal>
         Everything included from day one. No per-module pricing, no add-ons.
       </p>
@@ -300,35 +358,45 @@
         <a class="modcard" href="features.html#m02">
           <span class="modcard__num">02</span>
           <span class="modcard__name">Risk Monitor</span>
-          <span class="modcard__desc">Equity, margin level and floating P&amp;L per account, with margin-call flags.</span>
+          <span class="modcard__desc">Equity, margin and floating P&amp;L per account, measured against each group's real stop-out levels.</span>
         </a>
         <a class="modcard" href="features.html#m03">
           <span class="modcard__num">03</span>
           <span class="modcard__name">Clients</span>
-          <span class="modcard__desc">Find any account by login, email or name. Positions, history and settings.</span>
+          <span class="modcard__desc">Any account by login, email or name. Positions, leverage, lifetime P&amp;L and history.</span>
         </a>
         <a class="modcard" href="features.html#m04">
           <span class="modcard__num">04</span>
-          <span class="modcard__name">Swaps &amp; Simulator</span>
-          <span class="modcard__desc">Model the effect of new swap values before anything reaches your clients.</span>
+          <span class="modcard__name">MT Groups</span>
+          <span class="modcard__desc">Every group's spec side by side. Simulate a move before it happens and see exactly who it would liquidate.</span>
+        </a>
+        <a class="modcard" href="features.html#m06">
+          <span class="modcard__num">05</span>
+          <span class="modcard__name">Symbols</span>
+          <span class="modcard__desc">The full symbol specification straight from MT5: sessions, swaps, margins, contract sizes.</span>
+        </a>
+        <a class="modcard" href="features.html#m04">
+          <span class="modcard__num">06</span>
+          <span class="modcard__name">Swaps</span>
+          <span class="modcard__desc">Swap rates across every group and symbol, compared, exported and modelled in bulk.</span>
         </a>
         <a class="modcard" href="features.html#m05">
-          <span class="modcard__num">05</span>
+          <span class="modcard__num">07</span>
           <span class="modcard__name">Alerts</span>
           <span class="modcard__desc">Margin calls, spread spikes and disconnects, delivered by email and Telegram.</span>
         </a>
         <a class="modcard" href="features.html#m06">
-          <span class="modcard__num">06</span>
-          <span class="modcard__name">Hours &amp; Holidays</span>
-          <span class="modcard__desc">Session hours and market holidays per symbol group, with live open/closed state.</span>
+          <span class="modcard__num">08</span>
+          <span class="modcard__name">Holidays</span>
+          <span class="modcard__desc">Market holidays per symbol group, with live open/closed state for every session.</span>
         </a>
         <a class="modcard" href="features.html#m07">
-          <span class="modcard__num">07</span>
+          <span class="modcard__num">09</span>
           <span class="modcard__name">Nomous AI</span>
-          <span class="modcard__desc">Ask in plain English. Answers grounded in your own live data, isolated per broker.</span>
+          <span class="modcard__desc">Ask in plain English. Answers grounded in your own live data and the official MT5 documentation, isolated per broker.</span>
         </a>
         <a class="modcard" href="features.html#m08">
-          <span class="modcard__num">08</span>
+          <span class="modcard__num">10</span>
           <span class="modcard__name">News</span>
           <span class="modcard__desc">High-impact economic events explained, with an automatic alert 30 minutes ahead.</span>
         </a>
@@ -340,12 +408,61 @@
     </div>
   </section>
 
+
   <!-- ============================================================
-       004 - Deployment
+       004 - Product tour. Real screens from the live product, in a
+       browser frame with tabs — not mockups, and it says so.
+       ============================================================ -->
+  <section class="section" id="tour">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>004</b> Product</p>
+      <h2 class="headline" data-reveal>See it the way your desk will.</h2>
+      <p class="lede" data-reveal>
+        Real screens from the live platform, captured from the product.
+        Not drawn for the brochure.
+      </p>
+
+      <div class="tour" data-tour data-reveal>
+        <div class="tour__tabs" role="tablist" aria-label="Product screens">
+          <button class="tour__tab is-active" role="tab" aria-selected="true"
+                  data-shot="risk-monitor"
+                  data-caption="Every account is measured against its own group&#39;s real margin-call and stop-out levels, not a platform-wide guess.">Risk Monitor</button>
+          <button class="tour__tab" role="tab" aria-selected="false"
+                  data-shot="pricing-monitor"
+                  data-caption="Live bid, ask and spread for every symbol, streaming. No refresh button anywhere.">Pricing</button>
+          <button class="tour__tab" role="tab" aria-selected="false"
+                  data-shot="symbols-dialog"
+                  data-caption="The full MT5 symbol specification, with sessions and their breaks read out in plain words.">Symbols</button>
+          <button class="tour__tab" role="tab" aria-selected="false"
+                  data-shot="mt-groups"
+                  data-caption="Simulate moving clients between groups and see the exact difference, including who a move would liquidate.">MT Groups</button>
+          <button class="tour__tab" role="tab" aria-selected="false"
+                  data-shot="nomous-ai"
+                  data-caption="Ask in plain English. Answers come from your own live book and the official MT5 documentation, isolated per broker.">Nomous AI</button>
+        </div>
+
+        <figure class="tour__frame" data-tilt>
+          <div class="tour__chrome" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <em>app.nomous.tech</em>
+          </div>
+          <img data-tour-img src="assets/screens/risk-monitor.webp" width="1600" height="1000"
+               alt="Nomous product screen" loading="lazy" decoding="async">
+        </figure>
+        <p class="tour__caption" data-tour-caption>
+          Every account is measured against its own group&#39;s real margin-call
+          and stop-out levels, not a platform-wide guess.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       005 - Deployment
        ============================================================ -->
   <section class="section">
     <div class="section__inner">
-      <p class="sec-bar" data-reveal><b>004</b> Deployment</p>
+      <p class="sec-bar" data-reveal><b>005</b> Deployment</p>
       <h2 class="headline" data-reveal>Up and running in minutes.</h2>
       <p class="lede" data-reveal>
         No complex setup and nothing to install on your server. Connect your MT5
@@ -401,19 +518,21 @@
       <div class="overlay overlay--bottom">
         <div class="overlay__block" data-enter="0" data-exit="0.42">
           <p class="eyebrow">Security Posture</p>
-          <h2 class="display">Read-only.<br>Enforced, not promised.</h2>
+          <h2 class="display">Read-only by default.<br>Enforced, not promised.</h2>
           <p class="subhead">
-            Nomous holds no write capability against your MT5 server. Trading,
-            modification and administrative endpoints are absent from the
-            integration surface entirely.
+            Nomous connects with zero write surface. Monitoring, risk and
+            alerts run entirely on reads. Out of the box, nothing on your
+            trading server can be changed from here.
           </p>
         </div>
 
         <div class="overlay__block" data-enter="0.48" data-exit="1">
-          <h2 class="headline">Encrypted end to end.</h2>
+          <h2 class="headline">When you want control,<br>you hold the switch.</h2>
           <p class="subhead">
-            TLS 1.3 in transit, AES-256 at rest, IP-allowlisted connections and
-            fully auditable access logs for every request against your server.
+            Symbol and group changes sit behind a per-company switch that
+            only your admin can turn on. Every change shows exactly what it
+            will do, asks once, and lands in a full audit trail. TLS 1.3 in
+            transit, AES-256 at rest, IP-allowlisted connections.
           </p>
           <div class="actions">
             <a class="btn btn--primary" href="contact.html">Talk to our team</a>
@@ -445,7 +564,7 @@
        ============================================================ -->
   <section class="section section--alt">
     <div class="section__inner">
-      <p class="sec-bar" data-reveal><b>005</b> Principles</p>
+      <p class="sec-bar" data-reveal><b>006</b> Principles</p>
       <h2 class="headline" data-reveal>Why teams switch.</h2>
 
       <div class="principles">
@@ -470,7 +589,7 @@
        ============================================================ -->
   <section class="section">
     <div class="section__inner" style="text-align:center">
-      <p class="sec-bar" data-reveal><b>006</b> Engagement</p>
+      <p class="sec-bar" data-reveal><b>007</b> Engagement</p>
       <h2 class="headline" data-reveal>One plan. Full access.</h2>
       <p class="lede" style="margin-inline:auto" data-reveal>
         No seat limits, no hidden fees, no long-term lock-in.
@@ -481,11 +600,12 @@
         <p class="plan__price">Custom</p>
         <p class="plan__note">Tailored to your brokerage · Cancel anytime</p>
         <ul class="plan__list">
-          <li>All eight platform modules from day one</li>
+          <li>All ten platform modules from day one</li>
           <li>Unlimited team accounts, no per-seat pricing</li>
           <li>Custom branding and company logo</li>
           <li>MT5 Manager API connection</li>
-          <li>Nomous AI trained on your own data</li>
+          <li>Full audit trail of every action, 90 days</li>
+          <li>Nomous AI grounded in your data and the MT5 docs</li>
         </ul>
         <div class="actions" style="justify-content:center">
           <a class="btn btn--primary" href="contact.html">Contact us</a>
