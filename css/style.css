@@ -34,12 +34,11 @@
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
           'Helvetica Neue', Arial, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  /* All-sans headlines — was 'Playfair Display' (serif). Same stack as
-     --font so headlines and body share one typeface; the weight (800/900)
-     and letter-spacing already used on headline elements carry the
-     visual distinction instead. */
-  --display-font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
-          'Helvetica Neue', Arial, sans-serif;
+  /* Headlines run condensed — the same typeface the product uses for its
+     figures and card titles, so site and app speak with one voice. Narrow
+     and heavy reads as deliberate; Inter alone read as default. */
+  --display-font: 'IBM Plex Sans Condensed', 'Inter', -apple-system,
+          BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -259,19 +258,19 @@ a { color: inherit; }
 
 .display {
   font-family: var(--display-font);
-  font-size: clamp(2.6rem, 7vw, 5.25rem);
-  font-weight: 900;
-  line-height: 1.04;
-  letter-spacing: -0.022em;
+  font-size: clamp(2.7rem, 7.2vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.012em;
   text-wrap: balance;
 }
 
 .headline {
   font-family: var(--display-font);
-  font-size: clamp(2rem, 4.6vw, 3.4rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.05rem, 4.8vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 

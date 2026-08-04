@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Condensed:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/sections.css">
 </head>
@@ -87,196 +87,173 @@
                the viewBox width, not their absolute units - the SVG scales to
                its column. So widening the viewBox and scaling the boxes with it
                buys connector length for free. -->
-          <svg class="hero__diagram" viewBox="0 40 880 392" role="img"
-               aria-label="Diagram: your MT5 server streams live data into the Nomous hub, which feeds the Pricing Monitor, Risk Monitor, Alerts and Nomous AI. A separate write path back to the server sits behind a switch that is off by default: opt-in, confirmed and audited.">
+          <!-- The whole premise in one picture: everything MT5 holds flows in,
+               one hub processes it, every module falls out — and the only path
+               back to the server runs through a switch the broker owns.
+               Six-in / six-out says "this replaces your whole morning", which a
+               single chain never did. -->
+          <svg class="hero__diagram" viewBox="0 0 1000 530" role="img"
+               aria-label="Diagram: accounts, positions, live prices, groups, symbols and the server journal stream from your MT5 server into the Nomous hub, which feeds the Pricing Monitor, Risk Monitor, Clients, MT Groups, Alerts and Nomous AI. A separate write path back to the server runs through a switch that is off by default: opt-in, confirmed and audited.">
             <defs>
               <radialGradient id="hubGlow">
-                <stop offset="0%"   stop-color="#6366f1" stop-opacity="0.5"/>
-                <stop offset="55%"  stop-color="#4338ca" stop-opacity="0.16"/>
+                <stop offset="0%"   stop-color="#6366f1" stop-opacity="0.42"/>
+                <stop offset="55%"  stop-color="#4338ca" stop-opacity="0.14"/>
                 <stop offset="100%" stop-color="#4338ca" stop-opacity="0"/>
               </radialGradient>
-              <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#16233b"/>
-                <stop offset="100%" stop-color="#0b1424"/>
+              <linearGradient id="pillIn" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#16233b"/><stop offset="100%" stop-color="#0d1727"/>
               </linearGradient>
-              <linearGradient id="chipAI" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#1e2a55"/>
-                <stop offset="100%" stop-color="#111838"/>
+              <linearGradient id="pillOut" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1a2440"/><stop offset="100%" stop-color="#101a2e"/>
+              </linearGradient>
+              <linearGradient id="hexEdge" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#a5aaff" stop-opacity="0.75"/>
+                <stop offset="55%" stop-color="#818cf8" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#2fd6a5" stop-opacity="0.5"/>
+              </linearGradient>
+              <linearGradient id="chipAmber" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#241a2e"/><stop offset="100%" stop-color="#120d1d"/>
               </linearGradient>
               <filter id="dot" x="-300%" y="-300%" width="700%" height="700%">
                 <feGaussianBlur stdDeviation="3" result="b"/>
                 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
               <filter id="lift" x="-40%" y="-60%" width="180%" height="220%">
-                <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#02060f" flood-opacity="0.55"/>
+                <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#02060f" flood-opacity="0.5"/>
               </filter>
-              <linearGradient id="chipEdge" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%"   stop-color="#a5aaff" stop-opacity="0.6"/>
-                <stop offset="50%"  stop-color="#969ef0" stop-opacity="0.16"/>
-                <stop offset="100%" stop-color="#2fd6a5" stop-opacity="0.38"/>
-              </linearGradient>
-              <linearGradient id="chipAmber" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#241a2e"/>
-                <stop offset="100%" stop-color="#120d1d"/>
-              </linearGradient>
               <filter id="amberGlow" x="-40%" y="-60%" width="180%" height="220%">
-                <feDropShadow dx="0" dy="7" stdDeviation="13" flood-color="#f59e0b" flood-opacity="0.3"/>
+                <feDropShadow dx="0" dy="7" stdDeviation="13" flood-color="#f59e0b" flood-opacity="0.28"/>
               </filter>
             </defs>
 
-            <!-- connectors -->
-            <g stroke="rgba(150,158,240,0.24)" stroke-width="1.3" stroke-dasharray="5 6" fill="none">
-              <line x1="164" y1="204" x2="206" y2="204"/>
-              <line x1="360" y1="204" x2="404" y2="204"/>
-              <line x1="524" y1="204" x2="596" y2="90"/>
-              <line x1="524" y1="204" x2="596" y2="166"/>
-              <line x1="524" y1="204" x2="596" y2="242"/>
-              <line x1="524" y1="204" x2="596" y2="318"/>
+            <!-- ── inbound: what MT5 holds ─────────────────────────────── -->
+            <g class="dg-wire">
+              <path d="M247 59 H300 V179 H431"/>
+              <path d="M247 119 H300 V191 H431"/>
+              <path d="M247 179 H300 V203 H431"/>
+              <path d="M247 239 H300 V215 H431"/>
+              <path d="M247 299 H300 V227 H431"/>
+              <path d="M247 359 H300 V239 H431"/>
             </g>
-
-            <!-- inputs -->
+            <g class="dg-node">
+              <circle cx="247" cy="59"/><circle cx="247" cy="119"/><circle cx="247" cy="179"/>
+              <circle cx="247" cy="239"/><circle cx="247" cy="299"/><circle cx="247" cy="359"/>
+            </g>
+            <!-- names the six pills for what they are: one server -->
+            <path class="dg-bracket" d="M46 40 H36 V378 H46"/>
+            <text class="dg-label" x="36" y="26">Your MT5 server</text>
             <g filter="url(#lift)">
-              <rect x="0" y="166" width="164" height="76" rx="17" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
-              <rect x="206" y="166" width="154" height="76" rx="17" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
+              <rect class="dg-pill" x="58" y="40"  width="186" height="38" rx="19" fill="url(#pillIn)"/>
+              <rect class="dg-pill" x="58" y="100" width="186" height="38" rx="19" fill="url(#pillIn)"/>
+              <rect class="dg-pill" x="58" y="160" width="186" height="38" rx="19" fill="url(#pillIn)"/>
+              <rect class="dg-pill" x="58" y="220" width="186" height="38" rx="19" fill="url(#pillIn)"/>
+              <rect class="dg-pill" x="58" y="280" width="186" height="38" rx="19" fill="url(#pillIn)"/>
+              <rect class="dg-pill" x="58" y="340" width="186" height="38" rx="19" fill="url(#pillIn)"/>
             </g>
+            <text class="dg-pill-text" x="151" y="59"  text-anchor="middle">Accounts</text>
+            <text class="dg-pill-text" x="151" y="119" text-anchor="middle">Open positions</text>
+            <text class="dg-pill-text" x="151" y="179" text-anchor="middle">Live prices</text>
+            <text class="dg-pill-text" x="151" y="239" text-anchor="middle">Groups</text>
+            <text class="dg-pill-text" x="151" y="299" text-anchor="middle">Symbols</text>
+            <text class="dg-pill-text" x="151" y="359" text-anchor="middle">Server journal</text>
 
-            <rect x="14" y="188" width="32" height="32" rx="9"
-                  fill="rgba(150,158,240,0.10)" stroke="rgba(150,158,240,0.35)"/>
-            <g class="dg-icon" transform="translate(22,196)">
-              <rect x="0" y="0"  width="16" height="6" rx="1.6"/>
-              <rect x="0" y="10" width="16" height="6" rx="1.6"/>
-              <circle cx="3.2" cy="3" r="0.9" fill="currentColor" stroke="none"/>
-              <circle cx="3.2" cy="13" r="0.9" fill="currentColor" stroke="none"/>
-            </g>
-            <text x="56" y="199" class="dg-title">MT5 server</text>
-            <text x="56" y="219" class="dg-label">Manager API</text>
-
-            <rect x="220" y="188" width="32" height="32" rx="9"
-                  fill="rgba(47,214,165,0.10)" stroke="rgba(47,214,165,0.4)"/>
-            <g class="dg-icon dg-icon--live" transform="translate(228,196)">
-              <path d="M1.5 10.5 a7 7 0 0 1 13 0"/>
-              <path d="M4.8 12.4 a3.6 3.6 0 0 1 6.4 0"/>
-              <circle cx="8" cy="13.6" r="1.15" fill="currentColor" stroke="none"/>
-            </g>
-            <text x="262" y="199" class="dg-title">Live data</text>
-            <text x="262" y="219" class="dg-label dg-label--live">Streaming</text>
-
-            <!-- hub -->
-            <circle cx="464" cy="204" r="152" fill="url(#hubGlow)"/>
-            <circle cx="464" cy="204" r="76" fill="none" stroke="rgba(150,158,240,0.26)" stroke-width="1">
-              <animate attributeName="r" values="76;126" dur="3.6s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.45;0" dur="3.6s" repeatCount="indefinite"/>
+            <!-- ── the hub ─────────────────────────────────────────────── -->
+            <circle cx="500" cy="209" r="150" fill="url(#hubGlow)"/>
+            <circle cx="500" cy="209" r="84" fill="none" stroke="rgba(150,158,240,0.22)" stroke-width="1">
+              <animate attributeName="r" values="84;132" dur="3.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0" dur="3.6s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="464" cy="204" r="76" fill="none" stroke="rgba(150,158,240,0.26)" stroke-width="1">
-              <animate attributeName="r" values="76;126" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.45;0" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+            <circle cx="500" cy="209" r="84" fill="none" stroke="rgba(150,158,240,0.22)" stroke-width="1">
+              <animate attributeName="r" values="84;132" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
             </circle>
-            <image href="assets/brand/logo-n.webp" x="406" y="146" width="116" height="116"
+            <polygon class="dg-hex" points="569,169 500,129 431,169 431,249 500,289 569,249"
+                     fill="url(#pillIn)" stroke="url(#hexEdge)" stroke-width="1.6"/>
+            <image href="assets/brand/logo-n.webp" x="466" y="175" width="68" height="68"
                    class="dg-logo" preserveAspectRatio="xMidYMid meet"/>
-            <text x="464" y="296" text-anchor="middle" class="dg-label dg-label--muted">Processing · audited</text>
+            <text x="500" y="318" text-anchor="middle" class="dg-label dg-label--muted">Processing · audited</text>
 
-            <!-- outputs -->
+            <!-- ── outbound: the modules ───────────────────────────────── -->
+            <g class="dg-wire">
+              <path d="M569 179 H628 V59  H787"/>
+              <path d="M569 191 H628 V119 H787"/>
+              <path d="M569 203 H628 V179 H787"/>
+              <path d="M569 215 H628 V239 H787"/>
+              <path d="M569 227 H628 V299 H787"/>
+              <path d="M569 239 H628 V359 H787"/>
+            </g>
+            <g class="dg-node dg-node--out">
+              <circle cx="787" cy="59"/><circle cx="787" cy="119"/><circle cx="787" cy="179"/>
+              <circle cx="787" cy="239"/><circle cx="787" cy="299"/><circle cx="787" cy="359"/>
+            </g>
             <g filter="url(#lift)">
-              <rect x="596" y="58"  width="284" height="64" rx="16" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
-              <rect x="596" y="134" width="284" height="64" rx="16" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
-              <rect x="596" y="210" width="284" height="64" rx="16" fill="url(#chip)" stroke="url(#chipEdge)" stroke-width="1.2"/>
-              <rect x="596" y="286" width="284" height="64" rx="16" fill="url(#chipAI)" stroke="rgba(150,158,240,0.55)"/>
+              <rect class="dg-pill dg-pill--out" x="790" y="40"  width="196" height="38" rx="19" fill="url(#pillOut)"/>
+              <rect class="dg-pill dg-pill--out" x="790" y="100" width="196" height="38" rx="19" fill="url(#pillOut)"/>
+              <rect class="dg-pill dg-pill--out" x="790" y="160" width="196" height="38" rx="19" fill="url(#pillOut)"/>
+              <rect class="dg-pill dg-pill--out" x="790" y="220" width="196" height="38" rx="19" fill="url(#pillOut)"/>
+              <rect class="dg-pill dg-pill--out" x="790" y="280" width="196" height="38" rx="19" fill="url(#pillOut)"/>
+              <rect class="dg-pill dg-pill--out" x="790" y="340" width="196" height="38" rx="19" fill="url(#pillOut)"/>
             </g>
+            <text class="dg-pill-text" x="888" y="59"  text-anchor="middle">Pricing Monitor</text>
+            <text class="dg-pill-text" x="888" y="119" text-anchor="middle">Risk Monitor</text>
+            <text class="dg-pill-text" x="888" y="179" text-anchor="middle">Clients</text>
+            <text class="dg-pill-text" x="888" y="239" text-anchor="middle">MT Groups</text>
+            <text class="dg-pill-text" x="888" y="299" text-anchor="middle">Alerts</text>
+            <text class="dg-pill-text dg-pill-text--ai" x="888" y="359" text-anchor="middle">Nomous AI</text>
 
-            <rect x="614" y="74" width="32" height="32" rx="9"
-                  fill="rgba(150,158,240,0.10)" stroke="rgba(150,158,240,0.4)"/>
-            <g class="dg-icon" transform="translate(622,82)">
-              <polyline points="0,8 3,8 5.5,2 8.5,14 11,7 13,8 16,8"/>
+            <!-- ── the return path, visibly closed ─────────────────────── -->
+            <g class="dg-wire dg-wire--amber">
+              <path d="M888 388 V468 H629"/>
+              <path d="M371 468 H14 V209 H24"/>
             </g>
-            <text x="660" y="96" class="dg-title">Pricing Monitor</text>
-
-            <rect x="614" y="150" width="32" height="32" rx="9"
-                  fill="rgba(47,214,165,0.10)" stroke="rgba(47,214,165,0.4)"/>
-            <g class="dg-icon" transform="translate(622,158)" style="stroke:#2fd6a5;color:#2fd6a5">
-              <path d="M8 1 L14.5 3.8 V8.2 C14.5 12 8 15 8 15 C8 15 1.5 12 1.5 8.2 V3.8 Z"/>
-            </g>
-            <text x="660" y="172" class="dg-title">Risk Monitor</text>
-
-            <rect x="614" y="226" width="32" height="32" rx="9"
-                  fill="rgba(251,191,36,0.10)" stroke="rgba(251,191,36,0.4)"/>
-            <g class="dg-icon" transform="translate(622,234)" style="stroke:#fbbf24;color:#fbbf24">
-              <path d="M4 11.5 V7 a4 4 0 0 1 8 0 v4.5"/>
-              <path d="M2.4 11.8 h11.2"/>
-              <path d="M6.4 14.2 a1.8 1.8 0 0 0 3.2 0"/>
-            </g>
-            <text x="660" y="248" class="dg-title">Alerts</text>
-
-            <!-- The app uses the logo mark itself here, not a generic glyph. -->
-            <rect x="614" y="302" width="32" height="32" rx="9"
-                  fill="rgba(195,201,255,0.10)" stroke="rgba(195,201,255,0.45)"/>
-            <image href="assets/brand/logo-n-sm.webp" x="619" y="307" width="22" height="22"
-                   preserveAspectRatio="xMidYMid meet"/>
-            <text x="660" y="324" class="dg-title dg-title--ai">Nomous AI</text>
-
-            <!-- the write path: it exists, and it is visibly OFF. Reads flow
-                 free along the top; the way back runs through one switch the
-                 broker owns. This is the sales pitch drawn as wiring. -->
-            <g fill="none" stroke="rgba(251,191,36,0.32)" stroke-width="1.2" stroke-dasharray="4 7">
-              <path d="M 700 350 V 398 H 599"/>
-              <path d="M 329 398 H 84 V 248"/>
-            </g>
-            <!-- arrowhead: the path points AT the server, making "write" unambiguous -->
-            <path d="M 79 252 L 84 242 L 89 252 Z" fill="rgba(251,191,36,0.45)"/>
-
-            <!-- the switch itself -->
+            <path d="M24 203 L34 209 L24 215 Z" fill="rgba(251,191,36,0.55)"/>
             <g filter="url(#amberGlow)">
-              <rect x="329" y="372" width="270" height="52" rx="15"
+              <rect x="371" y="443" width="258" height="50" rx="15"
                     fill="url(#chipAmber)" stroke="rgba(251,191,36,0.55)" stroke-width="1.1"/>
             </g>
-            <!-- toggle, knob resting at OFF -->
-            <rect x="352" y="391" width="27" height="14" rx="7"
+            <rect x="390" y="461" width="27" height="14" rx="7"
                   fill="rgba(251,191,36,0.10)" stroke="rgba(251,191,36,0.55)" stroke-width="1.2"/>
-            <circle cx="359.5" cy="398" r="4.6" fill="#fbbf24"/>
-            <text x="392" y="396" class="dg-title" style="font-size:13px; fill:#fde68a">Write path</text>
-            <rect x="470" y="384" width="98" height="16" rx="8"
+            <circle cx="397.5" cy="468" r="4.6" fill="#fbbf24"/>
+            <text x="430" y="466" class="dg-title" style="font-size:13px; fill:#fde68a">Write path</text>
+            <rect x="508" y="454" width="98" height="16" rx="8"
                   fill="rgba(251,191,36,0.08)" stroke="rgba(251,191,36,0.5)" stroke-width="1"/>
-            <text x="519" y="395" text-anchor="middle" class="dg-label"
+            <text x="557" y="465" text-anchor="middle" class="dg-label"
                   style="font-size:8.5px; fill:#fbbf24">Off by default</text>
-            <text x="392" y="413" class="dg-label" style="font-size:9px; letter-spacing:0.06em; fill:rgba(251,191,36,0.62)">opt-in · confirmed · audited</text>
+            <text x="430" y="483" class="dg-label" style="font-size:9px; letter-spacing:.06em; fill:rgba(251,191,36,0.62)">opt-in · confirmed · audited</text>
 
-            <!-- an amber packet tries the return path and stops at the switch -->
-            <circle r="3.4" fill="#fbbf24" filter="url(#dot)">
-              <animate attributeName="cx" values="700;700;607" keyTimes="0;0.3;1" dur="3.4s" begin="1s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="352;398;398" keyTimes="0;0.3;1" dur="3.4s" begin="1s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.3;0.85;1" dur="3.4s" begin="1s" repeatCount="indefinite"/>
+            <!-- packets: in from the book, out to the modules -->
+            <circle r="3.6" fill="#969ef0" filter="url(#dot)">
+              <animateMotion path="M247 59 H300 V179 H431" dur="2.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" repeatCount="indefinite"/>
             </circle>
-
-            <!-- packets, sequenced so the eye follows server, live, hub, out -->
-            <circle r="4" fill="#969ef0" filter="url(#dot)">
-              <animate attributeName="cx" values="164;206" dur="2.6s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="204;204" dur="2.6s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" repeatCount="indefinite"/>
+            <circle r="3.6" fill="#969ef0" filter="url(#dot)">
+              <animateMotion path="M247 239 H300 V215 H431" dur="2.8s" begin="0.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" begin="0.5s" repeatCount="indefinite"/>
             </circle>
-            <circle r="4" fill="#969ef0" filter="url(#dot)">
-              <animate attributeName="cx" values="360;404" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="204;204" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+            <circle r="3.6" fill="#969ef0" filter="url(#dot)">
+              <animateMotion path="M247 359 H300 V239 H431" dur="2.8s" begin="1.1s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" begin="1.1s" repeatCount="indefinite"/>
             </circle>
-
-            <circle r="3.5" fill="#2fd6a5" filter="url(#dot)">
-              <animate attributeName="cx" values="524;596" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="204;90" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+            <circle r="3.4" fill="#2fd6a5" filter="url(#dot)">
+              <animateMotion path="M569 179 H628 V59 H787" dur="2.8s" begin="0.9s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" begin="0.9s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5" fill="#2fd6a5" filter="url(#dot)">
-              <animate attributeName="cx" values="524;596" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="204;166" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
+            <circle r="3.4" fill="#2fd6a5" filter="url(#dot)">
+              <animateMotion path="M569 191 H628 V119 H787" dur="2.8s" begin="1.15s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" begin="1.15s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5" fill="#2fd6a5" filter="url(#dot)">
-              <animate attributeName="cx" values="524;596" dur="2.6s" begin="1.2s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="204;242" dur="2.6s" begin="1.2s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="1.2s" repeatCount="indefinite"/>
+            <circle r="3.4" fill="#2fd6a5" filter="url(#dot)">
+              <animateMotion path="M569 215 H628 V239 H787" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5" fill="#969ef0" filter="url(#dot)">
-              <animate attributeName="cx" values="524;596" dur="2.6s" begin="1.35s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="204;318" dur="2.6s" begin="1.35s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.6s" begin="1.35s" repeatCount="indefinite"/>
+            <circle r="3.4" fill="#c3c9ff" filter="url(#dot)">
+              <animateMotion path="M569 239 H628 V359 H787" dur="2.8s" begin="1.65s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.8s" begin="1.65s" repeatCount="indefinite"/>
+            </circle>
+            <!-- one amber packet tries the way back and stops at the switch -->
+            <circle r="3.2" fill="#fbbf24" filter="url(#dot)">
+              <animateMotion path="M888 388 V468 H639" dur="3.6s" begin="1s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.85;1" dur="3.6s" begin="1s" repeatCount="indefinite"/>
             </circle>
           </svg>
 
@@ -294,6 +271,47 @@
       <path fill="rgba(23,62,172,0.25)" d="M0,90 C600,50 1200,120 1800,90 C2400,50 2600,110 2880,90 L2880,140 L0,140 Z"/>
     </svg>
   </div>
+
+
+  <!-- ============================================================
+       Marquee — what the platform is built on. Deliberately NOT a
+       "trusted by" logo wall: Nomous has one broker in testing, and
+       borrowed logos would be a lie a CTO would catch. These are true,
+       verifiable, and say something a broker actually cares about.
+       ============================================================ -->
+  <section class="strip">
+    <div class="section__inner">
+      <p class="strip__eyebrow" data-reveal>Built on</p>
+    </div>
+    <div class="marquee" aria-label="MetaTrader 5 Manager API, TLS 1.3, AES-256 at rest, real-time WebSocket, Anthropic Claude, MetaQuotes documentation, Stripe, Telegram, IP allow-lists, 90-day audit trail">
+      <div class="marquee__track">
+        <span class="marquee__row" aria-hidden="false">
+          <b>MetaTrader 5</b><i>Manager Web API</i>
+          <b>TLS 1.3</b><i>in transit</i>
+          <b>AES-256</b><i>at rest</i>
+          <b>WebSocket</b><i>real-time push</i>
+          <b>Anthropic Claude</b><i>AI answers</i>
+          <b>MetaQuotes Docs</b><i>7,800 pages indexed</i>
+          <b>Stripe</b><i>payments</i>
+          <b>Telegram</b><i>alerts</i>
+          <b>IP allow-lists</b><i>per broker</i>
+          <b>90-day audit</b><i>every action</i>
+        </span>
+        <span class="marquee__row" aria-hidden="true">
+          <b>MetaTrader 5</b><i>Manager Web API</i>
+          <b>TLS 1.3</b><i>in transit</i>
+          <b>AES-256</b><i>at rest</i>
+          <b>WebSocket</b><i>real-time push</i>
+          <b>Anthropic Claude</b><i>AI answers</i>
+          <b>MetaQuotes Docs</b><i>7,800 pages indexed</i>
+          <b>Stripe</b><i>payments</i>
+          <b>Telegram</b><i>alerts</i>
+          <b>IP allow-lists</b><i>per broker</i>
+          <b>90-day audit</b><i>every action</i>
+        </span>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================================
        001 - Claims. These two statements previously sat as overlay
@@ -402,7 +420,7 @@
         </a>
       </div>
 
-      <div class="actions" style="justify-content:flex-start" data-reveal>
+      <div class="actions" data-reveal>
         <a class="btn btn--ghost" href="features.html">Explore all features</a>
       </div>
     </div>
@@ -587,11 +605,11 @@
   <!-- ============================================================
        006 - Pricing teaser
        ============================================================ -->
-  <section class="section">
-    <div class="section__inner" style="text-align:center">
-      <p class="sec-bar" data-reveal><b>007</b> Engagement</p>
+  <section class="section section--center">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>008</b> Engagement</p>
       <h2 class="headline" data-reveal>One plan. Full access.</h2>
-      <p class="lede" style="margin-inline:auto" data-reveal>
+      <p class="lede" data-reveal>
         No seat limits, no hidden fees, no long-term lock-in.
       </p>
 
@@ -607,7 +625,7 @@
           <li>Full audit trail of every action, 90 days</li>
           <li>Nomous AI grounded in your data and the MT5 docs</li>
         </ul>
-        <div class="actions" style="justify-content:center">
+        <div class="actions">
           <a class="btn btn--primary" href="contact.html">Contact us</a>
           <a class="btn btn--ghost" href="pricing.html">View pricing</a>
         </div>
@@ -615,18 +633,73 @@
     </div>
   </section>
 
+
+  <!-- ============================================================
+       FAQ — the questions a broker's CTO actually asks, answered
+       here so the first call starts past them.
+       ============================================================ -->
+  <section class="section section--alt" id="faq">
+    <div class="section__inner">
+      <p class="sec-bar" data-reveal><b>007</b> Questions</p>
+      <h2 class="headline" data-reveal>What your CTO will ask.</h2>
+      <p class="lede" data-reveal>Straight answers from the architecture, not marketing.</p>
+
+      <div class="faq" data-reveal>
+        <details class="faq__item">
+          <summary>What load do you put on our trading server?</summary>
+          <p>One persistent, authenticated session per brokerage. Everything the platform
+          does, including every page your staff opens, runs through it. Reads are scoped to
+          your funded accounts using group masks you give us, so we never enumerate your
+          full registered book on a schedule.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Is it really read-only?</summary>
+          <p>By default, and structurally: the integration contains no trading endpoints and
+          no balance-operation calls at all, under any configuration. Optional management
+          features need both edit rights on your own manager login and a switch only your
+          admin can enable — then every change is confirmed before and after, and audited.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Where do our credentials live?</summary>
+          <p>Encrypted at rest, decrypted only in memory at connection time, never written
+          to logs and never placed in URLs. Revoking access is disabling the manager login
+          on your side — no dependency on us.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Was your AI trained on our data?</summary>
+          <p>No — and it never will be. Nomous AI is Anthropic's Claude via API; no model is
+          trained or fine-tuned by us, and under Anthropic's commercial terms API traffic is
+          not used to train their models either. MT5 knowledge comes from retrieval over
+          MetaQuotes' own published documentation, quoted with source links.</p>
+        </details>
+        <details class="faq__item">
+          <summary>What happens if Nomous goes down?</summary>
+          <p>Nothing, on your side. Your server never depends on us — we only read from it,
+          and reconnection backs off exponentially so an outage here never becomes connection
+          hammering there.</p>
+        </details>
+        <details class="faq__item">
+          <summary>How long does onboarding take?</summary>
+          <p>Most teams are live within a day of both sides being ready: a scoped manager
+          login, your Access Server hostname and port, our three IPs on your allow-lists, and
+          your real-account group masks.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================================
        Closing CTA
        ============================================================ -->
-  <section class="section section--line" id="contact">
-    <div class="section__inner" style="text-align:center">
-      <p class="mono-tag" style="justify-content:center"><span class="pulse"></span>Live in under an hour</p>
+  <section class="section section--line section--center" id="contact">
+    <div class="section__inner">
+      <p class="mono-tag"><span class="pulse"></span>Live in under an hour</p>
       <h2 class="display">Connect your MT5 server.</h2>
-      <p class="subhead" style="margin-inline:auto">
+      <p class="subhead">
         Integration typically completes in under a day. No changes to your
         trading infrastructure required.
       </p>
-      <div class="actions" style="justify-content:center">
+      <div class="actions">
         <a class="btn btn--primary" href="contact.html">Get Started</a>
       </div>
     </div>

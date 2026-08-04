@@ -61,11 +61,11 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1220px;
+  max-width: 1320px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.08fr 1.15fr;
-  gap: clamp(1.75rem, 3.2vw, 3rem);
+  grid-template-columns: 0.95fr 1.3fr;
+  gap: clamp(1.5rem, 2.6vw, 2.5rem);
   align-items: center;
 }
 
@@ -150,7 +150,7 @@
    falls back to the 300px default. */
 .hero__visual > div { width: 100%; }
 
-.hero__diagram { width: 100%; max-width: 760px; height: auto; overflow: visible; }
+.hero__diagram { width: 100%; max-width: 860px; height: auto; overflow: visible; }
 
 /* Single column below the breakpoint. The diagram stacks under the copy
    rather than being hidden — it carries the read-only message, so it earns
@@ -209,20 +209,29 @@
 .dg-label--live  { fill: #2fd6a5; }
 .dg-label--muted { fill: rgba(150, 158, 240, 0.72); }
 
-/* Icons are stroke-only so one rule sizes and colours them all. */
-.dg-icon {
-  fill: none;
-  stroke: rgba(150, 158, 240, 0.85);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  color: rgba(150, 158, 240, 0.85);   /* for the few fill="currentColor" dots */
+/* Pills: one per thing the platform reads, one per module it produces.
+   Reading a list is how a broker checks "does it cover my morning?". */
+.dg-pill { stroke: rgba(150, 158, 240, 0.3); stroke-width: 1; }
+.dg-pill--out { stroke: rgba(165, 170, 255, 0.42); }
+.dg-pill-text {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  fill: #e8ecff;
+  dominant-baseline: middle;
 }
-.dg-icon--live { stroke: #2fd6a5; }
-.dg-icon--ai   { stroke: #c3c9ff; fill: rgba(195, 201, 255, 0.14); }
+.dg-pill-text--ai { fill: #c3c9ff; font-weight: 600; }
 
-/* Glow comes from the mark itself rather than a plate behind it, so the
-   logo's own bevel stays readable. */
+/* Wires: dashed, quiet, with a node dot where they meet a pill. */
+.dg-wire { fill: none; stroke: rgba(150, 158, 240, 0.26); stroke-width: 1.15; stroke-dasharray: 4 6; }
+.dg-wire--amber { stroke: rgba(251, 191, 36, 0.3); stroke-dasharray: 4 7; }
+.dg-node circle { r: 3.2; fill: none; stroke: rgba(150, 158, 240, 0.55); stroke-width: 1.2; }
+.dg-node--out circle { stroke: rgba(47, 214, 165, 0.5); }
+
+.dg-hex { filter: drop-shadow(0 10px 26px rgba(2, 6, 15, 0.55)); }
+.dg-bracket { fill: none; stroke: rgba(150, 158, 240, 0.28); stroke-width: 1.2; }
+
 .dg-logo {
   filter:
     drop-shadow(0 0 18px rgba(99, 102, 241, 0.55))
@@ -939,3 +948,164 @@ a.contact-card__val:hover { color: var(--accent-text); }
   .tour__tabs { gap: 0.4rem; }
   .tour__tab { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
 }
+
+/* ============================================================
+   Marquee — a moving band of what the platform actually runs on.
+   Ours is indigo and factual where the genre is usually green and
+   borrowed: every item here is verifiable, which is the point.
+   ============================================================ */
+.strip { padding: 3.5rem 0 4rem; }
+.strip__eyebrow {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent-text);
+  text-align: center; margin-bottom: 1.6rem;
+}
+.marquee {
+  position: relative; overflow: hidden; width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee__track { display: flex; width: max-content; animation: marquee-slide 46s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__row { display: flex; align-items: center; flex: 0 0 auto; }
+.marquee__row b,
+.marquee__row i {
+  font-style: normal; white-space: nowrap;
+}
+.marquee__row b {
+  font-family: var(--display-font); font-size: 1.28rem; font-weight: 700;
+  letter-spacing: -0.005em; color: var(--text); margin-left: 2.6rem;
+}
+.marquee__row i {
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-dimmer);
+  margin-left: 0.6rem; padding-left: 0.7rem; border-left: 1px solid var(--hairline);
+}
+@keyframes marquee-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
+
+/* ============================================================
+   FAQ — accordion. Closed by default so the page stays scannable.
+   ============================================================ */
+.faq { margin-top: 2.5rem; display: grid; gap: 0.7rem; }
+.faq__item {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 14px;
+  padding: 0 1.4rem; transition: border-color .18s, box-shadow .18s;
+}
+.faq__item[open] { border-color: color-mix(in oklch, var(--accent) 35%, var(--hairline)); box-shadow: 0 8px 26px -18px rgba(15,23,42,.5); }
+.faq__item:hover { border-color: color-mix(in oklch, var(--accent) 30%, var(--hairline)); }
+.faq__item summary {
+  list-style: none; cursor: pointer; padding: 1.15rem 2rem 1.15rem 0;
+  font-weight: 600; font-size: 1.02rem; color: var(--text); position: relative;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: ''; position: absolute; right: 2px; top: 50%;
+  width: 9px; height: 9px; margin-top: -6px;
+  border-right: 2px solid var(--text-dim); border-bottom: 2px solid var(--text-dim);
+  transform: rotate(45deg); transition: transform .2s var(--ease);
+}
+.faq__item[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
+.faq__item p {
+  margin: 0; padding: 0 0 1.3rem; max-width: 78ch;
+  color: var(--text-dim); line-height: 1.65; font-size: 0.97rem;
+}
+
+/* ============================================================
+   DESIGN SYSTEM — imposed late, on purpose. The page grew section
+   by section and each one invented its own spacing, card and
+   accent. A designer reads that instantly as "assembled", not
+   "designed". These rules are the single source of truth and win
+   by being last; nothing above needed to be deleted.
+   ============================================================ */
+
+:root {
+  /* One spacing scale. Every gap on the page is one of these. */
+  --s-1: 0.5rem;  --s-2: 0.75rem; --s-3: 1rem;   --s-4: 1.5rem;
+  --s-5: 2rem;    --s-6: 3rem;    --s-7: 4.5rem; --s-8: 7rem;
+
+  /* One card. One radius. One border. One shadow. */
+  --card-radius: 16px;
+  --card-border: 1px solid rgba(15, 23, 42, 0.08);
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 12px 32px -20px rgba(15, 23, 42, .28);
+  --card-shadow-hover: 0 1px 2px rgba(15, 23, 42, .05), 0 22px 48px -24px rgba(15, 23, 42, .34);
+
+  /* Three colours carry the whole page: ink, indigo, and one green
+     for "live/safe". Everything else is a tint of them. */
+  --ink: #0f172a;
+  --brand: #4f46e5;
+  --live: #0f9d76;
+}
+
+/* ── Rhythm: one vertical beat, section after section ─────────── */
+.section { padding-block: clamp(var(--s-7), 9vw, var(--s-8)); }
+.section__inner { max-width: 1120px; }
+
+/* Every section leads the same way: eyebrow, headline, lede, content. */
+.sec-bar { margin-bottom: var(--s-4); }
+.section__inner > .headline { margin-bottom: var(--s-3); }
+.section__inner > .lede     { margin-bottom: var(--s-6); }
+.section__inner > .lede:last-child { margin-bottom: 0; }
+
+/* Centred sections centre everything inside them — the old inline
+   text-align:center left buttons and ledes to fend for themselves. */
+.section--center .section__inner { text-align: center; }
+.section--center .sec-bar { justify-content: center; }
+.section--center .sec-bar::after { display: none; }
+.section--center .lede { margin-inline: auto; }
+.section--center .actions { justify-content: center; }
+
+/* ── One card, everywhere ─────────────────────────────────────── */
+.modcard, .principle, .faq__item, .plan, .step,
+.claim {
+  border-radius: var(--card-radius);
+}
+.modcard, .principle, .faq__item, .plan {
+  background: #fff;
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
+}
+.modcard:hover, .principle:hover, .plan:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: color-mix(in oklch, var(--brand) 28%, transparent);
+}
+.modcard, .principle { padding: var(--s-4); }
+.faq__item:hover { transform: none; }
+
+/* Padding inside cards follows the scale, not each card's mood. */
+.plan { padding: var(--s-6) var(--s-5); }
+
+/* ── Accent discipline ────────────────────────────────────────── */
+.sec-bar b, .strip__eyebrow, .eyebrow, .mono-tag { color: var(--brand); }
+.modcard__num { color: var(--brand); }
+.gradient-text { background: none; -webkit-text-fill-color: currentColor; color: var(--ink); }
+
+/* ── The one thing a designer checks first: do headings line up ── */
+.headline, .display { max-width: 20ch; }
+.section--center .headline, .section--center .display { max-width: 24ch; margin-inline: auto; }
+.lede { max-width: 62ch; }
+
+/* Centred sections also centre their subhead and mono-tag, which used to
+   rely on inline styles that no longer exist. */
+.section--center .subhead { margin-inline: auto; }
+.section--center .mono-tag { justify-content: center; }
+.section--center .plan { margin-inline: auto; }
+
+/* The steps row: a card each, so Deployment reads like the rest of the page
+   instead of like a different site. */
+.steps { gap: var(--s-4); }
+.step {
+  background: #fff; border: var(--card-border); box-shadow: var(--card-shadow);
+  padding: var(--s-4) var(--s-4) var(--s-5);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+}
+.step:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+.step::before, .step::after { display: none; }
+.step__num { color: var(--brand); }
+
+/* Claims: the two opening statements sit on the page, not in boxes — but
+   they still obey the scale. */
+.claims { gap: var(--s-6); }
+.claim h3 { margin-bottom: var(--s-2); }
