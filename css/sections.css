@@ -407,7 +407,7 @@
 .modcard__icon svg { width: 19px; height: 19px; display: block; }
 /* The AI module carries the brand mark in the app's sidebar rather than a
    line icon; the card matches, so the two read as the same product. */
-.modcard__icon--logo img { display: block; }
+.modcard__icon--logo img { display: block; width: 25px; height: 27px; }
 .modcard:hover .modcard__icon--logo { background: var(--bg-alt); border-color: var(--hairline); }
 .modcard:hover .modcard__icon {
   background: var(--accent);

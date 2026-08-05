@@ -414,13 +414,13 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 1.28rem;
+  font-size: 1.34rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   text-decoration: none;
   color: #fff;
 }
-.nav__logo { width: 40px; height: 43px; display: block; }
+.nav__logo { width: 46px; height: 49px; display: block; }
 
 .nav__links {
   display: flex;
