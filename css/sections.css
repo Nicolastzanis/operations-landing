@@ -850,7 +850,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
   gap: 0.6rem;
   text-decoration: none;
 }
-.site-footer__brand img { border-radius: 7px; display: block; }
+.site-footer__brand img { display: block; }
 .site-footer__tagline {
   font-size: 0.9rem;
   line-height: 1.6;
