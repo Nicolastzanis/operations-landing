@@ -177,17 +177,37 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
   revealTargets.forEach((el) => revealObserver.observe(el));
 }
 
-/* FAQ disclosure. */
-document.querySelectorAll('[data-faq]').forEach((item) => {
-  const btn = item.querySelector('.faq__q');
-  const panel = item.querySelector('.faq__a');
-  if (!btn || !panel) return;
-  btn.addEventListener('click', () => {
-    const open = item.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', String(open));
-    panel.hidden = !open;
+/* FAQ disclosure — the answer slides down from under its question.
+   The open height is measured rather than guessed, so the slide takes the
+   same time whatever the answer's length, and nothing is ever clipped. */
+{
+  const panels = [];
+  for (const item of document.querySelectorAll('[data-faq]')) {
+    const btn = item.querySelector('.faq__q');
+    const panel = item.querySelector('.faq__a');
+    if (!btn || !panel) continue;
+    // `hidden` is display:none, which would cut the transition — collapsing
+    // is the max-height rule's job from here on.
+    panel.hidden = false;
+    panels.push({ item, panel });
+    btn.addEventListener('click', () => {
+      const open = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+      panel.style.maxHeight = open ? `${panel.scrollHeight}px` : '0px';
+    });
+  }
+  // A reflow (window resize, font swap) changes what "open" measures to.
+  let resizeFrame = null;
+  window.addEventListener('resize', () => {
+    if (resizeFrame) return;
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = null;
+      for (const { item, panel } of panels) {
+        if (item.classList.contains('is-open')) panel.style.maxHeight = `${panel.scrollHeight}px`;
+      }
+    });
   });
-});
+}
 
 /* Contact form. Posts to server.py's /api/contact, which sends through
    Resend after verifying the reCAPTCHA token server-side. */

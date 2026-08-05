@@ -642,13 +642,16 @@
 .faq__sign::after { transform: rotate(90deg); }
 .faq__item.is-open .faq__sign::after { transform: rotate(0deg); }
 
-/* Animating max-height keeps the disclosure smooth without measuring in JS. */
+/* The answer slides down from the question. The open height is measured and
+   set by JS (see main.js) rather than guessed here: a fixed max-height ends
+   the slide early on short answers and clips long ones. */
 .faq__a {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s var(--ease);
+  transition: max-height 0.38s var(--ease);
 }
-.faq__item.is-open .faq__a { max-height: 400px; }
+/* Without JS nothing toggles .is-open, so this is only a safety net. */
+.faq__item.is-open .faq__a { max-height: 60rem; }
 
 .faq__a p {
   padding: 0 0 1.6rem;
