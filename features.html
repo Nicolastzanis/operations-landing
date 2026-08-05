@@ -58,7 +58,7 @@
   <section class="hud">
     <div class="hud__inner">
       <div class="hud__cell" data-reveal>
-        <span class="hud__val" data-count="8">8</span>
+        <span class="hud__val" data-count="10">10</span>
         <span class="hud__key">Modules</span>
       </div>
       <div class="hud__cell" data-reveal>
@@ -67,7 +67,7 @@
       </div>
       <div class="hud__cell" data-reveal>
         <span class="hud__val">0</span>
-        <span class="hud__key">Write endpoints</span>
+        <span class="hud__key">Writes by default</span>
       </div>
       <div class="hud__cell" data-reveal>
         <span class="hud__val">24/7</span>
@@ -85,14 +85,16 @@
       <aside class="rail" aria-label="Module index">
         <p class="rail__title">Modules</p>
         <ol class="rail__list" data-rail>
-          <li><a href="#m01" data-rail-item="m01"><span class="rail__num">01</span>Pricing Monitor</a></li>
-          <li><a href="#m02" data-rail-item="m02"><span class="rail__num">02</span>Risk Monitor</a></li>
-          <li><a href="#m03" data-rail-item="m03"><span class="rail__num">03</span>Clients</a></li>
-          <li><a href="#m04" data-rail-item="m04"><span class="rail__num">04</span>Swaps &amp; Simulator</a></li>
-          <li><a href="#m05" data-rail-item="m05"><span class="rail__num">05</span>Alerts</a></li>
-          <li><a href="#m06" data-rail-item="m06"><span class="rail__num">06</span>Hours &amp; Holidays</a></li>
-          <li><a href="#m07" data-rail-item="m07"><span class="rail__num">07</span>Nomous AI</a></li>
-          <li><a href="#m08" data-rail-item="m08"><span class="rail__num">08</span>News</a></li>
+          <li><a href="#m01" data-rail-item="m01"><span class="rail__num">01</span>Dashboard</a></li>
+          <li><a href="#m02" data-rail-item="m02"><span class="rail__num">02</span>Pricing Monitor</a></li>
+          <li><a href="#m03" data-rail-item="m03"><span class="rail__num">03</span>Risk Monitor</a></li>
+          <li><a href="#m04" data-rail-item="m04"><span class="rail__num">04</span>Clients</a></li>
+          <li><a href="#m05" data-rail-item="m05"><span class="rail__num">05</span>MT Groups</a></li>
+          <li><a href="#m06" data-rail-item="m06"><span class="rail__num">06</span>Swaps</a></li>
+          <li><a href="#m07" data-rail-item="m07"><span class="rail__num">07</span>Alerts</a></li>
+          <li><a href="#m08" data-rail-item="m08"><span class="rail__num">08</span>Hours &amp; Holidays</a></li>
+          <li><a href="#m09" data-rail-item="m09"><span class="rail__num">09</span>Nomous AI</a></li>
+          <li><a href="#m10" data-rail-item="m10"><span class="rail__num">10</span>News</a></li>
         </ol>
       </aside>
 
@@ -102,6 +104,33 @@
         <article class="module" id="m01" data-module="m01">
           <header class="module__head" data-reveal>
             <span class="module__num">01</span>
+            <h2 class="module__title">Dashboard</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>The morning view: total exposure, floating P&amp;L, open positions and the accounts that need attention, with live prices and book health on the same screen.</p>
+            <p>Each number is fed by the same real-time connection as the rest of the platform — what you see is what the server holds right now.</p>
+            <ul class="module__list">
+              <li>Book health at a glance: critical, danger, warning, healthy</li>
+              <li>Top accounts at risk, ranked by margin level</li>
+              <li>Live prices and recent alerts on the same screen</li>
+              <li>Real-time totals for exposure, P&amp;L and open positions</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/dashboard</span>
+              <span class="shot__live"><span class="pulse"></span>Live</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/dashboard.webp?v=2" width="1600" height="1000" alt="Dashboard: book health, top accounts at risk, live prices and totals" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 02 -->
+        <article class="module" id="m02" data-module="m02">
+          <header class="module__head" data-reveal>
+            <span class="module__num">02</span>
             <h2 class="module__title">Pricing Monitor</h2>
           </header>
           <div class="module__body" data-reveal>
@@ -120,34 +149,7 @@
               <span class="shot__live"><span class="pulse"></span>Live</span>
             </figcaption>
             <div class="shot__frame">
-              <img src="assets/screens/pricing-monitor.webp" width="1600" height="1000" alt="Pricing Monitor showing live bid, ask and spread values across currency pairs" loading="lazy" decoding="async">
-            </div>
-          </figure>
-        </article>
-
-        <!-- 02 -->
-        <article class="module" id="m02" data-module="m02">
-          <header class="module__head" data-reveal>
-            <span class="module__num">02</span>
-            <h2 class="module__title">Risk Monitor</h2>
-          </header>
-          <div class="module__body" data-reveal>
-            <p>Monitor every connected account in real time. Equity, margin level, floating P&amp;L and open positions, all visible at a glance without opening MT5 Manager.</p>
-            <p>Color-coded status badges flag accounts that are approaching margin call so your team can act before a stop-out happens.</p>
-            <ul class="module__list">
-              <li>Real-time equity and margin levels</li>
-              <li>Floating P&amp;L per account</li>
-              <li>Margin call and stop-out alerts</li>
-              <li>Filter by login, group or risk level</li>
-            </ul>
-          </div>
-          <figure class="shot" data-reveal data-tilt>
-            <figcaption class="shot__bar">
-              <span class="shot__label">/risk</span>
-              <span class="shot__live"><span class="pulse"></span>Accounts at risk</span>
-            </figcaption>
-            <div class="shot__frame">
-              <img src="assets/screens/risk-monitor.webp" width="1600" height="1000" alt="Risk Monitor ranking accounts by margin level and exposure" loading="lazy" decoding="async">
+              <img src="assets/screens/pricing-monitor.webp?v=2" width="1600" height="1000" alt="Pricing Monitor showing live bid, ask and spread values across currency pairs" loading="lazy" decoding="async">
             </div>
           </figure>
         </article>
@@ -156,6 +158,38 @@
         <article class="module" id="m03" data-module="m03">
           <header class="module__head" data-reveal>
             <span class="module__num">03</span>
+            <h2 class="module__title">Risk Monitor</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Monitor every connected account in real time. Equity, margin level, floating P&amp;L and open positions, all visible at a glance without opening MT5 Manager.</p>
+            <p>Beyond margin watch, the book itself: net exposure split A-book / B-book / partial / coverage per symbol, clients scored for toxic flow with the reason spelled out, IB referral trees with commission per tier, and MAM/PAMM structures with concentration per master.</p>
+            <ul class="module__list">
+              <li>Real-time equity, margin levels and stop-out alerts</li>
+              <li>Net exposure by book, per symbol — A/B/partial/coverage</li>
+              <li>IB trees and MAM/PAMM structures, monitored for abuse patterns</li>
+              <li>Intra Day PnL report, exported to Excel in one click</li>
+            </ul>
+          </div>
+          <div class="shot-pair">
+            <figure class="shot" data-reveal data-tilt>
+              <figcaption class="shot__bar"><span class="shot__label">/risk</span></figcaption>
+              <div class="shot__frame">
+                <img src="assets/screens/risk-monitor.webp?v=2" width="1600" height="1000" alt="Risk Monitor: net exposure by book and internal hedging" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure class="shot" data-reveal data-tilt>
+              <figcaption class="shot__bar"><span class="shot__label">/risk/reports</span></figcaption>
+              <div class="shot__frame">
+                <img src="assets/screens/risk-reports.webp?v=2" width="1600" height="1000" alt="Intra Day PnL report with per-book totals and top movers" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 04 -->
+        <article class="module" id="m04" data-module="m04">
+          <header class="module__head" data-reveal>
+            <span class="module__num">04</span>
             <h2 class="module__title">Clients</h2>
           </header>
           <div class="module__body" data-reveal>
@@ -173,46 +207,66 @@
               <span class="shot__label">/clients</span>
             </figcaption>
             <div class="shot__frame">
-              <img src="assets/screens/clients.webp" width="1600" height="1000" alt="Clients module: account search with open positions and history" loading="lazy" decoding="async">
+              <img src="assets/screens/clients.webp?v=2" width="1600" height="1000" alt="Clients module: account search with open positions and history" loading="lazy" decoding="async">
             </div>
           </figure>
-        </article>
-
-        <!-- 04 -->
-        <article class="module" id="m04" data-module="m04">
-          <header class="module__head" data-reveal>
-            <span class="module__num">04</span>
-            <h2 class="module__title">Swaps &amp; Group Simulator</h2>
-          </header>
-          <div class="module__body" data-reveal>
-            <p>Every group's specification side by side, and a simulator for the change you're about to make: move accounts between groups and see the exact difference in liquidation levels, spreads and available symbols, and whether anyone would be stopped out. Applying is opt-in, confirmed, and audited.</p>
-            <ul class="module__list">
-              <li>Group specs compared side by side</li>
-              <li>Simulate a move before it happens</li>
-              <li>See who a change would liquidate, before it does</li>
-              <li>Swap rates across every group, exported in bulk</li>
-            </ul>
-          </div>
-          <div class="shot-pair">
-            <figure class="shot" data-reveal data-tilt>
-              <figcaption class="shot__bar"><span class="shot__label">/swaps</span></figcaption>
-              <div class="shot__frame">
-                <img src="assets/screens/swaps.webp" width="1600" height="1000" alt="Swap Rates table across groups and symbols" loading="lazy" decoding="async">
-              </div>
-            </figure>
-            <figure class="shot" data-reveal data-tilt>
-              <figcaption class="shot__bar"><span class="shot__label">/mt-groups</span></figcaption>
-              <div class="shot__frame">
-                <img src="assets/screens/mt-groups.webp" width="1600" height="1000" alt="MT Groups simulator: moving accounts between groups, with liquidation levels compared and per-account outcomes" loading="lazy" decoding="async">
-              </div>
-            </figure>
-          </div>
         </article>
 
         <!-- 05 -->
         <article class="module" id="m05" data-module="m05">
           <header class="module__head" data-reveal>
             <span class="module__num">05</span>
+            <h2 class="module__title">MT Groups &amp; Simulator</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Every group's specification side by side, and a simulator for the change you're about to make: move accounts between groups and see the exact difference in liquidation levels, spreads and available symbols, and whether anyone would be stopped out.</p>
+            <p>Applying a change is opt-in, confirmed on screen, and lands in the audit trail.</p>
+            <ul class="module__list">
+              <li>Group specs compared side by side</li>
+              <li>Simulate a move before it happens</li>
+              <li>See who a change would liquidate, before it does</li>
+              <li>Bulk moves, confirmed and audited</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/mt-groups</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/mt-groups.webp?v=2" width="1600" height="1000" alt="MT Groups simulator: moving accounts between groups, with liquidation levels compared and per-account outcomes" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 06 -->
+        <article class="module" id="m06" data-module="m06">
+          <header class="module__head" data-reveal>
+            <span class="module__num">06</span>
+            <h2 class="module__title">Swaps</h2>
+          </header>
+          <div class="module__body" data-reveal>
+            <p>Swap rates across every group and symbol in one grid — compared, filtered and exported in bulk, with the rollover day handling MT5 actually applies.</p>
+            <ul class="module__list">
+              <li>Every rate, one grid — across all groups</li>
+              <li>Compare groups side by side</li>
+              <li>Bulk export for the dealing desk</li>
+              <li>Rate changes behind the same opt-in write switch</li>
+            </ul>
+          </div>
+          <figure class="shot" data-reveal data-tilt>
+            <figcaption class="shot__bar">
+              <span class="shot__label">/swaps</span>
+            </figcaption>
+            <div class="shot__frame">
+              <img src="assets/screens/swaps.webp?v=2" width="1600" height="1000" alt="Swap Rates table across groups and symbols" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </article>
+
+        <!-- 07 -->
+        <article class="module" id="m07" data-module="m07">
+          <header class="module__head" data-reveal>
+            <span class="module__num">07</span>
             <h2 class="module__title">Instant Alerts</h2>
           </header>
           <div class="module__body" data-reveal>
@@ -231,15 +285,15 @@
               <span class="shot__live"><span class="pulse"></span>Configuration</span>
             </figcaption>
             <div class="shot__frame">
-              <img src="assets/screens/alerts.webp" width="1600" height="1000" alt="Alerts module: notification configuration and alert history" loading="lazy" decoding="async">
+              <img src="assets/screens/alerts.webp?v=2" width="1600" height="1000" alt="Alerts module: notification configuration and alert history" loading="lazy" decoding="async">
             </div>
           </figure>
         </article>
 
-        <!-- 06 -->
-        <article class="module" id="m06" data-module="m06">
+        <!-- 08 -->
+        <article class="module" id="m08" data-module="m08">
           <header class="module__head" data-reveal>
-            <span class="module__num">06</span>
+            <span class="module__num">08</span>
             <h2 class="module__title">Symbol Hours &amp; Holidays</h2>
           </header>
           <div class="module__body" data-reveal>
@@ -247,7 +301,7 @@
             <ul class="module__list">
               <li>Trading hours per symbol and group</li>
               <li>Market holiday calendar</li>
-              <li>Sessions and breaks in plain words: "Trading open 03:00–24:00, Closed 01:00–03:00"</li>
+              <li>Sessions and breaks in plain words: "Trading open 03:00&ndash;24:00, Closed 01:00&ndash;03:00"</li>
               <li>Contract size, margins, swaps and filtration per symbol</li>
             </ul>
           </div>
@@ -255,22 +309,22 @@
             <figure class="shot" data-reveal data-tilt>
               <figcaption class="shot__bar"><span class="shot__label">/symbols</span></figcaption>
               <div class="shot__frame">
-                <img src="assets/screens/symbols-dialog.webp" width="1600" height="1000" alt="Symbols: the full MT5 symbol specification, with each day's trading sessions and breaks read out in plain words" loading="lazy" decoding="async">
+                <img src="assets/screens/symbols-dialog.webp?v=2" width="1600" height="1000" alt="Symbols: the full MT5 symbol specification, with each day's trading sessions and breaks read out in plain words" loading="lazy" decoding="async">
               </div>
             </figure>
             <figure class="shot" data-reveal data-tilt>
               <figcaption class="shot__bar"><span class="shot__label">/holidays</span></figcaption>
               <div class="shot__frame">
-                <img src="assets/screens/holidays.webp" width="1600" height="1000" alt="Holidays: market holiday calendar by symbol group" loading="lazy" decoding="async">
+                <img src="assets/screens/holidays.webp?v=2" width="1600" height="1000" alt="Holidays: market holiday calendar by symbol group" loading="lazy" decoding="async">
               </div>
             </figure>
           </div>
         </article>
 
-        <!-- 07 -->
-        <article class="module" id="m07" data-module="m07">
+        <!-- 09 -->
+        <article class="module" id="m09" data-module="m09">
           <header class="module__head" data-reveal>
-            <span class="module__num">07</span>
+            <span class="module__num">09</span>
             <h2 class="module__title">Nomous AI</h2>
           </header>
           <div class="module__body" data-reveal>
@@ -294,10 +348,10 @@
           </figure>
         </article>
 
-        <!-- 08 -->
-        <article class="module" id="m08" data-module="m08">
+        <!-- 10 -->
+        <article class="module" id="m10" data-module="m10">
           <header class="module__head" data-reveal>
-            <span class="module__num">08</span>
+            <span class="module__num">10</span>
             <h2 class="module__title">News</h2>
           </header>
           <div class="module__body" data-reveal>
@@ -316,7 +370,7 @@
               <span class="shot__live"><span class="pulse"></span>T-30 alerts</span>
             </figcaption>
             <div class="shot__frame">
-              <img src="assets/screens/news.webp" width="1600" height="1000" alt="High Impact News: economic calendar with timezone selector and live clock" loading="lazy" decoding="async">
+              <img src="assets/screens/news.webp?v=2" width="1600" height="1000" alt="High Impact News: economic calendar with timezone selector and live clock" loading="lazy" decoding="async">
             </div>
           </figure>
         </article>
