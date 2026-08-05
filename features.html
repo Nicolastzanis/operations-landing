@@ -39,8 +39,8 @@
     <p class="mono-tag"><span class="pulse"></span>Platform Features</p>
     <h1 class="display">Ten modules.<br>One platform.</h1>
     <p class="subhead">
-      Built specifically for MT5 broker operations teams who need real data in
-      real time. One connection, no write access, ever.
+      Made for MT5 broker operations teams who need real data in real time.
+      One connection, read-only unless your admin says otherwise.
     </p>
   </section>
 
@@ -213,16 +213,16 @@
         <article class="module" id="m05" data-module="m05">
           <header class="module__head" data-reveal>
             <span class="module__num">05</span>
-            <h2 class="module__title">Email &amp; Telegram Alerts</h2>
+            <h2 class="module__title">Instant Alerts</h2>
           </header>
           <div class="module__body" data-reveal>
-            <p>Configure alerts for any event that matters: margin calls, spread spikes, MT5 server disconnects, large trades. Notifications go out instantly to your team's email and Telegram.</p>
+            <p>Configure alerts for any event that matters: margin calls, spread spikes, MT5 server disconnects, large trades. Notifications go out instantly to your team's Telegram, Slack or Microsoft Teams channel, connected with a webhook in one minute.</p>
             <ul class="module__list">
               <li>Margin call and stop-out alerts</li>
               <li>Spread spike notifications</li>
               <li>Server connection loss alerts</li>
               <li>Configurable thresholds per alert type</li>
-              <li>Email and Telegram delivery</li>
+              <li>Telegram, Slack and Microsoft Teams delivery via webhook</li>
             </ul>
           </div>
           <figure class="shot" data-reveal data-tilt>
@@ -274,13 +274,13 @@
             <h2 class="module__title">Nomous AI</h2>
           </header>
           <div class="module__body" data-reveal>
-            <p>Ask your platform anything in plain English about spreads, account risk, client positions, swap rates, or upcoming holidays, and get an instant answer grounded in your broker's own real-time data.</p>
+            <p>Ask your platform anything in plain English about spreads, account risk, client positions, swap rates, or upcoming holidays, and get an instant answer from your broker's own real-time data.</p>
             <p>Every broker's AI only ever sees that broker's own data. Nothing is shared, mixed, or visible across accounts, and every conversation is saved so your team can pick up where it left off.</p>
             <ul class="module__list">
               <li>Plain-English answers about your live data</li>
               <li>Strict per-broker data isolation</li>
               <li>Persistent conversation history</li>
-              <li>Usage limits to keep the platform fast and fair for everyone</li>
+              <li>Monthly message allowance per broker — top up in-platform when you need more</li>
             </ul>
           </div>
           <figure class="shot" data-reveal data-tilt>
@@ -289,7 +289,7 @@
               <span class="shot__live"><span class="pulse"></span>Isolated per broker</span>
             </figcaption>
             <div class="shot__frame">
-              <img src="assets/screens/nomous-ai.webp" width="1600" height="773" alt="Nomous AI answering questions grounded in the broker's live data" loading="lazy" decoding="async">
+              <img src="assets/screens/nomous-ai.webp" width="1600" height="773" alt="Nomous AI answering questions from the broker's live data" loading="lazy" decoding="async">
             </div>
           </figure>
         </article>
@@ -302,12 +302,12 @@
           </header>
           <div class="module__body" data-reveal>
             <p>High-impact economic calendar events, from CPI to rate decisions, explained in plain English so your team knows what's about to move spreads and margin requirements before it happens.</p>
-            <p>A Telegram alert fires automatically 30 minutes before each event. Your delivery list is fully isolated: your subscribers are never visible to another broker, and you can't see anyone else's either.</p>
+            <p>An alert fires automatically 30 minutes before each event, to the channel you connect. Your delivery list is fully isolated: your subscribers are never visible to another broker, and you can't see anyone else's either.</p>
             <ul class="module__list">
               <li>High-impact economic calendar, filtered to what matters</li>
               <li>Plain-English explanation per event</li>
               <li>Timezone selector and live clock</li>
-              <li>Automatic Telegram alert 30 minutes before release</li>
+              <li>Automatic alert 30 minutes before release, to the channel you connect</li>
             </ul>
           </div>
           <figure class="shot" data-reveal data-tilt>
@@ -331,7 +331,7 @@
   <section class="section section--line cta" id="cta">
     <div class="section__inner" style="text-align:center">
       <p class="mono-tag" style="justify-content:center"><span class="pulse"></span>Live in under an hour</p>
-      <h2 class="display">Ready to see it live<br>on your server?</h2>
+      <h2 class="display">See it on your own data<br>on your server?</h2>
       <p class="subhead" style="margin-inline:auto">
         Register your brokerage and connect your MT5 server. Your team can be
         live within the hour.
@@ -347,11 +347,12 @@
 
 <footer class="site-footer theme-dark">
   <div class="site-footer__inner">
+    <div class="site-footer__brandrow">
+      <a class="site-footer__brand" href="index.html"><img src="assets/brand/logo-n-sm.webp" alt="" width="26" height="26">Nomous</a>
+      <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+    </div>
+
     <div class="site-footer__top">
-      <div>
-        <a class="site-footer__brand" href="index.html">Nomous</a>
-        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
-      </div>
       <div>
         <p class="site-footer__title">Platform</p>
         <div class="site-footer__links">
@@ -368,10 +369,15 @@
         </div>
       </div>
       <div>
-        <p class="site-footer__title">Legal</p>
+        <p class="site-footer__title">Resources</p>
         <div class="site-footer__links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <p class="site-footer__title">Social</p>
+        <div class="site-footer__links">
+          <a class="site-footer__social" href="https://www.linkedin.com/company/nomous-tech" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -387,7 +393,6 @@
       <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
       </span>
     </div>
   </div>

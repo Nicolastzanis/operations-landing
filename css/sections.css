@@ -598,6 +598,10 @@
   border-top: 1px solid var(--hairline);
   max-width: 820px;
 }
+/* Inside a centered section the FAQ column centers as a block, but its
+   questions and answers stay left-aligned — centered paragraphs are hard
+   to read at this length. */
+.section--center .faq { margin-inline: auto; text-align: left; }
 
 .faq__item { border-bottom: 1px solid var(--hairline); }
 
@@ -812,9 +816,19 @@ a.contact-card__val:hover { color: var(--accent-text); }
 .site-footer .site-footer__title { color: var(--accent-soft); }
 .site-footer__inner { max-width: 1180px; margin: 0 auto; }
 
+/* Brand on its own row above the link columns — the logo anchors the footer
+   the way the nav anchors the header. */
+.site-footer__brandrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.75rem;
+}
 .site-footer__top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--hairline);
@@ -823,19 +837,27 @@ a.contact-card__val:hover { color: var(--accent-text); }
 @media (max-width: 480px) { .site-footer__top { grid-template-columns: 1fr; } }
 
 .site-footer__brand {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 650;
   letter-spacing: -0.02em;
-  margin-bottom: 0.9rem;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
 }
+.site-footer__brand img { border-radius: 7px; display: block; }
 .site-footer__tagline {
   font-size: 0.9rem;
   line-height: 1.6;
   color: var(--text-dim);
-  max-width: 34ch;
+  max-width: 44ch;
 }
+.site-footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.site-footer__social svg { flex-shrink: 0; opacity: 0.85; }
 
 .site-footer__title {
   font-family: var(--mono);

@@ -35,7 +35,7 @@
   <section class="page-hero theme-dark">
     <p class="mono-tag"><span class="pulse"></span>Legal</p>
     <h1 class="headline">Privacy Policy</h1>
-    <p class="subhead">Last updated: 7 July 2026</p>
+    <p class="subhead">Last updated: 5 August 2026</p>
   </section>
 
   <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
@@ -63,7 +63,7 @@
       <p class="legal__p">If you use the Nomous AI assistant, we store the questions you ask and the answers given so you can review your conversation history. To generate an answer, Nomous AI may include relevant operational data from your own company account (such as current pricing, risk, client, swap, or holiday data) as context, never data belonging to another company.</p>
 
       <h3>Payment information</h3>
-      <p class="legal__p">We do not store credit card numbers or bank details. Payments are made via cryptocurrency. We record the transaction hash you submit for payment verification purposes only.</p>
+      <p class="legal__p">We do not store credit card numbers or bank details. Payments are handled by a PCI-DSS-certified payment processor — payment details are entered directly with the processor and never touch our servers; we receive only a payment reference and status.</p>
 
       <h2 class="legal__h">2. How we use your information</h2>
       <ul class="legal__list">
@@ -79,19 +79,22 @@
 
       <h2 class="legal__h">3. MT5 server data</h2>
       <p class="legal__p">The platform connects to your MT5 server using credentials you provide. Data retrieved from your MT5 server (account data, pricing, positions) is processed in real time and is not stored on our servers beyond what is necessary to display it to your authorised users or to generate a Nomous AI response you requested.</p>
+      <p class="legal__p">Access is <strong>read-only by default</strong>. Optional write features (for example symbol, group, or swap configuration changes) are disabled until an admin of your company explicitly enables them, each individual change requires a separate on-screen confirmation before it is sent, and every change is recorded in an audit log visible to your admins. The platform never executes trades and never moves client funds.</p>
       <p class="legal__p">Your MT5 Manager credentials are encrypted at rest and are never shared with third parties.</p>
 
       <h2 class="legal__h">4. Third-party sub-processors</h2>
-      <p class="legal__p">We use a small number of third-party providers to operate the Service:</p>
+      <p class="legal__p">We use a small number of third-party providers to operate the Service. The current list of sub-processors, by name, is available to customers on request and is included in our Data Processing Agreement:</p>
       <ul class="legal__list">
-        <li><strong>Hosting (Railway):</strong> runs our application and databases.</li>
-        <li><strong>AI provider (Anthropic):</strong> powers the Nomous AI assistant. When you use Nomous AI, your question and the relevant account context are sent to Anthropic's API to generate a response; the response is returned to you and stored in your conversation history as described above.</li>
-        <li><strong>Email/Telegram delivery:</strong> used only to deliver the alerts you configure.</li>
+        <li><strong>A cloud hosting provider:</strong> runs our application and databases.</li>
+        <li><strong>An AI provider:</strong> powers the Nomous AI assistant. When you use Nomous AI, your question and the relevant account context are sent to the provider's API to generate a response; the response is returned to you and stored in your conversation history as described above. Under the commercial API terms we use, <strong>your data is not used to train AI models</strong>.</li>
+        <li><strong>A payment processor:</strong> handles payments. Payment details are entered directly with the processor and never reach our servers.</li>
+        <li><strong>An email delivery provider:</strong> sends transactional email — account and service notifications.</li>
+        <li><strong>A messaging provider:</strong> delivers the instant alerts you configure, to the channel you connect.</li>
       </ul>
       <p class="legal__p">Each company's data is strictly isolated in our systems and is never combined with, or made visible to, another company, including when generating Nomous AI responses. Nomous AI usage is also cost-capped per customer, so no customer's usage can affect another's.</p>
 
       <h2 class="legal__h">5. International data transfers</h2>
-      <p class="legal__p">Our AI sub-processor (Anthropic) may process data outside the European Economic Area (EEA), including in the United States. Where this occurs, we rely on appropriate safeguards, such as Standard Contractual Clauses, to protect your data in accordance with applicable data protection law.</p>
+      <p class="legal__p">Our AI sub-processor may process data outside the European Economic Area (EEA), including in the United States. Where this occurs, we rely on appropriate safeguards, such as Standard Contractual Clauses, to protect your data in accordance with applicable data protection law.</p>
 
       <h2 class="legal__h">6. Data sharing</h2>
       <p class="legal__p">We do not sell, rent, or trade your personal data to third parties. We share data only with the sub-processors listed in Section 4, under confidentiality and data-processing obligations.</p>
@@ -126,11 +129,12 @@
 
 <footer class="site-footer theme-dark">
   <div class="site-footer__inner">
+    <div class="site-footer__brandrow">
+      <a class="site-footer__brand" href="index.html"><img src="assets/brand/logo-n-sm.webp" alt="" width="26" height="26">Nomous</a>
+      <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+    </div>
+
     <div class="site-footer__top">
-      <div>
-        <a class="site-footer__brand" href="index.html">Nomous</a>
-        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
-      </div>
       <div>
         <p class="site-footer__title">Platform</p>
         <div class="site-footer__links">
@@ -147,10 +151,15 @@
         </div>
       </div>
       <div>
-        <p class="site-footer__title">Legal</p>
+        <p class="site-footer__title">Resources</p>
         <div class="site-footer__links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <p class="site-footer__title">Social</p>
+        <div class="site-footer__links">
+          <a class="site-footer__social" href="https://www.linkedin.com/company/nomous-tech" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -166,7 +175,6 @@
       <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
       </span>
     </div>
   </div>

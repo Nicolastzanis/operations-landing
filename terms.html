@@ -35,7 +35,7 @@
   <section class="page-hero theme-dark">
     <p class="mono-tag"><span class="pulse"></span>Legal</p>
     <h1 class="headline">Terms &amp; Conditions</h1>
-    <p class="subhead">Last updated: 7 July 2026</p>
+    <p class="subhead">Last updated: 5 August 2026</p>
   </section>
 
   <div class="wave" style="--wave-to: #ffffff" aria-hidden="true">
@@ -65,12 +65,9 @@
       <p class="legal__p">Each account is for use by a single brokerage entity. Sharing accounts between unrelated companies is not permitted.</p>
 
       <h2 class="legal__h">4. Subscription and payment</h2>
-      <p class="legal__p">The Service is provided on a monthly subscription basis at the price stated at the time of registration. Payment is accepted in USDT cryptocurrency (TRC20 or ERC20 network).</p>
-      <p class="legal__p">Subscriptions are activated upon confirmation of payment, typically within 24 hours of receiving a valid transaction hash. Payments are non-refundable except as required by applicable law.</p>
+      <p class="legal__p">The Service is provided on a monthly subscription basis at the price stated at the time of registration. Payments are handled by a PCI-DSS-certified payment processor, and subscriptions are activated on successful payment. Payments are non-refundable except as required by applicable law.</p>
       <p class="legal__p">We reserve the right to change pricing with 30 days notice. Existing subscribers will be notified by email.</p>
-      <p class="legal__p"><strong>Cryptocurrency payment risk.</strong> Cryptocurrency transactions are irreversible once confirmed on-chain. You are responsible for sending the correct amount to the correct address on the correct network (TRC20 or ERC20). We cannot recover funds sent in error. We are not responsible for losses caused by cryptocurrency price volatility between the time an invoice is issued and the time payment is sent, or for network fees charged by the blockchain.</p>
-
-      <h2 class="legal__h">5. Acceptable use</h2>
+            <h2 class="legal__h">5. Acceptable use</h2>
       <p class="legal__p">You agree not to:</p>
       <ul class="legal__list">
         <li>Use the Service for any unlawful purpose</li>
@@ -83,17 +80,17 @@
       </ul>
 
       <h2 class="legal__h">6. MT5 server access</h2>
-      <p class="legal__p">By providing MT5 Manager credentials, you confirm that you are authorised to grant access to the MT5 server in question. You remain solely responsible for any actions taken on your MT5 server through use of the platform.</p>
-      <p class="legal__p">We access your MT5 server only to read data required for the features of the platform. We do not execute trades, modify accounts, or make changes to your MT5 configuration. Your MT5 Manager credentials are encrypted at rest.</p>
+      <p class="legal__p">By providing MT5 Manager credentials, you confirm that you are authorised to grant access to the MT5 server in question. You remain solely responsible for any actions taken on your MT5 server through use of the platform, including changes made through opt-in write features enabled by your admins.</p>
+      <p class="legal__p">Platform access to your MT5 server is <strong>read-only by default</strong>. Optional write features (for example symbol, group, or swap configuration changes) are disabled until an admin of your company explicitly enables them; each individual change then requires a separate on-screen confirmation before it is sent, and every change is recorded in an audit log visible to your admins. The platform never executes trades and never holds, moves, or transmits client funds. Your MT5 Manager credentials are encrypted at rest.</p>
 
       <h2 class="legal__h">7. Data controller and processor roles</h2>
       <p class="legal__p">Where you use the platform to view or process personal data belonging to your own end clients (for example, trading account holders looked up via Clients), you act as the data controller for that personal data and Nomous acts only as a data processor, processing it solely on your instructions and for the purpose of providing the Service. You are responsible for having a lawful basis to process that data and for your own obligations to your clients under applicable data protection law.</p>
       <p class="legal__p">For data about your own company and team (account holders, admins, users you invite), Nomous acts as the data controller, as described in our <a href="privacy.html" style="color:var(--primary)">Privacy Policy</a>.</p>
 
       <h2 class="legal__h">8. Nomous AI assistant</h2>
-      <p class="legal__p">Nomous AI is an optional feature that answers questions using data from your own company account. Each broker's AI only ever has access to that broker's own data, never another company's.</p>
+      <p class="legal__p">Nomous AI is an optional feature that answers questions using data from your own company account. Each broker's AI only ever has access to that broker's own data, never another company's. Under the commercial API terms of our AI sub-processor, your data is not used to train AI models.</p>
       <p class="legal__p">AI-generated responses may occasionally be inaccurate, incomplete, or out of date, and must not be relied upon as financial, investment, legal, tax, or trading advice, nor as a substitute for your own verification of the underlying data in the platform. You remain solely responsible for any decisions made using information from Nomous AI.</p>
-      <p class="legal__p">To keep the Service fast and fair for all customers, Nomous AI usage is subject to daily and monthly usage limits. If a limit is reached, Nomous AI may temporarily decline to respond until the limit resets.</p>
+      <p class="legal__p">Nomous AI comes with a monthly included message allowance per company. When the allowance is used up, Nomous AI may decline to respond until the allowance resets or an additional usage top-up is purchased in-platform at the prices displayed at the time of purchase.</p>
 
       <h2 class="legal__h">9. Intellectual property</h2>
       <p class="legal__p">All rights in the platform, including software, design, and content, remain the property of Nomous. Nothing in these Terms grants you any intellectual property rights in the Service.</p>
@@ -120,11 +117,12 @@
 
 <footer class="site-footer theme-dark">
   <div class="site-footer__inner">
+    <div class="site-footer__brandrow">
+      <a class="site-footer__brand" href="index.html"><img src="assets/brand/logo-n-sm.webp" alt="" width="26" height="26">Nomous</a>
+      <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
+    </div>
+
     <div class="site-footer__top">
-      <div>
-        <a class="site-footer__brand" href="index.html">Nomous</a>
-        <p class="site-footer__tagline">MT5 broker operations platform. Built for teams who can't afford downtime.</p>
-      </div>
       <div>
         <p class="site-footer__title">Platform</p>
         <div class="site-footer__links">
@@ -141,10 +139,15 @@
         </div>
       </div>
       <div>
-        <p class="site-footer__title">Legal</p>
+        <p class="site-footer__title">Resources</p>
         <div class="site-footer__links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <p class="site-footer__title">Social</p>
+        <div class="site-footer__links">
+          <a class="site-footer__social" href="https://www.linkedin.com/company/nomous-tech" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -160,7 +163,6 @@
       <span class="site-footer__legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
       </span>
     </div>
   </div>
