@@ -304,18 +304,25 @@ if (!reducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').ma
 window.nomous = instances;
 
 /* ── Product tour: tab-switched screenshots with a soft crossfade ─────────── */
+/* Screenshots are replaced as the product changes, so they carry the same
+   version parameter the stylesheets do. Without it a returning visitor keeps
+   whatever the CDN cached the first time they came — which is exactly how the
+   July screens survived the move to dark mode. */
+const SHOT_V = 2;
+const shotSrc = (name) => `assets/screens/${name}.webp?v=${SHOT_V}`;
+
 for (const tour of document.querySelectorAll('[data-tour]')) {
   const img = tour.querySelector('[data-tour-img]');
   const cap = tour.querySelector('[data-tour-caption]');
   const tabs = [...tour.querySelectorAll('.tour__tab')];
   // fetch ahead so the first click doesn't show a blank frame
-  for (const t of tabs) { const pre = new Image(); pre.src = `assets/screens/${t.dataset.shot}.webp`; }
+  for (const t of tabs) { const pre = new Image(); pre.src = shotSrc(t.dataset.shot); }
   for (const t of tabs) {
     t.addEventListener('click', () => {
       tabs.forEach(x => { x.classList.toggle('is-active', x === t); x.setAttribute('aria-selected', x === t); });
       img.classList.add('is-swapping');
       setTimeout(() => {
-        img.src = `assets/screens/${t.dataset.shot}.webp`;
+        img.src = shotSrc(t.dataset.shot);
         img.onload = () => img.classList.remove('is-swapping');
       }, 180);
       if (cap) cap.textContent = t.dataset.caption || '';
