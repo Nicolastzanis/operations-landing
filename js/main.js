@@ -302,3 +302,36 @@ for (const tour of document.querySelectorAll('[data-tour]')) {
     });
   }
 }
+
+/* ── Lightbox: κάθε screenshot ανοίγει full screen με ένα κλικ ────────────── */
+{
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-label', 'Screenshot, enlarged');
+  lb.hidden = true;
+  lb.innerHTML = '<img alt="">';
+  document.body.appendChild(lb);
+  const lbImg = lb.querySelector('img');
+
+  const open = (src, alt) => {
+    lbImg.src = src; lbImg.alt = alt || '';
+    lb.hidden = false;
+    requestAnimationFrame(() => lb.classList.add('is-open'));
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lb.hidden = true; lbImg.removeAttribute('src'); }, 220);
+  };
+
+  for (const img of document.querySelectorAll('.shot__frame img, [data-tour-img]')) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => open(img.currentSrc || img.src, img.alt));
+  }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !lb.hidden) close();
+  });
+}

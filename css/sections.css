@@ -1107,6 +1107,9 @@ a.contact-card__val:hover { color: var(--accent-text); }
 /* ── The one thing a designer checks first: do headings line up ── */
 .headline, .display { max-width: 20ch; }
 .section--center .headline, .section--center .display { max-width: 24ch; margin-inline: auto; }
+/* A page hero centres its text, so the headline's own max-width box has to
+   centre too — left-hugging, it reads as misaligned against the subhead. */
+.page-hero .headline, .page-hero .display { max-width: 24ch; margin-inline: auto; }
 .lede { max-width: 62ch; }
 
 /* Centred sections also centre their subhead and mono-tag, which used to
@@ -1131,3 +1134,23 @@ a.contact-card__val:hover { color: var(--accent-text); }
    they still obey the scale. */
 .claims { gap: var(--s-6); }
 .claim h3 { margin-bottom: var(--s-2); }
+
+/* ------------------------------------------------------------
+   Lightbox — the screenshots are dense; full screen is one click
+   ------------------------------------------------------------ */
+.lightbox {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3vh 3vw;
+  background: rgba(3, 7, 15, 0.93);
+  opacity: 0; transition: opacity 0.22s var(--ease);
+}
+.lightbox.is-open { opacity: 1; }
+.lightbox img {
+  max-width: 100%; max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65);
+  cursor: zoom-out;
+}
+/* The zoom-in cursor is the whole affordance — no glyph, no close button.
+   Click the shot, it fills the screen; click again, it's gone. */
