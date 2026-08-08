@@ -1,12 +1,12 @@
 /* ============================================================
-   Nomous — marketing section components
+   Nomous - marketing section components
    Shared by index / pricing / about / contact.
    Loaded after style.css, which owns the tokens.
    ============================================================ */
 
 /* ============================================================
    HERO (index only)
-   No canvas, no frame sequence — the atmosphere is a navy base,
+   No canvas, no frame sequence - the atmosphere is a navy base,
    three drifting blurred orbs and a field of rising particles.
    ============================================================ */
 
@@ -14,7 +14,7 @@
   position: relative;
   overflow: hidden;
 
-  /* Flat colour, same as every other page's .page-hero — both just render
+  /* Flat colour, same as every other page's .page-hero - both just render
      .theme-dark's own background: var(--bg), so they're always in sync. */
   background: var(--bg);
   padding: clamp(8rem, 17vh, 11rem) var(--gutter) clamp(5rem, 12vh, 8rem);
@@ -26,12 +26,12 @@
 }
 /* On phones the 92vh min-height was forcing the hero to fill the screen
    even though its actual content (no diagram, see below) is much shorter
-   — just let it size to content instead. */
+   - just let it size to content instead. */
 @media (max-width: 640px) {
   .hero { padding: 6.5rem var(--gutter) 3rem; min-height: 0; }
 }
 
-/* Drifting orbs — the depth in the background. Heavily blurred so they read
+/* Drifting orbs - the depth in the background. Heavily blurred so they read
    as light, not as shapes. */
 /* Rising particles. Each span carries its own --size/--left/--dur/--delay
    from the markup, so the field is defined in one place. */
@@ -79,7 +79,7 @@
   margin-bottom: 1.6rem;
 }
 
-/* Editorial serif for the hero headline only — everything else on the site
+/* Editorial serif for the hero headline only - everything else on the site
    stays Inter. Swap --display-font in style.css to undo. */
 .hero__title {
   font-family: var(--display-font);
@@ -96,7 +96,7 @@
    accent treatment used on the light sections.
 
    The rule is a background-image on the OUTER span rather than an ::after on
-   the gradient text itself — `background-clip: text` clips pseudo-element
+   the gradient text itself - `background-clip: text` clips pseudo-element
    backgrounds in WebKit, and a background-image underline also re-draws
    correctly if the phrase ever wraps, where an absolutely-positioned bar
    would break. */
@@ -105,7 +105,7 @@
   background-repeat: no-repeat;
   background-size: 100% 0.05em;
   /* On the baseline it struck through the 'p'/'g' descenders, so it needs the
-     padding to sit below them — which in turn needs the looser line-height
+     padding to sit below them - which in turn needs the looser line-height
      above, or the rule collides with the next line. Both halves matter. */
   background-position: 0 100%;
   -webkit-box-decoration-break: clone;
@@ -146,14 +146,14 @@
 .hero__visual { position: relative; display: flex; justify-content: center; }
 
 /* The wrapper is a flex item, so without an explicit width it sizes to
-   content — and the SVG's `width: 100%` then resolves against nothing and
+   content - and the SVG's `width: 100%` then resolves against nothing and
    falls back to the 300px default. */
 .hero__visual > div { width: 100%; }
 
 .hero__diagram { width: 100%; max-width: 860px; height: auto; overflow: visible; }
 
 /* Single column below the breakpoint. The diagram stacks under the copy
-   rather than being hidden — it carries the read-only message, so it earns
+   rather than being hidden - it carries the read-only message, so it earns
    its space on small screens too.
    NOTE: this block must stay AFTER the .hero__visual base rule above; at
    equal specificity the later declaration wins, and an earlier media query
@@ -165,7 +165,7 @@
   .hero__sub { max-width: 52ch; }
 }
 
-/* The diagram is the single heaviest thing in the hero — on phones it's
+/* The diagram is the single heaviest thing in the hero - on phones it's
    replaced by the plain-text caption already sitting under it (see
    .hero__caption--mobile), matching how yambapay's mobile hero is text +
    CTA only, no illustration. Must stay after both rules above it. */
@@ -239,7 +239,7 @@
 }
 
 /* ------------------------------------------------------------
-   Claim band — two short statements under the hero
+   Claim band - two short statements under the hero
    ------------------------------------------------------------ */
 
 .claims {
@@ -332,7 +332,7 @@
 @media (max-width: 560px)  { .modgrid { grid-template-columns: 1fr; } }
 
 /* Phones: these are a teaser grid linking to features.html, not the full
-   feature copy — clamp the description so eight stacked cards don't turn
+   feature copy - clamp the description so eight stacked cards don't turn
    into a second scroll of their own. */
 @media (max-width: 640px) {
   .modcard { padding: 1.4rem 1.3rem; }
@@ -469,7 +469,7 @@
 @media (max-width: 520px) { .steps { grid-template-columns: 1fr; gap: 1.75rem; } }
 
 @media (max-width: 640px) {
-  /* Stay 2-column instead of collapsing to a single stacked list — with a
+  /* Stay 2-column instead of collapsing to a single stacked list - with a
      1-line clamp the short step titles fit two-up even on a narrow phone,
      halving the section's scroll length. */
   .steps { grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1.25rem; margin-top: 2rem; }
@@ -634,7 +634,7 @@
 }
 
 /* This is the homepage teaser for the plan on pricing.html, which already
-   lists every line item — on phones, drop the repeated list and keep just
+   lists every line item - on phones, drop the repeated list and keep just
    the name/price/CTA so the plan card doesn't add another full screen. */
 @media (max-width: 640px) {
   .plan { padding: 2rem 1.6rem; }
@@ -651,7 +651,7 @@
   max-width: 820px;
 }
 /* Inside a centered section the FAQ column centers as a block, but its
-   questions and answers stay left-aligned — centered paragraphs are hard
+   questions and answers stay left-aligned - centered paragraphs are hard
    to read at this length. */
 .section--center .faq { margin-inline: auto; text-align: left; }
 
@@ -873,7 +873,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 .site-footer .site-footer__title { color: var(--accent-soft); }
 .site-footer__inner { max-width: 1180px; margin: 0 auto; }
 
-/* Brand on its own row above the link columns — the logo anchors the footer
+/* Brand on its own row above the link columns - the logo anchors the footer
    the way the nav anchors the header. */
 .site-footer__brandrow {
   display: flex;
@@ -963,7 +963,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 }
 
 /* ============================================================
-   Product tour — real screens in a browser frame, tab-switched.
+   Product tour - real screens in a browser frame, tab-switched.
    ============================================================ */
 .tour { margin-top: 2.5rem; }
 
@@ -1012,7 +1012,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 }
 .tour__frame img {
   display: block; width: 100%; height: auto;
-  /* crossfade on swap — set by JS */
+  /* crossfade on swap - set by JS */
   transition: opacity .22s ease;
 }
 .tour__frame img.is-swapping { opacity: 0; }
@@ -1029,7 +1029,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 }
 
 /* ============================================================
-   Marquee — a moving band of what the platform actually runs on.
+   Marquee - a moving band of what the platform actually runs on.
    Ours is indigo and factual where the genre is usually green and
    borrowed: every item here is verifiable, which is the point.
    ============================================================ */
@@ -1064,7 +1064,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
 
 /* ============================================================
-   FAQ — accordion. Closed by default so the page stays scannable.
+   FAQ - accordion. Closed by default so the page stays scannable.
    ============================================================ */
 .faq { margin-top: 2.5rem; display: grid; gap: 0.7rem; }
 .faq__item {
@@ -1091,7 +1091,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 }
 
 /* ============================================================
-   DESIGN SYSTEM — imposed late, on purpose. The page grew section
+   DESIGN SYSTEM - imposed late, on purpose. The page grew section
    by section and each one invented its own spacing, card and
    accent. A designer reads that instantly as "assembled", not
    "designed". These rules are the single source of truth and win
@@ -1126,7 +1126,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 .section__inner > .lede     { margin-bottom: var(--s-6); }
 .section__inner > .lede:last-child { margin-bottom: 0; }
 
-/* Centred sections centre everything inside them — the old inline
+/* Centred sections centre everything inside them - the old inline
    text-align:center left buttons and ledes to fend for themselves. */
 .section--center .section__inner { text-align: center; }
 .section--center .sec-bar { justify-content: center; }
@@ -1165,7 +1165,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
 .headline, .display { max-width: 20ch; }
 .section--center .headline, .section--center .display { max-width: 24ch; margin-inline: auto; }
 /* A page hero centres its text, so the headline's own max-width box has to
-   centre too — left-hugging, it reads as misaligned against the subhead. */
+   centre too - left-hugging, it reads as misaligned against the subhead. */
 .page-hero .headline, .page-hero .display { max-width: 24ch; margin-inline: auto; }
 .lede { max-width: 62ch; }
 
@@ -1187,13 +1187,13 @@ a.contact-card__val:hover { color: var(--accent-text); }
 .step::before, .step::after { display: none; }
 .step__num { color: var(--brand); }
 
-/* Claims: the two opening statements sit on the page, not in boxes — but
+/* Claims: the two opening statements sit on the page, not in boxes - but
    they still obey the scale. */
 .claims { gap: var(--s-6); }
 .claim h3 { margin-bottom: var(--s-2); }
 
 /* ------------------------------------------------------------
-   Lightbox — the screenshots are dense; full screen is one click
+   Lightbox - the screenshots are dense; full screen is one click
    ------------------------------------------------------------ */
 .lightbox {
   position: fixed; inset: 0; z-index: 999;
@@ -1203,7 +1203,7 @@ a.contact-card__val:hover { color: var(--accent-text); }
   opacity: 0; transition: opacity 0.22s var(--ease);
 }
 /* An author `display` beats the browser's own [hidden] rule, so without this
-   the closed overlay stays laid out — invisible at opacity 0, full-viewport,
+   the closed overlay stays laid out - invisible at opacity 0, full-viewport,
    and swallowing every click on the page beneath it. */
 .lightbox[hidden] { display: none; }
 .lightbox.is-open { opacity: 1; }
@@ -1213,5 +1213,5 @@ a.contact-card__val:hover { color: var(--accent-text); }
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65);
   cursor: zoom-out;
 }
-/* The zoom-in cursor is the whole affordance — no glyph, no close button.
+/* The zoom-in cursor is the whole affordance - no glyph, no close button.
    Click the shot, it fills the screen; click again, it's gone. */

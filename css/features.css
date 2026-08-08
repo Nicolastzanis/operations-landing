@@ -1,5 +1,5 @@
 /* ============================================================
-   Nomous — Features page
+   Nomous - Features page
    Layers a HUD/terminal treatment on top of the tokens and
    primitives in style.css. Loaded after it, never instead of it.
    ============================================================ */
@@ -7,7 +7,7 @@
 :root { --rail-w: 210px; }
 
 /* ------------------------------------------------------------
-   Modules layout — sticky rail + flow
+   Modules layout - sticky rail + flow
    ------------------------------------------------------------ */
 
 .modules {
@@ -88,8 +88,8 @@
   .rail {
     /* Without this, the rail (a 1fr grid item) inherits its horizontally-
        scrollable child's full unwrapped content width as its own minimum
-       size — grid items default to min-width:auto, which ignores
-       overflow-x:auto on the child — and blows the whole page out past
+       size - grid items default to min-width:auto, which ignores
+       overflow-x:auto on the child - and blows the whole page out past
        the viewport instead of scrolling internally. */
     min-width: 0;
     position: sticky;
@@ -189,7 +189,7 @@
   color: var(--text-dim);
 }
 
-/* Monospace marker instead of a bullet — keeps the terminal register. */
+/* Monospace marker instead of a bullet - keeps the terminal register. */
 .module__list li::before {
   content: '›';
   position: absolute;
@@ -256,7 +256,7 @@
   height: auto;
 }
 
-/* Scanline sweep on hover — a single pass, not a loop, so it reads as a
+/* Scanline sweep on hover - a single pass, not a loop, so it reads as a
    response to the cursor rather than ambient noise. */
 .shot__frame::after {
   content: '';

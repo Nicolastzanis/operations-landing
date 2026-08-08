@@ -1,5 +1,5 @@
 /**
- * Nomous — site bootstrap.
+ * Nomous - site bootstrap.
  *
  * Every motion section is declared in markup, not here:
  *
@@ -44,7 +44,7 @@ function bindOverlay(section) {
 
 /**
  * Fades out the "Scroll" cue the first moment progress moves off zero, and
- * never re-shows it — a one-shot hint, not a persistent nag.
+ * never re-shows it - a one-shot hint, not a persistent nag.
  */
 function bindScrollCue(section) {
   const cue = section.querySelector('[data-scroll-cue]');
@@ -92,7 +92,7 @@ const sections = [...document.querySelectorAll('[data-scroll-canvas]')];
 const built = sections.map(initSection);
 const instances = built.filter(Boolean);
 
-/* Loader — tracks the eager (above-the-fold) sequence only. Lazy sections
+/* Loader - tracks the eager (above-the-fold) sequence only. Lazy sections
    stream in later and must not hold up first paint. */
 const loader = document.querySelector('[data-loader]');
 const loaderFill = document.querySelector('[data-loader-fill]');
@@ -157,7 +157,7 @@ if (nav && burger) {
   });
 }
 
-/* Reveal on scroll — used by every page. */
+/* Reveal on scroll - used by every page. */
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealTargets = document.querySelectorAll('[data-reveal]');
 
@@ -177,7 +177,7 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
   revealTargets.forEach((el) => revealObserver.observe(el));
 }
 
-/* FAQ disclosure — the answer slides down from under its question.
+/* FAQ disclosure - the answer slides down from under its question.
    The open height is measured rather than guessed, so the slide takes the
    same time whatever the answer's length, and nothing is ever clipped. */
 {
@@ -186,7 +186,7 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
     const btn = item.querySelector('.faq__q');
     const panel = item.querySelector('.faq__a');
     if (!btn || !panel) continue;
-    // `hidden` is display:none, which would cut the transition — collapsing
+    // `hidden` is display:none, which would cut the transition - collapsing
     // is the max-height rule's job from here on.
     panel.hidden = false;
     panels.push({ item, panel });
@@ -270,7 +270,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   });
 });
 
-/* Pointer tilt. Deliberately shallow (max ~3deg) — enough to feel responsive
+/* Pointer tilt. Deliberately shallow (max ~3deg) - enough to feel responsive
    and three-dimensional; past that it visibly distorts the artwork. */
 if (!reducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const MAX_DEG = 3;
@@ -306,7 +306,7 @@ window.nomous = instances;
 /* ── Product tour: tab-switched screenshots with a soft crossfade ─────────── */
 /* Screenshots are replaced as the product changes, so they carry the same
    version parameter the stylesheets do. Without it a returning visitor keeps
-   whatever the CDN cached the first time they came — which is exactly how the
+   whatever the CDN cached the first time they came - which is exactly how the
    July screens survived the move to dark mode. */
 const SHOT_V = 2;
 const shotSrc = (name) => `assets/screens/${name}.webp?v=${SHOT_V}`;

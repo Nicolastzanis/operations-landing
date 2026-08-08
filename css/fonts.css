@@ -3,14 +3,14 @@
 
    These used to load from a third-party CDN, which handed every
    visitor's IP address to that CDN before the page had rendered a
-   single pixel — a transfer no cookie banner can ask permission for,
+   single pixel - a transfer no cookie banner can ask permission for,
    because it happens first. Serving the files ourselves removes the
    third party entirely and saves the extra DNS lookup and TLS
    handshake on first paint.
 
    Inter and JetBrains Mono are variable: one file per subset covers
    every weight the site uses. Subsets are latin, latin-ext and greek
-   — the browser fetches only the ones a page's characters need.
+   - the browser fetches only the ones a page's characters need.
    ============================================================ */
 
 @font-face {

@@ -1,11 +1,11 @@
 /**
- * ScrollCanvas — scroll-driven frame-sequence playback with momentum braking.
+ * ScrollCanvas - scroll-driven frame-sequence playback with momentum braking.
  *
  * Each instance owns one <canvas> pinned with `position: sticky` inside a tall
  * container. Scroll position maps to a frame index, but the index is never read
  * straight from the scrollbar: the raw value feeds a `target`, and a `current`
  * value chases it via linear interpolation every rAF tick. Because the gap
- * closes by a fixed *fraction* per frame, motion decays exponentially — the
+ * closes by a fixed *fraction* per frame, motion decays exponentially - the
  * sequence keeps gliding after the wheel stops and eases into rest instead of
  * halting dead. That decay is the "braking" feel.
  */
@@ -123,7 +123,7 @@ export class ScrollCanvas {
   }
 
   _resize() {
-    // Cap DPR at 2 — beyond that the pixel cost climbs fast with no visible gain.
+    // Cap DPR at 2 - beyond that the pixel cost climbs fast with no visible gain.
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const rect = this.canvas.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
@@ -232,7 +232,7 @@ export class ScrollCanvas {
     const ch = canvas.height;
     if (!cw || !ch) return;
 
-    // object-fit: cover, computed manually — canvas has no CSS equivalent.
+    // object-fit: cover, computed manually - canvas has no CSS equivalent.
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = cw / ch;
     let dw, dh;

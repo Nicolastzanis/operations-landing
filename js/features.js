@@ -1,8 +1,8 @@
 /**
  * Features page: the sticky module rail's scroll-spy.
  *
- * Everything else on this page — the hero canvas, nav drawer, reveals,
- * pointer tilt, anchor scrolling — comes from main.js.
+ * Everything else on this page - the hero canvas, nav drawer, reveals,
+ * pointer tilt, anchor scrolling - comes from main.js.
  */
 
 const modules = [...document.querySelectorAll('[data-module]')];
@@ -21,7 +21,7 @@ if (modules.length && railLinks.size) {
     if (!link) return;
     link.classList.add('is-active');
 
-    // On mobile the rail is a horizontal scroller — keep the active chip in view.
+    // On mobile the rail is a horizontal scroller - keep the active chip in view.
     if (window.innerWidth <= 900) {
       link.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
     }

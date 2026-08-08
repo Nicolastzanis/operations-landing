@@ -1,8 +1,8 @@
 /* ============================================================
-   Nomous — foundation
+   Nomous - foundation
    Light body, dark surfaces. Dark areas (nav, hero, the security
    band, footer) carry .theme-dark, which re-points the same token
-   names — so every component below works on either background
+   names - so every component below works on either background
    without a variant class of its own.
    ============================================================ */
 
@@ -34,7 +34,7 @@
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
           'Helvetica Neue', Arial, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  /* Headlines run condensed — the same typeface the product uses for its
+  /* Headlines run condensed - the same typeface the product uses for its
      figures and card titles, so site and app speak with one voice. Narrow
      and heavy reads as deliberate; Inter alone read as default. */
   --display-font: 'IBM Plex Sans Condensed', 'Inter', -apple-system,
@@ -63,7 +63,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
-  /* The canvas engine does its own smoothing — native smooth scroll would
+  /* The canvas engine does its own smoothing - native smooth scroll would
      fight the lerp and produce a double-eased, floaty feel. */
   scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
@@ -173,7 +173,7 @@ a { color: inherit; }
 
 /* ------------------------------------------------------------
    Scroll cue
-   Tells the visitor a long pinned section responds to scroll —
+   Tells the visitor a long pinned section responds to scroll -
    easy to miss since the canvas fills the whole viewport and can
    read as a static banner otherwise. Self-dismisses in JS the
    moment progress moves (see bindScrollCue in main.js).
@@ -284,7 +284,7 @@ a { color: inherit; }
 }
 .overlay__block .subhead { color: rgba(226, 236, 248, 0.78); }
 
-/* Gradient rule under a display heading — the reference's signature accent. */
+/* Gradient rule under a display heading - the reference's signature accent. */
 .underline-accent {
   position: relative;
   display: inline-block;
@@ -358,7 +358,7 @@ a { color: inherit; }
 }
 .btn--ghost:hover { border-color: rgba(15, 23, 42, 0.3); }
 
-/* The nav is a dark bar but deliberately not .theme-dark — that would
+/* The nav is a dark bar but deliberately not .theme-dark - that would
    overwrite its translucent background. So it opts into the dark button
    treatment explicitly, or its label renders slate-900 on navy. */
 .theme-dark .btn--ghost,
@@ -379,7 +379,7 @@ a { color: inherit; }
   border-color: #fff;
 }
 
-/* Blue glow pill — the primary call to action on dark. */
+/* Blue glow pill - the primary call to action on dark. */
 .btn--glow {
   background: var(--accent);
   color: #fff;
@@ -392,7 +392,7 @@ a { color: inherit; }
 }
 
 /* ------------------------------------------------------------
-   Nav — permanently dark, as on the reference site
+   Nav - permanently dark, as on the reference site
    ------------------------------------------------------------ */
 
 .nav {
@@ -543,7 +543,7 @@ a { color: inherit; }
   background: var(--bg);
   padding: clamp(5rem, 13vh, 8.5rem) var(--gutter);
 }
-/* The 13vh clamp was adding ~210px of padding per section on phones — over
+/* The 13vh clamp was adding ~210px of padding per section on phones - over
    1.5 screens of pure whitespace across the homepage. Tighten it up there. */
 @media (max-width: 640px) {
   .section { padding: 3.75rem var(--gutter); }
